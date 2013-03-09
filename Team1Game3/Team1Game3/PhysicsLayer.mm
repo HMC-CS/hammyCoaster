@@ -166,7 +166,7 @@
     [self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
     
-    b2Body *body = [[ObjectFactory objectFromString:type forWorld:world] createBody:p];
+    b2Body *body = [[ObjectFactory objectFromString:type forWorld:world withDraggable:false] createBody:p];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
 }

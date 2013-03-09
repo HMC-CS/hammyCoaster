@@ -12,6 +12,8 @@
 
 @interface ObjectFactory : NSObject
 
-+ (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world;
++ (AbstractGameObject *) objectFromString:(NSString *)className
+                                 forWorld:(b2World *)world
+                            withDraggable:(bool) draggable;
 
 @end
