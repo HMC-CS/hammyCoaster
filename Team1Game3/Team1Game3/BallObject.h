@@ -9,5 +9,6 @@
 #import "AbstractGameObject.h"
 
 @interface BallObject : AbstractGameObject
-//COMMENTINGGGGGG
+
+
 @end
