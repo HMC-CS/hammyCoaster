@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 YO GANGSTER!
+=======
+Hello!!! :)
+>>>>>>> Changed test.txt
