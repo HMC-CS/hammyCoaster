@@ -17,9 +17,11 @@
     b2World* _world;
     b2BodyDef _bodyDef;
     b2FixtureDef _fixtureDef;
+    
+    bool _isDefault;
 }
 
--(id) initWithWorld:(b2World *) world;
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault;
 -(b2Body *) createBody:(CGPoint) location;
 
 @end

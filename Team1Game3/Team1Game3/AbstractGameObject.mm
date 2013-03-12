@@ -10,11 +10,12 @@
 
 @implementation AbstractGameObject
 
--(id) initWithWorld:(b2World *)world
+-(id) initWithWorld:(b2World *)world asDefault:(bool)isDefault
 {
     self = [super init];
     if (self) {
-        self ->_world = world;
+        _world = world;
+        _isDefault = isDefault;
     }
     return self;
 }
