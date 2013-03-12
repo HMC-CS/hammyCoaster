@@ -19,6 +19,8 @@
         CGSize size = [CCDirector sharedDirector].winSize;
 		
 		self.isTouchEnabled = YES;
+        
+        selectedObject = [[NSString alloc] initWithFormat:@"None"];
 		
         [self setContentSize:CGSizeMake(size.width*0.25, size.height)];
         [self setPosition:ccp(0,0)];
@@ -39,12 +41,23 @@
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
 	
-	// Reset Button
-	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"Inventory Button" block:^(id sender){
-		NSLog(@"Inventory button pressed.");
+	// Makes a ball when you click
+	CCMenuItemLabel *selectBallButton = [CCMenuItemFont itemWithString:@"Select Ball Button" block:^(id sender){
+		NSLog(@"Ball button pressed.");
+        selectedObject = @"BallObject";
+	}];
+    // Makes a ramp when you click
+    CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Select Ramp Button" block:^(id sender){
+		NSLog(@"Select Ramp button pressed.");
+        selectedObject = @"RampObject";
+	}];
+    //selects nothing so you can click freely
+    CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Reset Button" block:^(id sender){
+		NSLog(@"Reset button pressed.");
+        selectedObject = @"None";
 	}];
 	
-    CCMenu *menu = [CCMenu menuWithItems:newGame, nil];
+    CCMenu *menu = [CCMenu menuWithItems:selectBallButton, selectRampButton, unSelectButton, nil];
 	
 	[menu alignItemsVertically];
 	
@@ -66,6 +79,7 @@
     NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
+    // drop ball in physics layer
     
     if (CGRectContainsPoint(self.boundingBox, location))
     {
@@ -80,4 +94,9 @@
     NSLog(@"Inventory touch ended");
 }
 
+-(NSString*) getObjectType{
+    return selectedObject;
+}
+
 @end
+

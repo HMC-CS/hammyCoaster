@@ -19,6 +19,9 @@
 
 @interface LevelScene : CCScene
 
+//temp function for inventoryto call on physicslayer
+-(void) dropBall;
+
 +(CCScene *) scene;
 
 @end

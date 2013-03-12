@@ -11,6 +11,9 @@
 
 @interface InventoryLayer : CCLayer {
     
+    NSString* selectedObject;
 }
+
+-(NSString*) getObjectType;
 
 @end

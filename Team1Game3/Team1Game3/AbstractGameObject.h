@@ -17,10 +17,9 @@
     b2World* _world;
     b2BodyDef _bodyDef;
     b2FixtureDef _fixtureDef;
-    bool _draggable;
 }
 
--(id) initWithWorld:(b2World *) world andDraggable:(bool) draggable;
+-(id) initWithWorld:(b2World *) world;
 -(b2Body *) createBody:(CGPoint) location;
 
 @end

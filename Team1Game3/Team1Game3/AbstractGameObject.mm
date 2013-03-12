@@ -10,17 +10,16 @@
 
 @implementation AbstractGameObject
 
--(id) initWithWorld:(b2World *) world andDraggable:(bool) draggable
+-(id) initWithWorld:(b2World *)world
 {
     self = [super init];
     if (self) {
-        _world = world;
-        _draggable = draggable;
+        self ->_world = world;
     }
     return self;
 }
 
-- (b2Body *) createBody:(CGPoint) location
+- (b2Body *) createBody:(CGPoint)location
 {
     NSAssert(NO, @"The 'createBody' method must be implemented by the sub-object.");
 }

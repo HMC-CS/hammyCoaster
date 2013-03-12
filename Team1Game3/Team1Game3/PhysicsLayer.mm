@@ -7,6 +7,7 @@
 //
 
 #import "PhysicsLayer.h"
+#import "InventoryLayer.h"
 
 #import "PhysicsSprite.h"
 
@@ -122,8 +123,10 @@
 	groundBody->CreateFixture(&groundBox,0);
     
     
-    //Claire: make this fake ramp go somewhere else!
-    // Create ramp
+    // hacked default ramps
+    
+    
+    // Starting ramp
     b2BodyDef rampBodyDef;
     rampBodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
     
@@ -133,8 +136,22 @@
     rampShapeDef.shape = &rampEdge;
     
     // ramp definitions
-    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
+    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(s.width/(4*PTM_RATIO), 400/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
+    
+    
+    //Ending Ramp
+    b2BodyDef ramp2BodyDef;
+    ramp2BodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
+    
+    b2Body *ramp2Body = world->CreateBody(&ramp2BodyDef);
+    b2EdgeShape ramp2Edge;
+    b2FixtureDef ramp2ShapeDef;
+    ramp2ShapeDef.shape = &ramp2Edge;
+    
+    // ramp2 definitions
+    ramp2Edge.Set(b2Vec2(s.width*2/(4*PTM_RATIO),150/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
+                 ramp2Body->CreateFixture(&ramp2ShapeDef);
 }
 
 -(void) draw
@@ -166,7 +183,7 @@
     [self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
     
-    b2Body *body = [[ObjectFactory objectFromString:type forWorld:world withDraggable:false] createBody:p];
+    b2Body *body = [[ObjectFactory objectFromString:type forWorld:world] createBody:p];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
 }
@@ -210,12 +227,16 @@
 {
     NSLog(@"physics ended");
 	//Add a new body/atlas sprite at the touched location
-		CGPoint location = [touch locationInView: [touch view]];
+    CGPoint location = [touch locationInView: [touch view]];
 		
-		location = [[CCDirector sharedDirector] convertToGL: location];
-        location = [self convertToNodeSpace:location];
-		
-        [self addNewSpriteOfType:@"BallObject" AtPosition: location];
+    location = [[CCDirector sharedDirector] convertToGL: location];
+    location = [self convertToNodeSpace:location];
+	
+    NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
+    
+    if(![objectType isEqualToString:@"None"]){
+        [self addNewSpriteOfType:objectType AtPosition: location];
+    }
 }
 
 @end

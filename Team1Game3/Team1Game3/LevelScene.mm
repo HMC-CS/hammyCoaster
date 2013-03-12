@@ -24,15 +24,18 @@
     
 	// 'layer' is an autorelease object.
 	PhysicsLayer* physicsLayer = [PhysicsLayer node];
+    physicsLayer.tag = 0;
     //    [physicsLayer setContentSize:CGSizeMake(size.width*0.75, size.height)];
     //    physicsLayer.position = ccp(size.width*0.25, 0);
     
     InventoryLayer* inventoryLayer = [InventoryLayer node];
+    inventoryLayer.tag = 1;
     //    [inventoryLayer setContentSize:CGSizeMake(size.width*0.25, size.height)];
     //    inventoryLayer.position = ccp(0,0);
     
 	
-	// add layer as a child to scene
+	// add layer as a child to scene (essentially pushes them to a stack)
+    // inventoryLayer is on top
 	[scene addChild: physicsLayer];
     [scene addChild: inventoryLayer];
     
@@ -48,6 +51,8 @@
         
     }
 }
+
+
 
 //-(BOOL)ccTouchBegan:(UITouch* )touch withEvent:(UIEvent *)event
 //{

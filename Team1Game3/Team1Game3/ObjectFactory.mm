@@ -10,12 +10,10 @@
 
 @implementation ObjectFactory
 
-+ (AbstractGameObject *) objectFromString:(NSString *)className
-                                 forWorld:(b2World *)world
-                            withDraggable:(bool)draggable
++ (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world
 {
     Class objectClass = NSClassFromString(className);
-    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world andDraggable:draggable];
+    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world];
     return newObject;
 }
 
