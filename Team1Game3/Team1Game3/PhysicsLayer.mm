@@ -31,7 +31,7 @@
 		// init physics
 		[self initPhysics];
         
-		
+		_objectFactory = [ObjectFactory sharedObjectFactory];
 		
         //#if 1
         //		// Use batch node. Faster
@@ -183,7 +183,7 @@
     [self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
     
-    b2Body *body = [[ObjectFactory objectFromString:type forWorld:world] createBody:p];
+    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:NO] createBody:p];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
 }

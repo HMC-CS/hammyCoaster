@@ -12,6 +12,8 @@
 
 @interface ObjectFactory : NSObject
 
-+ (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool) isDefault;
++ (id) sharedObjectFactory;
+
+- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool) isDefault;
 
 @end

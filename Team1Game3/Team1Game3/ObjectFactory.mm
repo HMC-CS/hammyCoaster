@@ -10,7 +10,17 @@
 
 @implementation ObjectFactory
 
-+ (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault
++(id)sharedObjectFactory
+{
+    static ObjectFactory *sharedObjectFactory = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedObjectFactory = [[self alloc] init];
+    });
+    return sharedObjectFactory;
+}
+
+- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault
 {
     Class objectClass = NSClassFromString(className);
     AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault];
