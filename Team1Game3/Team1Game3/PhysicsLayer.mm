@@ -26,7 +26,7 @@
         [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
         [self setPosition:ccp(superSize.width*0.25, 0)];
         
-        CGSize size = [self contentSize];
+//        CGSize size = [self contentSize];
         
 		// init physics
 		[self initPhysics];
