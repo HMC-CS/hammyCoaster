@@ -16,6 +16,7 @@
     if (self) {
         _world = world;
         _isDefault = isDefault;
+        m_contacting = NO;
     }
     return self;
 }
@@ -26,3 +27,15 @@
 }
 
 @end
+
+//void AbstractGameObject::startContact()
+//{
+//    m_contacting = YES;
+//    //NSLog(@"contacting object");
+//}
+//
+//void AbstractGameObject::endContact()
+//{
+//    m_contacting = NO;
+//    //NSLog(@"stopped contacting object");
+//}

@@ -19,9 +19,13 @@
     b2FixtureDef _fixtureDef;
     
     bool _isDefault;
+    bool m_contacting;
 }
 
 -(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault;
 -(b2Body *) createBody:(CGPoint) location;
 
 @end
+
+void startContact();
+void endContact();

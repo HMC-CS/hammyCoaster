@@ -38,6 +38,8 @@
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
         [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
+        
+        [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
 		
         //#if 1
         //		// Use batch node. Faster
@@ -86,6 +88,9 @@
 	world->SetAllowSleeping(true);
 	
 	world->SetContinuousPhysics(true);
+    
+    // For collision callbacks
+    world->SetContactListener(_contactListener);
 	
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
     
@@ -241,6 +246,8 @@
         
         location = [[CCDirector sharedDirector] convertToGL: location];
         location = [self convertToNodeSpace:location];
+        
+        //NSLog(@"(%f,%f)", location.x, location.y);
 	
         NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
     
