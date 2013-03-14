@@ -22,6 +22,7 @@
     b2World* world;					// strong ref
     GLESDebugDraw *m_debugDraw;		// strong ref
     ObjectFactory* _objectFactory;
+    b2MouseJoint *_mouseJoint;
 }
 
 @end

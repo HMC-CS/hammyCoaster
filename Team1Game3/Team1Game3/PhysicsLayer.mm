@@ -18,7 +18,7 @@
 	if( (self=[super init])) {
 		
 		// enable events
-		
+		_mouseJoint = NULL;
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
@@ -32,6 +32,8 @@
 		[self initPhysics];
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
+        
+        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
 		
         //#if 1
         //		// Use batch node. Faster
@@ -172,7 +174,7 @@
 	kmGLPopMatrix();
 }
 
--(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p
+-(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p AsDefault:(bool)isDefault
 {
 	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
 	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
@@ -183,7 +185,7 @@
     [self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
     
-    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:NO] createBody:p];
+    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault] createBody:p];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
 }
@@ -208,34 +210,108 @@
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
--(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    NSLog(@"Physics touch began");
-    
-//    //Add a new body/atlas sprite at the touched location
-//		CGPoint location = [touch locationInView: [touch view]];
+//-----TOUCHING WITH NO DRAGGING-----//
+
+//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    NSLog(@"Physics touch began");
+//    
+////    //Add a new body/atlas sprite at the touched location
+////		CGPoint location = [touch locationInView: [touch view]];
+////		
+////		location = [[CCDirector sharedDirector] convertToGL: location];
+////        location = [self convertToNodeSpace:location];
+////		
+////        [self addNewSpriteOfType:@"BallObject" AtPosition: location];
+//    
+//    return YES;
+//}
+//
+//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    NSLog(@"physics ended");
+//	//Add a new body/atlas sprite at the touched location
+//    CGPoint location = [touch locationInView: [touch view]];
 //		
-//		location = [[CCDirector sharedDirector] convertToGL: location];
-//        location = [self convertToNodeSpace:location];
-//		
-//        [self addNewSpriteOfType:@"BallObject" AtPosition: location];
+//    location = [[CCDirector sharedDirector] convertToGL: location];
+//    location = [self convertToNodeSpace:location];
+//	
+//    NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
+//    
+//    if(![objectType isEqualToString:@"None"]){
+//        [self addNewSpriteOfType:objectType AtPosition: location];
+//    }
+//}
+
+//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    NSLog(@"Physics touch began");
+//
+//    return YES;
+//}
+//
+//-(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    NSLog(@"Physics touch ended");
+//}
+
+//-----TOUCHING WITH DRAGGING-----//
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"Physics touches began");
+    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext()) {
+        if (_mouseJoint != NULL) return NO;
     
+//        UITouch *myTouch = [touches anyObject];
+        CGPoint location = [touch locationInView:[touch view]];
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+        b2Fixture* f = body->GetFixtureList();
+        
+        if (f->TestPoint(locationWorld)) {
+            NSLog(@"Touch in object");
+            b2MouseJointDef md;
+            md.bodyA = body;
+//            md.bodyB = _paddleBody;
+            md.target = locationWorld;
+//            md.collideConnected = true;
+            md.maxForce = 1000.0f * body->GetMass();
+        
+            _mouseJoint = (b2MouseJoint *) world->CreateJoint(&md);
+            body->SetAwake(true);
+            
+        }
+    }
     return YES;
 }
 
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    NSLog(@"physics ended");
-	//Add a new body/atlas sprite at the touched location
-    CGPoint location = [touch locationInView: [touch view]];
-		
-    location = [[CCDirector sharedDirector] convertToGL: location];
-    location = [self convertToNodeSpace:location];
-	
-    NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
+-(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"Physics touches moved");
+    if (_mouseJoint == NULL) return;
     
-    if(![objectType isEqualToString:@"None"]){
-        [self addNewSpriteOfType:objectType AtPosition: location];
+//    UITouch *myTouch = [touches anyObject];
+    CGPoint location = [touch locationInView:[touch view]];
+    location = [[CCDirector sharedDirector] convertToGL:location];
+    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    
+    _mouseJoint->SetTarget(locationWorld);
+    
+}
+
+-(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Physics touches cancelled");
+    if (_mouseJoint) {
+        world->DestroyJoint(_mouseJoint);
+        _mouseJoint = NULL;
+    }
+    
+}
+
+- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
+    NSLog(@"Physics touches ended");
+    if (_mouseJoint) {
+        world->DestroyJoint(_mouseJoint);
+        _mouseJoint = NULL;
     }
 }
 
