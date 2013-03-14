@@ -6,6 +6,10 @@
 //
 //
 
+
+// NOTES:
+// CCTouchEnded: make sure to do bounds checking here so ball is not added in inventory
+
 #import "PhysicsLayer.h"
 #import "InventoryLayer.h"
 
@@ -212,36 +216,39 @@
 
 //-----TOUCHING WITH NO DRAGGING-----//
 
-//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"Physics touch began");
-//    
-////    //Add a new body/atlas sprite at the touched location
-////		CGPoint location = [touch locationInView: [touch view]];
-////		
-////		location = [[CCDirector sharedDirector] convertToGL: location];
-////        location = [self convertToNodeSpace:location];
-////		
-////        [self addNewSpriteOfType:@"BallObject" AtPosition: location];
-//    
-//    return YES;
-//}
-//
-//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"physics ended");
-//	//Add a new body/atlas sprite at the touched location
-//    CGPoint location = [touch locationInView: [touch view]];
+-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    NSLog(@"Physics touch began");
+    
+//    //Add a new body/atlas sprite at the touched location
+//		CGPoint location = [touch locationInView: [touch view]];
 //		
-//    location = [[CCDirector sharedDirector] convertToGL: location];
-//    location = [self convertToNodeSpace:location];
-//	
-//    NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
-//    
-//    if(![objectType isEqualToString:@"None"]){
-//        [self addNewSpriteOfType:objectType AtPosition: location];
-//    }
-//}
+//		location = [[CCDirector sharedDirector] convertToGL: location];
+//        location = [self convertToNodeSpace:location];
+//		
+//        [self addNewSpriteOfType:@"BallObject" AtPosition: location];
+    
+    return YES;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    NSLog(@"physics ended");
+	//Add a new body/atlas sprite at the touched location
+    CGPoint location = [touch locationInView: [touch view]];
+    
+    if (CGRectContainsPoint(self.boundingBox, location)) {
+        
+        location = [[CCDirector sharedDirector] convertToGL: location];
+        location = [self convertToNodeSpace:location];
+	
+        NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
+    
+        if(![objectType isEqualToString:@"None"]){
+            [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
+        }
+    }
+}
 
 //-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 //{
@@ -255,64 +262,64 @@
 //    NSLog(@"Physics touch ended");
 //}
 
-//-----TOUCHING WITH DRAGGING-----//
-- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    NSLog(@"Physics touches began");
-    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext()) {
-        if (_mouseJoint != NULL) return NO;
-    
-//        UITouch *myTouch = [touches anyObject];
-        CGPoint location = [touch locationInView:[touch view]];
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
-    
-        b2Fixture* f = body->GetFixtureList();
-        
-        if (f->TestPoint(locationWorld)) {
-            NSLog(@"Touch in object");
-            b2MouseJointDef md;
-            md.bodyA = body;
-//            md.bodyB = _paddleBody;
-            md.target = locationWorld;
-//            md.collideConnected = true;
-            md.maxForce = 1000.0f * body->GetMass();
-        
-            _mouseJoint = (b2MouseJoint *) world->CreateJoint(&md);
-            body->SetAwake(true);
-            
-        }
-    }
-    return YES;
-}
-
--(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-    NSLog(@"Physics touches moved");
-    if (_mouseJoint == NULL) return;
-    
-//    UITouch *myTouch = [touches anyObject];
-    CGPoint location = [touch locationInView:[touch view]];
-    location = [[CCDirector sharedDirector] convertToGL:location];
-    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
-    
-    _mouseJoint->SetTarget(locationWorld);
-    
-}
-
--(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Physics touches cancelled");
-    if (_mouseJoint) {
-        world->DestroyJoint(_mouseJoint);
-        _mouseJoint = NULL;
-    }
-    
-}
-
-- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Physics touches ended");
-    if (_mouseJoint) {
-        world->DestroyJoint(_mouseJoint);
-        _mouseJoint = NULL;
-    }
-}
+////-----TOUCHING WITH DRAGGING-----//
+//- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touches began");
+//    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext()) {
+//        if (_mouseJoint != NULL) return NO;
+//    
+////        UITouch *myTouch = [touches anyObject];
+//        CGPoint location = [touch locationInView:[touch view]];
+//        location = [[CCDirector sharedDirector] convertToGL:location];
+//        b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+//    
+//        b2Fixture* f = body->GetFixtureList();
+//        
+//        if (f->TestPoint(locationWorld)) {
+//            NSLog(@"Touch in object");
+//            b2MouseJointDef md;
+//            md.bodyA = body;
+////            md.bodyB = _paddleBody;
+//            md.target = locationWorld;
+////            md.collideConnected = true;
+//            md.maxForce = 1000.0f * body->GetMass();
+//        
+//            _mouseJoint = (b2MouseJoint *) world->CreateJoint(&md);
+//            body->SetAwake(true);
+//            
+//        }
+//    }
+//    return YES;
+//}
+//
+//-(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touches moved");
+//    if (_mouseJoint == NULL) return;
+//    
+////    UITouch *myTouch = [touches anyObject];
+//    CGPoint location = [touch locationInView:[touch view]];
+//    location = [[CCDirector sharedDirector] convertToGL:location];
+//    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+//    
+//    _mouseJoint->SetTarget(locationWorld);
+//    
+//}
+//
+//-(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touches cancelled");
+//    if (_mouseJoint) {
+//        world->DestroyJoint(_mouseJoint);
+//        _mouseJoint = NULL;
+//    }
+//    
+//}
+//
+//- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touches ended");
+//    if (_mouseJoint) {
+//        world->DestroyJoint(_mouseJoint);
+//        _mouseJoint = NULL;
+//    }
+//}
 
 @end
