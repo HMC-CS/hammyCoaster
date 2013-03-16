@@ -26,6 +26,8 @@
     _fixtureDef.restitution = 0.3f;
     
     body->CreateFixture(&_fixtureDef);
+    body->SetUserData(self);
+    
     return body;
 }
 

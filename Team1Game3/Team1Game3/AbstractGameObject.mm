@@ -10,19 +10,22 @@
 
 @implementation AbstractGameObject
 
--(id) initWithWorld:(b2World *)world asDefault:(bool)isDefault
+@synthesize _tag;
+
+-(id) initWithWorld:(b2World *)world asDefault:(bool)isDefault withTag:(NSString*)tag
 {
     self = [super init];
     if (self) {
         _world = world;
         _isDefault = isDefault;
-        m_contacting = NO;
+        _tag = tag;
     }
     return self;
 }
 
 - (b2Body *) createBody:(CGPoint)location
 {
+    // Must create body, set user data to "self," and create tag.
     NSAssert(NO, @"The 'createBody' method must be implemented by the sub-object.");
 }
 

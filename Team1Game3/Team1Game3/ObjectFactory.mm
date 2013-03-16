@@ -23,7 +23,7 @@
 - (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault
 {
     Class objectClass = NSClassFromString(className);
-    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault];
+    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withTag:className];
     return newObject;
 }
 

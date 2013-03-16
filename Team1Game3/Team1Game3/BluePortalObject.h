@@ -10,4 +10,6 @@
 
 @interface BluePortalObject : AbstractGameObject
 
+-(void) gameWon;
+
 @end

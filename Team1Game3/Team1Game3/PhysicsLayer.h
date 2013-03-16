@@ -27,4 +27,6 @@
     ContactListener* _contactListener;
 }
 
+-(void) gameWon;
+
 @end

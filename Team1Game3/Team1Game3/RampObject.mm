@@ -34,6 +34,7 @@
     
     // Add the shape to the body
     ramp_Body->CreateFixture(&_fixtureDef);
+    ramp_Body->SetUserData(self);
     //b2Fixture->SetUserData("Ramp");[/code]
     //b2CircleShape circle;
     //circle.m_radius = 26.0/PTM_RATIO;

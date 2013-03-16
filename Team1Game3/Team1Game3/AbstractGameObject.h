@@ -19,13 +19,14 @@
     b2FixtureDef _fixtureDef;
     
     bool _isDefault;
-    bool m_contacting;
+    
+    @public
+    NSString* _tag;
 }
 
--(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault;
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withTag:(NSString*) tag;
 -(b2Body *) createBody:(CGPoint) location;
 
-@end
+@property(retain, readonly) NSString* _tag;
 
-void startContact();
-void endContact();
+@end

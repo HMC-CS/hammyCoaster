@@ -15,6 +15,9 @@
 
 #import "PhysicsSprite.h"
 
+#import "LevelScene.h"
+#import "MainMenuLayer.h"
+
 @implementation PhysicsLayer
 
 -(id) init
@@ -90,6 +93,7 @@
 	world->SetContinuousPhysics(true);
     
     // For collision callbacks
+    _contactListener = new ContactListener();
     world->SetContactListener(_contactListener);
 	
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
@@ -212,6 +216,38 @@
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
+    
+    if (_contactListener->gameWon) {
+        [self gameWon];
+        _contactListener->gameWon = false;
+    }
+}
+
+-(void) gameWon
+{
+    //This congratulates the user if he wins the game.
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
+                                                    message:@"Play Again?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Yes!"
+                                          otherButtonTitles:@"No, thanks.", nil];
+    alert.tag=1;
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    //if the user was sure he wanted a new game, this asks the user how difficult
+    //he wants his new game to be.  It then loads a game of the selected difficulty.
+    if (alertView.tag==1){
+        if (buttonIndex == [alertView cancelButtonIndex]) {
+            [[CCDirector sharedDirector] pushScene:[LevelScene scene]];
+        }
+        else {
+            [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
+        }
+    }
 }
 
 -(void)registerWithTouchDispatcher

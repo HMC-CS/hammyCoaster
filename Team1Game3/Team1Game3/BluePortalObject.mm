@@ -37,6 +37,7 @@
     
     // Add the shape to the body
     bluePortal_Body->CreateFixture(&_fixtureDef);
+    bluePortal_Body->SetUserData(self);
     //b2Fixture->SetUserData("bluePortal");[/code]
     //b2CircleShape circle;
     //circle.m_radius = 26.0/PTM_RATIO;
