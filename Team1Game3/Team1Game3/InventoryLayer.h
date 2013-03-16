@@ -14,6 +14,6 @@
     NSString* selectedObject;
 }
 
--(NSString*) getObjectType;
+-(NSString*) getSelectedObject;
 
 @end

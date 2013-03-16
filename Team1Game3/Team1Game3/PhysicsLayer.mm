@@ -11,12 +11,8 @@
 // CCTouchEnded: make sure to do bounds checking here so ball is not added in inventory
 
 #import "PhysicsLayer.h"
-#import "InventoryLayer.h"
 
 #import "PhysicsSprite.h"
-
-#import "LevelScene.h"
-#import "MainMenuLayer.h"
 
 @implementation PhysicsLayer
 
@@ -218,37 +214,37 @@
 	world->Step(dt, velocityIterations, positionIterations);
     
     if (_contactListener->gameWon) {
-        [self gameWon];
         _contactListener->gameWon = false;
+        [_target performSelector:_selector2];
     }
 }
 
--(void) gameWon
-{
-    //This congratulates the user if he wins the game.
-    
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
-                                                    message:@"Play Again?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Yes!"
-                                          otherButtonTitles:@"No, thanks.", nil];
-    alert.tag=1;
-    [alert show];
-    
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //if the user was sure he wanted a new game, this asks the user how difficult
-    //he wants his new game to be.  It then loads a game of the selected difficulty.
-    if (alertView.tag==1){
-        if (buttonIndex == [alertView cancelButtonIndex]) {
-            [[CCDirector sharedDirector] pushScene:[LevelScene scene]];
-        }
-        else {
-            [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
-        }
-    }
-}
+//-(void) gameWon
+//{
+//    //This congratulates the user if he wins the game.
+//    
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
+//                                                    message:@"Play Again?"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"Yes!"
+//                                          otherButtonTitles:@"No, thanks.", nil];
+//    alert.tag=1;
+//    [alert show];
+//    
+//}
+//
+//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+//    //if the user was sure he wanted a new game, this asks the user how difficult
+//    //he wants his new game to be.  It then loads a game of the selected difficulty.
+//    if (alertView.tag==1){
+//        if (buttonIndex == [alertView cancelButtonIndex]) {
+//            [[CCDirector sharedDirector] pushScene:[LevelLayer scene]];
+//        }
+//        else {
+//            [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
+//        }
+//    }
+//}
 
 -(void)registerWithTouchDispatcher
 {
@@ -260,14 +256,6 @@
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Physics touch began");
-    
-//    //Add a new body/atlas sprite at the touched location
-//		CGPoint location = [touch locationInView: [touch view]];
-//		
-//		location = [[CCDirector sharedDirector] convertToGL: location];
-//        location = [self convertToNodeSpace:location];
-//		
-//        [self addNewSpriteOfType:@"BallObject" AtPosition: location];
     
     return YES;
 }
@@ -285,11 +273,22 @@
         
         //NSLog(@"(%f,%f)", location.x, location.y);
 	
-        NSString* objectType = [[[self parent] getChildByTag:1] getObjectType];
+        NSString* objectType = [_target performSelector:_selector1];
     
-        if(![objectType isEqualToString:@"None"]){
+        if(objectType && ![objectType isEqualToString:@"None"]){
             [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
         }
+    }
+}
+
+-(void) setTarget:(id) sender atAction:(SEL)action
+{
+    _target=sender;
+    if (!_selector1) {
+        _selector1 = action;
+    }
+    else {
+        _selector2 = action;
     }
 }
 

@@ -8,7 +8,7 @@
 
 #import "MainMenuLayer.h"
 #import "AppDelegate.h"
-#import "LevelScene.h"
+#import "LevelLayer.h"
 
 
 @implementation MainMenuLayer
@@ -54,7 +54,7 @@
 	
 	// Reset Button
 	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"New Game" block:^(id sender){
-		[[CCDirector sharedDirector] replaceScene: [LevelScene scene]];
+		[[CCDirector sharedDirector] replaceScene: [LevelLayer scene]];
 	}];
 	
     CCMenu *menu = [CCMenu menuWithItems:newGame, nil];

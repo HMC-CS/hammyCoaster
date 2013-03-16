@@ -94,7 +94,7 @@
     NSLog(@"Inventory touch ended");
 }
 
--(NSString*) getObjectType{
+-(NSString*) getSelectedObject {
     return selectedObject;
 }
 

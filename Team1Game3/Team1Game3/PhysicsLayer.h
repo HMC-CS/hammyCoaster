@@ -25,8 +25,13 @@
     ObjectFactory* _objectFactory;
     b2MouseJoint *_mouseJoint;
     ContactListener* _contactListener;
+    
+    id _target;
+    SEL _selector1;
+    SEL _selector2;
 }
 
--(void) gameWon;
+//-(void) gameWon;
+-(void) setTarget:(id) sender atAction:(SEL)action;
 
 @end

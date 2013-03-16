@@ -191,7 +191,7 @@
 		D8E83EB516EA7625000284EA /* BallObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EB316EA7625000284EA /* BallObject-hd.png */; };
 		D8E83EBB16EA7E06000284EA /* InventoryLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */; };
 		D8E83EBE16EAC1E6000284EA /* PhysicsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */; };
-		D8E83EC116EAC81C000284EA /* LevelScene.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EC016EAC81B000284EA /* LevelScene.mm */; };
+		D8E83EC116EAC81C000284EA /* LevelLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EC016EAC81B000284EA /* LevelLayer.mm */; };
 		D8E83EC416EBC42A000284EA /* RampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EC316EBC42A000284EA /* RampObject.mm */; };
 		D8E83ECA16EBCB1E000284EA /* RampObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EC916EBCB1D000284EA /* RampObject-hd.png */; };
 		D8E83ECC16EBCB44000284EA /* RampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83ECB16EBCB43000284EA /* RampObject.png */; };
@@ -576,8 +576,8 @@
 		D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InventoryLayer.mm; sourceTree = "<group>"; };
 		D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhysicsLayer.h; sourceTree = "<group>"; };
 		D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsLayer.mm; sourceTree = "<group>"; };
-		D8E83EBF16EAC81B000284EA /* LevelScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelScene.h; sourceTree = "<group>"; };
-		D8E83EC016EAC81B000284EA /* LevelScene.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelScene.mm; sourceTree = "<group>"; };
+		D8E83EBF16EAC81B000284EA /* LevelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelLayer.h; sourceTree = "<group>"; };
+		D8E83EC016EAC81B000284EA /* LevelLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelLayer.mm; sourceTree = "<group>"; };
 		D8E83EC216EBC42A000284EA /* RampObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RampObject.h; sourceTree = "<group>"; };
 		D8E83EC316EBC42A000284EA /* RampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RampObject.mm; sourceTree = "<group>"; };
 		D8E83EC916EBCB1D000284EA /* RampObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RampObject-hd.png"; sourceTree = "<group>"; };
@@ -648,8 +648,8 @@
 				D8E83EC316EBC42A000284EA /* RampObject.mm */,
 				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
 				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
-				D8E83EBF16EAC81B000284EA /* LevelScene.h */,
-				D8E83EC016EAC81B000284EA /* LevelScene.mm */,
+				D8E83EBF16EAC81B000284EA /* LevelLayer.h */,
+				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
 				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
 				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
@@ -1437,7 +1437,7 @@
 				D8E83EB116EA75F4000284EA /* MainMenuLayer.mm in Sources */,
 				D8E83EBB16EA7E06000284EA /* InventoryLayer.mm in Sources */,
 				D8E83EBE16EAC1E6000284EA /* PhysicsLayer.mm in Sources */,
-				D8E83EC116EAC81C000284EA /* LevelScene.mm in Sources */,
+				D8E83EC116EAC81C000284EA /* LevelLayer.mm in Sources */,
 				D8E83EC416EBC42A000284EA /* RampObject.mm in Sources */,
 				D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */,
 				D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */,
