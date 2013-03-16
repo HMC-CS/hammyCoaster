@@ -11,6 +11,7 @@
 // CCTouchEnded: make sure to do bounds checking here so ball is not added in inventory
 
 #import "PhysicsLayer.h"
+#import "InventoryLayer.h"
 
 #import "PhysicsSprite.h"
 
