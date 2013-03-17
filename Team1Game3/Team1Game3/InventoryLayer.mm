@@ -38,9 +38,41 @@
 
 -(void) createMenu
 {
+	CGSize size = [[CCDirector sharedDirector] winSize];
+    
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
-	
+    
+    /*
+     * Game Menu:
+     * The menu with the "action" type buttons, as opposed to inventory items.
+     * -------------------------------------------------------------------------
+     */
+    
+     // Play Button: drops ball
+    CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
+		NSLog(@"Play button pressed.");
+        // stick a ball on the screen at starting position;
+	}];
+    
+    // Reset Button: Gets rid of all non-default items in level
+    // for now, just selects nothing so you can click freely
+    CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+		NSLog(@"Reset button pressed.");
+        // delete all non-default objects;
+	}];
+    
+    CCMenu *gameMenu = [CCMenu menuWithItems: playButton, resetButton, nil];
+    [gameMenu alignItemsHorizontallyWithPadding:25];
+    [gameMenu setPosition:ccp(size.width/8, size.height*3/4)];
+    [self addChild: gameMenu z:-1];
+    
+    /*
+     * Inventory Menu:
+     * The menu of inventory items.
+     * -------------------------------------------------------------------------
+     */
+    
 	// Makes a ball when you click
 	CCMenuItemLabel *selectBallButton = [CCMenuItemFont itemWithString:@"Select Ball Button" block:^(id sender){
 		NSLog(@"Ball button pressed.");
@@ -52,21 +84,15 @@
         selectedObject = @"RampObject";
 	}];
     //selects nothing so you can click freely
-    CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Reset Button" block:^(id sender){
-		NSLog(@"Reset button pressed.");
+    CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Un-Select Button" block:^(id sender){
+		NSLog(@"Un-Select button pressed.");
         selectedObject = @"None";
 	}];
 	
-    CCMenu *menu = [CCMenu menuWithItems:selectBallButton, selectRampButton, unSelectButton, nil];
-	
-	[menu alignItemsVertically];
-	
-	CGSize size = [[CCDirector sharedDirector] winSize];
-    
-	[menu setPosition:ccp(size.width/8, size.height/2)];
-	
-	
-	[self addChild: menu z:-1];
+    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectBallButton, selectRampButton, unSelectButton, nil];	
+	[inventoryMenu alignItemsVertically];
+	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
+	[self addChild: inventoryMenu z:-1];
 }
 
 -(void)registerWithTouchDispatcher
