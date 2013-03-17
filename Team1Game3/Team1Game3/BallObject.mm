@@ -23,7 +23,7 @@
     _fixtureDef.shape = &circle;
     _fixtureDef.density = 1.0f;
     _fixtureDef.friction = 0.4f;
-    _fixtureDef.restitution = 0.3f;
+    _fixtureDef.restitution = 0.9f;
     
     body->CreateFixture(&_fixtureDef);
     body->SetUserData(self);
