@@ -105,7 +105,6 @@
     NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
-    // drop ball in physics layer
     
     if (CGRectContainsPoint(self.boundingBox, location))
     {
@@ -122,6 +121,17 @@
 
 -(NSString*) getSelectedObject {
     return selectedObject;
+}
+
+-(void) setTarget:(id) sender atAction:(SEL)action
+{
+    _target2=sender;
+    if (!_selector3) {
+        _selector3 = action;
+    }
+    else {
+        _selector3 = action; //can be changed to 4th selector once we implement reset
+    }
 }
 
 @end

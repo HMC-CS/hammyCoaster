@@ -24,10 +24,9 @@
     PhysicsLayer* _physicsLayer;
 }
 
-//temp function for inventoryto call on physicslayer
--(void) dropBall;
-
 +(CCScene *) scene;
+
+-(void) playPhysicsLevel;
 
 -(NSString*) getObjectType;
 

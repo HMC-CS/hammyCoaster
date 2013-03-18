@@ -60,6 +60,7 @@
         _physicsLayer = [PhysicsLayer node];
         
         [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)];
+        [_inventoryLayer setTarget:self atAction:@selector(playLevel)];
         [_physicsLayer setTarget:self atAction:@selector(gameWon)];
         
         [self addChild:_inventoryLayer];
@@ -78,6 +79,7 @@
 
 -(void)registerWithTouchDispatcher
 {
+    // makes layer second priority for touches, also allows them to fall through it to the physics and inventory layers
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:NO];
 }
 
@@ -86,10 +88,19 @@
     return [_inventoryLayer getSelectedObject];
 }
 
+/* playLevel:
+ * tries the level by putting the ball in it.
+ */
+-(void) playPhysicsLevel
+{
+    NSLog(@"Play Button pressed in LevelLayer");
+}
+
+/* gameWon:
+ * displays popup withe congratulaitons and options after winning game
+ */
 -(void) gameWon
 {
-    //This congratulates the user if he wins the game.
-    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
                                                     message:@"Play Again?"
                                                    delegate:self

@@ -135,8 +135,8 @@
 	groundBody->CreateFixture(&groundBox,0);
     
     
-    // hacked default ramps
-    
+    /* hacked default ramps
+     * ---------------------------------------------------------------------- */
     
     // Starting ramp
     b2BodyDef rampBodyDef;
@@ -151,7 +151,6 @@
     rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(s.width/(4*PTM_RATIO), 400/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
     
-    
     //Ending Ramp
     b2BodyDef ramp2BodyDef;
     ramp2BodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
@@ -164,6 +163,10 @@
     // ramp2 definitions
     ramp2Edge.Set(b2Vec2(s.width*2/(4*PTM_RATIO),150/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
                  ramp2Body->CreateFixture(&ramp2ShapeDef);
+    
+    /* hacked ball starting position
+     * ---------------------------------------------------------------------- */
+    ballStartingPoint = CGPointMake(10/PTM_RATIO, 500/PTM_RATIO);
 }
 
 -(void) draw
@@ -216,7 +219,7 @@
     
     if (_contactListener->gameWon) {
         _contactListener->gameWon = false;
-        [_target performSelector:_selector2];
+        [_target1 performSelector:_selector2];
     }
 }
 
@@ -247,6 +250,11 @@
 //    }
 //}
 
+-(void)playLevel
+{
+    
+}
+
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
@@ -274,7 +282,7 @@
         
         //NSLog(@"(%f,%f)", location.x, location.y);
 	
-        NSString* objectType = [_target performSelector:_selector1];
+        NSString* objectType = [_target1 performSelector:_selector1];
     
         if(objectType && ![objectType isEqualToString:@"None"]){
             [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
@@ -284,7 +292,7 @@
 
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
-    _target=sender;
+    _target1=sender;
     if (!_selector1) {
         _selector1 = action;
     }

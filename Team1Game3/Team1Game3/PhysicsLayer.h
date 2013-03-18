@@ -26,12 +26,13 @@
     b2MouseJoint *_mouseJoint;
     ContactListener* _contactListener;
     
-    id _target;
+    id _target1;
     SEL _selector1;
     SEL _selector2;
+    
+    CGPoint ballStartingPoint;
 }
 
-//-(void) gameWon;
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
 @end
