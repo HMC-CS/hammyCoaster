@@ -260,6 +260,18 @@
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+
+-(void) setTarget:(id) sender atAction:(SEL)action
+{
+    _target1=sender;
+    if (!_selector1) {
+        _selector1 = action;
+    }
+    else {
+        _selector2 = action;
+    }
+}
+
 //-----TOUCHING WITH NO DRAGGING-----//
 
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -290,61 +302,44 @@
     }
 }
 
--(void) setTarget:(id) sender atAction:(SEL)action
-{
-    _target1=sender;
-    if (!_selector1) {
-        _selector1 = action;
-    }
-    else {
-        _selector2 = action;
-    }
-}
-
-//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"Physics touch began");
-//
-//    return YES;
-//}
-//
-//-(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"Physics touch ended");
-//}
 
 ////-----TOUCHING WITH DRAGGING-----//
 //- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-//    NSLog(@"Physics touches began");
+//    NSLog(@"Physics touch began");
 //    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext()) {
-//        if (_mouseJoint != NULL) return NO;
+//        NSLog(@"Found a body");
+//        if (_mouseJoint != NULL) {
+//            NSLog(@"mouseJoint = NULL");
+//            return NO;
+//        }
 //    
 ////        UITouch *myTouch = [touches anyObject];
 //        CGPoint location = [touch locationInView:[touch view]];
 //        location = [[CCDirector sharedDirector] convertToGL:location];
 //        b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
 //    
-//        b2Fixture* f = body->GetFixtureList();
+//        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext()) {
 //        
-//        if (f->TestPoint(locationWorld)) {
-//            NSLog(@"Touch in object");
-//            b2MouseJointDef md;
-//            md.bodyA = body;
-////            md.bodyB = _paddleBody;
-//            md.target = locationWorld;
-////            md.collideConnected = true;
-//            md.maxForce = 1000.0f * body->GetMass();
+//            if (f->TestPoint(locationWorld)) {
+//                NSLog(@"Touch in object");
+//                b2MouseJointDef md;
+//                md.bodyB = body;
+////                md.bodyB = _paddleBody;
+//                md.target = locationWorld;
+////                md.collideConnected = true;
+//                md.maxForce = 1000.0f * body->GetMass();
 //        
-//            _mouseJoint = (b2MouseJoint *) world->CreateJoint(&md);
-//            body->SetAwake(true);
+//                _mouseJoint = (b2MouseJoint *) world->CreateJoint(&md);
+//                body->SetAwake(true);
 //            
+//            }
 //        }
 //    }
 //    return YES;
 //}
 //
 //-(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
-//    NSLog(@"Physics touches moved");
+//    NSLog(@"Physics touch moved");
 //    if (_mouseJoint == NULL) return;
 //    
 ////    UITouch *myTouch = [touches anyObject];
@@ -357,7 +352,7 @@
 //}
 //
 //-(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"Physics touches cancelled");
+//    NSLog(@"Physics touch cancelled");
 //    if (_mouseJoint) {
 //        world->DestroyJoint(_mouseJoint);
 //        _mouseJoint = NULL;
@@ -366,7 +361,7 @@
 //}
 //
 //- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
-//    NSLog(@"Physics touches ended");
+//    NSLog(@"Physics touch ended");
 //    if (_mouseJoint) {
 //        world->DestroyJoint(_mouseJoint);
 //        _mouseJoint = NULL;
