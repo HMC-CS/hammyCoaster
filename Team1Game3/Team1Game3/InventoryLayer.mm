@@ -117,6 +117,7 @@
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Inventory touch ended");
+    [_target2 performSelector:_selector3];
 }
 
 -(NSString*) getSelectedObject {

@@ -40,6 +40,12 @@
         [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
         
         [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
+        
+        [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
+        [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
+        [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
+
+
 		
         //#if 1
         //		// Use batch node. Faster
@@ -294,6 +300,7 @@
         
         //NSLog(@"(%f,%f)", location.x, location.y);
 	
+        // get object type from inventory
         NSString* objectType = [_target1 performSelector:_selector1];
     
         if(objectType && ![objectType isEqualToString:@"None"]){

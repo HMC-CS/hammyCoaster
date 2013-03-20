@@ -26,12 +26,18 @@
     b2MouseJoint *_mouseJoint;
     ContactListener* _contactListener;
     
+    //should we name these better things? I don't think they're conventions....
     id _target1;
     SEL _selector1;
     SEL _selector2;
     
     CGPoint ballStartingPoint;
 }
+
+// playLevel:
+// Places a BallObject at ballStartingPoint
+// activation: the play button has been pressed(in inventoryLayer)
+-(void) playLevel;
 
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
