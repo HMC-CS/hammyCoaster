@@ -21,9 +21,9 @@
 @interface PhysicsLayer : CCLayer {
 
     b2World* world;					// strong ref
-    GLESDebugDraw *m_debugDraw;		// strong ref
+    GLESDebugDraw* m_debugDraw;		// strong ref
     ObjectFactory* _objectFactory;
-    b2MouseJoint *_mouseJoint;
+//    b2MouseJoint* _mouseJoint;
     ContactListener* _contactListener;
     
     //should we name these better things? I don't think they're conventions....
@@ -32,6 +32,11 @@
     SEL _selector2;
     
     CGPoint ballStartingPoint;
+    
+    b2Body* groundBody;
+    b2Body* draggingBall; // For dragging testing
+//    b2Vec2 anchorPoint;
+    b2Body* currentMoveableBody;
 }
 
 // playLevel:

@@ -15,6 +15,37 @@
 
 #import "PhysicsSprite.h"
 
+// We need this for dragging.
+// TODO: Move this to its own file once we're sure this way of dragging will work.
+class QueryCallback : public b2QueryCallback
+{
+public:
+    QueryCallback(const b2Vec2& point)
+    {
+        m_point = point;
+        m_object = nil;
+    }
+    
+    bool ReportFixture(b2Fixture* fixture)
+    {
+        if (fixture->IsSensor()) return true; //ignore sensors
+        
+        bool inside = fixture->TestPoint(m_point);
+        if (inside)
+        {
+            // We are done, terminate the query.
+            m_object = fixture->GetBody();
+            return false;
+        }
+        
+        // Continue the query.
+        return true;
+    }
+    
+    b2Vec2  m_point;
+    b2Body* m_object;
+};
+
 @implementation PhysicsLayer
 
 -(id) init
@@ -22,7 +53,7 @@
 	if( (self=[super init])) {
 		
 		// enable events
-		_mouseJoint = NULL;
+//		_mouseJoint = NULL;
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
@@ -37,7 +68,16 @@
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
-        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
+        // Ball to test dragging with
+        PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",@"RampObject"]];
+        [self addChild:sprite];
+        
+        draggingBall = [[_objectFactory objectFromString:@"RampObject" forWorld:world asDefault:NO] createBody:ccp([self contentSize].width/2,0)];
+        [sprite setPhysicsBody:draggingBall];
+        [sprite setPosition: ccp([self contentSize].width/2,0)];
+//        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
+        
+        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp(300.0, 300.0) AsDefault:NO];
         
         [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
         
@@ -119,7 +159,7 @@
 	// Call the body factory which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
-	b2Body* groundBody = world->CreateBody(&groundBodyDef);
+	groundBody = world->CreateBody(&groundBodyDef);
 	
 	// Define the ground box shape.
 	b2EdgeShape groundBox;
@@ -311,68 +351,68 @@
 
 
 ////-----TOUCHING WITH DRAGGING-----//
-//- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+//-(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
 //    NSLog(@"Physics touch began");
-//    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext()) {
-//        NSLog(@"Found a body");
-//        if (_mouseJoint != NULL) {
-//            NSLog(@"mouseJoint = NULL");
-//            return NO;
-//        }
 //    
-////        UITouch *myTouch = [touches anyObject];
-//        CGPoint location = [touch locationInView:[touch view]];
-//        location = [[CCDirector sharedDirector] convertToGL:location];
-//        b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
+//    //Get tap location and convert to cocos2d-box2d coordinates
+//    CGPoint touchLocation = [touch locationInView:[touch view]];
+//    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+//    touchLocation = [self convertToNodeSpace:touchLocation];
+//    b2Vec2 locationWorld = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
 //    
-//        for (b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext()) {
-//        
-//            if (f->TestPoint(locationWorld)) {
-//                NSLog(@"Touch in object");
-//                b2MouseJointDef md;
-//                md.bodyB = body;
-////                md.bodyB = _paddleBody;
-//                md.target = locationWorld;
-////                md.collideConnected = true;
-//                md.maxForce = 1000.0f * body->GetMass();
-//        
-//                _mouseJoint = (b2MouseJoint *) world->CreateJoint(&md);
-//                body->SetAwake(true);
-//            
-//            }
-//        }
+//    // Make a small box.
+//    b2AABB aabb;
+//    b2Vec2 d;
+//    d.Set(0.001f, 0.001f);
+//    aabb.lowerBound = locationWorld - d;
+//    aabb.upperBound = locationWorld + d;
+//    
+//    // Query the world for overlapping shapes.
+//    QueryCallback callback(locationWorld);
+//    world->QueryAABB(&callback, aabb);
+//    
+//    b2Body* body = callback.m_object;
+//    
+//    // TODO: check draggability -- need to get Object from b2Body
+//    if (body)
+//    {
+////        anchorPoint = ccpSub(locationWorld, CGPointMake(body->GetPosition().x*PTM_RATIO, body->GetPosition().y+PTM_RATIO));
+////        anchorPoint = locationWorld;
+//        body->SetType(b2_staticBody);
+//        currentMoveableBody = body;
 //    }
 //    return YES;
 //}
-//
-//-(void)ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event {
+//-(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+//{
 //    NSLog(@"Physics touch moved");
-//    if (_mouseJoint == NULL) return;
-//    
-////    UITouch *myTouch = [touches anyObject];
 //    CGPoint location = [touch locationInView:[touch view]];
 //    location = [[CCDirector sharedDirector] convertToGL:location];
-//    b2Vec2 locationWorld = b2Vec2(location.x/PTM_RATIO, location.y/PTM_RATIO);
 //    
-//    _mouseJoint->SetTarget(locationWorld);
-//    
+//    if (currentMoveableBody != NULL) {
+////        anchorPoint = ccpSub(location, CGPointMake(currentMoveableBody->GetPosition().x*PTM_RATIO, currentMoveableBody->GetPosition().y*PTM_RATIO));
+////        CGPoint newPos = ccpAdd(location,anchorPoint);
+//        
+//        currentMoveableBody->SetTransform(b2Vec2(location.x/PTM_RATIO,location.y/PTM_RATIO),currentMoveableBody->GetAngle());
+//    }    
 //}
 //
 //-(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
 //    NSLog(@"Physics touch cancelled");
-//    if (_mouseJoint) {
-//        world->DestroyJoint(_mouseJoint);
-//        _mouseJoint = NULL;
-//    }
-//    
+////    if (_mouseJoint) {
+////        world->DestroyJoint(_mouseJoint);
+////        _mouseJoint = NULL;
+////    }
+//    currentMoveableBody = NULL;
 //}
 //
 //- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
 //    NSLog(@"Physics touch ended");
-//    if (_mouseJoint) {
-//        world->DestroyJoint(_mouseJoint);
-//        _mouseJoint = NULL;
-//    }
+////    if (_mouseJoint) {
+////        world->DestroyJoint(_mouseJoint);
+////        _mouseJoint = NULL;
+////    }
+//    currentMoveableBody = NULL;
 //}
 
 @end
