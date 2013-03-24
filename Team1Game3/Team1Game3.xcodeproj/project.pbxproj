@@ -10,6 +10,11 @@
 		9CE768D916F9B1FB00EE241F /* StarObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D516F9B1FB00EE241F /* StarObject-hd.png */; };
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
+		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
+		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
+		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
+		D843EFDB16FFBA16006732D5 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D843EFD916FFBA16006732D5 /* InfoPlist.strings */; };
+		D843EFDE16FFBA16006732D5 /* Team1Game3Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = D843EFDD16FFBA16006732D5 /* Team1Game3Tests.mm */; };
 		D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BE516F2848000A82C0F /* BluePortalObject.mm */; };
 		D87B6BE816F2849700A82C0F /* BluePortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D87B6BE716F2849700A82C0F /* BluePortalObject.png */; };
 		D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BEA16F28AD700A82C0F /* ContactListener.mm */; };
@@ -205,6 +210,13 @@
 		9CE768D616F9B1FB00EE241F /* StarObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarObject.h; sourceTree = "<group>"; };
 		9CE768D716F9B1FB00EE241F /* StarObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarObject.mm; sourceTree = "<group>"; };
 		9CE768D816F9B1FB00EE241F /* StarObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObject.png; sourceTree = "<group>"; };
+		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Team1Game3Tests-Info.plist"; sourceTree = "<group>"; };
+		D843EFDA16FFBA16006732D5 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D843EFDC16FFBA16006732D5 /* Team1Game3Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Team1Game3Tests.h; sourceTree = "<group>"; };
+		D843EFDD16FFBA16006732D5 /* Team1Game3Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Team1Game3Tests.mm; sourceTree = "<group>"; };
+		D843EFDF16FFBA16006732D5 /* Team1Game3Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Team1Game3Tests-Prefix.pch"; sourceTree = "<group>"; };
 		D87B6BE416F2848000A82C0F /* BluePortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluePortalObject.h; sourceTree = "<group>"; };
 		D87B6BE516F2848000A82C0F /* BluePortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BluePortalObject.mm; sourceTree = "<group>"; };
 		D87B6BE716F2849700A82C0F /* BluePortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePortalObject.png; sourceTree = "<group>"; };
@@ -592,6 +604,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D843EFCD16FFBA16006732D5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */,
+				D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */,
+				D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D8E83C6D16EA753B000284EA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -611,10 +633,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D843EFD616FFBA16006732D5 /* Team1Game3Tests */ = {
+			isa = PBXGroup;
+			children = (
+				D843EFDC16FFBA16006732D5 /* Team1Game3Tests.h */,
+				D843EFDD16FFBA16006732D5 /* Team1Game3Tests.mm */,
+				D843EFD716FFBA16006732D5 /* Supporting Files */,
+			);
+			path = Team1Game3Tests;
+			sourceTree = "<group>";
+		};
+		D843EFD716FFBA16006732D5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */,
+				D843EFD916FFBA16006732D5 /* InfoPlist.strings */,
+				D843EFDF16FFBA16006732D5 /* Team1Game3Tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		D8E83C6716EA753B000284EA = {
 			isa = PBXGroup;
 			children = (
 				D8E83C8516EA753B000284EA /* Team1Game3 */,
+				D843EFD616FFBA16006732D5 /* Team1Game3Tests */,
 				D8E83C7216EA753B000284EA /* Frameworks */,
 				D8E83C7116EA753B000284EA /* Products */,
 			);
@@ -624,6 +667,7 @@
 			isa = PBXGroup;
 			children = (
 				D8E83C7016EA753B000284EA /* Team1Game3.app */,
+				D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -640,6 +684,7 @@
 				D8E83C7F16EA753B000284EA /* Foundation.framework */,
 				D8E83C8116EA753B000284EA /* CoreGraphics.framework */,
 				D8E83C8316EA753B000284EA /* GameKit.framework */,
+				D843EFD216FFBA16006732D5 /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1216,6 +1261,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D843EFD016FFBA16006732D5 /* Team1Game3Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D843EFE216FFBA16006732D5 /* Build configuration list for PBXNativeTarget "Team1Game3Tests" */;
+			buildPhases = (
+				D843EFCC16FFBA16006732D5 /* Sources */,
+				D843EFCD16FFBA16006732D5 /* Frameworks */,
+				D843EFCE16FFBA16006732D5 /* Resources */,
+				D843EFCF16FFBA16006732D5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Team1Game3Tests;
+			productName = Team1Game3Tests;
+			productReference = D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		D8E83C6F16EA753B000284EA /* Team1Game3 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D8E83EA316EA753F000284EA /* Build configuration list for PBXNativeTarget "Team1Game3" */;
@@ -1254,11 +1317,20 @@
 			projectRoot = "";
 			targets = (
 				D8E83C6F16EA753B000284EA /* Team1Game3 */,
+				D843EFD016FFBA16006732D5 /* Team1Game3Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D843EFCE16FFBA16006732D5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D843EFDB16FFBA16006732D5 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D8E83C6E16EA753B000284EA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1289,7 +1361,31 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D843EFCF16FFBA16006732D5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		D843EFCC16FFBA16006732D5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D843EFDE16FFBA16006732D5 /* Team1Game3Tests.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D8E83C6C16EA753B000284EA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1460,7 +1556,93 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		D843EFD916FFBA16006732D5 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D843EFDA16FFBA16006732D5 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		D843EFE016FFBA16006732D5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Team1Game3Tests/Team1Game3Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"Team1Game3/libs/kazmath/include\"/**",
+					"\"${SRCROOT}/Cocos2d testing/libs/kazmath/include\"/**",
+					"\"Team1Game3/libs/Box2D/Common\"/**",
+					"\"Team1Game3/libs/Box2D\"",
+				);
+				INFOPLIST_FILE = "Team1Game3Tests/Team1Game3Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "\"Team1Game3/libs/\"/**";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		D843EFE116FFBA16006732D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Team1Game3Tests/Team1Game3Tests-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = (
+					"\"Team1Game3/libs/kazmath/include\"/**",
+					"\"${SRCROOT}/Cocos2d testing/libs/kazmath/include\"/**",
+					"\"Team1Game3/libs/Box2D/Common\"/**",
+					"\"Team1Game3/libs/Box2D\"",
+				);
+				INFOPLIST_FILE = "Team1Game3Tests/Team1Game3Tests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				LIBRARY_SEARCH_PATHS = "\"Team1Game3/libs/\"/**";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 		D8E83EA116EA753F000284EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1509,8 +1691,14 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Team1Game3/Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"Team1Game3/libs/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"Team1Game3/libs/kazmath/include\"/**",
+					"\"${SRCROOT}/Cocos2d testing/libs/kazmath/include\"/**",
+					"\"Team1Game3/libs/Box2D/Common\"/**",
+					"\"Team1Game3/libs/Box2D\"",
+				);
 				INFOPLIST_FILE = Team1Game3/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = "\"Team1Game3/libs\"";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1528,8 +1716,14 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Team1Game3/Prefix.pch;
-				HEADER_SEARCH_PATHS = "\"Team1Game3/libs/kazmath/include\"";
+				HEADER_SEARCH_PATHS = (
+					"\"Team1Game3/libs/kazmath/include\"/**",
+					"\"${SRCROOT}/Cocos2d testing/libs/kazmath/include\"/**",
+					"\"Team1Game3/libs/Box2D/Common\"/**",
+					"\"Team1Game3/libs/Box2D\"",
+				);
 				INFOPLIST_FILE = Team1Game3/Resources/Info.plist;
+				LIBRARY_SEARCH_PATHS = "\"Team1Game3/libs\"";
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-ObjC",
@@ -1544,6 +1738,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D843EFE216FFBA16006732D5 /* Build configuration list for PBXNativeTarget "Team1Game3Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D843EFE016FFBA16006732D5 /* Debug */,
+				D843EFE116FFBA16006732D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D8E83C6B16EA753B000284EA /* Build configuration list for PBXProject "Team1Game3" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
