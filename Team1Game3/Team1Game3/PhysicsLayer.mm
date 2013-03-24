@@ -269,7 +269,7 @@ public:
     
     if (_contactListener->gameWon) {
         _contactListener->gameWon = false;
-        [_target1 performSelector:_selector2];
+        [_target performSelector:_selector2];
     }
 }
 
@@ -313,7 +313,7 @@ public:
 
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
-    _target1=sender;
+    _target = sender;
     if (!_selector1) {
         _selector1 = action;
     }
@@ -345,7 +345,7 @@ public:
         //NSLog(@"(%f,%f)", location.x, location.y);
 	
         // get object type from inventory
-        NSString* objectType = [_target1 performSelector:_selector1];
+        NSString* objectType = [_target performSelector:_selector1];
     
         if(objectType && ![objectType isEqualToString:@"None"]){
             [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];

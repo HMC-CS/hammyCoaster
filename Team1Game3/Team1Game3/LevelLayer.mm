@@ -59,9 +59,10 @@
         _inventoryLayer = [InventoryLayer node];
         _physicsLayer = [PhysicsLayer node];
         
-        [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //selector1
-        [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //selector2
-        [_inventoryLayer setTarget:self atAction:@selector(playLevel)]; //selector3
+        [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
+        [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
+        
+        [_inventoryLayer setTarget:self atAction:@selector(playLevel)]; //inventory selector1
         
         [self addChild:_inventoryLayer];
         [self addChild:_physicsLayer];

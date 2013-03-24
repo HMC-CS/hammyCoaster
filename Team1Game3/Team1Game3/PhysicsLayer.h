@@ -27,7 +27,7 @@
     ContactListener* _contactListener;
     
     //should we name these better things? I don't think they're conventions....
-    id _target1;
+    id _target;
     SEL _selector1;
     SEL _selector2;
     

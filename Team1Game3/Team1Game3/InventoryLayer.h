@@ -13,8 +13,8 @@
     
     NSString* selectedObject;
     
-    id _target2;
-    SEL _selector3;
+    id _target;
+    SEL _selector;
 }
 
 -(NSString*) getSelectedObject;

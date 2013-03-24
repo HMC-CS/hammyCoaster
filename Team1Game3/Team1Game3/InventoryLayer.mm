@@ -118,7 +118,7 @@
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Inventory touch ended");
-    [_target2 performSelector:_selector3];
+    [_target performSelector:_selector];
 }
 
 -(NSString*) getSelectedObject {
@@ -127,13 +127,8 @@
 
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
-    _target2=sender;
-    if (!_selector3) {
-        _selector3 = action;
-    }
-    else {
-        _selector3 = action; //can be changed to 4th selector once we implement reset
-    }
+    _target = sender;
+    _selector = action;
 }
 
 @end
