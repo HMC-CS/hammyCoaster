@@ -32,21 +32,21 @@
 }
 
 
--(void)dealloc
-{
+//-(void)dealloc
+//{
     // Does the world need to be created here?
-    delete _world;
-    _world = NULL;
+    //delete _world;
+    //_world = NULL;
     //For loop of all the balls created
     
-    [super dealloc];
+    //[super dealloc];
     // make an array of all the balls created in the world and delete them all
     //for loop here there should be a ball object
-    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
-    {
-        _world->DestroyBody(b);
-    }
-}
+    //for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
+    //{
+        //_world->DestroyBody(b);
+    //}
+//}
 
 
 @end

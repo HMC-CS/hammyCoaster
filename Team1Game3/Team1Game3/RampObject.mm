@@ -11,7 +11,6 @@
 @implementation RampObject
 - (b2Body *)createBody:(CGPoint)location {
     
-    //b2BodyDef rampBodyDef;
     _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *ramp_Body = _world->CreateBody(&_bodyDef);
@@ -26,7 +25,7 @@
     b2PolygonShape rampShape;
     rampShape.Set(vertices, num);
     
-    //b2FixtureDef _fixtureDef;
+ 
     _fixtureDef.shape = &rampShape; // Set the line shape
     _fixtureDef.density = 0.0f; // Set the density
     _fixtureDef.friction = 0.5f; // Set the friction
@@ -35,18 +34,10 @@
     // Add the shape to the body
     ramp_Body->CreateFixture(&_fixtureDef);
     ramp_Body->SetUserData(self);
-    //b2Fixture->SetUserData("Ramp");[/code]
-    //b2CircleShape circle;
-    //circle.m_radius = 26.0/PTM_RATIO;
-    
-    //_fixtureDef.shape = &circle;
-    //_fixtureDef.density = 1.0f;
-    //_fixtureDef.friction = 0.4f;
-    //_fixtureDef.restitution = 0.3f;
-    
-    //body->CreateFixture(&_fixtureDef);
+  
     return ramp_Body;
 }
+
 
 
 @end
