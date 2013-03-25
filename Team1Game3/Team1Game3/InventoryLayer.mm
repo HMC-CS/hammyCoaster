@@ -53,6 +53,7 @@
      // Play Button: drops ball
     CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
 		NSLog(@"Play button pressed.");
+        [_target performSelector:_selector1];
         // stick a ball on the screen at starting position;
 	}];
     
@@ -60,7 +61,7 @@
     // for now, just selects nothing so you can click freely
     CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
 		NSLog(@"Reset button pressed.");
-        // delete all non-default objects;
+        // reset level; currently just redraw everything
         [_target performSelector:_selector2];
 	}];
     

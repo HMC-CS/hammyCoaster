@@ -26,9 +26,6 @@
     vertices[3].Set(11.2f / PTM_RATIO, -16.8f / PTM_RATIO);
     vertices[4].Set(18.8f / PTM_RATIO, 1.6f / PTM_RATIO);
     
-
-
-    
     b2PolygonShape starShape;
     starShape.Set(vertices, num);
     

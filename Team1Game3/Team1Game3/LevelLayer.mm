@@ -75,9 +75,10 @@
 /* playLevel:
  * tries the level by putting the ball in it.
  */
--(void) playPhysicsLevel
+-(void) playLevel
 {
     NSLog(@"Play Button pressed in LevelLayer");
+    
 }
 
 /* gameWon:
