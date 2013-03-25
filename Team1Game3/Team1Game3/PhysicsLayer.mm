@@ -61,53 +61,55 @@ public:
         [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
         [self setPosition:ccp(superSize.width*0.25, 0)];
         
-//        CGSize size = [self contentSize];
-        
 		// init physics
 		[self initPhysics];
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
-        // Ball to test dragging with
-        PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",@"RampObject"]];
-        [self addChild:sprite];
-        
-        draggingBall = [[_objectFactory objectFromString:@"RampObject" forWorld:world asDefault:NO] createBody:ccp([self contentSize].width/2,0)];
-        [sprite setPhysicsBody:draggingBall];
-        [sprite setPosition: ccp([self contentSize].width/2,0)];
-//        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
-        
-        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp(300.0, 300.0) AsDefault:NO];
-        
-        [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
-        
-        [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
-        [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
-        [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
-
-
-		
-        //#if 1
-        //		// Use batch node. Faster
-        //		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
-        //		spriteTexture_ = [parent texture];
-        //#else
-        //		// doesn't use batch node. Slower
-        //		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
-        //		CCNode *parent = [CCNode node];
-        //#endif
-        //		[self addChild:parent z:0 tag:kTagParentNode];
-		
-		//[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
-//		
-//		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
-//		[self addChild:label z:0];
-//		[label setColor:ccc3(0,0,255)];
-//		label.position = ccp( size.width/2, size.height-50);
+        [self addInitialObjects];
 		
 		[self scheduleUpdate];
 	}
 	return self;
+}
+
+- (void) addInitialObjects
+{
+    // Ball to test dragging with
+    PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",@"RampObject"]];
+    [self addChild:sprite];
+    
+    draggingBall = [[_objectFactory objectFromString:@"RampObject" forWorld:world asDefault:NO] createBody:ccp([self contentSize].width/2,0)];
+    [sprite setPhysicsBody:draggingBall];
+    [sprite setPosition: ccp([self contentSize].width/2,0)];
+    //        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
+    
+    [self addNewSpriteOfType:@"BallObject" AtPosition:ccp(300.0, 300.0) AsDefault:NO];
+    
+    [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
+    
+    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
+    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
+    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
+    
+    //		// Code kept around for later
+    //        #if 1
+    //        		// Use batch node. Faster
+    //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
+    //        		spriteTexture_ = [parent texture];
+    //        #else
+    //        		// doesn't use batch node. Slower
+    //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
+    //        		CCNode *parent = [CCNode node];
+    //        #endif
+    //        		[self addChild:parent z:0 tag:kTagParentNode];
+    //
+    //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
+    //
+    //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
+    //		[self addChild:label z:0];
+    //		[label setColor:ccc3(0,0,255)];
+    //		label.position = ccp( size.width/2, size.height-50);
 }
 
 -(void) dealloc

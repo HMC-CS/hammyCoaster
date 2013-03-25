@@ -116,7 +116,7 @@
 -(void) resetLevel
 {
     PhysicsLayer* oldPhysicsLayer = _physicsLayer; // NEED TO SOMEHOW REMOVE MEMORY LEAK!
-    [self removeChild:_physicsLayer cleanup:YES];
+    [self removeChild:_physicsLayer cleanup:NO];
     
     _physicsLayer = [PhysicsLayer node];
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
