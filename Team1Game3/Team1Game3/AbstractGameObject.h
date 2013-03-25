@@ -26,6 +26,7 @@
 
 -(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withTag:(NSString*) tag;
 -(b2Body *) createBody:(CGPoint) location;
+-(bool) isDefault;
 
 @property(retain, readonly) NSString* _tag;
 

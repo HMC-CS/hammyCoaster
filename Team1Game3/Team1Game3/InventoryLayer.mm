@@ -61,6 +61,7 @@
     CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
 		NSLog(@"Reset button pressed.");
         // delete all non-default objects;
+        [_target performSelector:_selector2];
 	}];
     
     CCMenu *gameMenu = [CCMenu menuWithItems: playButton, resetButton, nil];
@@ -118,7 +119,7 @@
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Inventory touch ended");
-    [_target performSelector:_selector];
+    [_target performSelector:_selector1];
 }
 
 -(NSString*) getSelectedObject {
@@ -128,7 +129,12 @@
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
     _target = sender;
-    _selector = action;
+    if (!_selector1) {
+        _selector1 = action;
+    }
+    else {
+        _selector2 = action;
+    }
 }
 
 @end

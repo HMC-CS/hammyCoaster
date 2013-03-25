@@ -14,7 +14,8 @@
     NSString* selectedObject;
     
     id _target;
-    SEL _selector;
+    SEL _selector1;
+    SEL _selector2;
 }
 
 -(NSString*) getSelectedObject;

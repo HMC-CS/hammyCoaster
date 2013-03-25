@@ -305,6 +305,28 @@ public:
     
 }
 
+//-(void) resetLevel
+//{
+//    
+//    b2Body* bodyToRemove = NULL;
+//    
+//    for (b2Body* b = world->GetBodyList(); b; b->GetNext())
+//    {
+//        AbstractGameObject* object = static_cast<AbstractGameObject*>(b->GetUserData());
+//
+//        NSLog(@"objects still");
+//        
+////        if (bodyToRemove) {
+////            world->DestroyBody(bodyToRemove);
+////            bodyToRemove = NULL;
+////        }
+////            
+////        if (![object isDefault]) {
+////            bodyToRemove = b;
+////        }
+//    }
+//}
+
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
