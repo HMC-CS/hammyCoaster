@@ -25,10 +25,12 @@
     ObjectFactory* _objectFactory;
     ContactListener* _contactListener;
     
-    //should we name these better things? I don't think they're conventions....
+    int starCount;
+    CCLabelTTF* starLabel;
+    
     id _target;
-    SEL _selector1;
-    SEL _selector2;
+    SEL _selector1; //getSelectedObject
+    SEL _selector2; //gameWon
     
     CGPoint ballStartingPoint;
     

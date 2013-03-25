@@ -31,6 +31,11 @@
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
         
+        starCount = 0;
+        starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d%", starCount] fontName:@"Arial" fontSize:24];
+        starLabel.position = CGPointMake(300.0, 600.0);
+        [self addChild:starLabel];
+        
         [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
         [self setPosition:ccp(superSize.width*0.25, 0)];
         
@@ -221,10 +226,14 @@
 
 -(void) hitStar:(b2Body*) starBody
 {
-    //delete the star and increment the star counter
-    NSLog(@"hitStar in PhysicsLayer");
-    world->DestroyBody(starBody);
+    //increment the star counter
+    ++starCount;
+    [starLabel setString:[NSString stringWithFormat:@"Stars: %d", starCount]];
     
+    //delete the star
+    world->DestroyBody(starBody);
+    NSLog(@"hitStar in PhysicsLayer, starcount: %d", starCount);
+
 }
 
 - (NSString*) getObjectType
@@ -294,7 +303,7 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"physics ended");
+    NSLog(@"physics touch ended");
 	//Add a new body/atlas sprite at the touched location
     CGPoint location = [touch locationInView: [touch view]];
     

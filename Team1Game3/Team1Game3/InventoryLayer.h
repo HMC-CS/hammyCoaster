@@ -14,8 +14,8 @@
     NSString* selectedObject;
     
     id _target;
-    SEL _selector1;
-    SEL _selector2;
+    SEL _selector1; // play
+    SEL _selector2; // reset
 }
 
 -(NSString*) getSelectedObject;
