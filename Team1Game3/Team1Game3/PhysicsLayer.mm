@@ -269,63 +269,20 @@ public:
     
     if (_contactListener->gameWon) {
         _contactListener->gameWon = false;
-        [_target performSelector:_selector2];
+        [self gameWon];
     }
 }
 
-//-(void) gameWon
-//{
-//    //This congratulates the user if he wins the game.
-//    
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
-//                                                    message:@"Play Again?"
-//                                                   delegate:self
-//                                          cancelButtonTitle:@"Yes!"
-//                                          otherButtonTitles:@"No, thanks.", nil];
-//    alert.tag=1;
-//    [alert show];
-//    
-//}
-//
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-//    //if the user was sure he wanted a new game, this asks the user how difficult
-//    //he wants his new game to be.  It then loads a game of the selected difficulty.
-//    if (alertView.tag==1){
-//        if (buttonIndex == [alertView cancelButtonIndex]) {
-//            [[CCDirector sharedDirector] pushScene:[LevelLayer scene]];
-//        }
-//        else {
-//            [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];
-//        }
-//    }
-//}
+-(void) gameWon
+{
+    [_target performSelector:_selector2];
+}
+
 
 -(void)playLevel
 {
-    
+    [_target performSelector:_selector2];
 }
-
-//-(void) resetLevel
-//{
-//    
-//    b2Body* bodyToRemove = NULL;
-//    
-//    for (b2Body* b = world->GetBodyList(); b; b->GetNext())
-//    {
-//        AbstractGameObject* object = static_cast<AbstractGameObject*>(b->GetUserData());
-//
-//        NSLog(@"objects still");
-//        
-////        if (bodyToRemove) {
-////            world->DestroyBody(bodyToRemove);
-////            bodyToRemove = NULL;
-////        }
-////            
-////        if (![object isDefault]) {
-////            bodyToRemove = b;
-////        }
-//    }
-//}
 
 -(void)registerWithTouchDispatcher
 {
@@ -367,12 +324,17 @@ public:
         //NSLog(@"(%f,%f)", location.x, location.y);
 	
         // get object type from inventory
-        NSString* objectType = [_target performSelector:_selector1];
+        NSString* objectType = [self getObjectType];
     
         if(objectType && ![objectType isEqualToString:@"None"]){
             [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
         }
     }
+}
+
+- (NSString*) getObjectType
+{
+    return [_target performSelector:_selector1];
 }
 
 
