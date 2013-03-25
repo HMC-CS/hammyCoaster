@@ -340,26 +340,27 @@ public:
 //    CGPoint touchLocation = [touch locationInView:[touch view]];
 //    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
 //    touchLocation = [self convertToNodeSpace:touchLocation];
-//    b2Vec2 locationWorld = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+//    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
 //    
 //    // Make a small box.
 //    b2AABB aabb;
 //    b2Vec2 d;
 //    d.Set(0.001f, 0.001f);
-//    aabb.lowerBound = locationWorld - d;
-//    aabb.upperBound = locationWorld + d;
+//    aabb.lowerBound = location - d;
+//    aabb.upperBound = location + d;
 //    
 //    // Query the world for overlapping shapes.
-//    QueryCallback callback(locationWorld);
+//    QueryCallback callback(location);
 //    world->QueryAABB(&callback, aabb);
 //    
 //    b2Body* body = callback.m_object;
 //    
 //    // TODO: check draggability -- need to get Object from b2Body
-//    if (body)
-//    {
-////        anchorPoint = ccpSub(locationWorld, CGPointMake(body->GetPosition().x*PTM_RATIO, body->GetPosition().y+PTM_RATIO));
-////        anchorPoint = locationWorld;
+//    if (body) {
+//        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
+//        if (!bodyObject->_isDefault) {
+//        anchorPoint = ccpSub(locationWorld, CGPointMake(body->GetPosition().x*PTM_RATIO, body->GetPosition().y+PTM_RATIO));
+//        anchorPoint = locationWorld;
 //        body->SetType(b2_staticBody);
 //        currentMoveableBody = body;
 //    }
@@ -370,6 +371,7 @@ public:
 //    NSLog(@"Physics touch moved");
 //    CGPoint location = [touch locationInView:[touch view]];
 //    location = [[CCDirector sharedDirector] convertToGL:location];
+//    location = [self convertToNodeSpace:touchLocation];
 //    
 //    if (currentMoveableBody != NULL) {
 ////        anchorPoint = ccpSub(location, CGPointMake(currentMoveableBody->GetPosition().x*PTM_RATIO, currentMoveableBody->GetPosition().y*PTM_RATIO));
@@ -396,20 +398,20 @@ public:
 ////    }
 //    currentMoveableBody = NULL;
 //}
-
--(void) dealloc
-{
-	delete world;
-	world = NULL;
-	
-	delete m_debugDraw;
-	m_debugDraw = NULL;
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-    {
-        world->DestroyBody(b);
-    }
-	
-	[super dealloc];
-}
+//
+//-(void) dealloc
+//{
+//	delete world;
+//	world = NULL;
+//	
+//	delete m_debugDraw;
+//	m_debugDraw = NULL;
+//    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+//    {
+//        world->DestroyBody(b);
+//    }
+//	
+//	[super dealloc];
+//}
 
 @end

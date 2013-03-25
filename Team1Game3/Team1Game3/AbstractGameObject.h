@@ -17,11 +17,10 @@
     b2World* _world;
     b2BodyDef _bodyDef;
     b2FixtureDef _fixtureDef;
-    
-    bool _isDefault;
-    
+        
     @public
     NSString* _tag;
+    bool _isDefault;
 }
 
 -(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withTag:(NSString*) tag;
