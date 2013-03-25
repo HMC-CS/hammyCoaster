@@ -195,12 +195,12 @@
     NSLog(@"Physics PlayLevel");
     [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint AsDefault:NO];
     
-    //disallow dragging or altering physicsLayer
-    [self setIsTouchEnabled:FALSE];
-    /*CCNode *child;
-    CCARRAY_FOREACH(self.children, child) {
-        [child runAction:...];
-    }*/
+    // disallow dragging or altering physicsLayer
+    // Doesn't work:
+    //     * setTouchEnabled FALSE
+    //     * Iterating through the children and setting them to default
+    // Other option: setting a clear, touch-absorbing layer over the physics layer
+    
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action

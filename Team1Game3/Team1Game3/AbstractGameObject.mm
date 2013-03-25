@@ -29,11 +29,6 @@
     NSAssert(NO, @"The 'createBody' method must be implemented by the sub-object.");
 }
 
-- (bool) isDefault;
-{
-    return _isDefault;
-}
-
 @end
 
 //void AbstractGameObject::startContact()
