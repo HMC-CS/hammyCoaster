@@ -90,6 +90,13 @@
     return [_inventoryLayer getSelectedObject];
 }
 
+/* playLevel:
+ * tries the level by putting the ball in it.
+ */
+-(void) playPhysicsLevel
+{
+    NSLog(@"Play Button pressed in LevelLayer");
+}
 
 /* gameWon:
  * displays popup withe congratulaitons and options after winning game
@@ -106,42 +113,21 @@
     
 }
 
-/* playLevel:
- * tries the level by putting the ball in it.
- */
--(void) playPhysicsLevel
-{
-    NSLog(@"Play Button pressed in LevelLayer");
-}
-
 -(void) resetLevel
 {
-    //[[CCDirector sharedDirector] pushScene:[LevelLayer scene]];
-    
-    // The above implementation is temporary.  We would want to, in the future, just reset the physics layer
-    // rather than the whole scene.
-    //[_physicsLayer resetLevel];
-    
-    //_physicsLayer = [PhysicsLayer init];
-    
+    PhysicsLayer* oldPhysicsLayer = _physicsLayer; // NEED TO SOMEHOW REMOVE MEMORY LEAK!
     [self removeChild:_physicsLayer cleanup:NO];
     
-    PhysicsLayer* oldPhysicsLayer = _physicsLayer;
-    
     _physicsLayer = [PhysicsLayer node];
-    
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
-    
     [self addChild:_physicsLayer];
-    
-    // TODO - fix the memory leak!  For some reason, this isn't working.
-    //[oldPhysicsLayer dealloc];
     
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    //if the user was sure he wanted a new game, this loads a new game.
+    //if the user was sure he wanted a new game, this asks the user how difficult
+    //he wants his new game to be.  It then loads a game of the selected difficulty.
     if (alertView.tag==1){
         if (buttonIndex == [alertView cancelButtonIndex]) {
             [[CCDirector sharedDirector] pushScene:[LevelLayer scene]];

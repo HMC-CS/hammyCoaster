@@ -30,4 +30,6 @@
 
 -(NSString*) getObjectType;
 
+-(void) resetLevel;
+
 @end
