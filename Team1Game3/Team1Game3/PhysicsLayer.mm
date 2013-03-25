@@ -167,7 +167,7 @@ public:
     
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
-    ballStartingPoint = CGPointMake(10/PTM_RATIO, 500/PTM_RATIO);
+    ballStartingPoint = CGPointMake(10.0, 600.0);
 }
 
 - (void) addInitialObjects
@@ -179,6 +179,7 @@ public:
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
+    
     
     //		// Code kept around for later
     //        #if 1
@@ -222,7 +223,7 @@ public:
 -(void)playLevel
 {
     NSLog(@"Physics PlayLevel");
-    [self addNewSpriteOfType:@"Ball" AtPosition:ballStartingPoint AsDefault:NO];
+    [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint AsDefault:NO];
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action
