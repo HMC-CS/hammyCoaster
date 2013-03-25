@@ -32,7 +32,7 @@
 		CGSize superSize = [CCDirector sharedDirector].winSize;
         
         starCount = 0;
-        starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d%", starCount] fontName:@"Arial" fontSize:24];
+        starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", starCount] fontName:@"Arial" fontSize:24];
         starLabel.position = CGPointMake(300.0, 600.0);
         [self addChild:starLabel];
         
@@ -146,9 +146,7 @@
 }
 
 - (void) addInitialObjects
-{
-    [self addNewSpriteOfType:@"RampObject" AtPosition:ccp(400, 100) AsDefault:NO];
-    
+{    
     [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
     
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
@@ -206,6 +204,12 @@
     //     * Iterating through the children and setting them to default
     // Other option: setting a clear, touch-absorbing layer over the physics layer
     
+}
+
+-(void) addObjectOfType:(NSString *)type
+{
+    [self addNewSpriteOfType:type AtPosition:ccp(-150, 400) AsDefault:NO];
+//    [self ccTouchBegan: withEvent:<#(UIEvent *)#>]
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action

@@ -58,7 +58,13 @@
     _inventoryLayer = [InventoryLayer node];
     [_inventoryLayer setTarget:self atAction:@selector(playLevel)]; //inventory selector1
     [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
+    [_inventoryLayer setTarget:self atAction:@selector(addObject)]; //invenctory selector3
     [self addChild:_inventoryLayer];
+}
+
+-(void) addObject
+{
+    [_physicsLayer addObjectOfType:[_inventoryLayer getSelectedObject]];
 }
 
 -(void)registerWithTouchDispatcher

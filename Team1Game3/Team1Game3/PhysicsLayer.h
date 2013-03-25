@@ -46,4 +46,6 @@
 
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
+-(void) addObjectOfType:(NSString*) type;
+
 @end

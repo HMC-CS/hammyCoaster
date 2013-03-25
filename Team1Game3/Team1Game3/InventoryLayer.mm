@@ -80,11 +80,13 @@
 	CCMenuItemLabel *selectBallButton = [CCMenuItemFont itemWithString:@"Select Ball Button" block:^(id sender){
 		NSLog(@"Ball button pressed.");
         selectedObject = @"BallObject";
+        [_target performSelector:_selector3];
 	}];
     // Makes a ramp when you click
     CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Select Ramp Button" block:^(id sender){
 		NSLog(@"Select Ramp button pressed.");
         selectedObject = @"RampObject";
+        [_target performSelector:_selector3];
 	}];
     //selects nothing so you can click freely
     CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Un-Select Button" block:^(id sender){
@@ -132,9 +134,10 @@
     _target = sender;
     if (!_selector1) {
         _selector1 = action;
-    }
-    else {
+    } else if (!_selector2) {
         _selector2 = action;
+    } else {
+        _selector3 = action;
     }
 }
 
