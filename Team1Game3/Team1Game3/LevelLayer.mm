@@ -23,23 +23,6 @@
 	
     CGSize size = [CCDirector sharedDirector].winSize;
     
-//	// 'layer' is an autorelease object.
-//	PhysicsLayer* physicsLayer = [PhysicsLayer node];
-//    physicsLayer.tag = 0;
-//    //    [physicsLayer setContentSize:CGSizeMake(size.width*0.75, size.height)];
-//    //    physicsLayer.position = ccp(size.width*0.25, 0);
-//    
-//    InventoryLayer* inventoryLayer = [InventoryLayer node];
-//    inventoryLayer.tag = 1;
-//    //    [inventoryLayer setContentSize:CGSizeMake(size.width*0.25, size.height)];
-//    //    inventoryLayer.position = ccp(0,0);
-//    
-//	
-//	// add layer as a child to scene (essentially pushes them to a stack)
-//    // inventoryLayer is on top
-//	[scene addChild: physicsLayer];
-//    [scene addChild: inventoryLayer];
-    
     LevelLayer* levelLayer = [LevelLayer node];
     
     [scene addChild:levelLayer];
@@ -55,28 +38,27 @@
 		// enable events
 		
 		self.isTouchEnabled = YES;
-        
-        _inventoryLayer = [InventoryLayer node];
-        _physicsLayer = [PhysicsLayer node];
-        
-        [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
-        [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
-        
-        [_inventoryLayer setTarget:self atAction:@selector(playLevel)]; //inventory selector1
-        [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
-        
-        [self addChild:_inventoryLayer];
-        [self addChild:_physicsLayer];
-		
-		// create menu button
+        [self createInventoryLayer];
+        [self createPhysicsLayer];
 		
 	}
 	return self;
 }
 
--(void) dealloc
+-(void) createPhysicsLayer
 {
-	[super dealloc];
+    _physicsLayer = [PhysicsLayer node];
+    [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
+    [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
+    [self addChild:_physicsLayer];
+}
+
+-(void) createInventoryLayer
+{
+    _inventoryLayer = [InventoryLayer node];
+    [_inventoryLayer setTarget:self atAction:@selector(playLevel)]; //inventory selector1
+    [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
+    [self addChild:_inventoryLayer];
 }
 
 -(void)registerWithTouchDispatcher
@@ -115,13 +97,10 @@
 
 -(void) resetLevel
 {
-    PhysicsLayer* oldPhysicsLayer = _physicsLayer; // NEED TO SOMEHOW REMOVE MEMORY LEAK!
+    //PhysicsLayer* oldPhysicsLayer = _physicsLayer; // NEED TO SOMEHOW REMOVE MEMORY LEAK!
     [self removeChild:_physicsLayer cleanup:NO];
     
-    _physicsLayer = [PhysicsLayer node];
-    [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
-    [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
-    [self addChild:_physicsLayer];
+    [self createPhysicsLayer];
     
 }
 
@@ -155,6 +134,11 @@
 //    }
 //    return NO;
 //}
-//    
+//
+
+-(void) dealloc
+{
+	[super dealloc];
+}
 
 @end

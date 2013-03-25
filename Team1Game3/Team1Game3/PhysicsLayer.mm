@@ -48,6 +48,9 @@ public:
 
 @implementation PhysicsLayer
 
+
+//-----INITIALIZATION-----//
+
 -(id) init
 {
 	if( (self=[super init])) {
@@ -71,60 +74,6 @@ public:
 		[self scheduleUpdate];
 	}
 	return self;
-}
-
-- (void) addInitialObjects
-{
-    // Ball to test dragging with
-    PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",@"RampObject"]];
-    [self addChild:sprite];
-    
-    draggingBall = [[_objectFactory objectFromString:@"RampObject" forWorld:world asDefault:NO] createBody:ccp([self contentSize].width/2,0)];
-    [sprite setPhysicsBody:draggingBall];
-    [sprite setPosition: ccp([self contentSize].width/2,0)];
-    //        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
-    
-    [self addNewSpriteOfType:@"BallObject" AtPosition:ccp(300.0, 300.0) AsDefault:NO];
-    
-    [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
-    
-    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
-    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
-    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
-    
-    //		// Code kept around for later
-    //        #if 1
-    //        		// Use batch node. Faster
-    //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
-    //        		spriteTexture_ = [parent texture];
-    //        #else
-    //        		// doesn't use batch node. Slower
-    //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
-    //        		CCNode *parent = [CCNode node];
-    //        #endif
-    //        		[self addChild:parent z:0 tag:kTagParentNode];
-    //
-    //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
-    //
-    //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
-    //		[self addChild:label z:0];
-    //		[label setColor:ccc3(0,0,255)];
-    //		label.position = ccp( size.width/2, size.height-50);
-}
-
--(void) dealloc
-{
-	delete world;
-	world = NULL;
-	
-	delete m_debugDraw;
-	m_debugDraw = NULL;
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-    {
-        world->DestroyBody(b);
-    }
-	
-	[super dealloc];
 }
 
 -(void) initPhysics
@@ -214,12 +163,98 @@ public:
     
     // ramp2 definitions
     ramp2Edge.Set(b2Vec2(s.width*2/(4*PTM_RATIO),150/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
-                 ramp2Body->CreateFixture(&ramp2ShapeDef);
+    ramp2Body->CreateFixture(&ramp2ShapeDef);
     
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
     ballStartingPoint = CGPointMake(10/PTM_RATIO, 500/PTM_RATIO);
 }
+
+- (void) addInitialObjects
+{
+    // Ball to test dragging with
+    PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",@"RampObject"]];
+    [self addChild:sprite];
+    
+    draggingBall = [[_objectFactory objectFromString:@"RampObject" forWorld:world asDefault:NO] createBody:ccp([self contentSize].width/2,0)];
+    [sprite setPhysicsBody:draggingBall];
+    [sprite setPosition: ccp([self contentSize].width/2,0)];
+    //        [self addNewSpriteOfType:@"BallObject" AtPosition:ccp([self contentSize].width/2, 0) AsDefault:NO];
+    
+    [self addNewSpriteOfType:@"BallObject" AtPosition:ccp(300.0, 300.0) AsDefault:NO];
+    
+    [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
+    
+    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
+    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
+    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
+    
+    //		// Code kept around for later
+    //        #if 1
+    //        		// Use batch node. Faster
+    //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
+    //        		spriteTexture_ = [parent texture];
+    //        #else
+    //        		// doesn't use batch node. Slower
+    //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
+    //        		CCNode *parent = [CCNode node];
+    //        #endif
+    //        		[self addChild:parent z:0 tag:kTagParentNode];
+    //
+    //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
+    //
+    //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
+    //		[self addChild:label z:0];
+    //		[label setColor:ccc3(0,0,255)];
+    //		label.position = ccp( size.width/2, size.height-50);
+}
+
+
+//-----GAME METHODS-----//
+
+-(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p AsDefault:(bool)isDefault
+{
+	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
+	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
+    
+    
+	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+	//[parent addChild:sprite]; //This line isn't necessary?
+    [self addChild:sprite];
+    //[sprite setPTMRatio:PTM_RATIO];
+    
+    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault] createBody:p];
+	[sprite setPhysicsBody:body];
+    [sprite setPosition: ccp(p.x,p.y)];
+}
+
+-(void)playLevel
+{
+    
+}
+
+-(void) setTarget:(id) sender atAction:(SEL)action
+{
+    _target = sender;
+    if (!_selector1) {
+        _selector1 = action;
+    }
+    else {
+        _selector2 = action;
+    }
+}
+
+-(void) gameWon
+{
+    [_target performSelector:_selector2];
+}
+
+- (NSString*) getObjectType
+{
+    return [_target performSelector:_selector1];
+}
+
+//-----BUILT-IN/BOX 2D-----//
 
 -(void) draw
 {
@@ -237,22 +272,6 @@ public:
 	world->DrawDebugData();
 	
 	kmGLPopMatrix();
-}
-
--(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p AsDefault:(bool)isDefault
-{
-	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
-    
-    
-	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-	//[parent addChild:sprite]; //This line isn't necessary?
-    [self addChild:sprite];
-    //[sprite setPTMRatio:PTM_RATIO];
-    
-    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault] createBody:p];
-	[sprite setPhysicsBody:body];
-    [sprite setPosition: ccp(p.x,p.y)];
 }
 
 -(void) update: (ccTime) dt
@@ -275,32 +294,10 @@ public:
     }
 }
 
--(void) gameWon
-{
-    [_target performSelector:_selector2];
-}
-
-
--(void)playLevel
-{
-    [_target performSelector:_selector2];
-}
 
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-}
-
-
--(void) setTarget:(id) sender atAction:(SEL)action
-{
-    _target = sender;
-    if (!_selector1) {
-        _selector1 = action;
-    }
-    else {
-        _selector2 = action;
-    }
 }
 
 //-----TOUCHING WITH NO DRAGGING-----//
@@ -332,11 +329,6 @@ public:
             [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
         }
     }
-}
-
-- (NSString*) getObjectType
-{
-    return [_target performSelector:_selector1];
 }
 
 
@@ -404,5 +396,20 @@ public:
 ////    }
 //    currentMoveableBody = NULL;
 //}
+
+-(void) dealloc
+{
+	delete world;
+	world = NULL;
+	
+	delete m_debugDraw;
+	m_debugDraw = NULL;
+    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+    {
+        world->DestroyBody(b);
+    }
+	
+	[super dealloc];
+}
 
 @end
