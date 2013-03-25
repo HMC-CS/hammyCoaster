@@ -14,6 +14,6 @@
 
 + (id) sharedObjectFactory;
 
-- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool) isDefault;
+- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite;
 
 @end

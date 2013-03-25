@@ -20,10 +20,10 @@
     return sharedObjectFactory;
 }
 
-- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault
+- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault withSprite:(CCSprite*) sprite
 {
     Class objectClass = NSClassFromString(className);
-    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withTag:className];
+    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withSprite:(CCSprite*) sprite withTag:className];
     return newObject;
 }
 

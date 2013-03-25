@@ -41,25 +41,12 @@ void ContactListener::BeginContact(b2Contact* contact) {
         {
             NSLog(@"Star Collision");
             contactStar = body2;
-            /* remove star
-             *     - call world->destroyBody
-             */
-            /* increment star counter
-             *     - where is star counter?
-             */
 
         }
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
         {
             NSLog(@"Star Collision");
             contactStar = body1;
-
-            /* remove star
-             *     - call world->destroyBody
-             */
-            /* increment star counter
-             *     - where is star counter?
-             */
 
         }
     }

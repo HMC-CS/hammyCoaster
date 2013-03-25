@@ -184,11 +184,10 @@
     
     
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-	//[parent addChild:sprite]; //This line isn't necessary?
     [self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
     
-    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault] createBody:p];
+    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
 }
@@ -234,10 +233,15 @@
     ++starCount;
     [starLabel setString:[NSString stringWithFormat:@"Stars: %d", starCount]];
     
-    //delete the star
+    // delete the star sprite
+    AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
+    CCSprite* sprite = [starBodyObject getSprite];
+    [self removeChild: sprite cleanup:YES];
+    // delete the star body
+        // (this doesn't actually happen 'till end of collision because
+        //  hitStar is called inside a callback, but it doesn't seem to matter.)
     world->DestroyBody(starBody);
     NSLog(@"hitStar in PhysicsLayer, starcount: %d", starCount);
-
 }
 
 - (NSString*) getObjectType

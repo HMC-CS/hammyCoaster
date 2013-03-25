@@ -12,15 +12,21 @@
 
 @synthesize _tag;
 
--(id) initWithWorld:(b2World *)world asDefault:(bool)isDefault withTag:(NSString*)tag
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite withTag:(NSString*) tag
 {
     self = [super init];
     if (self) {
         _world = world;
         _isDefault = isDefault;
+        _sprite = sprite;
         _tag = tag;
     }
     return self;
+}
+
+-(CCSprite *) getSprite
+{
+    return _sprite;
 }
 
 - (b2Body *) createBody:(CGPoint)location

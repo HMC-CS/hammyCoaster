@@ -17,13 +17,16 @@
     b2World* _world;
     b2BodyDef _bodyDef;
     b2FixtureDef _fixtureDef;
+    
+    CCSprite* _sprite;
         
     @public
     NSString* _tag;
     bool _isDefault;
 }
 
--(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withTag:(NSString*) tag;
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite withTag:(NSString*) tag;
+-(CCSprite *) getSprite;
 -(b2Body *) createBody:(CGPoint) location;
 
 @property(retain, readonly) NSString* _tag;
