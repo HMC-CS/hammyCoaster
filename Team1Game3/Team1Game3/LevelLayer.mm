@@ -78,6 +78,7 @@
 -(void) playLevel
 {
     NSLog(@"Play Button pressed in LevelLayer");
+    return [_physicsLayer playLevel];
     
 }
 

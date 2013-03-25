@@ -230,7 +230,8 @@ public:
 
 -(void)playLevel
 {
-    
+    NSLog(@"Physics PlayLevel");
+    [self addNewSpriteOfType:@"Ball" AtPosition:ballStartingPoint AsDefault:NO];
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action
