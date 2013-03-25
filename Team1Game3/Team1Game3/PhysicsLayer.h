@@ -23,7 +23,6 @@
     b2World* world;					// strong ref
     GLESDebugDraw* m_debugDraw;		// strong ref
     ObjectFactory* _objectFactory;
-//    b2MouseJoint* _mouseJoint;
     ContactListener* _contactListener;
     
     //should we name these better things? I don't think they're conventions....
@@ -33,9 +32,8 @@
     
     CGPoint ballStartingPoint;
     
-    b2Body* groundBody;
-    b2Body* draggingBall; // For dragging testing
-//    b2Vec2 anchorPoint;
+    float xOffset;
+    float yOffset;
     b2Body* currentMoveableBody;
 }
 
