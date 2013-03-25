@@ -14,37 +14,7 @@
 #import "InventoryLayer.h"
 
 #import "PhysicsSprite.h"
-
-// We need this for dragging.
-// TODO: Move this to its own file once we're sure this way of dragging will work.
-class QueryCallback : public b2QueryCallback
-{
-public:
-    QueryCallback(const b2Vec2& point)
-    {
-        m_point = point;
-        m_object = nil;
-    }
-    
-    bool ReportFixture(b2Fixture* fixture)
-    {
-        if (fixture->IsSensor()) return true; //ignore sensors
-        
-        bool inside = fixture->TestPoint(m_point);
-        if (inside)
-        {
-            // We are done, terminate the query.
-            m_object = fixture->GetBody();
-            return false;
-        }
-        
-        // Continue the query.
-        return true;
-    }
-    
-    b2Vec2  m_point;
-    b2Body* m_object;
-};
+#import "QueryCallback.h"
 
 @implementation PhysicsLayer
 
@@ -293,111 +263,111 @@ public:
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
-////-----TOUCHING WITH NO DRAGGING-----//
-//
-//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"Physics touch began");
-//    
-//    return YES;
-//}
-//
-//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"physics ended");
-//	//Add a new body/atlas sprite at the touched location
-//    CGPoint location = [touch locationInView: [touch view]];
-//    
-//    if (CGRectContainsPoint(self.boundingBox, location)) {
-//        
-//        location = [[CCDirector sharedDirector] convertToGL: location];
-//        location = [self convertToNodeSpace:location];
-//        
-//        //NSLog(@"(%f,%f)", location.x, location.y);
-//	
-//        // get object type from inventory
-//        NSString* objectType = [self getObjectType];
-//    
-//        if(objectType && ![objectType isEqualToString:@"None"]){
-//            [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
-//        }
-//    }
-//}
+//-----TOUCHING WITH NO DRAGGING-----//
 
-
-//-----TOUCHING WITH DRAGGING-----//
--(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
     NSLog(@"Physics touch began");
     
-    //Get tap location and convert to cocos2d-box2d coordinates
-    CGPoint touchLocation = [touch locationInView:[touch view]];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
-    
-    // Make a small box.
-    b2AABB aabb;
-    b2Vec2 d;
-    d.Set(0.001f, 0.001f);
-    aabb.lowerBound = location - d;
-    aabb.upperBound = location + d;
-    
-    // Query the world for overlapping shapes.
-    QueryCallback callback(location);
-    world->QueryAABB(&callback, aabb);
-    
-    b2Body* body = callback.m_object;
-    
-    if (body) {
-        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
-        if (!bodyObject->_isDefault) {
-            // calculate the offset between the touch and the center of the object
-            b2Vec2 bodyLocation = body->GetPosition();
-            xOffset = bodyLocation.x - location.x;
-            yOffset = bodyLocation.y - location.y;
-            body->SetType(b2_staticBody);
-            currentMoveableBody = body;
-        }
-    }
     return YES;
 }
--(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"Physics touch moved");
-    CGPoint touchLocation = [touch locationInView:[touch view]];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+    NSLog(@"physics ended");
+	//Add a new body/atlas sprite at the touched location
+    CGPoint location = [touch locationInView: [touch view]];
     
-    if (currentMoveableBody != NULL) {
-        b2Vec2 newPos = b2Vec2(location.x + xOffset, location.y + yOffset);
-        currentMoveableBody->SetTransform(newPos,currentMoveableBody->GetAngle());
-    }    
-}
-
--(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Physics touch cancelled");
-    currentMoveableBody = NULL;
-}
-
-- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
-    NSLog(@"Physics touch ended");
-    currentMoveableBody = NULL;
-}
-
--(void) dealloc
-{
-	delete world;
-	world = NULL;
+    if (CGRectContainsPoint(self.boundingBox, location)) {
+        
+        location = [[CCDirector sharedDirector] convertToGL: location];
+        location = [self convertToNodeSpace:location];
+        
+        //NSLog(@"(%f,%f)", location.x, location.y);
 	
-	delete m_debugDraw;
-	m_debugDraw = NULL;
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
-    {
-        world->DestroyBody(b);
+        // get object type from inventory
+        NSString* objectType = [self getObjectType];
+    
+        if(objectType && ![objectType isEqualToString:@"None"]){
+            [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
+        }
     }
-	
-	[super dealloc];
 }
+
+
+////-----TOUCHING WITH DRAGGING-----//
+//-(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touch began");
+//    
+//    //Get tap location and convert to cocos2d-box2d coordinates
+//    CGPoint touchLocation = [touch locationInView:[touch view]];
+//    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+//    touchLocation = [self convertToNodeSpace:touchLocation];
+//    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+//    
+//    // Make a small box.
+//    b2AABB aabb;
+//    b2Vec2 d;
+//    d.Set(0.001f, 0.001f);
+//    aabb.lowerBound = location - d;
+//    aabb.upperBound = location + d;
+//    
+//    // Query the world for overlapping shapes.
+//    QueryCallback callback(location);
+//    world->QueryAABB(&callback, aabb);
+//    
+//    b2Body* body = callback.m_object;
+//    
+//    if (body) {
+//        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
+//        if (!bodyObject->_isDefault) {
+//            // calculate the offset between the touch and the center of the object
+//            b2Vec2 bodyLocation = body->GetPosition();
+//            xOffset = bodyLocation.x - location.x;
+//            yOffset = bodyLocation.y - location.y;
+//            body->SetType(b2_staticBody);
+//            currentMoveableBody = body;
+//        }
+//    }
+//    return YES;
+//}
+//-(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
+//{
+//    NSLog(@"Physics touch moved");
+//    CGPoint touchLocation = [touch locationInView:[touch view]];
+//    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+//    touchLocation = [self convertToNodeSpace:touchLocation];
+//    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+//    
+//    if (currentMoveableBody != NULL) {
+//        b2Vec2 newPos = b2Vec2(location.x + xOffset, location.y + yOffset);
+//        currentMoveableBody->SetTransform(newPos,currentMoveableBody->GetAngle());
+//    }    
+//}
+//
+//-(void)ccTouchCancelled:(UITouch *)touches withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touch cancelled");
+//    currentMoveableBody = NULL;
+//}
+//
+//- (void)ccTouchEnded:(UITouch *)touches withEvent:(UIEvent *)event {
+//    NSLog(@"Physics touch ended");
+//    currentMoveableBody = NULL;
+//}
+//
+//-(void) dealloc
+//{
+//	delete world;
+//	world = NULL;
+//	
+//	delete m_debugDraw;
+//	m_debugDraw = NULL;
+//    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+//    {
+//        world->DestroyBody(b);
+//    }
+//	
+//	[super dealloc];
+//}
 
 @end
