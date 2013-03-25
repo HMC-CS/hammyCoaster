@@ -30,16 +30,16 @@
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
+        [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
+        [self setPosition:ccp(superSize.width*0.25, 0)];
         
+        // initialize stars
         starCount = 0;
         starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d%", starCount] fontName:@"Arial" fontSize:24];
         starLabel.position = CGPointMake(300.0, 600.0);
         [self addChild:starLabel];
         
-        [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
-        [self setPosition:ccp(superSize.width*0.25, 0)];
-        
-		// init physics
+		// initialize physics
 		[self initPhysics];
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
@@ -177,6 +177,17 @@
 }
 
 
+-(void) setTarget:(id) sender atAction:(SEL)action
+{
+    _target = sender;
+    if (!_selector1) {
+        _selector1 = action;
+    }
+    else {
+        _selector2 = action;
+    }
+}
+
 //-----GAME METHODS-----//
 
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p AsDefault:(bool)isDefault
@@ -208,17 +219,6 @@
     
 }
 
--(void) setTarget:(id) sender atAction:(SEL)action
-{
-    _target = sender;
-    if (!_selector1) {
-        _selector1 = action;
-    }
-    else {
-        _selector2 = action;
-    }
-}
-
 -(void) gameWon
 {
     [_target performSelector:_selector2];
@@ -230,7 +230,7 @@
     ++starCount;
     [starLabel setString:[NSString stringWithFormat:@"Stars: %d", starCount]];
     
-    //delete the star
+    //delete star
     world->DestroyBody(starBody);
     NSLog(@"hitStar in PhysicsLayer, starcount: %d", starCount);
 
@@ -283,7 +283,6 @@
         [self hitStar:(_contactListener->contactStar)];
         _contactListener->contactStar = NULL;
     }
-    
 }
 
 

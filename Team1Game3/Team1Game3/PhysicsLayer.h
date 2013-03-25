@@ -27,6 +27,7 @@
     
     int starCount;
     CCLabelTTF* starLabel;
+    std::vector<b2Body *> toDestroy;
     
     id _target;
     SEL _selector1; //getSelectedObject
