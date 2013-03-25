@@ -20,11 +20,11 @@
     
     b2Vec2 vertices[5];
     int num = 5;
-    vertices[0].Set(-0.1f / PTM_RATIO, 16.0f / PTM_RATIO);
-    vertices[1].Set(-14.8f / PTM_RATIO, 2.4f / PTM_RATIO);
-    vertices[2].Set(-10.0f / PTM_RATIO, -16.4f / PTM_RATIO);
-    vertices[3].Set(11.2f / PTM_RATIO, -16.8f / PTM_RATIO);
-    vertices[4].Set(18.8f / PTM_RATIO, 1.6f / PTM_RATIO);
+    vertices[0].Set(0.0f / PTM_RATIO, 21.2f / PTM_RATIO);
+    vertices[1].Set(-21.4f / PTM_RATIO, 3.7f / PTM_RATIO);
+    vertices[2].Set(-12.9f / PTM_RATIO, -19.9f / PTM_RATIO);
+    vertices[3].Set(14.1f / PTM_RATIO, -20.8f / PTM_RATIO);
+    vertices[4].Set(22.4f / PTM_RATIO, 3.5f / PTM_RATIO);
     
     b2PolygonShape starShape;
     starShape.Set(vertices, num);

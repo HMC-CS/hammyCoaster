@@ -35,5 +35,6 @@ public:
     virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
     
     bool gameWon;
+    b2Body* contactStar;
     
 };

@@ -219,6 +219,14 @@
     [_target performSelector:_selector2];
 }
 
+-(void) hitStar:(b2Body*) starBody
+{
+    //delete the star and increment the star counter
+    NSLog(@"hitStar in PhysicsLayer");
+    world->DestroyBody(starBody);
+    
+}
+
 - (NSString*) getObjectType
 {
     return [_target performSelector:_selector1];
@@ -262,6 +270,11 @@
         _contactListener->gameWon = false;
         [self gameWon];
     }
+    if (_contactListener->contactStar != NULL) {
+        [self hitStar:(_contactListener->contactStar)];
+        _contactListener->contactStar = NULL;
+    }
+    
 }
 
 

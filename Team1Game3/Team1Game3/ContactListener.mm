@@ -12,6 +12,7 @@
 
 ContactListener::ContactListener() {
     gameWon = false;
+    contactStar = NULL;
 }
 
 ContactListener::~ContactListener() {
@@ -35,6 +36,31 @@ void ContactListener::BeginContact(b2Contact* contact) {
             gameWon = true;
             body1->SetAwake(false);
             body2->SetAwake(false);
+        }
+        if ([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"StarObject"])
+        {
+            NSLog(@"Star Collision");
+            contactStar = body2;
+            /* remove star
+             *     - call world->destroyBody
+             */
+            /* increment star counter
+             *     - where is star counter?
+             */
+
+        }
+        if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
+        {
+            NSLog(@"Star Collision");
+            contactStar = body1;
+
+            /* remove star
+             *     - call world->destroyBody
+             */
+            /* increment star counter
+             *     - where is star counter?
+             */
+
         }
     }
     
