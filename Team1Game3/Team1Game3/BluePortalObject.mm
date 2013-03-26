@@ -13,7 +13,7 @@
 - (b2Body *)createBody:(CGPoint)location {
     
     //b2BodyDef bluePortalBodyDef;
-    _bodyDef.type = b2_dynamicBody;
+    _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *bluePortal_Body = _world->CreateBody(&_bodyDef);
     

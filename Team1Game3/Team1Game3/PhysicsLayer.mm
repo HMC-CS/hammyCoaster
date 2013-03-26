@@ -139,7 +139,7 @@
     // ramp2 definitions
     ramp2Edge.Set(b2Vec2(s.width*2/(4*PTM_RATIO),150/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
     ramp2Body->CreateFixture(&ramp2ShapeDef);
-    
+        
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
     ballStartingPoint = CGPointMake(10.0, 600.0);
@@ -152,6 +152,25 @@
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
     [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
+    
+    
+    /* differently hacked default ramps
+     * ---------------------------------------------------------------------- */
+    
+    //Code right out of sprite making function
+    NSString* type = @"RampObject";
+	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+    [self addChild:sprite];
+    CGPoint position = CGPointMake(100, 500);
+    
+    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:TRUE withSprite:sprite] createBody:position];
+	[sprite setPhysicsBody:body];
+    [sprite setPosition: ccp(position.x,position.y)];
+    
+    //rotate ramp
+    body->SetTransform(b2Vec2(600/PTM_RATIO,191.3/PTM_RATIO), .7);
+    
+
     
     
     //		// Code kept around for later
@@ -181,7 +200,6 @@
 {
 	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
 	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
-    
     
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
     [self addChild:sprite];
