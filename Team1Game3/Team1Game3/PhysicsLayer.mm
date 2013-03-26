@@ -168,7 +168,7 @@
     [sprite setPosition: ccp(position.x,position.y)];
     
     //rotate ramp
-    body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), .7);
+    body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), 0.7);
     
 
     
@@ -379,24 +379,26 @@
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     NSLog(@"Physics touch ended");
     
-    //Add a new body/atlas sprite at the touched location
-    CGPoint location = [touch locationInView: [touch view]];
+    if (_editMode) {
     
-    if (CGRectContainsPoint(self.boundingBox, location)) {
+        //Add a new body/atlas sprite at the touched location
+        CGPoint location = [touch locationInView: [touch view]];
+    
+        if (CGRectContainsPoint(self.boundingBox, location)) {
         
-        location = [[CCDirector sharedDirector] convertToGL: location];
-        location = [self convertToNodeSpace:location];
+            location = [[CCDirector sharedDirector] convertToGL: location];
+            location = [self convertToNodeSpace:location];
         
-        //NSLog(@"(%f,%f)", location.x, location.y);
+            //NSLog(@"(%f,%f)", location.x, location.y);
         
-        // get object type from inventory
-        NSString* objectType = [self getObjectType];
-        
-        if(objectType && ![objectType isEqualToString:@"None"]){
-            [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
+            // get object type from inventory
+            NSString* objectType = [self getObjectType];
+            
+            if(objectType && ![objectType isEqualToString:@"None"]){
+                [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
+            }
         }
     }
-    
     currentMoveableBody = NULL;
 }
 

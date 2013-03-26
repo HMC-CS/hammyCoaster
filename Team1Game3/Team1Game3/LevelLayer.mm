@@ -47,14 +47,11 @@
 	return self;
 }
 
--(void) createPhysicsLayer
-{
-    _physicsLayer = [PhysicsLayer node];
-    [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
-    [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
-    [self addChild:_physicsLayer];
-}
+//-----CHILD LAYER INTERACTION FUNCTIONS-----//
 
+/* createInventoryLayer:
+ * creates the InventoryLayer and tells it where to send messages for its selectors
+ */
 -(void) createInventoryLayer
 {
     _inventoryLayer = [InventoryLayer node];
@@ -64,23 +61,20 @@
     [self addChild:_inventoryLayer];
 }
 
--(void) addObject
+/* createPhysicsLayer:
+ * creates the PhysicsLayer and tells it where to send messages for its selectors
+ */
+-(void) createPhysicsLayer
 {
-    [_physicsLayer addObjectOfType:[_inventoryLayer getSelectedObject]];
+    _physicsLayer = [PhysicsLayer node];
+    [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
+    [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
+    [self addChild:_physicsLayer];
 }
 
--(void)registerWithTouchDispatcher
-{
-    // makes layer second priority for touches, also allows them to fall through it to the physics and inventory layers
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:NO];
-}
-
--(NSString*)getInventorySelectedObject;
-{
-    return [_inventoryLayer getSelectedObject];
-}
-
-/* playLevel:
+/* playPhysicsLevel:
+ * from: InventoryLayer
+ * to: PhysicsLayer
  * tries the level by putting the ball in it.
  */
 -(void) playPhysicsLevel
@@ -93,20 +87,11 @@
     
 }
 
-/* gameWon:
- * displays popup withe congratulaitons and options after winning game
+/* resetLevel:
+ * from: InventoryLayer
+ * to: PhysicsLayer
+ * Resets the level, currently by re-creating the _physicsLayer.
  */
--(void) gameWon
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
-                                                    message:@"Play Again?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Yes!"
-                                          otherButtonTitles:@"No, thanks.", nil];
-    alert.tag=1;
-    [alert show];
-    
-}
 
 -(void) resetLevel
 {
@@ -118,6 +103,60 @@
     _physicsLayer->_editMode = true;
 }
 
+/* addObject:
+ * from: InventoryLayer
+ * to: PhysicsLayer
+ * Adds an object of the current type to the physics layer.
+ * Used so we can drag it onto the visible section of the physics layer
+ */
+-(void) addObject
+{
+    [_physicsLayer addObjectOfType:[_inventoryLayer getSelectedObject]];
+}
+
+/* getInventorySelectedObject:
+ * from: PhysicsLayer
+ * to: InventoryLayer
+ * Gets the currently selected object from the InventoryLayer.
+ * Used so that physics layer can tell what's selected.
+ */
+-(NSString*)getInventorySelectedObject;
+{
+    return [_inventoryLayer getSelectedObject];
+}
+
+/* gameWon:
+ * from: PhysicsLayer
+ * to: LevelLayer
+ * displays popup with congratulaitons and options after winning game
+ */
+-(void) gameWon
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
+                                                    message:@"Play Again?"
+                                                   delegate:self
+                                          cancelButtonTitle:@"Yes!"
+                                          otherButtonTitles:@"No, thanks.", nil];
+    alert.tag=1;
+    [alert show];
+}
+
+//-----OTHER FUNCTIONS-----//
+
+/* registerWithTouchDispacher:
+ * Initializes touches for LevelLayer. Makes layer second
+ * priority for touches, also allows them to fall through it
+ * to the physics and inventory layers
+ */
+-(void)registerWithTouchDispatcher
+{
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:2 swallowsTouches:NO];
+}
+
+/* alertView: clickedButtonAtIndex:
+ * Currently unused function to allow for selecting
+ * difficulty of next level.
+ */
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     //if the user was sure he wanted a new game, this asks the user how difficult
     //he wants his new game to be.  It then loads a game of the selected difficulty.
@@ -130,8 +169,6 @@
         }
     }
 }
-
-
 
 //-(BOOL)ccTouchBegan:(UITouch* )touch withEvent:(UIEvent *)event
 //{
@@ -150,6 +187,9 @@
 //}
 //
 
+/* dealloc:
+ * deallocates everything in LevelLayer
+ */
 -(void) dealloc
 {
 	[super dealloc];

@@ -14,10 +14,10 @@
 
 #pragma mark - IntroLayer
 
-// HelloWorldLayer implementation
+// IntroLaye implementation
 @implementation IntroLayer
 
-// Helper class method that creates a Scene with the HelloWorldLayer as the only child.
+// Helper class method that creates a Scene with the IntroLaye as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
@@ -33,7 +33,7 @@
 	return scene;
 }
 
-//
+// Displays intro image, then fades to next layer
 -(void) onEnter
 {
 	[super onEnter];
@@ -54,8 +54,8 @@
 	// add the label as a child to this Layer
 	[self addChild: background];
 	
-	// In one second transition to the new scene
-	[self scheduleOnce:@selector(makeTransition:) delay:1];
+	// In half second, transition to the new scene(which takes half a second)
+	[self scheduleOnce:@selector(makeTransition:) delay:.5];
 }
 
 -(void) makeTransition:(ccTime)dt

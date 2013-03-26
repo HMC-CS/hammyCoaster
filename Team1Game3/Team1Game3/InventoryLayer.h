@@ -19,6 +19,7 @@
     SEL _selector3; // add object
 }
 
+
 -(NSString*) getSelectedObject;
 
 -(void) setTarget:(id) sender atAction:(SEL)action;
