@@ -57,7 +57,6 @@
     _inventoryLayer = [InventoryLayer node];
     [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1
     [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
-    [_inventoryLayer setTarget:self atAction:@selector(addObject)]; //invenctory selector3
     [self addChild:_inventoryLayer];
 }
 
@@ -99,17 +98,6 @@
     [self createPhysicsLayer];
     
     _physicsLayer->_editMode = true;
-}
-
-/* addObject:
- * from: InventoryLayer
- * to: PhysicsLayer
- * Adds an object of the current type to the physics layer.
- * Used so we can drag it onto the visible section of the physics layer
- */
--(void) addObject
-{
-    [_physicsLayer addObjectOfType:[_inventoryLayer getSelectedObject]];
 }
 
 /* getInventorySelectedObject:

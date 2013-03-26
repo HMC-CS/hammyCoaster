@@ -16,7 +16,6 @@
     id _target;
     SEL _selector1; // play
     SEL _selector2; // reset
-    SEL _selector3; // add object
 }
 
 /* getSelectedObject:

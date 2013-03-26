@@ -75,7 +75,6 @@
     CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Add a ramp!" block:^(id sender){
 		NSLog(@"Add a ramp! button pressed.");
         selectedObject = @"RampObject";
-//        [_target performSelector:_selector3];
 	}];
     //selects nothing so you can click freely
     CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Rearrange" block:^(id sender){
@@ -147,10 +146,8 @@
     _target = sender;
     if (!_selector1) {
         _selector1 = action;
-    } else if (!_selector2) {
-        _selector2 = action;
     } else {
-        _selector3 = action;
+        _selector2 = action;
     }
 }
 

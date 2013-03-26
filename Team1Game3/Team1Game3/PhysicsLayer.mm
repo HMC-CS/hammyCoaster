@@ -218,12 +218,6 @@
     }
 }
 
--(void) addObjectOfType:(NSString *)type
-{
-    [self addNewSpriteOfType:type AtPosition:ccp(-150, 400) AsDefault:NO];
-//    [self ccTouchBegan: withEvent:]
-}
-
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
     _target = sender;
