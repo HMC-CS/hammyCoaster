@@ -76,25 +76,26 @@
      * -------------------------------------------------------------------------
      */
     
-	// Makes a ball when you click
-	CCMenuItemLabel *selectBallButton = [CCMenuItemFont itemWithString:@"Select Ball Button" block:^(id sender){
-		NSLog(@"Ball button pressed.");
-        selectedObject = @"BallObject";
-        [_target performSelector:_selector3];
-	}];
+//	// Makes a ball when you click
+//	CCMenuItemLabel *selectBallButton = [CCMenuItemFont itemWithString:@"Select Ball Button" block:^(id sender){
+//		NSLog(@"Ball button pressed.");
+//        selectedObject = @"BallObject";
+////        [_target performSelector:_selector3];
+//	}];
     // Makes a ramp when you click
-    CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Select Ramp Button" block:^(id sender){
-		NSLog(@"Select Ramp button pressed.");
+    CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Add a ramp!" block:^(id sender){
+		NSLog(@"Add a ramp! button pressed.");
         selectedObject = @"RampObject";
-        [_target performSelector:_selector3];
+//        [_target performSelector:_selector3];
 	}];
     //selects nothing so you can click freely
-    CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Un-Select Button" block:^(id sender){
-		NSLog(@"Un-Select button pressed.");
+    CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Rearrange" block:^(id sender){
+		NSLog(@"Rearrange button pressed.");
         selectedObject = @"None";
 	}];
 	
-    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectBallButton, selectRampButton, unSelectButton, nil];	
+//    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectBallButton, selectRampButton, unSelectButton, nil];	
+    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, unSelectButton, nil];
 	[inventoryMenu alignItemsVertically];
 	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
 	[self addChild: inventoryMenu z:-1];
@@ -110,7 +111,7 @@
     NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
-    
+
     if (CGRectContainsPoint(self.boundingBox, location))
     {
         return YES;

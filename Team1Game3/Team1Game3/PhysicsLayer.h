@@ -37,6 +37,9 @@
     float xOffset;
     float yOffset;
     b2Body* currentMoveableBody;
+    
+    @public
+    bool _editMode;
 }
 
 // playLevel:

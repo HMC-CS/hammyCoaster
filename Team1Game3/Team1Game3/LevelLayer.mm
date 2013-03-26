@@ -40,6 +40,7 @@
 		self.isTouchEnabled = YES;
         [self createInventoryLayer];
         [self createPhysicsLayer];
+        _physicsLayer->_editMode = true;
 		
 	}
 	return self;
@@ -84,6 +85,9 @@
 -(void) playLevel
 {
     NSLog(@"Play Button pressed in LevelLayer");
+    
+    _physicsLayer->_editMode = false;
+    
     return [_physicsLayer playLevel];
     
 }
@@ -110,6 +114,7 @@
     
     [self createPhysicsLayer];
     
+    _physicsLayer->_editMode = true;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
