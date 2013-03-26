@@ -14,8 +14,9 @@
 @interface IntroLayer : CCLayer
 {
 }
-
-// returns a CCScene that contains the IntroLayer as the only child
+/* scene:
+ * returns a CCScene that contains the IntroLayer as the only child
+ */
 +(CCScene *) scene;
 
 @end

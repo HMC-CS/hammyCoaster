@@ -24,8 +24,9 @@
     PhysicsLayer* _physicsLayer;
 }
 
-// returns a scene containing LevelLayer as the only child
-// (though LevelLayer has children layers as well)
+/* scene:
+ * returns a CCScene containing LevelLayer as the only child
+ */
 +(CCScene *) scene;
 
 @end

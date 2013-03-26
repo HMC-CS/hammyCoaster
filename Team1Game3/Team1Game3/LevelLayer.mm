@@ -81,10 +81,8 @@
 {
     NSLog(@"Play Button pressed in LevelLayer");
     
+    [_physicsLayer playLevel];
     _physicsLayer->_editMode = false;
-    
-    return [_physicsLayer playLevel];
-    
 }
 
 /* resetLevel:

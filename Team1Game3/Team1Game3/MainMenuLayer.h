@@ -12,7 +12,10 @@
 @interface MainMenuLayer : CCLayer {
     
 }
-// returns a CCScene that contains the MainMenu as the only child
+
+/* scene:
+ * returns a CCScene that contains the MainMenu as the only child 
+ */
 +(CCScene *) scene;
 
 @end

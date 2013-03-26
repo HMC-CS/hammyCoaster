@@ -213,14 +213,9 @@
 -(void)playLevel
 {
     NSLog(@"Physics PlayLevel");
-    [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint AsDefault:NO];
-    
-    // disallow dragging or altering physicsLayer
-    // Doesn't work:
-    //     * setTouchEnabled FALSE
-    //     * Iterating through the children and setting them to default
-    // Other option: setting a clear, touch-absorbing layer over the physics layer
-    
+    if (_editMode) { // So you can only do it once before resetting.
+        [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint AsDefault:NO];
+    }
 }
 
 -(void) addObjectOfType:(NSString *)type
