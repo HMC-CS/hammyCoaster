@@ -101,11 +101,19 @@
 	[self addChild: inventoryMenu z:-1];
 }
 
+/* registerWithTouchDispacher:
+ * Initializes touches for InventoryLayer. Makes it "swallow"
+ * touches so no layer below it in the scene will feel them.
+ */
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+/* ccTouchBegan:
+ * guaranteed name. Deals with touch-downs within InventoryLayer.
+ * Does not deal with sensing menu item button presses specifically
+ */
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Inventory touch began");
@@ -120,11 +128,17 @@
     return NO;
 }
 
+/* ccTouchBegan:
+ * guaranteed name. Deals with touch-ups within InventoryLayer.
+ * Does not deal with sensing menu item button presses specifically
+ */
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Inventory touch ended");
-    [_target performSelector:_selector1];
+    [_target performSelector:_selector1]; //selector one is playPhysicsLevel
 }
+
+// public functions, documented in InventoryLayer.h
 
 -(NSString*) getSelectedObject {
     return selectedObject;

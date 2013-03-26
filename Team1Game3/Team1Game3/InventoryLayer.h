@@ -19,9 +19,14 @@
     SEL _selector3; // add object
 }
 
-
+/* getSelectedObject:
+ * returns NSString* of the selected object type
+ */
 -(NSString*) getSelectedObject;
 
+/* setTarget: atAction:
+ * guaranteed name for function to initialize selectors and target
+ */
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
 @end
