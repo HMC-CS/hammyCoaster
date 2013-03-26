@@ -31,12 +31,9 @@
 	return self;
 }
 
--(void) dealloc
-{
-    
-	[super dealloc];
-}
-
+/* createMenu:
+ * creates all the buttons in InventoryLayer
+ */
 -(void) createMenu
 {
 	CGSize size = [[CCDirector sharedDirector] winSize];
@@ -70,18 +67,10 @@
     [gameMenu setPosition:ccp(size.width/8, size.height*3/4)];
     [self addChild: gameMenu z:-1];
     
-    /*
-     * Inventory Menu:
+    /* Inventory Menu:
      * The menu of inventory items.
-     * -------------------------------------------------------------------------
-     */
-    
-//	// Makes a ball when you click
-//	CCMenuItemLabel *selectBallButton = [CCMenuItemFont itemWithString:@"Select Ball Button" block:^(id sender){
-//		NSLog(@"Ball button pressed.");
-//        selectedObject = @"BallObject";
-////        [_target performSelector:_selector3];
-//	}];
+     * ---------------------------------------------------------------------- */
+
     // Makes a ramp when you click
     CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Add a ramp!" block:^(id sender){
 		NSLog(@"Add a ramp! button pressed.");
@@ -128,7 +117,7 @@
     return NO;
 }
 
-/* ccTouchBegan:
+/* ccTouchEnded:
  * guaranteed name. Deals with touch-ups within InventoryLayer.
  * Does not deal with sensing menu item button presses specifically
  */
@@ -136,6 +125,15 @@
 {
     NSLog(@"Inventory touch ended");
     [_target performSelector:_selector1]; //selector one is playPhysicsLevel
+}
+
+/* dealloc:
+ * deallocates everything in InventoryLayer
+ */
+-(void) dealloc
+{
+    
+	[super dealloc];
 }
 
 // public functions, documented in InventoryLayer.h

@@ -42,13 +42,19 @@
     bool _editMode;
 }
 
-// playLevel:
-// Places a BallObject at ballStartingPoint
-// activation: the play button has been pressed(in inventoryLayer)
+/* playLevel:
+ * Places a BallObject at ballStartingPoint
+ */
 -(void) playLevel;
 
--(void) setTarget:(id) sender atAction:(SEL)action;
-
+/* addObjectOfType:
+ * adds object of specified type in a default location
+ */
 -(void) addObjectOfType:(NSString*) type;
+
+/* setTarget: atAction:
+ * guaranteed name for function to initialize selectors and target
+ */
+-(void) setTarget:(id) sender atAction:(SEL)action;
 
 @end
