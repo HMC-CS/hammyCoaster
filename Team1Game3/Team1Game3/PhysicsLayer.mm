@@ -300,39 +300,9 @@
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
-////-----TOUCHING WITH NO DRAGGING-----//
-//
-//-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"Physics touch began");
-//    
-//    return YES;
-//}
-//
-//- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-//{
-//    NSLog(@"physics touch ended");
-//	//Add a new body/atlas sprite at the touched location
-//    CGPoint location = [touch locationInView: [touch view]];
-//    
-//    if (CGRectContainsPoint(self.boundingBox, location)) {
-//        
-//        location = [[CCDirector sharedDirector] convertToGL: location];
-//        location = [self convertToNodeSpace:location];
-//        
-//        //NSLog(@"(%f,%f)", location.x, location.y);
-//	
-//        // get object type from inventory
-//        NSString* objectType = [self getObjectType];
-//    
-//        if(objectType && ![objectType isEqualToString:@"None"]){
-//            [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
-//        }
-//    }
-//}
-
 
 //-----TOUCHING WITH DRAGGING-----//
+
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     NSLog(@"Physics touch began");
     if ([[self getObjectType] isEqualToString:@"None"]) {
