@@ -126,7 +126,7 @@
     // ramp definitions
     rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(s.width/(4*PTM_RATIO), 400/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
-    
+    /*
     //Ending Ramp
     b2BodyDef ramp2BodyDef;
     ramp2BodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
@@ -139,7 +139,7 @@
     // ramp2 definitions
     ramp2Edge.Set(b2Vec2(s.width*2/(4*PTM_RATIO),150/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
     ramp2Body->CreateFixture(&ramp2ShapeDef);
-        
+        */
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
     ballStartingPoint = CGPointMake(10.0, 600.0);
@@ -168,7 +168,7 @@
     [sprite setPosition: ccp(position.x,position.y)];
     
     //rotate ramp
-    body->SetTransform(b2Vec2(600/PTM_RATIO,191.3/PTM_RATIO), .7);
+    body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), .7);
     
 
     
