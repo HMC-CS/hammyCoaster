@@ -47,11 +47,6 @@
  */
 -(void) playLevel;
 
-/* addObjectOfType:
- * adds object of specified type in a default location
- */
--(void) addObjectOfType:(NSString*) type;
-
 /* setTarget: atAction:
  * guaranteed name for function to initialize selectors and target
  */
