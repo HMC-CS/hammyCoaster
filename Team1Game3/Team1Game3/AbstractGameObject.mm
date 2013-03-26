@@ -33,6 +33,10 @@
 {
     // Must create body, set user data to "self," and create tag.
     NSAssert(NO, @"The 'createBody' method must be implemented by the sub-object.");
+    // this code should never execute; only included so that the
+    // function returns the data type as promised
+    b2Body *body = self->_world->CreateBody(&_bodyDef);
+    return body;
 }
 
 @end

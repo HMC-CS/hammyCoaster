@@ -21,7 +21,8 @@
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
-    CGSize size = [CCDirector sharedDirector].winSize;
+    // size unused because levelLayer doesn't currently display anything
+    // CGSize size = [CCDirector sharedDirector].winSize;
     
     LevelLayer* levelLayer = [LevelLayer node];
     
@@ -57,7 +58,7 @@
 -(void) createInventoryLayer
 {
     _inventoryLayer = [InventoryLayer node];
-    [_inventoryLayer setTarget:self atAction:@selector(playLevel)]; //inventory selector1
+    [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1
     [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
     [_inventoryLayer setTarget:self atAction:@selector(addObject)]; //invenctory selector3
     [self addChild:_inventoryLayer];
@@ -82,7 +83,7 @@
 /* playLevel:
  * tries the level by putting the ball in it.
  */
--(void) playLevel
+-(void) playPhysicsLevel
 {
     NSLog(@"Play Button pressed in LevelLayer");
     

@@ -26,10 +26,4 @@
 
 +(CCScene *) scene;
 
--(void) playPhysicsLevel;
-
--(NSString*) getObjectType;
-
--(void) resetLevel;
-
 @end
