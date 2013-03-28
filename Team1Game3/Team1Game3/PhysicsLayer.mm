@@ -202,10 +202,33 @@
 	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
     
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-    [self addChild:sprite];
+    //[self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
     
     b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
+    b2Fixture* f = body->GetFixtureList();
+    b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+    int count = polygonShape->GetVertexCount();
+    
+    CGFloat offset = self.boundingBox.origin.x;
+    
+    
+    for(int i = 0; i < count; i++)
+    {
+        CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
+        CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
+        CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
+        CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
+        boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+
+        if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+        {
+            world->DestroyBody(body);
+            NSLog(@"Body destroy");
+            return;
+        }
+    }
+    [self addChild:sprite];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
 }
