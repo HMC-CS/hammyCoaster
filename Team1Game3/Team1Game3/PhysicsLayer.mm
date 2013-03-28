@@ -312,7 +312,7 @@
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     NSLog(@"Physics touch began");
-    if ([[self getObjectType] isEqualToString:@"None"]) {
+//    if ([[self getObjectType] isEqualToString:@"None"]) {
         //Get tap location and convert to cocos2d-box2d coordinates
         CGPoint touchLocation = [touch locationInView:[touch view]];
         touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
@@ -343,7 +343,7 @@
                 currentMoveableBody = body;
             }
         }
-    }
+//    }
     return YES;
 }
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -367,8 +367,9 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     NSLog(@"Physics touch ended");
-    
-    if (_editMode) {
+    if (currentMoveableBody != NULL) {
+        currentMoveableBody = NULL;
+    } else if (_editMode) {
     
         //Add a new body/atlas sprite at the touched location
         CGPoint location = [touch locationInView: [touch view]];
@@ -388,7 +389,6 @@
             }
         }
     }
-    currentMoveableBody = NULL;
 }
 
 -(void) dealloc

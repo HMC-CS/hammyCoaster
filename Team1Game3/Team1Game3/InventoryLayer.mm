@@ -76,14 +76,8 @@
 		NSLog(@"Add a ramp! button pressed.");
         selectedObject = @"RampObject";
 	}];
-    //selects nothing so you can click freely
-    CCMenuItemLabel *unSelectButton = [CCMenuItemFont itemWithString:@"Rearrange" block:^(id sender){
-		NSLog(@"Rearrange button pressed.");
-        selectedObject = @"None";
-	}];
 	
-//    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectBallButton, selectRampButton, unSelectButton, nil];	
-    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, unSelectButton, nil];
+    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
 	[inventoryMenu alignItemsVertically];
 	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
 	[self addChild: inventoryMenu z:-1];
