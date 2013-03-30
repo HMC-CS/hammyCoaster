@@ -13,6 +13,7 @@
 #import "PhysicsLayer.h"
 #import "InventoryLayer.h"
 #import "MainMenuLayer.h"
+#import "LevelSelectorLayer.h"
 
 @implementation LevelLayer
 
@@ -42,6 +43,44 @@
         [self createInventoryLayer];
         [self createPhysicsLayer];
         _physicsLayer->_editMode = true;
+        
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        
+        /*
+         * Game Menu:
+         * The menu with the "action" type buttons, as opposed to inventory items.
+         * -------------------------------------------------------------------------
+         */
+        
+        // Play Button: drops ball
+        CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
+            [self playPhysicsLevel];
+            // stick a ball on the screen at starting position;
+        }];
+        
+        // Reset Button: Gets rid of all non-default items in level
+        // for now, just selects nothing so you can click freely
+        CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+            // reset level; currently just redraw everything
+            [self resetLevel];
+        }];
+        
+        // Back Button: goes back to level selector menu
+        CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
+            // TODO: deal with physics layer dealloc stuff so we can have THIS be the line called rather than the following one
+            //[[CCDirector sharedDirector] popScene];  // best
+            //[[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]]; //meh
+            [[CCDirector sharedDirector] pushScene:[LevelSelectorLayer scene]]; // worst
+        }];
+        
+        CCMenu *gameMenu = [CCMenu menuWithItems: playButton, resetButton, nil];
+        [gameMenu alignItemsHorizontallyWithPadding:25];
+        [gameMenu setPosition:ccp(size.width/8, size.height*3/4)];
+        [self addChild: gameMenu z:-1];
+        
+        CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
+        [gameMenu2 setPosition:ccp(size.width/8, size.height*1/4)];
+        [self addChild: gameMenu2 z:-1];
 		
 	}
 	return self;
@@ -55,8 +94,10 @@
 -(void) createInventoryLayer
 {
     _inventoryLayer = [InventoryLayer node];
-    [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1
-    [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
+    
+//    // TODO: comment back in if needed
+//    [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1
+//    [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
     [self addChild:_inventoryLayer];
 }
 

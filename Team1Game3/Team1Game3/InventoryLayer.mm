@@ -41,32 +41,6 @@
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
     
-    /*
-     * Game Menu:
-     * The menu with the "action" type buttons, as opposed to inventory items.
-     * -------------------------------------------------------------------------
-     */
-    
-     // Play Button: drops ball
-    CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
-		NSLog(@"Play button pressed.");
-        [_target performSelector:_selector1];
-        // stick a ball on the screen at starting position;
-	}];
-    
-    // Reset Button: Gets rid of all non-default items in level
-    // for now, just selects nothing so you can click freely
-    CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-		NSLog(@"Reset button pressed.");
-        // reset level; currently just redraw everything
-        [_target performSelector:_selector2];
-	}];
-    
-    CCMenu *gameMenu = [CCMenu menuWithItems: playButton, resetButton, nil];
-    [gameMenu alignItemsHorizontallyWithPadding:25];
-    [gameMenu setPosition:ccp(size.width/8, size.height*3/4)];
-    [self addChild: gameMenu z:-1];
-    
     /* Inventory Menu:
      * The menu of inventory items.
      * ---------------------------------------------------------------------- */
@@ -117,7 +91,7 @@
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
     NSLog(@"Inventory touch ended");
-    [_target performSelector:_selector1]; //selector one is playPhysicsLevel
+    //[_target performSelector:_selector1]; //selector one is playPhysicsLevel
 }
 
 /* dealloc:
@@ -135,15 +109,16 @@
     return selectedObject;
 }
 
--(void) setTarget:(id) sender atAction:(SEL)action
-{
-    _target = sender;
-    if (!_selector1) {
-        _selector1 = action;
-    } else {
-        _selector2 = action;
-    }
-}
+// //TODO: comment back in if need be
+//-(void) setTarget:(id) sender atAction:(SEL)action
+//{
+//    _target = sender;
+//    if (!_selector1) {
+//        _selector1 = action;
+//    } else {
+//        _selector2 = action;
+//    }
+//}
 
 @end
 

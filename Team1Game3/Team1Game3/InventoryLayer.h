@@ -12,10 +12,11 @@
 @interface InventoryLayer : CCLayer {
     
     NSString* selectedObject;
-    
-    id _target;
-    SEL _selector1; // play
-    SEL _selector2; // reset
+
+// TODO: comment back in if need be
+//    id _target;
+//    SEL _selector1; // play
+//    SEL _selector2; // reset
 }
 
 /* getSelectedObject:
@@ -23,9 +24,10 @@
  */
 -(NSString*) getSelectedObject;
 
-/* setTarget: atAction:
- * guaranteed name for function to initialize selectors and target
- */
--(void) setTarget:(id) sender atAction:(SEL)action;
+// TODO: comment back in if need be
+///* setTarget: atAction:
+// * guaranteed name for function to initialize selectors and target
+// */
+//-(void) setTarget:(id) sender atAction:(SEL)action;
 
 @end
