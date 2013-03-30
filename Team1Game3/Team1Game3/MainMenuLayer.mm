@@ -8,7 +8,7 @@
 
 #import "MainMenuLayer.h"
 #import "AppDelegate.h"
-#import "LevelLayer.h"
+#import "LevelSelectorLayer.h"
 
 
 @implementation MainMenuLayer
@@ -54,7 +54,7 @@
 	
 	// Reset Button
 	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"New Game" block:^(id sender){
-		[[CCDirector sharedDirector] replaceScene: [LevelLayer scene]];
+		[[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
 	}];
 	
     CCMenu *menu = [CCMenu menuWithItems:newGame, nil];
@@ -63,7 +63,6 @@
 	
 	CGSize size = [[CCDirector sharedDirector] winSize];
 	[menu setPosition:ccp( size.width/2, size.height/2)];
-	
 	
 	[self addChild: menu z:-1];
 }

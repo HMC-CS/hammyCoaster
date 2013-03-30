@@ -39,7 +39,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "256"
          endingLineNumber = "256"
-         landmarkName = "-getObjectType"
+         landmarkName = "-gameWon"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
