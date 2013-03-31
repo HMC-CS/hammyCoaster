@@ -93,7 +93,7 @@
  */
 -(void) createInventoryLayer
 {
-    _inventoryLayer = [InventoryLayer node];
+    _inventoryLayer = [[InventoryLayer alloc] initWithLevelSet:_levelSet AndIndex:_levelIndex];
     
 //    // TODO: comment back in if needed
 //    [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1

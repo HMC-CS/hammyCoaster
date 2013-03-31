@@ -13,7 +13,7 @@
 
 @implementation LevelGenerator
 
--(NSMutableArray*) generateLevelInSet:(int)set WithIndex:(int)index
+-(NSMutableArray*) generateObjectsInSet:(int)set WithIndex:(int)index
 {
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
@@ -36,39 +36,34 @@
         }
     }
     
-    
-//    [objects addObject:[[NSMutableArray alloc] initWithObjects:@"BluePortalObject", @"723.0", @"217.0", @"0",nil]];
-//    [objects addObject:[[NSMutableArray alloc] initWithObjects:@"StarObject", @"400.0", @"250.0", @"0",nil]];
-//    [objects addObject:[[NSMutableArray alloc] initWithObjects:@"StarObject", @"500.0", @"240.0", @"0",nil]];
-//    [objects addObject:[[NSMutableArray alloc] initWithObjects:@"StarObject", @"600.0", @"230.0", @"0",nil]];
-//    [objects addObject:[[NSMutableArray alloc] initWithObjects:@"RampObject", @"578.0", @"160.0", @"0.7",nil]];
-    
     return returnedObjects;
 }
 
+-(NSMutableArray*) generateInventoryInSet:(int)set WithIndex:(int)index
+{
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialInventories" ofType:@"json"];
+    
+    NSData* jsonData = [NSData dataWithContentsOfFile:path];
+    JSONDecoder* decoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionNone];
+    NSArray* json = [decoder objectWithData:jsonData];
+    
+    NSMutableArray* returnedInventory = [[NSMutableArray alloc] init];
+    
+    NSString* levelString = [[NSString alloc] initWithFormat:@"%02d%02d", set, index];
+    
+    for (NSDictionary* level in json) {
+        if ([[level objectForKey:@"level"] isEqualToString:levelString])
+        {
+            NSArray* levelObjects = [level objectForKey:@"objects"];
+            for (NSArray* object in levelObjects) {
+                [returnedInventory addObject:object];
+            }
+            break;
+        }
+    }
+    
+    return returnedInventory;
+}
 
-//[self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
-//
-//[self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
-//[self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
-//[self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
-//[self addNewSpriteOfType:@"RampObject" AtPosition:ccp(578.0,160.0) WithRotation:0.7 AsDefault:YES];
-//
-//
-///* differently hacked default ramps
-// * ---------------------------------------------------------------------- */
-//
-////Code right out of sprite making function
-//NSString* type = @"RampObject";
-//PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-//[self addChild:sprite];
-//CGPoint position = CGPointMake(100, 500);
-//
-//b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:TRUE withSprite:sprite] createBody:position];
-//[sprite setPhysicsBody:body];
-//[sprite setPosition: ccp(position.x,position.y)];
-//
-////rotate ramp
-//body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), 0.7);
 
 @end

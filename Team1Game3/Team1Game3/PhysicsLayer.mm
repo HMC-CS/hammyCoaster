@@ -152,7 +152,7 @@
 {
     _levelGenerator = [[LevelGenerator alloc] init];
     
-    NSArray* initialItems = [_levelGenerator generateLevelInSet:_levelSet WithIndex:_levelIndex];
+    NSArray* initialItems = [_levelGenerator generateObjectsInSet:_levelSet WithIndex:_levelIndex];
     
     for (NSArray* item in initialItems) {
         NSString* type = [item objectAtIndex:0];

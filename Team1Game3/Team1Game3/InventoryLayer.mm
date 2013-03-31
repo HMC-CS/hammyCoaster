@@ -10,7 +10,8 @@
 
 @implementation InventoryLayer
 
--(id) init
+
+-(id) initWithLevelSet:(int) set AndIndex:(int) index
 {
 	if( (self=[super init])) {
 		
@@ -19,6 +20,9 @@
         CGSize size = [CCDirector sharedDirector].winSize;
 		
 		self.isTouchEnabled = YES;
+        
+        _levelSet = set;
+        _levelIndex = index;
         
         selectedObject = [[NSString alloc] initWithFormat:@"None"];
 		
@@ -40,6 +44,30 @@
     
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
+    //CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
+    CCMenu *inventoryMenu = [CCMenu node];
+    
+    _levelGenerator = [[LevelGenerator alloc] init];
+    
+    NSArray* initialItems = [_levelGenerator generateInventoryInSet:_levelSet WithIndex:_levelIndex];
+    
+    for (NSArray* item in initialItems) {
+        NSString* type = [item objectAtIndex:0];
+        NSString* label = [item objectAtIndex:1];
+        // int numItems = [[item objectAtIndex:2] intValue];   // Number of inventory items, when needed
+        
+        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"Add a %@!", label];
+        CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel block:^(id sender){
+            selectedObject = type;
+        }];
+
+        [inventoryMenu addChild:inventoryButton];
+    }
+    
+    [inventoryMenu alignItemsVertically];
+    [inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
+    [self addChild: inventoryMenu z:-1];
+
     
     /* Inventory Menu:
      * The menu of inventory items.
@@ -51,10 +79,10 @@
         selectedObject = @"RampObject";
 	}];
 	
-    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
-	[inventoryMenu alignItemsVertically];
-	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
-	[self addChild: inventoryMenu z:-1];
+//    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
+//	[inventoryMenu alignItemsVertically];
+//	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
+//	[self addChild: inventoryMenu z:-1];
 }
 
 /* registerWithTouchDispacher:

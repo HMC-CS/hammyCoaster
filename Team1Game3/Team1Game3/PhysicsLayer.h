@@ -48,6 +48,9 @@
     bool _editMode;
 }
 
+/* initWithLevelSet:AndIndex:
+ * Initializes a physics layer of level Set-Index
+ */
 -(id) initWithLevelSet:(int) set AndIndex:(int) index;
 
 /* playLevel:
@@ -60,6 +63,9 @@
  */
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
+/* addNewSpriteOfType:AtPosition:WithRotation:AsDefault
+ * Adds sprite to physics layer (with parameters).
+ */
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation  AsDefault:(bool)isDefault;
 
 @end

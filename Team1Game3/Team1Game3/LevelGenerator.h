@@ -13,6 +13,12 @@
     
 }
 
--(NSMutableArray*) generateLevelInSet:(int) set WithIndex:(int) index;
+/* generateObjectsInSet:WithIndex:
+ Returns the objects in level Set-Index */
+-(NSMutableArray*) generateObjectsInSet:(int) set WithIndex:(int) index;
+
+/* generateInventoryInSet:WithIndex:
+ Returns the inventory in level Set-Index */
+-(NSMutableArray*) generateInventoryInSet:(int) set WithIndex:(int) index;
 
 @end
