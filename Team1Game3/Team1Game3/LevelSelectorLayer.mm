@@ -10,6 +10,8 @@
 
 #import "LevelLayer.h"
 
+#import "MainMenuLayer.h"
+
 
 @implementation LevelSelectorLayer
 
@@ -33,11 +35,11 @@
         
         /////////////
         
-        CCMenuItem *back = [CCMenuItemFont itemWithString:@"Back" block:^(id sender) {
-            [[CCDirector sharedDirector] popScene];
+        CCMenuItem *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender) {
+            [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];
         }];
         
-        CCMenu *menu = [CCMenu menuWithItems: back, nil];
+        CCMenu *menu = [CCMenu menuWithItems: mainMenu, nil];
 		
 		[menu alignItemsHorizontallyWithPadding:20];
 		[menu setPosition:ccp( size.width/2, size.height/15 )];
@@ -81,7 +83,7 @@
                     
                     CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {
                         // TODO: change this line to load different sets
-                        [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:1 AndIndex:4*j+i+1]];
+                        [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:1 AndIndex:4*j+i+1]];  // TODO: make set "k" if loop added back
                     }];
                     menuItem.scale = (iconSize * levelIcon.scale)/levelIcon.contentSize.width;
                     [menuItem setPosition:ccp(size.width*((i+1.0)/5.0-0.5), -size.height*((j+1.0)/4.0-0.5))];

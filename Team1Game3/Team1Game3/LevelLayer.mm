@@ -17,7 +17,7 @@
 
 @implementation LevelLayer
 
-+(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
++(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -33,7 +33,7 @@
 	return scene;
 }
 
--(id) initWithLevelSet:(int) set AndIndex:(int) index;
+-(id) initWithLevelSet:(int) set AndIndex:(int) index
 {
 	if( (self=[super init])) {
 		

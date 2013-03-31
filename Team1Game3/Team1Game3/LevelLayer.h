@@ -24,11 +24,11 @@
     PhysicsLayer* _physicsLayer;
 }
 
--(id) initWithSet:(int) set AndIndex:(int) index;
+-(id) initWithLevelSet:(int) set AndIndex:(int) index;
 
 /* sceneWithSet:
  * returns a CCScene containing LevelLayer as the only child
  */
-+(CCScene *) sceneWithSet:(int) set AndIndex:(int) index;
++(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
 
 @end
