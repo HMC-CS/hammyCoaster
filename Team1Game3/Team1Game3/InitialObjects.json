@@ -8,6 +8,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -18,7 +22,13 @@
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"]
+        ],
+        "inventory": 
+        [
+            ["RampObject", "ramp", "1"],
+            ["StarObject", "star", "1"]
         ]
+
     },
     {
         "level": "0103",
@@ -29,6 +39,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -40,6 +54,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -51,6 +69,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -62,6 +84,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -73,6 +99,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -84,6 +114,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -95,6 +129,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -106,6 +144,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -117,6 +159,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     },
     {
@@ -128,6 +174,10 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"]
+        ],
+        "inventory":
+        [
+            ["RampObject", "ramp", "1"]
         ]
     }
 ]

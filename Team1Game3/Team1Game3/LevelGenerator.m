@@ -41,7 +41,7 @@
 
 -(NSMutableArray*) generateInventoryInSet:(int)set WithIndex:(int)index
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialInventories" ofType:@"json"];
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
     JSONDecoder* decoder = [[JSONDecoder alloc] initWithParseOptions:JKParseOptionNone];
@@ -54,7 +54,7 @@
     for (NSDictionary* level in json) {
         if ([[level objectForKey:@"level"] isEqualToString:levelString])
         {
-            NSArray* levelObjects = [level objectForKey:@"objects"];
+            NSArray* levelObjects = [level objectForKey:@"inventory"];
             for (NSArray* object in levelObjects) {
                 [returnedInventory addObject:object];
             }

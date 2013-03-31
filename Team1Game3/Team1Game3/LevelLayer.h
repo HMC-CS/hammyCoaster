@@ -18,6 +18,7 @@
 #import "ObjectFactory.h"
 #import "InventoryLayer.h"
 #import "PhysicsLayer.h"
+#import "LevelGenerator.h"
 
 @interface LevelLayer : CCLayer {
     InventoryLayer* _inventoryLayer;
