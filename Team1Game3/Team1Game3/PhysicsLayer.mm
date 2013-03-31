@@ -363,28 +363,32 @@
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     NSLog(@"Physics touch began");
-//    if ([[self getObjectType] isEqualToString:@"None"]) {
-        //Get tap location and convert to cocos2d-box2d coordinates
-        CGPoint touchLocation = [touch locationInView:[touch view]];
-        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-        touchLocation = [self convertToNodeSpace:touchLocation];
-        b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+    //Get tap location and convert to cocos2d-box2d coordinates
+    CGPoint touchLocation = [touch locationInView:[touch view]];
+    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
     
-        // Make a small box.
-        b2AABB aabb;
-        b2Vec2 d;
-        d.Set(0.001f, 0.001f);
-        aabb.lowerBound = location - d;
-        aabb.upperBound = location + d;
+    // Make a small box.
+    b2AABB aabb;
+    b2Vec2 d;
+    d.Set(0.001f, 0.001f);
+    aabb.lowerBound = location - d;
+    aabb.upperBound = location + d;
     
-        // Query the world for overlapping shapes.
-        QueryCallback callback(location);
-        world->QueryAABB(&callback, aabb);
+    // Query the world for overlapping shapes.
+    QueryCallback callback(location);
+    world->QueryAABB(&callback, aabb);
     
-        b2Body* body = callback.m_object;
+    b2Body* body = callback.m_object;
     
-        if (body) {
-            AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
+    if (body) {
+        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
+        if ([[self getObjectType] isEqualToString:@"Delete"]) {
+            CCSprite* sprite = [bodyObject getSprite];
+            [self removeChild: sprite cleanup:YES];
+            world->DestroyBody(body);
+        } else {
             if (!bodyObject->_isDefault && _editMode) {
                 // calculate the offset between the touch and the center of the object
                 b2Vec2 bodyLocation = body->GetPosition();
@@ -394,7 +398,7 @@
                 currentMoveableBody = body;
             }
         }
-//    }
+    }
     return YES;
 }
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
@@ -435,7 +439,7 @@
             // get object type from inventory
             NSString* objectType = [self getObjectType];
             
-            if(objectType && ![objectType isEqualToString:@"None"]){
+            if(objectType && ![objectType isEqualToString:@"None"] && ![objectType isEqualToString:@"Delete"]){
                 [self addNewSpriteOfType:objectType AtPosition:location WithRotation:0 AsDefault:NO];
             }
         }

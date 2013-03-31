@@ -63,6 +63,11 @@
 
         [inventoryMenu addChild:inventoryButton];
     }
+    CCMenuItemLabel *deleteButton = [CCMenuItemFont itemWithString:@"Delete object" block:^(id sender)
+        {
+        selectedObject = @"Delete";
+    }];
+    [inventoryMenu addChild:deleteButton];
     
     [inventoryMenu alignItemsVertically];
     [inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
@@ -73,12 +78,19 @@
      * The menu of inventory items.
      * ---------------------------------------------------------------------- */
 
-    // Makes a ramp when you click
-    CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Add a ramp!" block:^(id sender){
-		NSLog(@"Add a ramp! button pressed.");
-        selectedObject = @"RampObject";
-	}];
-	
+//    // Makes a ramp when you click
+//    CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Add a ramp!" block:^(id sender){
+//		NSLog(@"Add a ramp! button pressed.");
+//        selectedObject = @"RampObject";
+//	}];
+//    
+//    // Lets you delete objects you've placed
+//    CCMenuItemLabel *deleteButton = [CCMenuItemFont itemWithString:@"Delete object" block:^(id sender)
+//        {
+//        NSLog(@"Delete button pressed.");
+//        selectedObject = @"Delete";
+//    }];
+	 
 //    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
 //	[inventoryMenu alignItemsVertically];
 //	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
