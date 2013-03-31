@@ -22,12 +22,18 @@
 @interface LevelLayer : CCLayer {
     InventoryLayer* _inventoryLayer;
     PhysicsLayer* _physicsLayer;
+    
+    int _levelSet;
+    int _levelIndex;
 }
 
+/* sceneWithLevelSet:AndIndex:
+ * returns a CCScene containing LevelLayer (with Level Set-Index) as the only child
+ */
 -(id) initWithLevelSet:(int) set AndIndex:(int) index;
 
-/* sceneWithSet:
- * returns a CCScene containing LevelLayer as the only child
+/* sceneWithLevelSet:AndIndex:
+ * returns a CCScene containing LevelLayer (with Level Set-Index) as the only child
  */
 +(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
 

@@ -41,6 +41,9 @@
     
     LevelGenerator* _levelGenerator;
     
+    int _levelSet;
+    int _levelIndex;
+    
     @public
     bool _editMode;
 }

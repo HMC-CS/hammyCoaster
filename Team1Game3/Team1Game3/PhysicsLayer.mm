@@ -31,6 +31,9 @@
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
         
+        _levelSet = set;
+        _levelIndex = index;
+        
         starCount = 0;
         starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", starCount] fontName:@"Arial" fontSize:24];
         starLabel.position = CGPointMake(300.0, 600.0);
@@ -44,7 +47,7 @@
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
-        [self addInitialObjectsForLevelSet:set AndIndex:index];
+        [self addInitialObjects];
 		
 		[self scheduleUpdate];
 	}
@@ -145,11 +148,11 @@
     ballStartingPoint = CGPointMake(10.0, 600.0);
 }
 
-- (void) addInitialObjectsForLevelSet:(int) set AndIndex:(int) index;
+- (void) addInitialObjects
 {
     _levelGenerator = [[LevelGenerator alloc] init];
     
-    NSArray* initialItems = [_levelGenerator generateLevelInSet:set WithIndex:index];
+    NSArray* initialItems = [_levelGenerator generateLevelInSet:_levelSet WithIndex:_levelIndex];
     
     for (NSArray* item in initialItems) {
         NSString* type = [item objectAtIndex:0];

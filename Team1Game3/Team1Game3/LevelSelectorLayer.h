@@ -19,7 +19,7 @@
 }
 
 /* scene:
- * returns a CCScene containing LevelLayer as the only child
+ * returns a CCScene containing LevelSelectorLayer as the only child
  */
 +(CCScene *) scene;
 
