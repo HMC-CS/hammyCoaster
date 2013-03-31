@@ -443,16 +443,21 @@
 }
 
 -(void) dealloc
-{
-	delete world;
-	world = NULL;
-	
+{	
 	delete m_debugDraw;
 	m_debugDraw = NULL;
     for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
     {
+        b->SetAwake(false);
+    }
+    
+    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+    {
         world->DestroyBody(b);
     }
+    
+    delete world;
+	world = NULL;
 	
 	[super dealloc];
 }

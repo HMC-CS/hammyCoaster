@@ -67,10 +67,7 @@
         
         // Back Button: goes back to level selector menu
         CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
-            // TODO: deal with physics layer dealloc stuff so we can have THIS be the line called rather than the following one
-            //[[CCDirector sharedDirector] popScene];  // best
-            //[[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]]; //meh
-            [[CCDirector sharedDirector] pushScene:[LevelSelectorLayer scene]]; // worst
+            [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
         }];
         
         CCMenu *gameMenu = [CCMenu menuWithItems: playButton, resetButton, nil];
@@ -134,8 +131,7 @@
 
 -(void) resetLevel
 {
-    //PhysicsLayer* oldPhysicsLayer = _physicsLayer; // NEED TO SOMEHOW REMOVE MEMORY LEAK!
-    [self removeChild:_physicsLayer cleanup:NO];
+    [self removeChild:_physicsLayer cleanup:YES];
     
     [self createPhysicsLayer];
 //    
@@ -190,7 +186,7 @@
     //he wants his new game to be.  It then loads a game of the selected difficulty.
     if (alertView.tag==1){
         if (buttonIndex == [alertView cancelButtonIndex]) {
-            [[CCDirector sharedDirector] pushScene:[LevelLayer scene]];
+            [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:_levelSet AndIndex:_levelIndex]];
         }
         else {
             [[CCDirector sharedDirector] pushScene:[MainMenuLayer scene]];

@@ -76,10 +76,23 @@
                     CCSprite *levelIcon = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];   // TODO: make 0 "k" if loop added back
                     [iconSet addObject:levelIcon];
                     
+                    // Change label to "k-(4j+i+1)" format if we have multiple sets
+                    CCLabelTTF *label = [CCLabelTTF labelWithString: [NSString stringWithFormat:@"%d", 4*j+i+1] fontName:@"Marker Felt" fontSize:levelIcon.contentSize.width*0.4];
+                    [label setColor:ccBLACK];
+                    [label setPosition:ccp(levelIcon.contentSize.width/2, levelIcon.contentSize.height/2)];
+                    [levelIcon addChild:label];
+                    
                     CCSprite *levelIconSelected = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];   // TODO: make 0 "k" if loop added back
                     [selectedIconSet addObject:levelIconSelected];
                     levelIconSelected.scale = 1.2;
                     [levelIconSelected setPosition:ccp(-levelIconSelected.contentSize.width/10, -levelIconSelected.contentSize.height/10)];
+
+                    // Change label to "k-(4j+i+1)" format if we have multiple sets
+                    CCLabelTTF *labelSelected = [CCLabelTTF labelWithString: [NSString stringWithFormat:@"%d", 4*j+i+1] fontName:@"Marker Felt" fontSize:levelIcon.contentSize.width*0.4];
+                    [labelSelected setColor:ccBLACK];
+                    [labelSelected setPosition:ccp(levelIconSelected.contentSize.width/2, levelIconSelected.contentSize.height/2)];
+                    [levelIconSelected addChild:labelSelected];
+
                     
                     CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {
                         // TODO: change this line to load different sets
