@@ -1,0 +1,133 @@
+[
+    {
+        "level": "0101",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0102",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"]
+        ]
+    },
+    {
+        "level": "0103",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0104",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0105",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0106",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0107",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0108",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0109",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0110",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0111",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    },
+    {
+        "level": "0112",
+        "objects": 
+        [
+            ["BluePortalObject", "723.0", "217.0", "0"],
+            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "500.0", "240.0", "0"],
+            ["StarObject", "600.0", "230.0", "0"],
+            ["RampObject", "578.0", "160.0", "0.7"]
+        ]
+    }
+]

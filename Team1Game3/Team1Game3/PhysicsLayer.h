@@ -17,6 +17,7 @@
 #import "GLES-Render.h"
 #import "ObjectFactory.h"
 #import "ContactListener.h"
+#import "LevelGenerator.h"
 
 @interface PhysicsLayer : CCLayer {
 
@@ -38,6 +39,8 @@
     float yOffset;
     b2Body* currentMoveableBody;
     
+    LevelGenerator* _levelGenerator;
+    
     @public
     bool _editMode;
 }
@@ -51,5 +54,7 @@
  * guaranteed name for function to initialize selectors and target
  */
 -(void) setTarget:(id) sender atAction:(SEL)action;
+
+-(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation  AsDefault:(bool)isDefault;
 
 @end

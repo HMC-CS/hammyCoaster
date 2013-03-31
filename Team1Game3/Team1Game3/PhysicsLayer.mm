@@ -146,29 +146,49 @@
 }
 
 - (void) addInitialObjects
-{    
-    [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) AsDefault:YES];
+{
+    _levelGenerator = [[LevelGenerator alloc] init];
     
-    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) AsDefault:YES];
-    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) AsDefault:YES];
-    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) AsDefault:YES];
+    NSArray* initialItems = [_levelGenerator generateLevel];
     
+    for (NSArray* item in initialItems) {
+        NSString* type = [item objectAtIndex:0];
+        CGFloat px = [[item objectAtIndex:1] floatValue];
+        CGFloat py = [[item objectAtIndex:2] floatValue];
+        CGFloat rotation = [[item objectAtIndex:3] floatValue];
+        [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
+    }
     
-    /* differently hacked default ramps
-     * ---------------------------------------------------------------------- */
-    
-    //Code right out of sprite making function
-    NSString* type = @"RampObject";
-	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-    [self addChild:sprite];
-    CGPoint position = CGPointMake(100, 500);
-    
-    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:TRUE withSprite:sprite] createBody:position];
-	[sprite setPhysicsBody:body];
-    [sprite setPosition: ccp(position.x,position.y)];
-    
-    //rotate ramp
-    body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), 0.7);
+    // TODO: get rid of when no longer needed for reference
+    //[objects addObject:[[NSMutableArray alloc] initWithObjects:@"BluePortalObject", @"723.0", @"217.0", @"0",nil]];
+
+
+// TODO: get rid of this code when no longer needed for reference
+//    [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) WithRotation:0 AsDefault:YES];
+//    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) WithRotation:0 AsDefault:YES];
+//    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) WithRotation:0 AsDefault:YES];
+//    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) WithRotation:0 AsDefault:YES];
+//    
+//    [self addNewSpriteOfType:@"RampObject" AtPosition:ccp(578.0,160.0) WithRotation:0.7 AsDefault:YES];
+
+// TODO: get rid of this code when no longer needed for reference
+//
+//    
+//    /* differently hacked default ramps
+//     * ---------------------------------------------------------------------- */
+//    
+//    //Code right out of sprite making function
+//    NSString* type = @"RampObject";
+//	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+//    [self addChild:sprite];
+//    CGPoint position = CGPointMake(100, 500);
+//    
+//    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:TRUE withSprite:sprite] createBody:position];
+//	[sprite setPhysicsBody:body];
+//    [sprite setPosition: ccp(position.x,position.y)];
+//    
+//    //rotate ramp
+//    body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), 0.7);
     
 
     
@@ -196,7 +216,7 @@
 
 //-----GAME METHODS-----//
 
--(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p AsDefault:(bool)isDefault
+-(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
 {
 	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
 	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
@@ -206,6 +226,10 @@
     //[sprite setPTMRatio:PTM_RATIO];
     
     b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
+    
+    body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
+    
+
     b2Fixture* f = body->GetFixtureList();
     b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
     int count = polygonShape->GetVertexCount();
@@ -237,7 +261,8 @@
 {
     NSLog(@"Physics PlayLevel");
     if (_editMode) { // So you can only do it once before resetting.
-        [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint AsDefault:NO];
+        _editMode = NO;
+        [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint WithRotation:0 AsDefault:NO];
     }
 }
 
@@ -408,7 +433,7 @@
             NSString* objectType = [self getObjectType];
             
             if(objectType && ![objectType isEqualToString:@"None"]){
-                [self addNewSpriteOfType:objectType AtPosition: location AsDefault:NO];
+                [self addNewSpriteOfType:objectType AtPosition:location WithRotation:0 AsDefault:NO];
             }
         }
     }

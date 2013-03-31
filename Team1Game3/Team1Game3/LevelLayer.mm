@@ -109,6 +109,7 @@
     _physicsLayer = [PhysicsLayer node];
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
+    _physicsLayer -> _editMode = YES;
     [self addChild:_physicsLayer];
 }
 
@@ -122,7 +123,7 @@
     NSLog(@"Play Button pressed in LevelLayer");
     
     [_physicsLayer playLevel];
-    _physicsLayer->_editMode = false;
+//    _physicsLayer->_editMode = false;
 }
 
 /* resetLevel:
@@ -137,8 +138,8 @@
     [self removeChild:_physicsLayer cleanup:NO];
     
     [self createPhysicsLayer];
-    
-    _physicsLayer->_editMode = true;
+//    
+//    _physicsLayer->_editMode = true;
 }
 
 /* getInventorySelectedObject:
