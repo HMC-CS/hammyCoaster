@@ -45,6 +45,8 @@
     bool _editMode;
 }
 
+-(id) initWithLevelSet:(int) set AndIndex:(int) index;
+
 /* playLevel:
  * Places a BallObject at ballStartingPoint
  */

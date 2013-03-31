@@ -80,8 +80,8 @@
                     [levelIconSelected setPosition:ccp(-levelIconSelected.contentSize.width/10, -levelIconSelected.contentSize.height/10)];
                     
                     CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {
-                        // TODO: change this line to load different levels
-                        [[CCDirector sharedDirector] pushScene:[LevelLayer scene]];
+                        // TODO: change this line to load different sets
+                        [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:1 AndIndex:4*j+i+1]];
                     }];
                     menuItem.scale = (iconSize * levelIcon.scale)/levelIcon.contentSize.width;
                     [menuItem setPosition:ccp(size.width*((i+1.0)/5.0-0.5), -size.height*((j+1.0)/4.0-0.5))];

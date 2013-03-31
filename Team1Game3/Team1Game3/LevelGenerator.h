@@ -13,6 +13,6 @@
     
 }
 
--(NSMutableArray*) generateLevel;
+-(NSMutableArray*) generateLevelInSet:(int) set WithIndex:(int) index;
 
 @end

@@ -17,7 +17,7 @@
 
 @implementation LevelLayer
 
-+(CCScene *) scene
++(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
 {
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -25,7 +25,7 @@
     // size unused because levelLayer doesn't currently display anything
     // CGSize size = [CCDirector sharedDirector].winSize;
     
-    LevelLayer* levelLayer = [LevelLayer node];
+    LevelLayer* levelLayer = [[LevelLayer alloc] initWithLevelSet:set AndIndex:index];
     
     [scene addChild:levelLayer];
 	
@@ -33,7 +33,7 @@
 	return scene;
 }
 
--(id) init
+-(id) initWithLevelSet:(int) set AndIndex:(int) index;
 {
 	if( (self=[super init])) {
 		
@@ -41,7 +41,7 @@
 		
 		self.isTouchEnabled = YES;
         [self createInventoryLayer];
-        [self createPhysicsLayer];
+        [self createPhysicsLayerWithLevelSet:(int)set AndIndex:index];
         _physicsLayer->_editMode = true;
         
         CGSize size = [[CCDirector sharedDirector] winSize];
@@ -104,9 +104,9 @@
 /* createPhysicsLayer:
  * creates the PhysicsLayer and tells it where to send messages for its selectors
  */
--(void) createPhysicsLayer
+-(void) createPhysicsLayerWithLevelSet:(int) set AndIndex:(int) index
 {
-    _physicsLayer = [PhysicsLayer node];
+    _physicsLayer = [[PhysicsLayer alloc] initWithLevelSet:set AndIndex:index];
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
     _physicsLayer -> _editMode = YES;

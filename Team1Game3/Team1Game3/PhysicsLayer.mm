@@ -21,7 +21,7 @@
 
 //-----INITIALIZATION-----//
 
--(id) init
+-(id) initWithLevelSet:(int) set AndIndex:(int) index;
 {
 	if( (self=[super init])) {
 		
@@ -44,7 +44,7 @@
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
-        [self addInitialObjects];
+        [self addInitialObjectsForLevelSet:set AndIndex:index];
 		
 		[self scheduleUpdate];
 	}
@@ -145,11 +145,11 @@
     ballStartingPoint = CGPointMake(10.0, 600.0);
 }
 
-- (void) addInitialObjects
+- (void) addInitialObjectsForLevelSet:(int) set AndIndex:(int) index;
 {
     _levelGenerator = [[LevelGenerator alloc] init];
     
-    NSArray* initialItems = [_levelGenerator generateLevel];
+    NSArray* initialItems = [_levelGenerator generateLevelInSet:set WithIndex:index];
     
     for (NSArray* item in initialItems) {
         NSString* type = [item objectAtIndex:0];

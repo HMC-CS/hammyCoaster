@@ -13,7 +13,7 @@
 
 @implementation LevelGenerator
 
--(NSMutableArray*) generateLevel
+-(NSMutableArray*) generateLevelInSet:(int)set WithIndex:(int)index
 {
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
@@ -23,8 +23,10 @@
     
     NSMutableArray* returnedObjects = [[NSMutableArray alloc] init];
     
+    NSString* levelString = [[NSString alloc] initWithFormat:@"%02d%02d", set, index];
+    
     for (NSDictionary* level in json) {
-        if ([[level objectForKey:@"level"] isEqualToString:@"0101"])
+        if ([[level objectForKey:@"level"] isEqualToString:levelString])
         {
             NSArray* levelObjects = [level objectForKey:@"objects"];
             for (NSArray* object in levelObjects) {
