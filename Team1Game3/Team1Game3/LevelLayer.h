@@ -26,6 +26,8 @@
     
     int _levelSet;
     int _levelIndex;
+    
+    LevelGenerator* _levelGenerator;
 }
 
 /* sceneWithLevelSet:AndIndex:
