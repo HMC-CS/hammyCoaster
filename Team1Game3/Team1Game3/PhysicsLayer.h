@@ -17,7 +17,6 @@
 #import "GLES-Render.h"
 #import "ObjectFactory.h"
 #import "ContactListener.h"
-#import "LevelGenerator.h"
 
 @interface PhysicsLayer : CCLayer {
 
@@ -39,19 +38,16 @@
     float yOffset;
     b2Body* currentMoveableBody;
     
-    LevelGenerator* _levelGenerator;
-    
-    int _levelSet;
-    int _levelIndex;
+    NSArray* _initialObjects;
     
     @public
     bool _editMode;
 }
 
-/* initWithLevelSet:AndIndex:
+/* initWithObjects:
  * Initializes a physics layer of level Set-Index
  */
--(id) initWithLevelSet:(int) set AndIndex:(int) index;
+-(id) initWithObjects: (NSArray*) objects;
 
 /* playLevel:
  * Places a BallObject at ballStartingPoint

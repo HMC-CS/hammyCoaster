@@ -40,6 +40,8 @@
         
         _levelSet = set;
         _levelIndex = index;
+        
+        _levelGenerator = [[LevelGenerator alloc] init];
     
         [self createInventoryLayer];
         [self createPhysicsLayer];
@@ -90,7 +92,9 @@
  */
 -(void) createInventoryLayer
 {
-    _inventoryLayer = [[InventoryLayer alloc] initWithLevelSet:_levelSet AndIndex:_levelIndex];
+    NSArray* initialItems = [_levelGenerator generateInventoryInSet:_levelSet WithIndex:_levelIndex];
+    
+    _inventoryLayer = [[InventoryLayer alloc] initWithItems:initialItems];
     
 //    // TODO: comment back in if needed
 //    [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1
@@ -103,7 +107,9 @@
  */
 -(void) createPhysicsLayer
 {
-    _physicsLayer = [[PhysicsLayer alloc] initWithLevelSet:_levelSet AndIndex:_levelIndex];
+    NSArray* initialObjects = [_levelGenerator generateObjectsInSet:_levelSet WithIndex:_levelIndex];
+    
+    _physicsLayer = [[PhysicsLayer alloc] initWithObjects:initialObjects];
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
     _physicsLayer -> _editMode = YES;

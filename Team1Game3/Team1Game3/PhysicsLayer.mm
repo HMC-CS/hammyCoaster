@@ -21,7 +21,7 @@
 
 //-----INITIALIZATION-----//
 
--(id) initWithLevelSet:(int) set AndIndex:(int) index;
+-(id) initWithObjects:(NSArray *)objects
 {
 	if( (self=[super init])) {
 		
@@ -30,9 +30,6 @@
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
-        
-        _levelSet = set;
-        _levelIndex = index;
         
         starCount = 0;
         starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", starCount] fontName:@"Arial" fontSize:24];
@@ -46,6 +43,8 @@
 		[self initPhysics];
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
+        
+        _initialObjects = objects;
         
         [self addInitialObjects];
 		
@@ -150,11 +149,7 @@
 
 - (void) addInitialObjects
 {
-    _levelGenerator = [[LevelGenerator alloc] init];
-    
-    NSArray* initialItems = [_levelGenerator generateObjectsInSet:_levelSet WithIndex:_levelIndex];
-    
-    for (NSArray* item in initialItems) {
+    for (NSArray* item in _initialObjects) {
         NSString* type = [item objectAtIndex:0];
         CGFloat px = [[item objectAtIndex:1] floatValue];
         CGFloat py = [[item objectAtIndex:2] floatValue];

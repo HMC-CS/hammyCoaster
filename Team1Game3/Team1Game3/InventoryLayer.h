@@ -9,16 +9,11 @@
 #import "CCLayer.h"
 #import "Cocos2d.h"
 
-#import "LevelGenerator.h"
-
 @interface InventoryLayer : CCLayer {
     
     NSString* selectedObject;
     
-    LevelGenerator* _levelGenerator;
-    
-    int _levelSet;
-    int _levelIndex;
+    NSArray* _items;
 
 // TODO: comment back in if need be
 //    id _target;
@@ -26,10 +21,10 @@
 //    SEL _selector2; // reset
 }
 
-/* initWithLevelSet:AndIndex:
- * Initializes a physics layer of level Set-Index
+/* initWithItems:
+ * Initializes an inventory layer of level Set-Index
  */
--(id) initWithLevelSet:(int) set AndIndex:(int) index;
+-(id) initWithItems:(NSArray*) items;
 
 /* getSelectedObject:
  * returns NSString* of the selected object type

@@ -11,7 +11,7 @@
 @implementation InventoryLayer
 
 
--(id) initWithLevelSet:(int) set AndIndex:(int) index
+-(id) initWithItems:(NSArray *)items
 {
 	if( (self=[super init])) {
 		
@@ -21,13 +21,12 @@
 		
 		self.isTouchEnabled = YES;
         
-        _levelSet = set;
-        _levelIndex = index;
-        
         selectedObject = [[NSString alloc] initWithFormat:@"None"];
 		
         [self setContentSize:CGSizeMake(size.width*0.25, size.height)];
         [self setPosition:ccp(0,0)];
+        
+        _items = items;
         
 		// create menu button
 		[self createMenu];
@@ -47,11 +46,7 @@
     //CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
     CCMenu *inventoryMenu = [CCMenu node];
     
-    _levelGenerator = [[LevelGenerator alloc] init];
-    
-    NSArray* initialItems = [_levelGenerator generateInventoryInSet:_levelSet WithIndex:_levelIndex];
-    
-    for (NSArray* item in initialItems) {
+    for (NSArray* item in _items) {
         NSString* type = [item objectAtIndex:0];
         NSString* label = [item objectAtIndex:1];
         // int numItems = [[item objectAtIndex:2] intValue];   // Number of inventory items, when needed
