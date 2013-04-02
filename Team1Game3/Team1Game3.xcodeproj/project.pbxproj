@@ -26,7 +26,6 @@
 		D86F71581708A0770007ED1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D86F71561708A0770007ED1D /* JSONKit.m */; };
 		D86F715A1708A7100007ED1D /* InitialObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F71591708A7100007ED1D /* InitialObjects.json */; };
 		D86F715B1708A7100007ED1D /* InitialObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F71591708A7100007ED1D /* InitialObjects.json */; };
-		D86F715D1708D4C80007ED1D /* InitialInventories.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F715C1708D4C80007ED1D /* InitialInventories.json */; };
 		D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BE516F2848000A82C0F /* BluePortalObject.mm */; };
 		D87B6BE816F2849700A82C0F /* BluePortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D87B6BE716F2849700A82C0F /* BluePortalObject.png */; };
 		D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BEA16F28AD700A82C0F /* ContactListener.mm */; };
@@ -246,7 +245,6 @@
 		D86F71551708A0770007ED1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		D86F71561708A0770007ED1D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		D86F71591708A7100007ED1D /* InitialObjects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialObjects.json; sourceTree = "<group>"; };
-		D86F715C1708D4C80007ED1D /* InitialInventories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialInventories.json; sourceTree = "<group>"; };
 		D87B6BE416F2848000A82C0F /* BluePortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluePortalObject.h; sourceTree = "<group>"; };
 		D87B6BE516F2848000A82C0F /* BluePortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BluePortalObject.mm; sourceTree = "<group>"; };
 		D87B6BE716F2849700A82C0F /* BluePortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePortalObject.png; sourceTree = "<group>"; };
@@ -854,7 +852,6 @@
 			isa = PBXGroup;
 			children = (
 				D86F71591708A7100007ED1D /* InitialObjects.json */,
-				D86F715C1708D4C80007ED1D /* InitialInventories.json */,
 				D895F556170743E200ED74C5 /* Level Icons */,
 				D895F557170743F700ED74C5 /* Objects */,
 				D895F5581707440700ED74C5 /* Given */,
@@ -1471,7 +1468,6 @@
 				D895F555170743CA00ED74C5 /* LevelIcon5.png in Resources */,
 				D86F7148170749B50007ED1D /* README.md in Resources */,
 				D86F715A1708A7100007ED1D /* InitialObjects.json in Resources */,
-				D86F715D1708D4C80007ED1D /* InitialInventories.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
