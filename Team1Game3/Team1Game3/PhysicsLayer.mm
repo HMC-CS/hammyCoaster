@@ -384,12 +384,12 @@
     
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
-        if ([[self getObjectType] isEqualToString:@"Delete"]) {
-            CCSprite* sprite = [bodyObject getSprite];
-            [self removeChild: sprite cleanup:YES];
-            world->DestroyBody(body);
-        } else {
-            if (!bodyObject->_isDefault && _editMode) {
+        if (!bodyObject->_isDefault && _editMode) {
+            if ([[self getObjectType] isEqualToString:@"Delete"]) {
+                CCSprite* sprite = [bodyObject getSprite];
+                [self removeChild: sprite cleanup:YES];
+                world->DestroyBody(body);
+            } else {
                 // calculate the offset between the touch and the center of the object
                 b2Vec2 bodyLocation = body->GetPosition();
                 xOffset = bodyLocation.x - location.x;
