@@ -49,6 +49,8 @@
         [self addInitialObjects];
 		
 		[self scheduleUpdate];
+        
+        _editMode = YES;
 	}
 	return self;
 }
