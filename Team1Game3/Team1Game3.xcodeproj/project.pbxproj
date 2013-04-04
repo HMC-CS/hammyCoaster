@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6177232E170D5559004F545F /* rampIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6177232D170D5559004F545F /* rampIcon.png */; };
+		61772331170D59D5004F545F /* rampIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61772330170D59D5004F545F /* rampIconSelected.png */; };
 		9CE768D916F9B1FB00EE241F /* StarObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D516F9B1FB00EE241F /* StarObject-hd.png */; };
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
@@ -226,6 +227,7 @@
 
 /* Begin PBXFileReference section */
 		6177232D170D5559004F545F /* rampIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rampIcon.png; sourceTree = "<group>"; };
+		61772330170D59D5004F545F /* rampIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rampIconSelected.png; sourceTree = "<group>"; };
 		9CE768D516F9B1FB00EE241F /* StarObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-hd.png"; sourceTree = "<group>"; };
 		9CE768D616F9B1FB00EE241F /* StarObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarObject.h; sourceTree = "<group>"; };
 		9CE768D716F9B1FB00EE241F /* StarObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarObject.mm; sourceTree = "<group>"; };
@@ -720,6 +722,7 @@
 				D8E83EB216EA7625000284EA /* BallObject.png */,
 				D8E83EB316EA7625000284EA /* BallObject-hd.png */,
 				D87B6BE716F2849700A82C0F /* BluePortalObject.png */,
+				61772330170D59D5004F545F /* rampIconSelected.png */,
 				6177232D170D5559004F545F /* rampIcon.png */,
 				D8E83ECB16EBCB43000284EA /* RampObject.png */,
 				9CE768D516F9B1FB00EE241F /* StarObject-hd.png */,
@@ -1472,6 +1475,7 @@
 				D86F7148170749B50007ED1D /* README.md in Resources */,
 				D86F715A1708A7100007ED1D /* InitialObjects.json in Resources */,
 				6177232E170D5559004F545F /* rampIcon.png in Resources */,
+				61772331170D59D5004F545F /* rampIconSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

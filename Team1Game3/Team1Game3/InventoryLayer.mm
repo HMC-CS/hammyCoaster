@@ -52,8 +52,9 @@
         // int numItems = [[item objectAtIndex:2] intValue];   // Number of inventory items, when needed
         
         NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
+        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
 
-        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:buttonLabel disabledImage:buttonLabel block:^(id sender)
+        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
         {
             //CCMenuItemImage *button = (CCMenuItemImage *)sender;
         
