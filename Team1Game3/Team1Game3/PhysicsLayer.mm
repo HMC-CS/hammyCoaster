@@ -146,7 +146,7 @@
         */
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
-    ballStartingPoint = CGPointMake(10.0, 600.0);
+    ballStartingPoint = CGPointMake(15.0, 600.0);
 }
 
 - (void) addInitialObjects

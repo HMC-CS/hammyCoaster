@@ -113,7 +113,7 @@
     _physicsLayer = [[PhysicsLayer alloc] initWithObjects:initialObjects];
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
-    _physicsLayer -> _editMode = YES;
+    //_physicsLayer -> _editMode = YES;
     [self addChild:_physicsLayer];
 }
 
