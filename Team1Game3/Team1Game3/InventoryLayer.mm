@@ -56,6 +56,15 @@
         NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
         NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
 
+        // I was trying to implement the image idea with the sprite but haven't gotten it to work yet
+        
+        //CCSprite *normal = [CCSprite spriteWithSpriteFrameName:buttonLabel];
+        //CCSprite *selected = [CCSprite spriteWithSpriteFrameName:buttonLabel];
+        //selected.color = ccc3(125,125,125);
+        // and/or:
+        //selected.scale = 1.2;
+        
+        //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected target:self selector:@selector(sender)];
         CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
         {
             //CCMenuItemImage *button = (CCMenuItemImage *)sender;
