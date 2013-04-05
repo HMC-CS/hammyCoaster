@@ -134,6 +134,7 @@
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
     ballStartingPoint = CGPointMake(15.0, 600.0);
+
 }
 
 - (void) addInitialObjects
@@ -145,6 +146,9 @@
         CGFloat rotation = [[item objectAtIndex:3] floatValue];
         [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
     }
+    
+    //---test code for curved ramp---//
+    //[self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(150.0, 500.0) WithRotation:1 AsDefault:YES];
     
     //		// Code kept around for later
     //        #if 1
