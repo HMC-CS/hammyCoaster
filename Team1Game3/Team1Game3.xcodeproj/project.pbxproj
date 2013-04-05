@@ -15,6 +15,7 @@
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
 		AD539FCC1700118700A47022 /* QueryCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD539FCB1700118700A47022 /* QueryCallback.mm */; };
+		CE3B3199170E43C500F70048 /* SeesawObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* SeesawObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
 		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
@@ -238,6 +239,8 @@
 		9CE768D816F9B1FB00EE241F /* StarObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObject.png; sourceTree = "<group>"; };
 		AD539FCB1700118700A47022 /* QueryCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QueryCallback.mm; sourceTree = "<group>"; };
 		AD539FCD1700119000A47022 /* QueryCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCallback.h; sourceTree = "<group>"; };
+		CE3B3197170E43C500F70048 /* SeesawObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeesawObject.h; sourceTree = "<group>"; };
+		CE3B3198170E43C500F70048 /* SeesawObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SeesawObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Team1Game3Tests-Info.plist"; sourceTree = "<group>"; };
@@ -677,6 +680,60 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE3B319B170E43CE00F70048 /* Objects */ = {
+			isa = PBXGroup;
+			children = (
+				CE3B3197170E43C500F70048 /* SeesawObject.h */,
+				CE3B3198170E43C500F70048 /* SeesawObject.mm */,
+				D8E83EA616EA7555000284EA /* BallObject.h */,
+				D8E83EA716EA7555000284EA /* BallObject.mm */,
+				D8E83EC216EBC42A000284EA /* RampObject.h */,
+				D8E83EC316EBC42A000284EA /* RampObject.mm */,
+				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
+				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
+				9CE768D616F9B1FB00EE241F /* StarObject.h */,
+				9CE768D716F9B1FB00EE241F /* StarObject.mm */,
+			);
+			name = Objects;
+			sourceTree = "<group>";
+		};
+		CE3B319C170E43E800F70048 /* PhysicsSprite */ = {
+			isa = PBXGroup;
+			children = (
+				D8E83E9C16EA753F000284EA /* PhysicsSprite.h */,
+				D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */,
+			);
+			name = PhysicsSprite;
+			sourceTree = "<group>";
+		};
+		CE3B319D170E43F500F70048 /* Debug Draw */ = {
+			isa = PBXGroup;
+			children = (
+				D8E83E9916EA753F000284EA /* GLES-Render.h */,
+				D8E83E9A16EA753F000284EA /* GLES-Render.mm */,
+			);
+			name = "Debug Draw";
+			sourceTree = "<group>";
+		};
+		CE3B319E170E440000F70048 /* Layers/Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D8E83E9616EA753F000284EA /* IntroLayer.h */,
+				D8E83E9716EA753F000284EA /* IntroLayer.mm */,
+				D8E83EAF16EA75F4000284EA /* MainMenuLayer.h */,
+				D8E83EB016EA75F4000284EA /* MainMenuLayer.mm */,
+				D895F54717073CCA00ED74C5 /* LevelSelectorLayer.h */,
+				D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */,
+				D8E83EBF16EAC81B000284EA /* LevelLayer.h */,
+				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
+				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
+				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
+				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
+				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
+			);
+			name = Layers/Scenes;
+			sourceTree = "<group>";
+		};
 		D843EFD616FFBA16006732D5 /* Team1Game3Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -761,6 +818,8 @@
 		D895F5591707458900ED74C5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				CE3B319D170E43F500F70048 /* Debug Draw */,
+				CE3B319C170E43E800F70048 /* PhysicsSprite */,
 				D86F714E1708A0120007ED1D /* JSonKit */,
 				D895F55F170745AB00ED74C5 /* CCScrollLayer */,
 			);
@@ -818,18 +877,6 @@
 			children = (
 				D8E83E9016EA753F000284EA /* AppDelegate.h */,
 				D8E83E9116EA753F000284EA /* AppDelegate.mm */,
-				D8E83E9616EA753F000284EA /* IntroLayer.h */,
-				D8E83E9716EA753F000284EA /* IntroLayer.mm */,
-				D8E83EAF16EA75F4000284EA /* MainMenuLayer.h */,
-				D8E83EB016EA75F4000284EA /* MainMenuLayer.mm */,
-				D895F54717073CCA00ED74C5 /* LevelSelectorLayer.h */,
-				D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */,
-				D8E83EBF16EAC81B000284EA /* LevelLayer.h */,
-				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
-				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
-				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
-				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
-				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
 				D86F714A17088D960007ED1D /* LevelGenerator.h */,
 				D86F714B17088D960007ED1D /* LevelGenerator.m */,
 				AD539FCD1700119000A47022 /* QueryCallback.h */,
@@ -840,18 +887,8 @@
 				D8E83EAD16EA75D0000284EA /* ObjectFactory.mm */,
 				D8E83EA916EA75A8000284EA /* AbstractGameObject.h */,
 				D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */,
-				D8E83EA616EA7555000284EA /* BallObject.h */,
-				D8E83EA716EA7555000284EA /* BallObject.mm */,
-				D8E83EC216EBC42A000284EA /* RampObject.h */,
-				D8E83EC316EBC42A000284EA /* RampObject.mm */,
-				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
-				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
-				9CE768D616F9B1FB00EE241F /* StarObject.h */,
-				9CE768D716F9B1FB00EE241F /* StarObject.mm */,
-				D8E83E9916EA753F000284EA /* GLES-Render.h */,
-				D8E83E9A16EA753F000284EA /* GLES-Render.mm */,
-				D8E83E9C16EA753F000284EA /* PhysicsSprite.h */,
-				D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */,
+				CE3B319E170E440000F70048 /* Layers/Scenes */,
+				CE3B319B170E43CE00F70048 /* Objects */,
 				D895F5591707458900ED74C5 /* Extensions */,
 				D8E83C8616EA753B000284EA /* Resources */,
 				D8E83CA016EA753B000284EA /* libs */,
@@ -1687,6 +1724,7 @@
 				D86F7146170749B50007ED1D /* CCScrollLayer.mm in Sources */,
 				D86F714C17088D960007ED1D /* LevelGenerator.m in Sources */,
 				D86F71571708A0770007ED1D /* JSONKit.m in Sources */,
+				CE3B3199170E43C500F70048 /* SeesawObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -130,20 +130,7 @@
     // ramp definitions
     rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(s.width/(4*PTM_RATIO), 400/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
-    /*
-    //Ending Ramp
-    b2BodyDef ramp2BodyDef;
-    ramp2BodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
-    
-    b2Body *ramp2Body = world->CreateBody(&ramp2BodyDef);
-    b2EdgeShape ramp2Edge;
-    b2FixtureDef ramp2ShapeDef;
-    ramp2ShapeDef.shape = &ramp2Edge;
-    
-    // ramp2 definitions
-    ramp2Edge.Set(b2Vec2(s.width*2/(4*PTM_RATIO),150/PTM_RATIO), b2Vec2(s.width/PTM_RATIO, 100/PTM_RATIO));
-    ramp2Body->CreateFixture(&ramp2ShapeDef);
-        */
+
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
     ballStartingPoint = CGPointMake(15.0, 600.0);
@@ -158,40 +145,6 @@
         CGFloat rotation = [[item objectAtIndex:3] floatValue];
         [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
     }
-    
-    // TODO: get rid of when no longer needed for reference
-    //[objects addObject:[[NSMutableArray alloc] initWithObjects:@"BluePortalObject", @"723.0", @"217.0", @"0",nil]];
-
-
-// TODO: get rid of this code when no longer needed for reference
-//    [self addNewSpriteOfType:@"BluePortalObject" AtPosition:ccp(723.0,217.0) WithRotation:0 AsDefault:YES];
-//    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(400.0,250.0) WithRotation:0 AsDefault:YES];
-//    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(500.0,240.0) WithRotation:0 AsDefault:YES];
-//    [self addNewSpriteOfType:@"StarObject" AtPosition:ccp(600.0,230.0) WithRotation:0 AsDefault:YES];
-//    
-//    [self addNewSpriteOfType:@"RampObject" AtPosition:ccp(578.0,160.0) WithRotation:0.7 AsDefault:YES];
-
-// TODO: get rid of this code when no longer needed for reference
-//
-//    
-//    /* differently hacked default ramps
-//     * ---------------------------------------------------------------------- */
-//    
-//    //Code right out of sprite making function
-//    NSString* type = @"RampObject";
-//	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-//    [self addChild:sprite];
-//    CGPoint position = CGPointMake(100, 500);
-//    
-//    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:TRUE withSprite:sprite] createBody:position];
-//	[sprite setPhysicsBody:body];
-//    [sprite setPosition: ccp(position.x,position.y)];
-//    
-//    //rotate ramp
-//    body->SetTransform(b2Vec2(605/PTM_RATIO,191/PTM_RATIO), 0.7);
-    
-
-    
     
     //		// Code kept around for later
     //        #if 1
