@@ -818,15 +818,8 @@
 		D895F5591707458900ED74C5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
 				CE3B319D170E43F500F70048 /* Debug Draw */,
 				CE3B319C170E43E800F70048 /* PhysicsSprite */,
-=======
-				D8E83E9916EA753F000284EA /* GLES-Render.h */,
-				D8E83E9A16EA753F000284EA /* GLES-Render.mm */,
-				D8E83E9C16EA753F000284EA /* PhysicsSprite.h */,
-				D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */,
->>>>>>> tried to make some changes yolo
 				D86F714E1708A0120007ED1D /* JSonKit */,
 				D895F55F170745AB00ED74C5 /* CCScrollLayer */,
 			);
@@ -894,19 +887,8 @@
 				D8E83EAD16EA75D0000284EA /* ObjectFactory.mm */,
 				D8E83EA916EA75A8000284EA /* AbstractGameObject.h */,
 				D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */,
-<<<<<<< HEAD
 				CE3B319E170E440000F70048 /* Layers/Scenes */,
 				CE3B319B170E43CE00F70048 /* Objects */,
-=======
-				D8E83EA616EA7555000284EA /* BallObject.h */,
-				D8E83EA716EA7555000284EA /* BallObject.mm */,
-				D8E83EC216EBC42A000284EA /* RampObject.h */,
-				D8E83EC316EBC42A000284EA /* RampObject.mm */,
-				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
-				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
-				9CE768D616F9B1FB00EE241F /* StarObject.h */,
-				9CE768D716F9B1FB00EE241F /* StarObject.mm */,
->>>>>>> tried to make some changes yolo
 				D895F5591707458900ED74C5 /* Extensions */,
 				D8E83C8616EA753B000284EA /* Resources */,
 				D8E83CA016EA753B000284EA /* libs */,
