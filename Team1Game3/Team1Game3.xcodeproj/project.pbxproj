@@ -34,6 +34,9 @@
 		D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BE516F2848000A82C0F /* BluePortalObject.mm */; };
 		D87B6BE816F2849700A82C0F /* BluePortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D87B6BE716F2849700A82C0F /* BluePortalObject.png */; };
 		D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BEA16F28AD700A82C0F /* ContactListener.mm */; };
+		D882075E170EB43B00D74162 /* CurvedRampObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D882075D170EB43B00D74162 /* CurvedRampObject.m */; };
+		D8820761170EB76500D74162 /* CurvedRampObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = D882075F170EB76500D74162 /* CurvedRampObject-hd.png */; };
+		D8820762170EB76500D74162 /* CurvedRampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8820760170EB76500D74162 /* CurvedRampObject.png */; };
 		D895F54917073CCA00ED74C5 /* LevelSelectorLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */; };
 		D895F550170743CA00ED74C5 /* LevelIcon0.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54A170743CA00ED74C5 /* LevelIcon0.png */; };
 		D895F551170743CA00ED74C5 /* LevelIcon1.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54B170743CA00ED74C5 /* LevelIcon1.png */; };
@@ -261,6 +264,10 @@
 		D87B6BE716F2849700A82C0F /* BluePortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePortalObject.png; sourceTree = "<group>"; };
 		D87B6BE916F28AD700A82C0F /* ContactListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListener.h; sourceTree = "<group>"; };
 		D87B6BEA16F28AD700A82C0F /* ContactListener.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ContactListener.mm; sourceTree = "<group>"; };
+		D882075C170EB43B00D74162 /* CurvedRampObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurvedRampObject.h; sourceTree = "<group>"; };
+		D882075D170EB43B00D74162 /* CurvedRampObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurvedRampObject.m; sourceTree = "<group>"; };
+		D882075F170EB76500D74162 /* CurvedRampObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CurvedRampObject-hd.png"; sourceTree = "<group>"; };
+		D8820760170EB76500D74162 /* CurvedRampObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurvedRampObject.png; sourceTree = "<group>"; };
 		D895F54717073CCA00ED74C5 /* LevelSelectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectorLayer.h; sourceTree = "<group>"; };
 		D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelSelectorLayer.mm; sourceTree = "<group>"; };
 		D895F54A170743CA00ED74C5 /* LevelIcon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon0.png; sourceTree = "<group>"; };
@@ -683,6 +690,8 @@
 		CE3B319B170E43CE00F70048 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				D882075C170EB43B00D74162 /* CurvedRampObject.h */,
+				D882075D170EB43B00D74162 /* CurvedRampObject.m */,
 				CE3B3197170E43C500F70048 /* SeesawObject.h */,
 				CE3B3198170E43C500F70048 /* SeesawObject.mm */,
 				D8E83EA616EA7555000284EA /* BallObject.h */,
@@ -780,6 +789,8 @@
 			isa = PBXGroup;
 			children = (
 				D8E83EC916EBCB1D000284EA /* RampObject-hd.png */,
+				D882075F170EB76500D74162 /* CurvedRampObject-hd.png */,
+				D8820760170EB76500D74162 /* CurvedRampObject.png */,
 				D8E83EB216EA7625000284EA /* BallObject.png */,
 				D8E83EB316EA7625000284EA /* BallObject-hd.png */,
 				D87B6BE716F2849700A82C0F /* BluePortalObject.png */,
@@ -1521,6 +1532,8 @@
 				61772331170D59D5004F545F /* RampObjectIconSelected.png in Resources */,
 				61DF4BEB170E2FD2002187F6 /* StarObjectIcon.png in Resources */,
 				61DF4BEC170E2FD2002187F6 /* StarObjectIconSelected.png in Resources */,
+				D8820761170EB76500D74162 /* CurvedRampObject-hd.png in Resources */,
+				D8820762170EB76500D74162 /* CurvedRampObject.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1725,6 +1738,7 @@
 				D86F714C17088D960007ED1D /* LevelGenerator.m in Sources */,
 				D86F71571708A0770007ED1D /* JSONKit.m in Sources */,
 				CE3B3199170E43C500F70048 /* SeesawObject.mm in Sources */,
+				D882075E170EB43B00D74162 /* CurvedRampObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

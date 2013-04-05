@@ -134,6 +134,9 @@
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
     ballStartingPoint = CGPointMake(15.0, 600.0);
+    
+    //-- curved ramp test code --//
+    //addNewSpriteOfType:CurvedRampObject AtPosition:CGPointMake(150.0, 600.0) WithRotation:2 AsDefault:YES;
 }
 
 - (void) addInitialObjects
