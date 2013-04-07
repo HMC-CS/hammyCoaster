@@ -181,6 +181,11 @@
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
     //[self addChild:sprite];
     //[sprite setPTMRatio:PTM_RATIO];
+    //TODO:
+    //read from the file to see how many objects should be added
+    //Check how many sprites have been added
+    //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
+    // = the count in the file return
     
     b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
     
