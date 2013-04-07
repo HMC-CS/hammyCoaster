@@ -55,6 +55,13 @@
 //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
         NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
         NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
+        //CCSprite *normal = [CCSprite spriteWithSpriteFrameName:buttonLabel];
+        //CCSprite *selected = [CCSprite spriteWithSpriteFrameName:buttonLabel];
+        //selected.color = ccc3(125,125,125);
+        // and/or:
+        //selected.scale = 1.2;
+        
+        //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected target:self selector:@selector(goToFunction)];
 
         CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
         {
