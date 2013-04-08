@@ -15,6 +15,8 @@
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
 		AD539FCC1700118700A47022 /* QueryCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD539FCB1700118700A47022 /* QueryCallback.mm */; };
+		AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95917129CFA007B471F /* RedPortalObject.mm */; };
+		AD57A95C17129FDE007B471F /* RedPortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A95B17129FDE007B471F /* RedPortalObject.png */; };
 		CE3B3199170E43C500F70048 /* SeesawObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* SeesawObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
@@ -242,6 +244,9 @@
 		9CE768D816F9B1FB00EE241F /* StarObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObject.png; sourceTree = "<group>"; };
 		AD539FCB1700118700A47022 /* QueryCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = QueryCallback.mm; sourceTree = "<group>"; };
 		AD539FCD1700119000A47022 /* QueryCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueryCallback.h; sourceTree = "<group>"; };
+		AD57A95817129CEC007B471F /* RedPortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPortalObject.h; sourceTree = "<group>"; };
+		AD57A95917129CFA007B471F /* RedPortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RedPortalObject.mm; sourceTree = "<group>"; };
+		AD57A95B17129FDE007B471F /* RedPortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedPortalObject.png; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* SeesawObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeesawObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* SeesawObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SeesawObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -700,6 +705,8 @@
 				D8E83EC316EBC42A000284EA /* RampObject.mm */,
 				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
 				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
+				AD57A95817129CEC007B471F /* RedPortalObject.h */,
+				AD57A95917129CFA007B471F /* RedPortalObject.mm */,
 				9CE768D616F9B1FB00EE241F /* StarObject.h */,
 				9CE768D716F9B1FB00EE241F /* StarObject.mm */,
 			);
@@ -797,6 +804,7 @@
 				61772330170D59D5004F545F /* RampObjectIconSelected.png */,
 				6177232D170D5559004F545F /* RampObjectIcon.png */,
 				D8E83ECB16EBCB43000284EA /* RampObject.png */,
+				AD57A95B17129FDE007B471F /* RedPortalObject.png */,
 				9CE768D516F9B1FB00EE241F /* StarObject-hd.png */,
 				9CE768D816F9B1FB00EE241F /* StarObject.png */,
 				61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */,
@@ -1534,6 +1542,7 @@
 				61DF4BEC170E2FD2002187F6 /* StarObjectIconSelected.png in Resources */,
 				D8820768170EBC0B00D74162 /* CurvedRampObject-hd.png in Resources */,
 				D8820769170EBC0B00D74162 /* CurvedRampObject.png in Resources */,
+				AD57A95C17129FDE007B471F /* RedPortalObject.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1739,6 +1748,7 @@
 				D86F71571708A0770007ED1D /* JSONKit.m in Sources */,
 				CE3B3199170E43C500F70048 /* SeesawObject.mm in Sources */,
 				D8820765170EBBD700D74162 /* CurvedRampObject.mm in Sources */,
+				AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
