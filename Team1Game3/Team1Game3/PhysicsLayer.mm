@@ -148,7 +148,7 @@
     }
     
     //---test code for curved ramp---//
-    //[self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(150.0, 500.0) WithRotation:1 AsDefault:YES];
+    [self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(150.0, 500.0) WithRotation:0 AsDefault:YES];
     
     //		// Code kept around for later
     //        #if 1
