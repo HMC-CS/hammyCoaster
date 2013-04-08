@@ -21,7 +21,6 @@
 //    b2FixtureDef circleFixtureDef;
 //    
 //    b2CircleShape circleShape;
-//    
 //    circleShape.m_radius = 26.0/PTM_RATIO;
 //    
 //    circleFixtureDef.shape = &circleShape;
@@ -31,14 +30,24 @@
 //    seesawBody->CreateFixture(&circleFixtureDef);
 //    
 //    b2FixtureDef teeterFixtureDef;
+//    
 //    b2PolygonShape teeterShape;
 //    teeterShape.SetAsBox(50.0/PTM_RATIO,50.0/PTM_RATIO);
 //    
+//    teeterFixtureDef.shape = &teeterShape;
+//    teeterFixtureDef.density = 100.0f;
+//    teeterFixtureDef.friction = 10.0f;
+//    teeterFixtureDef.restitution = 0.0f;
+//    seesawBody->CreateFixture(&teeterFixtureDef);
+//
+//    b2RevoluteJointDef jointDef;
+//    b2Joint* rev_joint;
 //    
+//    b2Vec2 anchor = seesawBody->GetWorldCenter();
+//    anchor.y += 26.0/(PTM_RATIO*2.0);
 //    
+//    jointDef.Initialize(teeterFixtureDef, circleFixtureDef, anchor);
 //    
-//    
-//    b2RevoluteJointDef jointdef;
     
 
 }

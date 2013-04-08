@@ -190,7 +190,6 @@
     b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
     
     body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
-    
 
     b2Fixture* f = body->GetFixtureList();
     b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
