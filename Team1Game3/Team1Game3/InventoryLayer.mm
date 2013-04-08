@@ -61,26 +61,26 @@
         // and/or:
         //selected.scale = 1.2;
         
-        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected block:^(id sender)
+        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected  target:self selector:@selector(buttonPressed:)];//block:^(id sender)
 
         //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
-        {
+        //{
             //CCMenuItemImage *button = (CCMenuItemImage *)sender;
         
         //CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel //block:^(id sender){
-            //if ([(NSNumber*) inventoryButton.userData intValue] == 0)
-            //{
-              //selectedObject = [[NSString alloc] initWithFormat:@"None"];
-                //NSLog(@"No More Objects");
-            //}
-            //else
-            //{
-            selectedObject = type;
-            //inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
-                //NSLog(@"Button Pressed");
-            //}
-            
-    }];
+//            if ([(NSNumber*) inventoryButton.userData intValue] == 0)
+//            {
+//              selectedObject = [[NSString alloc] initWithFormat:@"None"];
+//                NSLog(@"No More Objects");
+//            }
+//            else
+//            {
+                //selectedObject = type;
+//                inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+//                NSLog(@"Button Pressed");
+//            }
+        
+//}];
         inventoryButton.userData = numItems;
         NSLog(@"Setting User Data");
         
@@ -95,8 +95,30 @@
     [inventoryMenu alignItemsVertically];
     [inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
     [self addChild: inventoryMenu z:-1];
+}
 
-    
+
+- (void) buttonPressed: (id) sender
+    {
+        for (NSArray* item in _items) {
+            NSString* type = [item objectAtIndex:0];
+            //NSNumber* numItems = [item objectAtIndex:2];
+        CCMenuItemLabel* inventoryButton = sender;
+            //inventoryButton.userData = numItems;
+        if ([(NSNumber*) inventoryButton.userData intValue] == 0)
+         {
+             selectedObject = [[NSString alloc] initWithFormat:@"None"];
+             NSLog(@"No More Objects");
+         }
+        else
+        {
+            selectedObject = type;
+            inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+            NSLog(@"is the user data");
+            [inventoryButton  setColor: ccc3(125,125,125)];
+       }
+        }
+    }
     /* Inventory Menu:
      * The menu of inventory items.
      * ---------------------------------------------------------------------- */
@@ -118,7 +140,7 @@
 //	[inventoryMenu alignItemsVertically];
 //	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
 //	[self addChild: inventoryMenu z:-1];
-}
+
 
 /* registerWithTouchDispacher:
  * Initializes touches for InventoryLayer. Makes it "swallow"
@@ -175,12 +197,14 @@
 // //TODO: comment back in if need be
 //-(void) setTarget:(id) sender atAction:(SEL)action
 //{
-//    _target = sender;
-//    if (!_selector1) {
-//        _selector1 = action;
-//    } else {
-//        _selector2 = action;
-//    }
+//    target = sender;
+//    selector = action;
+////    _target = sender;
+////    if (!_selector1) {
+////        _selector1 = action;
+////    } else {
+////        _selector2 = action;
+////    }
 //}
 
 @end
