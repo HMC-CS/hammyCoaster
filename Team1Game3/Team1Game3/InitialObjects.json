@@ -26,7 +26,7 @@
         "inventory": 
         [
             ["RampObject", "ramp", "1"],
-            ["StarObject", "star", "1"]
+            ["StarObject", "star", "3"]
         ]
 
     },

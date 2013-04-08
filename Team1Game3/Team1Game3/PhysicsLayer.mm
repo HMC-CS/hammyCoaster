@@ -148,8 +148,7 @@
     }
     
     //---test code for curved ramp---//
-    [self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(150.0, 500.0) WithRotation:0 AsDefault:YES];
-    
+    [self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(200.0, 400.0) WithRotation:0 AsDefault:NO];    
     //		// Code kept around for later
     //        #if 1
     //        		// Use batch node. Faster
