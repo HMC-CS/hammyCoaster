@@ -21,10 +21,14 @@
     
 }
 
+/* setTarget: atAction:
+ * guaranteed name for function to initialize selectors and target
+ */
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
+/* updateStarCount
+ * increments the star counter when the ball hits a star
+ */
 -(void) updateStarCount;
-
--(void) resetStarCount;
 
 @end

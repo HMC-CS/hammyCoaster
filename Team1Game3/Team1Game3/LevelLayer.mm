@@ -76,7 +76,6 @@
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
     [_physicsLayer setTarget:self atAction:@selector(updateStarCount)]; // physics selector 3
-    //_physicsLayer -> _editMode = YES;
     [self addChild:_physicsLayer];
 }
 
@@ -115,10 +114,6 @@
     [self removeChild:_physicsLayer cleanup:YES];
     
     [self createPhysicsLayer];
-    
-    [_gameplayLayer resetStarCount];
-//    
-//    _physicsLayer->_editMode = true;
 }
 
 /* getInventorySelectedObject:
@@ -148,6 +143,11 @@
     [alert show];
 }
 
+/* updateStarCount:
+ * from: PhysicsLayer
+ * to: GameplayLayer
+ * increments the star cont in GameplayLayer when a star is hit
+ */
 -(void) updateStarCount
 {
     [_gameplayLayer updateStarCount];
@@ -181,23 +181,6 @@
         }
     }
 }
-
-//-(BOOL)ccTouchBegan:(UITouch* )touch withEvent:(UIEvent *)event
-//{
-//    CGPoint location = [self convertTouchToNodeSpace: touch];
-//    if (CGRectContainsPoint(InventoryLayer.boundingBox, location))
-//    {
-//        NSLog(@"touched inventory layer");
-//        return YES;
-//    }
-//    else if (CGRectContainsPoint(PhysicsLayer.boundingBox, location))
-//    {
-//        NSLog(@"touched physics layer");
-//        return YES;
-//    }
-//    return NO;
-//}
-//
 
 /* dealloc:
  * deallocates everything in LevelLayer

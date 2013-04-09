@@ -149,24 +149,6 @@
     
     //---test code for curved ramp---//
     [self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(200.0, 400.0) WithRotation:0 AsDefault:NO];    
-    //		// Code kept around for later
-    //        #if 1
-    //        		// Use batch node. Faster
-    //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
-    //        		spriteTexture_ = [parent texture];
-    //        #else
-    //        		// doesn't use batch node. Slower
-    //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
-    //        		CCNode *parent = [CCNode node];
-    //        #endif
-    //        		[self addChild:parent z:0 tag:kTagParentNode];
-    //
-    //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
-    //
-    //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
-    //		[self addChild:label z:0];
-    //		[label setColor:ccc3(0,0,255)];
-    //		label.position = ccp( size.width/2, size.height-50);
 }
 
 
@@ -175,11 +157,9 @@
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
 {
 	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-	//CCNode *parent = [self getChildByTag:kTagParentNode]; //This line isn't necessary?
     
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-    //[self addChild:sprite];
-    //[sprite setPTMRatio:PTM_RATIO];
+    
     //TODO:
     //read from the file to see how many objects should be added
     //Check how many sprites have been added
@@ -212,6 +192,7 @@
             return;
         }
     }
+    
     [self addChild:sprite];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
@@ -247,10 +228,6 @@
 
 -(void) hitStar:(b2Body*) starBody
 {
-//    //increment the star counter
-//    ++starCount;
-//    [starLabel setString:[NSString stringWithFormat:@"Stars: %d", starCount]];
-    
     // delete the star sprite
     AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
     CCSprite* sprite = [starBodyObject getSprite];
@@ -261,7 +238,6 @@
     world->DestroyBody(starBody);
     
     [self updateStarCount];
-    //NSLog(@"hitStar in PhysicsLayer, starcount: %d", starCount);
 }
 
 -(void) updateStarCount

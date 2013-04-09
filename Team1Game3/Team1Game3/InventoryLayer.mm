@@ -21,7 +21,7 @@
 		
 		self.isTouchEnabled = YES;
         
-        selectedObject = [[NSString alloc] initWithFormat:@"None"];
+        _selectedObject = [[NSString alloc] initWithFormat:@"None"];
 		
         [self setContentSize:CGSizeMake(size.width*0.25, size.height)];
         [self setPosition:ccp(0,0)];
@@ -64,12 +64,12 @@
 //        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] target:self selector:@selector(buttonPressed:)];
         
         CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] disabledImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] block:^(id sender) {
-                selectedObject = type;
+                _selectedObject = type;
         }];
         
 //        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected  target:self block:^(id sender) { //selector:@selector(buttonPressed:)];
 //
-//            selectedObject = type;
+//            __selectedObject = type;
 
         //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
         //{
@@ -78,12 +78,12 @@
         //CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel //block:^(id sender){
 //            if ([(NSNumber*) inventoryButton.userData intValue] == 0)
 //            {
-//              selectedObject = [[NSString alloc] initWithFormat:@"None"];
+//              _selectedObject = [[NSString alloc] initWithFormat:@"None"];
 //                NSLog(@"No More Objects");
 //            }
 //            else
 //            {
-                //selectedObject = type;
+                //_selectedObject = type;
 //                inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
 //                NSLog(@"Button Pressed");
 //            }
@@ -94,9 +94,10 @@
         
         [inventoryMenu addChild:inventoryButton];
     }
+    
     CCMenuItemLabel *deleteButton = [CCMenuItemFont itemWithString:@"Delete object" block:^(id sender)
         {
-        selectedObject = @"Delete";
+        _selectedObject = @"Delete";
     }];
     [inventoryMenu addChild:deleteButton];
     
@@ -108,7 +109,7 @@
 
 - (void) buttonPressed: (id) sender
     {
-        selectedObject = [[NSString alloc] initWithFormat:@"RampObject"];
+        _selectedObject = [[NSString alloc] initWithFormat:@"RampObject"];
     }
 //        for (NSArray* item in _items) {
 //            NSString* type = [item objectAtIndex:0];
@@ -117,40 +118,18 @@
 //            //inventoryButton.userData = numItems;
 //        if ([(NSNumber*) inventoryButton.userData intValue] == 0)
 //         {
-//             selectedObject = [[NSString alloc] initWithFormat:@"None"];
+//             _selectedObject = [[NSString alloc] initWithFormat:@"None"];
 //             NSLog(@"No More Objects");
 //         }
 //        else
 //        {
-//            selectedObject = type;
+//            _selectedObject = type;
 //            inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
 //            NSLog(@"is the user data");
 //            [inventoryButton  setColor: ccc3(125,125,125)];
 //       }
 //        }
 //    }
-    /* Inventory Menu:
-     * The menu of inventory items.
-     * ---------------------------------------------------------------------- */
-
-//    // Makes a ramp when you click
-//    CCMenuItemLabel *selectRampButton = [CCMenuItemFont itemWithString:@"Add a ramp!" block:^(id sender){
-//		NSLog(@"Add a ramp! button pressed.");
-//        selectedObject = @"RampObject";
-//	}];
-//    
-//    // Lets you delete objects you've placed
-//    CCMenuItemLabel *deleteButton = [CCMenuItemFont itemWithString:@"Delete object" block:^(id sender)
-//        {
-//        NSLog(@"Delete button pressed.");
-//        selectedObject = @"Delete";
-//    }];
-	 
-//    CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
-//	[inventoryMenu alignItemsVertically];
-//	[inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
-//	[self addChild: inventoryMenu z:-1];
-
 
 /* registerWithTouchDispacher:
  * Initializes touches for InventoryLayer. Makes it "swallow"
@@ -201,21 +180,8 @@
 // public functions, documented in InventoryLayer.h
 
 -(NSString*) getSelectedObject {
-    return selectedObject;
+    return _selectedObject;
 }
-
-// //TODO: comment back in if need be
-//-(void) setTarget:(id) sender atAction:(SEL)action
-//{
-//    target = sender;
-//    selector = action;
-////    _target = sender;
-////    if (!_selector1) {
-////        _selector1 = action;
-////    } else {
-////        _selector2 = action;
-////    }
-//}
 
 @end
 

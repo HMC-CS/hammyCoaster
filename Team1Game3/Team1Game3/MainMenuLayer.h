@@ -14,7 +14,7 @@
 }
 
 /* scene:
- * returns a CCScene that contains the MainMenu as the only child 
+ * returns a CCScene that contains the MainMenuLayer as the only child 
  */
 +(CCScene *) scene;
 

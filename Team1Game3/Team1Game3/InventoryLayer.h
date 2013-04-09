@@ -11,16 +11,9 @@
 
 @interface InventoryLayer : CCLayer {
     
-    NSString* selectedObject;
+    NSString* _selectedObject;
     
     NSArray* _items;
-    id target;
-    SEL selector;
-
-// TODO: comment back in if need be
-//    id _target;
-//    SEL _selector1; // play
-//    SEL _selector2; // reset
 }
 
 /* initWithItems:
@@ -32,12 +25,5 @@
  * returns NSString* of the selected object type
  */
 -(NSString*) getSelectedObject;
-
-// TODO: comment back in if need be
-///* setTarget: atAction:
-// * guaranteed name for function to initialize selectors and target
-// */
--(void) setTarget:(id) sender atAction:(SEL)action;
--(void) buttonPressed:(id) sender;
 
 @end

@@ -42,6 +42,4 @@
  */
 +(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
 
--(void) updateStarCount;
-
 @end
