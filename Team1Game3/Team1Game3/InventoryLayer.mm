@@ -83,7 +83,7 @@
 //           }
 //            else
 //           {
-//                _selectedObject = type;
+              _selectedObject = type;
 //            [inventoryButton  setColor: ccc3(125,125,125)];
 //                inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
 //                NSLog(@"Button Pressed %@ is the User Data", inventoryButton.userData);
