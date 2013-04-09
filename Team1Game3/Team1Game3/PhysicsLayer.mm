@@ -149,8 +149,24 @@
         [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
     }
     
-    //---test code for curved ramp---//
-    [self addNewSpriteOfType:@"CurvedRampObject" AtPosition:ccp(200.0, 400.0) WithRotation:0 AsDefault:NO];    
+    //		// Code kept around for later
+    //        #if 1
+    //        		// Use batch node. Faster
+    //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
+    //        		spriteTexture_ = [parent texture];
+    //        #else
+    //        		// doesn't use batch node. Slower
+    //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
+    //        		CCNode *parent = [CCNode node];
+    //        #endif
+    //        		[self addChild:parent z:0 tag:kTagParentNode];
+    //
+    //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
+    //
+    //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
+    //		[self addChild:label z:0];
+    //		[label setColor:ccc3(0,0,255)];
+    //		label.position = ccp( size.width/2, size.height-50);
 }
 
 
