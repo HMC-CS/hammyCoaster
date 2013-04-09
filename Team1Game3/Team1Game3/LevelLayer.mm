@@ -45,42 +45,7 @@
     
         [self createInventoryLayer];
         [self createPhysicsLayer];
-        
-        CGSize size = [[CCDirector sharedDirector] winSize];
-        
-        
-        /*
-         * Game Menu:
-         * The menu with the "action" type buttons, as opposed to inventory items.
-         * -------------------------------------------------------------------------
-         */
-        
-        // Play Button: drops ball
-        CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
-            [self playPhysicsLevel];
-            // stick a ball on the screen at starting position;
-        }];
-        
-        // Reset Button: Gets rid of all non-default items in level
-        // for now, just selects nothing so you can click freely
-        CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-            // reset level; currently just redraw everything
-            [self resetLevel];
-        }];
-        
-        // Back Button: goes back to level selector menu
-        CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
-            [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
-        }];
-        
-        CCMenu *gameMenu = [CCMenu menuWithItems: playButton, resetButton, nil];
-        [gameMenu alignItemsHorizontallyWithPadding:25];
-        [gameMenu setPosition:ccp(size.width/8, size.height*3/4)];
-        [self addChild: gameMenu z:-1];
-        
-        CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
-        [gameMenu2 setPosition:ccp(size.width/8, size.height*1/4)];
-        [self addChild: gameMenu2 z:-1];
+        [self createGameplayLayer];
 		
 	}
 	return self;
@@ -97,9 +62,6 @@
     
     _inventoryLayer = [[InventoryLayer alloc] initWithItems:initialItems];
     
-//    // TODO: comment back in if needed
-//    [_inventoryLayer setTarget:self atAction:@selector(playPhysicsLevel)]; //inventory selector1
-//    [_inventoryLayer setTarget:self atAction:@selector(resetLevel)]; //inventory selector2
     [self addChild:_inventoryLayer];
 }
 
@@ -113,8 +75,20 @@
     _physicsLayer = [[PhysicsLayer alloc] initWithObjects:initialObjects];
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
+    [_physicsLayer setTarget:self atAction:@selector(updateStarCount)]; // physics selector 3
     //_physicsLayer -> _editMode = YES;
     [self addChild:_physicsLayer];
+}
+
+/* createGameplayLayer:
+ * creates the GameplayLayer and tells it where to send messages for its selectors
+ */
+-(void) createGameplayLayer
+{
+    _gameplayLayer = [[GameplayLayer alloc] init];
+    [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLevel)];
+    [_gameplayLayer setTarget:self atAction:@selector(resetLevel)];
+    [self addChild:_gameplayLayer];
 }
 
 /* playPhysicsLevel:
@@ -141,6 +115,8 @@
     [self removeChild:_physicsLayer cleanup:YES];
     
     [self createPhysicsLayer];
+    
+    [_gameplayLayer resetStarCount];
 //    
 //    _physicsLayer->_editMode = true;
 }
@@ -159,7 +135,7 @@
 /* gameWon:
  * from: PhysicsLayer
  * to: LevelLayer
- * displays popup with congratulaitons and options after winning game
+ * displays popup with congratulations and options after winning game
  */
 -(void) gameWon
 {
@@ -170,6 +146,11 @@
                                           otherButtonTitles:@"No, thanks.", nil];
     alert.tag=1;
     [alert show];
+}
+
+-(void) updateStarCount
+{
+    [_gameplayLayer updateStarCount];
 }
 
 //-----OTHER FUNCTIONS-----//

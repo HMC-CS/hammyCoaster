@@ -49,19 +49,27 @@
     for (NSArray* item in _items) {
         NSString* type = [item objectAtIndex:0];
         NSString* label = [item objectAtIndex:1];
-        NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
-        
+//        NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
+//        
 //        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
 //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
-        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
-        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
-        CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
-        CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
-        selected.color = ccc3(125,125,125);
+//        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
+//        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
+//        CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
+//        CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
+        //selected.color = ccc3(125,125,125);
         // and/or:
         //selected.scale = 1.2;
         
-        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected  target:self selector:@selector(buttonPressed:)];//block:^(id sender)
+//        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] target:self selector:@selector(buttonPressed:)];
+        
+        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] disabledImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] block:^(id sender) {
+                selectedObject = type;
+        }];
+        
+//        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected  target:self block:^(id sender) { //selector:@selector(buttonPressed:)];
+//
+//            selectedObject = type;
 
         //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
         //{
@@ -81,8 +89,8 @@
 //            }
         
 //}];
-        inventoryButton.userData = numItems;
-        NSLog(@"Setting User Data");
+        //inventoryButton.userData = numItems;
+        //NSLog(@"Setting User Data");
         
         [inventoryMenu addChild:inventoryButton];
     }
@@ -100,25 +108,27 @@
 
 - (void) buttonPressed: (id) sender
     {
-        for (NSArray* item in _items) {
-            NSString* type = [item objectAtIndex:0];
-            //NSNumber* numItems = [item objectAtIndex:2];
-        CCMenuItemLabel* inventoryButton = sender;
-            //inventoryButton.userData = numItems;
-        if ([(NSNumber*) inventoryButton.userData intValue] == 0)
-         {
-             selectedObject = [[NSString alloc] initWithFormat:@"None"];
-             NSLog(@"No More Objects");
-         }
-        else
-        {
-            selectedObject = type;
-            inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
-            NSLog(@"is the user data");
-            [inventoryButton  setColor: ccc3(125,125,125)];
-       }
-        }
+        selectedObject = [[NSString alloc] initWithFormat:@"RampObject"];
     }
+//        for (NSArray* item in _items) {
+//            NSString* type = [item objectAtIndex:0];
+//            //NSNumber* numItems = [item objectAtIndex:2];
+//        CCMenuItemLabel* inventoryButton = sender;
+//            //inventoryButton.userData = numItems;
+//        if ([(NSNumber*) inventoryButton.userData intValue] == 0)
+//         {
+//             selectedObject = [[NSString alloc] initWithFormat:@"None"];
+//             NSLog(@"No More Objects");
+//         }
+//        else
+//        {
+//            selectedObject = type;
+//            inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+//            NSLog(@"is the user data");
+//            [inventoryButton  setColor: ccc3(125,125,125)];
+//       }
+//        }
+//    }
     /* Inventory Menu:
      * The menu of inventory items.
      * ---------------------------------------------------------------------- */

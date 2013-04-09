@@ -31,6 +31,7 @@
     id _target;
     SEL _selector1; //getSelectedObject
     SEL _selector2; //gameWon
+    SEL _selector3; //updateStarCount;
     
     CGPoint ballStartingPoint;
     

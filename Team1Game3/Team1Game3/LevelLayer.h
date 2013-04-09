@@ -19,10 +19,12 @@
 #import "InventoryLayer.h"
 #import "PhysicsLayer.h"
 #import "LevelGenerator.h"
+#import "GameplayLayer.h"
 
 @interface LevelLayer : CCLayer {
     InventoryLayer* _inventoryLayer;
     PhysicsLayer* _physicsLayer;
+    GameplayLayer* _gameplayLayer;
     
     int _levelSet;
     int _levelIndex;
@@ -39,5 +41,7 @@
  * returns a CCScene containing LevelLayer (with Level Set-Index) as the only child
  */
 +(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
+
+-(void) updateStarCount;
 
 @end

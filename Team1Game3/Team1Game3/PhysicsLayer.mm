@@ -31,10 +31,10 @@
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
         
-        starCount = 0;
-        starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", starCount] fontName:@"Arial" fontSize:24];
-        starLabel.position = CGPointMake(300.0, 600.0);
-        [self addChild:starLabel];
+//        starCount = 0;
+//        starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", starCount] fontName:@"Arial" fontSize:24];
+//        starLabel.position = CGPointMake(300.0, 600.0);
+//        [self addChild:starLabel];
         
         [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
         [self setPosition:ccp(superSize.width*0.25, 0)];
@@ -232,8 +232,11 @@
     if (!_selector1) {
         _selector1 = action;
     }
-    else {
+    else if (!_selector2) {
         _selector2 = action;
+    }
+    else {
+        _selector3 = action;
     }
 }
 
@@ -244,9 +247,9 @@
 
 -(void) hitStar:(b2Body*) starBody
 {
-    //increment the star counter
-    ++starCount;
-    [starLabel setString:[NSString stringWithFormat:@"Stars: %d", starCount]];
+//    //increment the star counter
+//    ++starCount;
+//    [starLabel setString:[NSString stringWithFormat:@"Stars: %d", starCount]];
     
     // delete the star sprite
     AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
@@ -256,7 +259,14 @@
         // (this doesn't actually happen 'till end of collision because
         //  hitStar is called inside a callback, but it doesn't seem to matter.)
     world->DestroyBody(starBody);
-    NSLog(@"hitStar in PhysicsLayer, starcount: %d", starCount);
+    
+    [self updateStarCount];
+    //NSLog(@"hitStar in PhysicsLayer, starcount: %d", starCount);
+}
+
+-(void) updateStarCount
+{
+    [_target performSelector:_selector3];
 }
 
 - (NSString*) getObjectType
