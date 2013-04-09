@@ -53,21 +53,21 @@
 //        
 //        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
 //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
-//        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
+        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
 //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
-//        CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
-//        CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
-        //selected.color = ccc3(125,125,125);
+       CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
+        CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
+        selected.color = ccc3(125,125,125);
         // and/or:
         //selected.scale = 1.2;
         
 //        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] target:self selector:@selector(buttonPressed:)];
         
-        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] disabledImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] block:^(id sender) {
-                _selectedObject = type;
-        }];
+        //CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] disabledImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] block:^(id sender) {
+                //_selectedObject = type;
+        //}];
         
-//        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected  target:self block:^(id sender) { //selector:@selector(buttonPressed:)];
+        CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected block:^(id sender) { //selector:@selector(buttonPressed:)];
 //
 //            __selectedObject = type;
 
@@ -76,19 +76,19 @@
             //CCMenuItemImage *button = (CCMenuItemImage *)sender;
         
         //CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel //block:^(id sender){
-//            if ([(NSNumber*) inventoryButton.userData intValue] == 0)
-//            {
-//              _selectedObject = [[NSString alloc] initWithFormat:@"None"];
-//                NSLog(@"No More Objects");
-//            }
-//            else
-//            {
-                //_selectedObject = type;
-//                inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
-//                NSLog(@"Button Pressed");
-//            }
+            //if ([(NSNumber*) inventoryButton.userData intValue] == 0)
+            //{
+              //_selectedObject = [[NSString alloc] initWithFormat:@"None"];
+               //NSLog(@"No More Objects");
+           //}
+            //else
+           //{
+                _selectedObject = type;
+                //inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+                //NSLog(@"Button Pressed");
+            //}
         
-//}];
+}];
         //inventoryButton.userData = numItems;
         //NSLog(@"Setting User Data");
         
