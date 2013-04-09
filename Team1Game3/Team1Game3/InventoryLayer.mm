@@ -49,7 +49,7 @@
     for (NSArray* item in _items) {
         NSString* type = [item objectAtIndex:0];
         NSString* label = [item objectAtIndex:1];
-//        NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
+        NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
 //        
 //        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
 //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
@@ -76,21 +76,24 @@
             //CCMenuItemImage *button = (CCMenuItemImage *)sender;
         
         //CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel //block:^(id sender){
-            //if ([(NSNumber*) inventoryButton.userData intValue] == 0)
-            //{
-              //_selectedObject = [[NSString alloc] initWithFormat:@"None"];
-               //NSLog(@"No More Objects");
-           //}
-            //else
-           //{
-                _selectedObject = type;
-                //inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
-                //NSLog(@"Button Pressed");
-            //}
-        
+//            if ([(NSNumber*) inventoryButton.userData intValue] == 0)
+//            {
+//              _selectedObject = [[NSString alloc] initWithFormat:@"None"];
+//                NSLog(@"No More Objects %@ is the User Data", inventoryButton.userData);
+//           }
+//            else
+//           {
+//                _selectedObject = type;
+//            [inventoryButton  setColor: ccc3(125,125,125)];
+//                inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+//                NSLog(@"Button Pressed %@ is the User Data", inventoryButton.userData);
+//            }
+//        
 }];
-        //inventoryButton.userData = numItems;
-        //NSLog(@"Setting User Data");
+        inventoryButton.userData = numItems;
+        //NSString* tagVar = type;
+        //inventoryButton.tag = [tagVar intValue];
+        NSLog(@"%@ is User Data", numItems);
         
         [inventoryMenu addChild:inventoryButton];
     }
