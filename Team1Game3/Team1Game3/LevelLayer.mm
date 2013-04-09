@@ -14,6 +14,7 @@
 #import "InventoryLayer.h"
 #import "MainMenuLayer.h"
 #import "LevelSelectorLayer.h"
+#import "WinLayer.h"
 
 @implementation LevelLayer
 
@@ -142,6 +143,8 @@
                                           otherButtonTitles:@"No, thanks.", nil];
     alert.tag=1;
     [alert show];
+    
+//    [[CCDirector sharedDirector] pushScene:[WinLayer scene]];
 }
 
 /* updateStarCount:

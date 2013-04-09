@@ -17,6 +17,7 @@
 		AD539FCC1700118700A47022 /* QueryCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD539FCB1700118700A47022 /* QueryCallback.mm */; };
 		AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95917129CFA007B471F /* RedPortalObject.mm */; };
 		AD57A95C17129FDE007B471F /* RedPortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A95B17129FDE007B471F /* RedPortalObject.png */; };
+		AD57A95F17142818007B471F /* WinLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95E17142818007B471F /* WinLayer.mm */; };
 		CE3B3199170E43C500F70048 /* SeesawObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* SeesawObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
@@ -250,6 +251,8 @@
 		AD57A95817129CEC007B471F /* RedPortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RedPortalObject.h; sourceTree = "<group>"; };
 		AD57A95917129CFA007B471F /* RedPortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RedPortalObject.mm; sourceTree = "<group>"; };
 		AD57A95B17129FDE007B471F /* RedPortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedPortalObject.png; sourceTree = "<group>"; };
+		AD57A95D17142808007B471F /* WinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinLayer.h; sourceTree = "<group>"; };
+		AD57A95E17142818007B471F /* WinLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WinLayer.mm; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* SeesawObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeesawObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* SeesawObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SeesawObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -755,6 +758,8 @@
 				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
+				AD57A95D17142808007B471F /* WinLayer.h */,
+				AD57A95E17142818007B471F /* WinLayer.mm */,
 			);
 			name = Layers/Scenes;
 			sourceTree = "<group>";
@@ -1763,6 +1768,7 @@
 				D8820765170EBBD700D74162 /* CurvedRampObject.mm in Sources */,
 				AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */,
 				D882076C1713A49600D74162 /* GameplayLayer.mm in Sources */,
+				AD57A95F17142818007B471F /* WinLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
