@@ -26,7 +26,7 @@
  */
 -(void) setTarget:(id) sender atAction:(SEL)action;
 
-/* updateStarCount
+/* updateStarCount:
  * increments the star counter when the ball hits a star
  */
 -(void) updateStarCount;

@@ -83,15 +83,16 @@
     }
 }
 
-/* playButtonPressed
+/* playButtonPressed:
  * asks LevelLayer to start the level
  */
 -(void) playButtonPressed
 {
     [_target performSelector:_selector1];
+    NSLog(@"PLAY in gameplay layer");
 }
 
-/* resetButtonPressed
+/* resetButtonPressed:
  * asks LevelLayer to restart the level, and resets GameplayLayer level data
  */
 -(void) resetButtonPressed
@@ -100,7 +101,7 @@
     [self resetStarCount];
 }
 
-/* resetStarCount
+/* resetStarCount:
  * resets the star count to 0 if the level is reset
  */
 -(void) resetStarCount

@@ -97,7 +97,7 @@
  */
 -(void) playPhysicsLevel
 {
-    NSLog(@"Play Button pressed in LevelLayer");
+    NSLog(@"Play Button pressed in LevelLayer with edit mode %d", _physicsLayer->_editMode);
     
     [_physicsLayer playLevel];
 //    _physicsLayer->_editMode = false;

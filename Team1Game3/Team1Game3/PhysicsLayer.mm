@@ -58,7 +58,7 @@
 -(void) initPhysics
 {
 	
-	CGSize s = [self contentSize];
+	CGSize size = [self contentSize];
 	
 	b2Vec2 gravity;
 	gravity.Set(0.0f, -10.0f);
@@ -75,7 +75,7 @@
 	
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
     
-    //Claire:Comment out this line to disable debug draw
+    // NOTE: comment this line out to disable debug draw
 	world->SetDebugDraw(m_debugDraw);
 	
 	uint32 flags = 0;
@@ -99,19 +99,19 @@
 	b2EdgeShape groundBox;
 	
 	// bottom
-	groundBox.Set(b2Vec2(0,0), b2Vec2(s.width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(0,0), b2Vec2(size.width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// top
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO));
+	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// left
-	groundBox.Set(b2Vec2(0,s.height/PTM_RATIO), b2Vec2(0,0));
+	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(0,0));
 	groundBody->CreateFixture(&groundBox,0);
 	
 	// right
-	groundBox.Set(b2Vec2(s.width/PTM_RATIO,s.height/PTM_RATIO), b2Vec2(s.width/PTM_RATIO,0));
+	groundBox.Set(b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,0));
 	groundBody->CreateFixture(&groundBox,0);
     
     
@@ -128,12 +128,12 @@
     rampShapeDef.shape = &rampEdge;
     
     // ramp definitions
-    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(s.width/(4*PTM_RATIO), 400/PTM_RATIO));
+    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(4*PTM_RATIO), 400/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
 
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
-    ballStartingPoint = CGPointMake(15.0, 600.0);
+    ballStartingPoint = CGPointMake(35.0, 600.0);
 
 }
 
@@ -156,8 +156,6 @@
 
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
 {
-	CCLOG(@"Add sprite %0.2f x %02.f",p.x,p.y);
-    
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
     
     //TODO:
@@ -175,7 +173,6 @@
     int count = polygonShape->GetVertexCount();
     
     CGFloat offset = self.boundingBox.origin.x;
-    
     
     for(int i = 0; i < count; i++)
     {
@@ -198,6 +195,7 @@
     [sprite setPosition: ccp(p.x,p.y)];
 }
 
+
 -(void)playLevel
 {
     NSLog(@"Physics PlayLevel");
@@ -205,6 +203,24 @@
         _editMode = NO;
         [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint WithRotation:0 AsDefault:NO];
     }
+}
+
+/* hitStar:
+ * removes star from screen when it is hit
+ */
+-(void) hitStar:(b2Body*) starBody
+{
+    // delete the star sprite
+    AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
+    CCSprite* sprite = [starBodyObject getSprite];
+    [self removeChild: sprite cleanup:YES];
+    
+    // delete the star body
+    // (this doesn't actually happen 'till end of collision because
+    //  hitStar is called inside the update function, but it doesn't seem to matter.)
+    world->DestroyBody(starBody);
+    
+    [self updateStarCount];
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action
@@ -221,30 +237,25 @@
     }
 }
 
+/* gameWon:
+ * indicates the game is won when the ball hits the portal
+ */
 -(void) gameWon
 {
     [_target performSelector:_selector2];
 }
 
--(void) hitStar:(b2Body*) starBody
-{
-    // delete the star sprite
-    AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
-    CCSprite* sprite = [starBodyObject getSprite];
-    [self removeChild: sprite cleanup:YES];
-    // delete the star body
-        // (this doesn't actually happen 'till end of collision because
-        //  hitStar is called inside a callback, but it doesn't seem to matter.)
-    world->DestroyBody(starBody);
-    
-    [self updateStarCount];
-}
-
+/* updateStarCount:
+ * causes star count to be updated when a star is hit
+ */
 -(void) updateStarCount
 {
     [_target performSelector:_selector3];
 }
 
+/* getObjectType:
+ * gets type of object to be added to screen
+ */
 - (NSString*) getObjectType
 {
     return [_target performSelector:_selector1];
@@ -257,7 +268,7 @@
 	//
 	// IMPORTANT:
 	// This is only for debug purposes
-	// It is recommend to disable it
+	// It is recommended to disable it
 	//
 	[super draw];
 	
@@ -270,6 +281,9 @@
 	kmGLPopMatrix();
 }
 
+/* update:
+ * simulates a time step in the physics world
+ */
 -(void) update: (ccTime) dt
 {
 	//It is recommended that a fixed time step is used with Box2D for stability
@@ -296,13 +310,12 @@
 }
 
 
+//-----TOUCHING WITH DRAGGING-----//
+
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
-
-
-//-----TOUCHING WITH DRAGGING-----//
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
     NSLog(@"Physics touch began");
@@ -377,8 +390,6 @@
             location = [[CCDirector sharedDirector] convertToGL: location];
             location = [self convertToNodeSpace:location];
         
-            //NSLog(@"(%f,%f)", location.x, location.y);
-        
             // get object type from inventory
             NSString* objectType = [self getObjectType];
             
@@ -388,6 +399,8 @@
         }
     }
 }
+
+//-----DEALLOC-----//
 
 -(void) dealloc
 {	
