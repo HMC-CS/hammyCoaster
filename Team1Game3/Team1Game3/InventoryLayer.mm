@@ -45,6 +45,7 @@
 	[CCMenuItemFont setFontSize:22];
     //CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
     CCMenu *inventoryMenu = [CCMenu node];
+    buttonArray = [[NSMutableArray alloc] init];
     
     for (NSArray* item in _items) {
         NSString* type = [item objectAtIndex:0];
@@ -83,14 +84,16 @@
 //           }
 //            else
 //           {
-              _selectedObject = type;
-//            [inventoryButton  setColor: ccc3(125,125,125)];
-//                inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+             _selectedObject = type;
+//            //[inventoryButton  setColor: ccc3(125,125,125)];
+//                //inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
+//               inventoryButton.tag = inventoryButton.tag-1;
 //                NSLog(@"Button Pressed %@ is the User Data", inventoryButton.userData);
 //            }
-//        
+        
 }];
-        inventoryButton.userData = numItems;
+        inventoryButton.tag = [numItems intValue];
+        [buttonArray addObject:inventoryButton];
         //NSString* tagVar = type;
         //inventoryButton.tag = [tagVar intValue];
         NSLog(@"%@ is User Data", numItems);
@@ -178,7 +181,22 @@
 // public functions, documented in InventoryLayer.h
 
 -(NSString*) getSelectedObject {
+    for (int i; i< [buttonArray count];i++)
+    {
+        CCMenuItemImage *button = buttonArray[i];
+        if (button.tag == 0)
+        {
+            NSLog(@"No More! %d is the User Data", button.tag);
+            return @"None";
+        }
+        else
+        {
+             NSLog(@"Button Pressed %d is the User Data", button.tag);
+            return _selectedObject;
+        }
+    }
     return _selectedObject;
+    
 }
 
 -(void) resetInventory {

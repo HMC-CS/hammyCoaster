@@ -13,6 +13,8 @@
     
     NSString* _selectedObject;
     
+    NSMutableArray* buttonArray;
+    
     NSArray* _items;
 }
 
