@@ -108,12 +108,13 @@
  * to: PhysicsLayer
  * Resets the level, currently by re-creating the _physicsLayer.
  */
-
 -(void) resetLevel
 {
     [self removeChild:_physicsLayer cleanup:YES];
     
     [self createPhysicsLayer];
+    
+    [_inventoryLayer resetInventory];
 }
 
 /* getInventorySelectedObject:

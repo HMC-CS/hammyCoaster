@@ -133,7 +133,7 @@
 
     /* hacked ball starting position
      * ---------------------------------------------------------------------- */
-    ballStartingPoint = CGPointMake(35.0, 600.0);
+    ballStartingPoint = CGPointMake(10.0, 600.0);
 
 }
 
@@ -168,25 +168,28 @@
     
     body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
 
-    b2Fixture* f = body->GetFixtureList();
-    b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-    int count = polygonShape->GetVertexCount();
+    if (![static_cast<AbstractGameObject*>(body->GetUserData())._tag isEqualToString:@"BallObject"]) {
     
-    CGFloat offset = self.boundingBox.origin.x;
-    
-    for(int i = 0; i < count; i++)
-    {
-        CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
-        CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
-        CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
-        CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
-        boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
-
-        if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+        b2Fixture* f = body->GetFixtureList();
+        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+        int count = polygonShape->GetVertexCount();
+        
+        CGFloat offset = self.boundingBox.origin.x;
+        
+        for(int i = 0; i < count; i++)
         {
-            world->DestroyBody(body);
-            NSLog(@"Body destroy");
-            return;
+            CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
+            CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
+            CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
+            CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
+            boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+            
+            if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+            {
+                world->DestroyBody(body);
+                NSLog(@"Body destroy");
+                return;
+            }
         }
     }
     
@@ -298,13 +301,13 @@
 	// generally best to keep the time step and iterations fixed.
 	world->Step(dt, velocityIterations, positionIterations);
     
-    if (_contactListener->gameWon) {
-        _contactListener->gameWon = false;
+    if (_contactListener->_gameWon) {
+        _contactListener->_gameWon = false;
         [self gameWon];
     }
-    if (_contactListener->contactStar != NULL) {
-        [self hitStar:(_contactListener->contactStar)];
-        _contactListener->contactStar = NULL;
+    if (_contactListener->_contactStar != NULL) {
+        [self hitStar:(_contactListener->_contactStar)];
+        _contactListener->_contactStar = NULL;
     }
     
 }

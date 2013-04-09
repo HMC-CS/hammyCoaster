@@ -11,8 +11,8 @@
 #import "AbstractGameObject.h"
 
 ContactListener::ContactListener() {
-    gameWon = false;
-    contactStar = NULL;
+    _gameWon = false;
+    _contactStar = NULL;
 }
 
 ContactListener::~ContactListener() {
@@ -33,20 +33,20 @@ void ContactListener::BeginContact(b2Contact* contact) {
         NSString* body2Type = body2Object->_tag;
         if (([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"BluePortalObject"])
             || ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"BluePortalObject"])) {
-            gameWon = true;
+            _gameWon = true;
             body1->SetAwake(false);
             body2->SetAwake(false);
         }
         if ([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"StarObject"])
         {
             NSLog(@"Star Collision");
-            contactStar = body2;
+            _contactStar = body2;
 
         }
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
         {
             NSLog(@"Star Collision");
-            contactStar = body1;
+            _contactStar = body1;
 
         }
     }

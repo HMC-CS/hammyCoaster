@@ -178,5 +178,9 @@
     return _selectedObject;
 }
 
+-(void) resetInventory {
+    _selectedObject = [[NSString alloc] initWithFormat:@"None"];
+}
+
 @end
 
