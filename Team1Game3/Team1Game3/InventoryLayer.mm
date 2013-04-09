@@ -93,6 +93,7 @@
         
 }];
         inventoryButton.tag = [numItems intValue];
+        inventoryButton.userData = type;
         [buttonArray addObject:inventoryButton];
         //NSString* tagVar = type;
         //inventoryButton.tag = [tagVar intValue];
@@ -181,9 +182,13 @@
 // public functions, documented in InventoryLayer.h
 
 -(NSString*) getSelectedObject {
-    for (int i; i< [buttonArray count];i++)
+    for (int i= 0; i< [buttonArray count];i++)
     {
         CCMenuItemImage *button = buttonArray[i];
+        NSString* objectType = (NSString*) button.userData;
+        if ([_selectedObject isEqualToString:objectType])
+        {
+        NSLog(@"%d is button tag", button.tag);
         if (button.tag == 0)
         {
             NSLog(@"No More! %d is the User Data", button.tag);
@@ -192,16 +197,19 @@
         else
         {
              NSLog(@"Button Pressed %d is the User Data", button.tag);
+            button.tag = button.tag -1;
+            //_selectedObject = objectType;
             return _selectedObject;
+        }
         }
     }
     return _selectedObject;
     
 }
 
--(void) resetInventory {
-    _selectedObject = [[NSString alloc] initWithFormat:@"None"];
-}
+//-(void) resetInventory {
+//    _selectedObject = [[NSString alloc] initWithFormat:@"None"];
+//}
 
 @end
 

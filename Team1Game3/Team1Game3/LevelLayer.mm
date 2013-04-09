@@ -112,10 +112,12 @@
 -(void) resetLevel
 {
     [self removeChild:_physicsLayer cleanup:YES];
-    
     [self createPhysicsLayer];
     
-    [_inventoryLayer resetInventory];
+    //[_inventoryLayer resetInventory];
+    
+    [self removeChild:_inventoryLayer cleanup:YES];
+    [self createInventoryLayer];
 }
 
 /* getInventorySelectedObject:

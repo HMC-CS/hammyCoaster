@@ -28,10 +28,10 @@
  */
 -(NSString*) getSelectedObject;
 
-/* resetInventory:
- * resets inventory for the level
- */
--(void) resetInventory;
+///* resetInventory:
+// * resets inventory for the level
+// */
+//-(void) resetInventory;
 
 
 @end

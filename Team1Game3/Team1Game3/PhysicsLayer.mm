@@ -46,6 +46,8 @@
         
         _initialObjects = objects;
         
+        _objectType = [[NSString alloc] initWithFormat:@"None"];
+        
         [self addInitialObjects];
 		
 		[self scheduleUpdate];
@@ -344,7 +346,9 @@
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
         if (!bodyObject->_isDefault && _editMode) {
-            if ([[self getObjectType] isEqualToString:@"Delete"]) {
+            _objectType = [self getObjectType];
+            NSLog(@"%@ is the object type", _objectType);
+            if ([_objectType isEqualToString:@"Delete"]) {
                 CCSprite* sprite = [bodyObject getSprite];
                 [self removeChild: sprite cleanup:YES];
                 world->DestroyBody(body);
@@ -394,10 +398,10 @@
             location = [self convertToNodeSpace:location];
         
             // get object type from inventory
-            NSString* objectType = [self getObjectType];
-            
-            if(objectType && ![objectType isEqualToString:@"None"] && ![objectType isEqualToString:@"Delete"]){
-                [self addNewSpriteOfType:objectType AtPosition:location WithRotation:0 AsDefault:NO];
+            _objectType = [self getObjectType];
+            NSLog(@"%@, is object type", _objectType);
+            if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
+                [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
             }
         }
     }

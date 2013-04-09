@@ -24,6 +24,8 @@
     GLESDebugDraw* m_debugDraw;		// strong ref
     ObjectFactory* _objectFactory;
     ContactListener* _contactListener;
+    NSString* _objectType;
+    
     
     int starCount;
     CCLabelTTF* starLabel;
