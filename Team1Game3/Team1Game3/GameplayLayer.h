@@ -16,10 +16,12 @@
     SEL _selector1; //getSelectedObject
     SEL _selector2; //gameWon
     
-    int _starCount;
+    
     CCLabelTTF* _starLabel;
     
 }
+
+@property (readonly) int starCount;
 
 /* setTarget: atAction:
  * guaranteed name for function to initialize selectors and target

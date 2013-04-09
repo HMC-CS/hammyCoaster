@@ -136,15 +136,15 @@
  */
 -(void) gameWon
 {
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
-                                                    message:@"Play Again?"
-                                                   delegate:self
-                                          cancelButtonTitle:@"Yes!"
-                                          otherButtonTitles:@"No, thanks.", nil];
-    alert.tag=1;
-    [alert show];
+//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
+//                                                    message:@"Play Again?"
+//                                                   delegate:self
+//                                          cancelButtonTitle:@"Yes!"
+//                                          otherButtonTitles:@"No, thanks.", nil];
+//    alert.tag=1;
+//    [alert show];
     
-//    [[CCDirector sharedDirector] pushScene:[WinLayer scene]];
+    [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
 }
 
 /* updateStarCount:

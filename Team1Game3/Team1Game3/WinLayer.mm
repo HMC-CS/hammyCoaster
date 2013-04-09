@@ -16,11 +16,11 @@
 
 @implementation WinLayer
 
-+(CCScene *) scene
++(CCScene *) sceneWithLevel: (int)level AndStarCount: (int) stars
 {
     CCScene *scene = [CCScene node];	// 'scene' is an autorelease object.
     
-    WinLayer* winLayer = [WinLayer node];
+    WinLayer* winLayer = [[WinLayer alloc] initWithLevel:level AndStarCount:stars];
     
     [scene addChild:winLayer];
 	

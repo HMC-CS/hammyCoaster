@@ -21,7 +21,7 @@
 /* scene:
  * returns a CCScene containing LevelSelectorLayer as the only child
  */
-+(CCScene *) scene;
++(CCScene *) sceneWithLevel: (int) level AndStarCount: (int) stars;
 
 -(id) initWithLevel: (int) level AndStarCount: (int) stars;
 
