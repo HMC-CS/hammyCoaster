@@ -106,11 +106,6 @@
     [self addChild: inventoryMenu z:-1];
 }
 
-
-- (void) buttonPressed: (id) sender
-    {
-        _selectedObject = [[NSString alloc] initWithFormat:@"RampObject"];
-    }
 //        for (NSArray* item in _items) {
 //            NSString* type = [item objectAtIndex:0];
 //            //NSNumber* numItems = [item objectAtIndex:2];
