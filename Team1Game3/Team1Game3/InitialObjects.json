@@ -37,10 +37,10 @@
         "objects": 
         [
             ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "400.0", "250.0", "0"],
-            ["StarObject", "500.0", "150.0", "0"],
-            ["StarObject", "600.0", "230.0", "0"],
-            ["CurvedRampObject", "500.0", "150.0", "0"]
+            ["StarObject", "380.0", "250.0", "0"],
+            ["StarObject", "480.0", "150.0", "0"],
+            ["StarObject", "580.0", "230.0", "0"],
+            ["CurvedRampObject", "480.0", "150.0", "0"]
         ],
         "inventory":
         [

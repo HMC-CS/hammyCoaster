@@ -90,9 +90,9 @@
 -(void) createGameplayLayer
 {
     _gameplayLayer = [[GameplayLayer alloc] init];
-    [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLevel)];
-    [_gameplayLayer setTarget:self atAction:@selector(resetBallPhysicsLevel)];
-    [_gameplayLayer setTarget:self atAction:@selector(resetPhysicsLevel)];
+    [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLayer)];
+    [_gameplayLayer setTarget:self atAction:@selector(resetBallPhysicsLayer)];
+    [_gameplayLayer setTarget:self atAction:@selector(resetPhysicsLayer)];
     [self addChild:_gameplayLayer];
 }
 
@@ -101,7 +101,7 @@
  * to: PhysicsLayer
  * tries the level by putting the ball in it.
  */
--(void) playPhysicsLevel
+-(void) playPhysicsLayer
 {
     NSLog(@"Play Button pressed in LevelLayer with edit mode %d", _physicsLayer->_editMode);
     
@@ -109,25 +109,25 @@
 //    _physicsLayer->_editMode = false;
 }
 
-/* resetBallPhysicsLevel:
+/* resetBallPhysicsLayer:
  * from: InventoryLayer
  * to: PhysicsLayer
  * Resets the level, currently by re-creating the _physicsLayer.
  */
 
--(void) resetBallPhysicsLevel
+-(void) resetBallPhysicsLayer
 {
     //reset ball and stars
     _physicsLayer->_editMode = true;
 }
 
-/* resetPhysicsLevel:
+/* resetPhysicsLayer:
  * from: InventoryLayer
  * to: PhysicsLayer
  * Resets the level, currently by re-creating the _physicsLayer.
  */
 
--(void) resetPhysicsLevel
+-(void) resetPhysicsLayer
 {
     [self removeChild:_physicsLayer cleanup:YES];
     [self createPhysicsLayer];

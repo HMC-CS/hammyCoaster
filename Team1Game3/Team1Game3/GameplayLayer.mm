@@ -124,8 +124,11 @@
     if (!_selector1) {
         _selector1 = action;
     }
-    else {
+    else if (!_selector2){
         _selector2 = action;
+    }
+    else {
+        _selector3 = action;
     }
 }
 
