@@ -18,10 +18,11 @@
     
     b2Vec2 vertices[4];
     int num = 4;
-    vertices[0].Set(-87.5f / PTM_RATIO, 120.5f / PTM_RATIO);
-    vertices[1].Set(-120.5f / PTM_RATIO, 87.5f / PTM_RATIO);
-    vertices[2].Set(87.5f / PTM_RATIO, -120.5f / PTM_RATIO);
-    vertices[3].Set(120.5f / PTM_RATIO, -87.5f / PTM_RATIO);
+    //row 1, col 1
+    vertices[0].Set(-153.4f / PTM_RATIO, -0.1f / PTM_RATIO);
+    vertices[1].Set(154.5f / PTM_RATIO, -1.0f / PTM_RATIO);
+    vertices[2].Set(157.7f / PTM_RATIO, 65.3f / PTM_RATIO);
+    vertices[3].Set(-157.0f / PTM_RATIO, 67.0f / PTM_RATIO);
     
     b2PolygonShape trampolineShape;
     trampolineShape.Set(vertices, num);
@@ -30,7 +31,7 @@
     _fixtureDef.shape = &trampolineShape; // Set the line shape
     _fixtureDef.density = 0.0f; // Set the density
     _fixtureDef.friction = 0.5f; // Set the friction
-    _fixtureDef.restitution = 0.5f; // Set the restitution
+    _fixtureDef.restitution = 1.5f; // Set the restitution
     
     // Add the shape to the body
     trampoline_Body->CreateFixture(&_fixtureDef);
