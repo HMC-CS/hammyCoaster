@@ -92,9 +92,7 @@
         
         CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
         [gameMenu2 setPosition:ccp(size.width/8, size.height*1/4)];
-        [self addChild: gameMenu2 z:-1];
->>>>>>> Put away default code and started the reset menu item again becaues github was mad at me yesterday
-		
+        [self addChild: gameMenu2 z:-1];		
 	}
 	return self;
 }
