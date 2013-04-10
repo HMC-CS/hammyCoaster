@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "302"
          endingLineNumber = "302"
-         landmarkName = "-update:"
+         landmarkName = "-draw"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,8 +65,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "318"
          endingLineNumber = "318"
-         landmarkName = "@implementation PhysicsLayer"
-         landmarkType = "3">
+         landmarkName = "-update:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
