@@ -8,6 +8,6 @@
 
 #import "AbstractGameObject.h"
 
-@interface SeesawObject : AbstractGameObject
+@interface TrampolineObject : AbstractGameObject
 
 @end
