@@ -13,9 +13,9 @@
 @interface GameplayLayer : CCLayer {
     
     id _target;
-    SEL _selector1; //getSelectedObject
-    SEL _selector2; //gameWon
-    
+    SEL _selector1; // Play Button Pressed
+    SEL _selector2; // Reset Ball
+    SEL _selector3; // Reset Level
     
     CCLabelTTF* _starLabel;
     

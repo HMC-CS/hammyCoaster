@@ -52,47 +52,6 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
         
         
-        /*
-         * Game Menu:
-         * The menu with the "action" type buttons, as opposed to inventory items.
-         * -------------------------------------------------------------------------
-         */
-        
-        // Play Button: drops ball
-        CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
-            [self playPhysicsLevel];
-            // stick a ball on the screen at starting position;
-        }];
-        
-        // Reset Ball Button: Gets rid of ball, puts stars back, sets editMode to true.
-        CCMenuItemLabel *resetBallButton = [CCMenuItemFont itemWithString:@"Reset Ball" block:^(id sender){
-            [self resetBallPhysicsLevel];
-        }];
-        
-        // Reset Button: Gets rid of all non-default items in level
-        CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
-            // reset level; currently just redraw everything
-            [self resetPhysicsLevel];
-        }];
-        
-        // Back Button: goes back to level selector menu
-        CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
-            [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
-        }];
-        
-        CCMenu *gameMenu0 = [CCMenu menuWithItems: playButton, nil];
-        [gameMenu0 alignItemsHorizontallyWithPadding:25];
-        [gameMenu0 setPosition:ccp(size.width/8, size.height*4/5)];
-        [self addChild: gameMenu0 z:-1];
-        
-        CCMenu *gameMenu1 = [CCMenu menuWithItems: resetBallButton, resetButton, nil];
-        [gameMenu1 alignItemsHorizontallyWithPadding:25];
-        [gameMenu1 setPosition:ccp(size.width/8, size.height*7/10)];
-        [self addChild: gameMenu1 z:-1];
-        
-        CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
-        [gameMenu2 setPosition:ccp(size.width/8, size.height*1/4)];
-        [self addChild: gameMenu2 z:-1];		
 	}
 	return self;
 }
@@ -132,7 +91,8 @@
 {
     _gameplayLayer = [[GameplayLayer alloc] init];
     [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLevel)];
-    [_gameplayLayer setTarget:self atAction:@selector(resetLevel)];
+    [_gameplayLayer setTarget:self atAction:@selector(resetBallPhysicsLevel)];
+    [_gameplayLayer setTarget:self atAction:@selector(resetPhysicsLevel)];
     [self addChild:_gameplayLayer];
 }
 
