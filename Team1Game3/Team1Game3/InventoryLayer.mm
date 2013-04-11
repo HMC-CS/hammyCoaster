@@ -186,6 +186,10 @@
     {
         CCMenuItemImage *button = buttonArray[i];
         NSString* objectType = (NSString*) button.userData;
+        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", button.userData];
+        CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
+        CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
+        selected.color = ccc3(125,125,125);
         if ([_selectedObject isEqualToString:objectType])
         {
         NSLog(@"%d is button tag", button.tag);
@@ -198,10 +202,12 @@
         {
              NSLog(@"Button Pressed %d is the User Data", button.tag);
             button.tag = button.tag -1;
-            [button  setColor: ccc3(125,125,125)];
+            [button  setNormalImage:selected];
             //_selectedObject = objectType;
             return _selectedObject;
         }
+        }else {
+            [button  setNormalImage:normal];
         }
     }
     return _selectedObject;
