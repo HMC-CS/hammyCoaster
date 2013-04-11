@@ -213,10 +213,10 @@
     
 }
 
-//-(NSString*) isDeleteSelected{
+-(NSString*) isDeleteSelected{
 //    NSLog(@"%@ should be the object", _selectedObject);
-//    return _selectedObject;
-//}
+ return _selectedObject;
+}
 
 //-(void) resetInventory {
 //    _selectedObject = [[NSString alloc] initWithFormat:@"None"];
