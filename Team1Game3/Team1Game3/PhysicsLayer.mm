@@ -23,6 +23,8 @@
 
 -(id) initWithObjects:(NSArray *)objects
 {
+    NSAssert1(objects, @"Objects array %@ given to PhysicsLayer is null.", objects);
+    
 	if( (self=[super init])) {
 		
 		// enable events
@@ -30,11 +32,6 @@
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
-        
-//        starCount = 0;
-//        starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", starCount] fontName:@"Arial" fontSize:24];
-//        starLabel.position = CGPointMake(300.0, 600.0);
-//        [self addChild:starLabel];
         
         [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
         [self setPosition:ccp(superSize.width*0.25, 0)];
@@ -174,6 +171,8 @@
 
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
 {
+    NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
+    
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
     
     //TODO:
@@ -231,6 +230,8 @@
  */
 -(void) hitStar:(b2Body*) starBody
 {
+    NSAssert(starBody, @"Star body in hitStar in Physics Layer is null.");
+    
     // delete the star sprite
     AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
     CCSprite* sprite = [starBodyObject getSprite];
@@ -246,6 +247,9 @@
 
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
+    NSAssert1(sender, @"Sender %@ for PhysicsLayer setTarget is null.", sender);
+    NSAssert1(action, @"Selector %@ for PhysicsLayer setTarget is null.", action);
+    
     _target = sender;
     if (!_selector1) {
         _selector1 = action;

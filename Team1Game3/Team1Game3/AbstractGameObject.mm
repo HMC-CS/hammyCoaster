@@ -14,6 +14,10 @@
 
 -(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite withTag:(NSString*) tag
 {
+    NSAssert(world, @"Physics world passed to AbstractGameObject init is null.");
+    NSAssert1(sprite, @"Sprite %@ passed to AbstractGameObject is null.", sprite);
+    NSAssert1(NSClassFromString(tag), @"AbstractGameObject tag %@ does not refer to a valid class.", tag);
+    
     self = [super init];
     if (self) {
         _world = world;
@@ -29,6 +33,8 @@
     return _sprite;
 }
 
+
+// TODO: make createBody:AtLocation to make consistent with rest of code.
 - (b2Body *) createBody:(CGPoint)location
 {
     // Must create body, set user data to "self," and create tag.
@@ -40,15 +46,3 @@
 }
 
 @end
-
-//void AbstractGameObject::startContact()
-//{
-//    m_contacting = YES;
-//    //NSLog(@"contacting object");
-//}
-//
-//void AbstractGameObject::endContact()
-//{
-//    m_contacting = NO;
-//    //NSLog(@"stopped contacting object");
-//}

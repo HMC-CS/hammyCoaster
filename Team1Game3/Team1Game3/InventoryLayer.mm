@@ -13,6 +13,8 @@
 
 -(id) initWithItems:(NSArray *)items
 {
+    NSAssert1(items, @"Items array %@ given to InventoryLayer is null.", items);
+    
 	if( (self=[super init])) {
 		
 		// enable events
@@ -49,7 +51,7 @@
     
     for (NSArray* item in _items) {
         NSString* type = [item objectAtIndex:0];
-        NSString* label = [item objectAtIndex:1];
+        //NSString* label = [item objectAtIndex:1];
         NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
 //        
 //        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
@@ -152,7 +154,7 @@
  */
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"Inventory touch began");
+    // NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
 
@@ -170,7 +172,7 @@
  */
 -(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"Inventory touch ended");
+    // NSLog(@"Inventory touch ended");
     //[_target performSelector:_selector1]; //selector one is playPhysicsLevel
 }
 
@@ -228,6 +230,7 @@
     
 }
 
+
 -(bool) isDeleteSelected{
 //    NSLog(@"%@ should be the object", _selectedObject);
   if (_selectedObject == @"Delete")
@@ -261,10 +264,6 @@
         }
     }
 }
-
-//-(void) resetInventory {
-//    _selectedObject = [[NSString alloc] initWithFormat:@"None"];
-//}
 
 @end
 

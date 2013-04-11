@@ -20,6 +20,10 @@
 
 +(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index
 {
+    
+    NSAssert1(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
+    NSAssert1(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
     
@@ -33,6 +37,10 @@
 
 -(id) initWithLevelSet:(int) set AndIndex:(int) index
 {
+    
+    NSAssert1(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
+    NSAssert1(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    
 	if( (self=[super init])) {
 		
 		// enable events
@@ -47,7 +55,10 @@
         [self createInventoryLayer];
         [self createPhysicsLayer];
         [self createGameplayLayer];
+<<<<<<< HEAD
         
+=======
+>>>>>>> Added NSAssert statements to almost all team-written functions with inputs to check boundary conditions.
         
 	}
 	return self;

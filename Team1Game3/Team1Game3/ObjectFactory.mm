@@ -23,6 +23,9 @@
 - (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault withSprite:(CCSprite*) sprite
 {
     Class objectClass = NSClassFromString(className);
+    
+    NSAssert1(objectClass, @"ObjectFactory called with invalid class name %@", className);
+    
     AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withSprite:(CCSprite*) sprite withTag:className];
     return newObject;
 }

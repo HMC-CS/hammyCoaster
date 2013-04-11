@@ -10,11 +10,13 @@
 
 #import "JSONKit.h"
 
-
 @implementation LevelGenerator
 
 -(NSMutableArray*) generateObjectsInSet:(int)set WithIndex:(int)index
 {
+    NSAssert1(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
+    NSAssert1(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
@@ -41,6 +43,10 @@
 
 -(NSMutableArray*) generateInventoryInSet:(int)set WithIndex:(int)index
 {
+    
+    NSAssert(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
+    NSAssert(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
     NSData* jsonData = [NSData dataWithContentsOfFile:path];
