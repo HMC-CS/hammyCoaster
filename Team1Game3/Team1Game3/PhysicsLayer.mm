@@ -252,10 +252,17 @@
     }
     else if (!_selector2) {
         _selector2 = action;
-    }
-    else {
+    }else{
         _selector3 = action;
     }
+    
+//    
+//    else if (!_selector3)
+//    {
+//        _selector3 = action;
+//    }else{
+//        _selector4 = action;
+//    }
 }
 
 /* gameWon:
@@ -281,6 +288,10 @@
 {
     return [_target performSelector:_selector1];
 }
+//-(NSString*) isDeleteSelected
+//{
+//    return [_target performSelector: _selector4];
+//}
 
 //-----BUILT-IN/BOX 2D-----//
 
@@ -362,6 +373,7 @@
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
         if (!bodyObject->_isDefault && _editMode) {
+            //_objectType = [self isDeleteSelected];
             _objectType = [self getObjectType];
             NSLog(@"%@ is the object type", _objectType);
             if ([_objectType isEqualToString:@"Delete"]) {

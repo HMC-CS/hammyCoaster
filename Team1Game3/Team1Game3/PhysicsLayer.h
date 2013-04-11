@@ -34,6 +34,7 @@
     SEL _selector1; //getSelectedObject
     SEL _selector2; //gameWon
     SEL _selector3; //updateStarCount;
+ //   SEL _selector4; //tells if an object should be deleted or dragged
     
     CGPoint ballStartingPoint;
     

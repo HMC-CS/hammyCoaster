@@ -198,6 +198,7 @@
         {
              NSLog(@"Button Pressed %d is the User Data", button.tag);
             button.tag = button.tag -1;
+            [button  setColor: ccc3(125,125,125)];
             //_selectedObject = objectType;
             return _selectedObject;
         }
@@ -206,6 +207,11 @@
     return _selectedObject;
     
 }
+
+//-(NSString*) isDeleteSelected{
+//    NSLog(@"%@ should be the object", _selectedObject);
+//    return _selectedObject;
+//}
 
 //-(void) resetInventory {
 //    _selectedObject = [[NSString alloc] initWithFormat:@"None"];

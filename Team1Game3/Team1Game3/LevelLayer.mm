@@ -148,6 +148,10 @@
 {
     return [_inventoryLayer getSelectedObject];
 }
+//-(NSString*) checkIfInventoryIsDelete;
+//{
+//    return [_inventoryLayer isDeleteSelected];
+//}
 
 /* gameWon:
  * from: PhysicsLayer
