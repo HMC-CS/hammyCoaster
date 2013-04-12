@@ -9,7 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "AppDelegate.h"
+
 @interface LevelGenerator : CCNode {
+    
+    AppController* _appController;
     
 }
 

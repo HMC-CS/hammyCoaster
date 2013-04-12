@@ -9,12 +9,16 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "AppDelegate.h"
+
 // TODO: comment back in if multiple level sets added
 //#import "CCScrollLayer.h"
 
 @interface LevelSelectorLayer : CCLayer {
 
 //    CCScrollLayer* _scroller;   // TODO: comment back in if multiple level sets added
+    
+    AppController* _appController;
     
 }
 

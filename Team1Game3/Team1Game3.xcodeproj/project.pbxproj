@@ -44,6 +44,8 @@
 		D882076F1713B8EB00D74162 /* CurvedRampObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D882076D1713B8EB00D74162 /* CurvedRampObjectIcon.png */; };
 		D88207701713B8EB00D74162 /* CurvedRampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D882076E1713B8EB00D74162 /* CurvedRampObjectIconSelected.png */; };
 		D88207721714E8BF00D74162 /* TrampolineObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D88207711714E8BF00D74162 /* TrampolineObject.png */; };
+		D88207781717D20200D74162 /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = D88207771717D20100D74162 /* CheckMark.png */; };
+		D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D882077A1717D3D200D74162 /* OverallWinLayer.m */; };
 		D895F54917073CCA00ED74C5 /* LevelSelectorLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */; };
 		D895F550170743CA00ED74C5 /* LevelIcon0.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54A170743CA00ED74C5 /* LevelIcon0.png */; };
 		D895F551170743CA00ED74C5 /* LevelIcon1.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54B170743CA00ED74C5 /* LevelIcon1.png */; };
@@ -285,6 +287,9 @@
 		D882076D1713B8EB00D74162 /* CurvedRampObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurvedRampObjectIcon.png; sourceTree = "<group>"; };
 		D882076E1713B8EB00D74162 /* CurvedRampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurvedRampObjectIconSelected.png; sourceTree = "<group>"; };
 		D88207711714E8BF00D74162 /* TrampolineObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObject.png; sourceTree = "<group>"; };
+		D88207771717D20100D74162 /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
+		D88207791717D3D200D74162 /* OverallWinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverallWinLayer.h; sourceTree = "<group>"; };
+		D882077A1717D3D200D74162 /* OverallWinLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverallWinLayer.m; sourceTree = "<group>"; };
 		D895F54717073CCA00ED74C5 /* LevelSelectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectorLayer.h; sourceTree = "<group>"; };
 		D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelSelectorLayer.mm; sourceTree = "<group>"; };
 		D895F54A170743CA00ED74C5 /* LevelIcon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon0.png; sourceTree = "<group>"; };
@@ -762,6 +767,8 @@
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
 				AD57A95E17142818007B471F /* WinLayer.mm */,
+				D88207791717D3D200D74162 /* OverallWinLayer.h */,
+				D882077A1717D3D200D74162 /* OverallWinLayer.m */,
 			);
 			name = Layers/Scenes;
 			sourceTree = "<group>";
@@ -798,6 +805,7 @@
 		D895F556170743E200ED74C5 /* Level Icons */ = {
 			isa = PBXGroup;
 			children = (
+				D88207771717D20100D74162 /* CheckMark.png */,
 				D895F54A170743CA00ED74C5 /* LevelIcon0.png */,
 				D895F54B170743CA00ED74C5 /* LevelIcon1.png */,
 				D895F54C170743CA00ED74C5 /* LevelIcon2.png */,
@@ -1565,6 +1573,7 @@
 				D882076F1713B8EB00D74162 /* CurvedRampObjectIcon.png in Resources */,
 				D88207701713B8EB00D74162 /* CurvedRampObjectIconSelected.png in Resources */,
 				D88207721714E8BF00D74162 /* TrampolineObject.png in Resources */,
+				D88207781717D20200D74162 /* CheckMark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1773,6 +1782,7 @@
 				AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */,
 				D882076C1713A49600D74162 /* GameplayLayer.mm in Sources */,
 				AD57A95F17142818007B471F /* WinLayer.mm in Sources */,
+				D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

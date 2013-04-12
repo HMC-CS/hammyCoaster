@@ -21,8 +21,7 @@
 +(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index
 {
     
-    NSAssert1(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
-    NSAssert1(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    // Note: bounds checking on set and index done in init.
     
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
@@ -37,11 +36,13 @@
 
 -(id) initWithLevelSet:(int) set AndIndex:(int) index
 {
-    
-    NSAssert1(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
-    NSAssert1(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
-    
 	if( (self=[super init])) {
+        
+        
+        _appController = (AppController*)[[UIApplication sharedApplication] delegate];
+        
+        NSAssert1(set > 0 && set <= _appController.numLevelSets, @"Invalid set index %d given in LevelLayer.", set);
+        NSAssert1(index > 0 && index <= _appController.numLevelIndices, @"Invalid level index %d given in LevelLayer.", index);
 		
 		// enable events
         
@@ -177,6 +178,8 @@
 //                                          otherButtonTitles:@"No, thanks.", nil];
 //    alert.tag=1;
 //    [alert show];
+    
+    [_appController completedLevelWithLevelSet:_levelSet AndIndex:_levelIndex];
     
     [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
 }

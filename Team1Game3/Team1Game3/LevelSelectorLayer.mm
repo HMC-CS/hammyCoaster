@@ -33,6 +33,8 @@
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         
+        _appController = (AppController*)[[UIApplication sharedApplication] delegate];
+        
         /////////////
         
         CCMenuItem *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender) {
@@ -68,11 +70,10 @@
             NSMutableArray *selectedIconSet = [[NSMutableArray alloc] init];
             [_selectedLevelIcons addObject:selectedIconSet];
         
-            
             // TODO - change these level icons... I pretty blatantly stole them from
             // my other game!!
             for (int j = 0; j < 3; ++j) {
-                for (int i = 0; i < 4; ++i) {
+                for (int i = 0; i < _appController.numLevelIndices/3; ++i) {
                     CCSprite *levelIcon = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];   // TODO: make 0 "k" if loop added back
                     [iconSet addObject:levelIcon];
                     
@@ -92,6 +93,17 @@
                     [labelSelected setColor:ccBLACK];
                     [labelSelected setPosition:ccp(levelIconSelected.contentSize.width/2, levelIconSelected.contentSize.height/2)];
                     [levelIconSelected addChild:labelSelected];
+                    
+                    if ([_appController isCompletedLevelWithLevelSet:1 AndIndex:(j+1)*(i+1)]){
+                        CCSprite *check = [CCSprite spriteWithFile:@"CheckMark.png"];
+                        [check setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
+                        [check setScale:0.3];
+                        [levelIcon addChild:check];
+                        CCSprite *check2 = [CCSprite spriteWithFile:@"CheckMark.png"];
+                        [check2 setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
+                        [check2 setScale:0.3];
+                        [levelIconSelected addChild:check2];
+                    }
 
                     
                     CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {

@@ -12,10 +12,19 @@
 
 @implementation LevelGenerator
 
+-(id) init
+{
+    if (self = [super init]) {
+        _appController = (AppController*)[[UIApplication sharedApplication] delegate];
+    }
+    
+    return self;
+}
+
 -(NSMutableArray*) generateObjectsInSet:(int)set WithIndex:(int)index
 {
-    NSAssert1(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
-    NSAssert1(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    NSAssert1(set > 0 && set <= _appController.numLevelSets, @"Invalid set index %d given in LevelGenerator.", set);
+    NSAssert1(index > 0 && index <= _appController.numLevelIndices, @"Invalid level index %d given in LevelGenerator.", index);
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
@@ -44,8 +53,8 @@
 -(NSMutableArray*) generateInventoryInSet:(int)set WithIndex:(int)index
 {
     
-    NSAssert(set == 1, @"Invalid set index %d given.", set); // TODO - get rid of magic number
-    NSAssert(index >= 1 && index <= 12, @"Invalid level index %d given.", index);
+    NSAssert1(set > 0 && set <= _appController.numLevelSets, @"Invalid set index %d given.", set);
+    NSAssert1(index > 0 && index <= _appController.numLevelIndices, @"Invalid level index %d given.", index);
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     

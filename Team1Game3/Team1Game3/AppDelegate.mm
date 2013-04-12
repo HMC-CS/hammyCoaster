@@ -14,10 +14,61 @@
 @implementation AppController
 
 @synthesize window=window_, navController=navController_, director=director_;
+@synthesize numLevelSets=_numLevelSets, numLevelIndices=_numLevelIndices;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	// Create the main window
+    [self defaultBehavior];
+    
+    _numLevelSets = 1;
+    _numLevelIndices = 12;
+    
+    _numLevelsCompleted = 0;
+    _levelCompletionStatuses = [[NSMutableArray alloc] init];
+    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
+    {
+        [_levelCompletionStatuses addObject:@"false"];
+    }
+	
+	return YES;
+}
+
+-(bool) isCompletedLevelWithLevelSet:(int)set AndIndex:(int)index
+{
+    NSAssert1(set > 0 && set <= _numLevelSets, @"Invalid set index %d given in AppController.", set);
+    NSAssert1(index > 0 && index <= _numLevelIndices, @"Invalid level index %d given in AppController.", index);
+    
+    if ([[_levelCompletionStatuses objectAtIndex:(set-1)*_numLevelIndices + (index-1)] isEqualToString:@"true"]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
+-(void) completedLevelWithLevelSet:(int)set AndIndex:(int)index
+{
+    NSAssert1(set > 0 && set <= _numLevelSets, @"Invalid set index %d given in AppController.", set);
+    NSAssert1(index > 0 && index <= _numLevelIndices, @"Invalid level index %d given in AppController.", index);
+    
+    if ([[_levelCompletionStatuses objectAtIndex:(set-1)*_numLevelIndices + (index-1)] isEqualToString:@"false"]) {
+        [_levelCompletionStatuses setObject:@"true" atIndexedSubscript:(set-1)*_numLevelIndices + (index-1)];
+        ++_numLevelsCompleted;
+        //NSLog(@"completed status is %@", [_levelCompletionStatuses objectAtIndex:(set-1)*_numLevelIndices + (index-1)]);
+        //NSLog(@"num levels completed is %d", _numLevelsCompleted);
+        if (_numLevelsCompleted == _numLevelSets * _numLevelIndices) {
+            [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
+        }
+    }
+    
+}
+
+
+/* defaultBehavior:
+ * The built-in behavior of AppDelegate
+ */
+-(void) defaultBehavior
+{
+    // Create the main window
 	window_ = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 	
 	
@@ -29,10 +80,10 @@
 									sharegroup:nil
 								 multiSampling:NO
 							   numberOfSamples:0];
-
+    
 	// Enable multiple touches
 	[glView setMultipleTouchEnabled:YES];
-
+    
 	director_ = (CCDirectorIOS*) [CCDirector sharedDirector];
 	
 	director_.wantsFullScreenLayout = YES;
@@ -76,7 +127,7 @@
 	[CCTexture2D PVRImagesHavePremultipliedAlpha:YES];
 	
 	// and add the scene to the stack. The director will run it when it automatically when the view is displayed.
-	[director_ pushScene: [IntroLayer scene]]; 
+	[director_ pushScene: [IntroLayer scene]];
 	
 	
 	// Create a Navigation Controller with the Director
@@ -84,13 +135,11 @@
 	navController_.navigationBarHidden = YES;
 	
 	// set the Navigation Controller as the root view controller
-//	[window_ addSubview:navController_.view];	// Generates flicker.
+    //	[window_ addSubview:navController_.view];	// Generates flicker.
 	[window_ setRootViewController:navController_];
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
-	
-	return YES;
 }
 
 // Supported orientations: Landscape. Customize it for your own needs
