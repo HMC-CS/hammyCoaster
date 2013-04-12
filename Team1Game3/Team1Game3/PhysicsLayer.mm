@@ -251,7 +251,7 @@
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
     NSAssert1(sender, @"Sender %@ for PhysicsLayer setTarget is null.", sender);
-    NSAssert1(action, @"Selector %@ for PhysicsLayer setTarget is null.", action);
+    NSAssert(action, @"Selector for PhysicsLayer setTarget is null.");
     
     _target = sender;
     if (!_selector1) {
