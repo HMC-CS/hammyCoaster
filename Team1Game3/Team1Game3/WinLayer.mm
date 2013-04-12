@@ -44,20 +44,21 @@
         [CCMenuItemFont setFontSize:22];
         
         // Reset Button
-        CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
-        }];
-        CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
-        }];
+
         CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
             [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level]];
         }];
         CCMenuItemLabel *next = [CCMenuItemFont itemWithString:@"Next level" block:^(id sender){
             [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
         }];
+        CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
+            [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
+        }];
+        CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
+            [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
+        }];
         
-        CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, replay, next, nil];
+        CCMenu *menu = [CCMenu menuWithItems:replay, next, mainMenu, levelMenu, nil];
         
         [menu alignItemsVertically];
         

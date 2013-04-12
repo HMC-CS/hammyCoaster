@@ -36,7 +36,6 @@
     
     CGSize size = [CCDirector sharedDirector].winSize;
 
-    
     /*
      * Game Menu:
      * The menu with the "action" type buttons, as opposed to inventory items.
@@ -78,16 +77,19 @@
 
     // Buttons at bottom of inventory panel
     CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
-    [gameMenu2 setPosition:ccp(size.width/8, size.height*1/4)];
+    [gameMenu2 setPosition:ccp(size.width/8, 5*size.height/16)];
     [self addChild: gameMenu2 z:-1];
 }
 
 -(void) createLabels
 {
+    
+    CGSize size = [CCDirector sharedDirector].winSize;
+    
     // Number of Stars label
     _starCount = 0;
     _starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:24];
-    _starLabel.position = CGPointMake(600.0, 600.0);
+    _starLabel.position = CGPointMake(size.width/8, 3*size.height/16);
     [self addChild:_starLabel];
 }
 
