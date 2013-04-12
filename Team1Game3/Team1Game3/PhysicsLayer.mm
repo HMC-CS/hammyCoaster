@@ -207,7 +207,7 @@
 //                [self objectDeletedOfType:type];
 //                world->DestroyBody(body);
                 [self deleteObjectWithBody:body];
-                NSLog(@"Body destroy");
+                // NSLog(@"Body destroy");
                 return;
             }
         }
@@ -221,7 +221,7 @@
 
 -(void)playLevel
 {
-    NSLog(@"Physics PlayLevel");
+    // NSLog(@"Physics PlayLevel");
     if (_editMode) { // So you can only do it once before resetting.
         _editMode = NO;
         [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint WithRotation:0 AsDefault:NO];
@@ -376,7 +376,7 @@
 }
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
-    NSLog(@"Physics touch began");
+    // NSLog(@"Physics touch began");
     //Get tap location and convert to cocos2d-box2d coordinates
     CGPoint touchLocation = [touch locationInView:[touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
@@ -401,7 +401,7 @@
         if (!bodyObject->_isDefault && _editMode) {
             bool isDelete = [self isDeleteSelected];
             //_objectType = [self getObjectType];
-            NSLog(@"%@ is the object type", _objectType);
+            // NSLog(@"%@ is the object type", _objectType);
             if (isDelete) {
                 CCSprite* sprite = [bodyObject getSprite];
                 [self removeChild: sprite cleanup:YES];
@@ -423,7 +423,7 @@
 }
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"Physics touch moved");
+    // NSLog(@"Physics touch moved");
     CGPoint touchLocation = [touch locationInView:[touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
     touchLocation = [self convertToNodeSpace:touchLocation];
@@ -436,12 +436,12 @@
 }
 
 -(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {
-    NSLog(@"Physics touch cancelled");
+    // NSLog(@"Physics touch cancelled");
     currentMoveableBody = NULL;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
-    NSLog(@"Physics touch ended");
+    // NSLog(@"Physics touch ended");
     if (currentMoveableBody != NULL) {
         currentMoveableBody = NULL;
     } else if (_editMode) {
@@ -456,7 +456,7 @@
         
             // get object type from inventory
             _objectType = [self getObjectType];
-            NSLog(@"%@, is object type", _objectType);
+            // NSLog(@"%@, is object type", _objectType);
             if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
                 [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
             }

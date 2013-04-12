@@ -28,8 +28,8 @@
 		D86F7147170749B50007ED1D /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F7144170749B50007ED1D /* CCScrollLayer.mm */; };
 		D86F7148170749B50007ED1D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D86F7145170749B50007ED1D /* README.md */; };
 		D86F7149170749B50007ED1D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D86F7145170749B50007ED1D /* README.md */; };
-		D86F714C17088D960007ED1D /* LevelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D86F714B17088D960007ED1D /* LevelGenerator.m */; };
-		D86F714D17088D960007ED1D /* LevelGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = D86F714B17088D960007ED1D /* LevelGenerator.m */; };
+		D86F714C17088D960007ED1D /* LevelGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F714B17088D960007ED1D /* LevelGenerator.mm */; };
+		D86F714D17088D960007ED1D /* LevelGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F714B17088D960007ED1D /* LevelGenerator.mm */; };
 		D86F71571708A0770007ED1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D86F71561708A0770007ED1D /* JSONKit.m */; };
 		D86F71581708A0770007ED1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D86F71561708A0770007ED1D /* JSONKit.m */; };
 		D86F715A1708A7100007ED1D /* InitialObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F71591708A7100007ED1D /* InitialObjects.json */; };
@@ -46,6 +46,7 @@
 		D88207721714E8BF00D74162 /* TrampolineObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D88207711714E8BF00D74162 /* TrampolineObject.png */; };
 		D88207781717D20200D74162 /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = D88207771717D20100D74162 /* CheckMark.png */; };
 		D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D882077A1717D3D200D74162 /* OverallWinLayer.m */; };
+		D882077E1717F1F800D74162 /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D882077D1717F1F700D74162 /* GameManager.mm */; };
 		D895F54917073CCA00ED74C5 /* LevelSelectorLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */; };
 		D895F550170743CA00ED74C5 /* LevelIcon0.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54A170743CA00ED74C5 /* LevelIcon0.png */; };
 		D895F551170743CA00ED74C5 /* LevelIcon1.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54B170743CA00ED74C5 /* LevelIcon1.png */; };
@@ -269,7 +270,7 @@
 		D86F7144170749B50007ED1D /* CCScrollLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCScrollLayer.mm; sourceTree = "<group>"; };
 		D86F7145170749B50007ED1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D86F714A17088D960007ED1D /* LevelGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelGenerator.h; sourceTree = "<group>"; };
-		D86F714B17088D960007ED1D /* LevelGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LevelGenerator.m; sourceTree = "<group>"; };
+		D86F714B17088D960007ED1D /* LevelGenerator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelGenerator.mm; sourceTree = "<group>"; };
 		D86F71551708A0770007ED1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
 		D86F71561708A0770007ED1D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		D86F71591708A7100007ED1D /* InitialObjects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialObjects.json; sourceTree = "<group>"; };
@@ -290,6 +291,8 @@
 		D88207771717D20100D74162 /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
 		D88207791717D3D200D74162 /* OverallWinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverallWinLayer.h; sourceTree = "<group>"; };
 		D882077A1717D3D200D74162 /* OverallWinLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverallWinLayer.m; sourceTree = "<group>"; };
+		D882077C1717F1F600D74162 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
+		D882077D1717F1F700D74162 /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
 		D895F54717073CCA00ED74C5 /* LevelSelectorLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelSelectorLayer.h; sourceTree = "<group>"; };
 		D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelSelectorLayer.mm; sourceTree = "<group>"; };
 		D895F54A170743CA00ED74C5 /* LevelIcon0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon0.png; sourceTree = "<group>"; };
@@ -923,8 +926,10 @@
 			children = (
 				D8E83E9016EA753F000284EA /* AppDelegate.h */,
 				D8E83E9116EA753F000284EA /* AppDelegate.mm */,
+				D882077C1717F1F600D74162 /* GameManager.h */,
+				D882077D1717F1F700D74162 /* GameManager.mm */,
 				D86F714A17088D960007ED1D /* LevelGenerator.h */,
-				D86F714B17088D960007ED1D /* LevelGenerator.m */,
+				D86F714B17088D960007ED1D /* LevelGenerator.mm */,
 				AD539FCD1700119000A47022 /* QueryCallback.h */,
 				AD539FCB1700118700A47022 /* QueryCallback.mm */,
 				D87B6BE916F28AD700A82C0F /* ContactListener.h */,
@@ -1602,7 +1607,7 @@
 			files = (
 				D843EFDE16FFBA16006732D5 /* Team1Game3Tests.mm in Sources */,
 				D86F7147170749B50007ED1D /* CCScrollLayer.mm in Sources */,
-				D86F714D17088D960007ED1D /* LevelGenerator.m in Sources */,
+				D86F714D17088D960007ED1D /* LevelGenerator.mm in Sources */,
 				D86F71581708A0770007ED1D /* JSONKit.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1775,7 +1780,7 @@
 				AD539FCC1700118700A47022 /* QueryCallback.mm in Sources */,
 				D895F54917073CCA00ED74C5 /* LevelSelectorLayer.mm in Sources */,
 				D86F7146170749B50007ED1D /* CCScrollLayer.mm in Sources */,
-				D86F714C17088D960007ED1D /* LevelGenerator.m in Sources */,
+				D86F714C17088D960007ED1D /* LevelGenerator.mm in Sources */,
 				D86F71571708A0770007ED1D /* JSONKit.m in Sources */,
 				CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */,
 				D8820765170EBBD700D74162 /* CurvedRampObject.mm in Sources */,
@@ -1783,6 +1788,7 @@
 				D882076C1713A49600D74162 /* GameplayLayer.mm in Sources */,
 				AD57A95F17142818007B471F /* WinLayer.mm in Sources */,
 				D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */,
+				D882077E1717F1F800D74162 /* GameManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

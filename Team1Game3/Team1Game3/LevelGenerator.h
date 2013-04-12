@@ -10,10 +10,11 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
+#import "GameManager.h"
 
 @interface LevelGenerator : CCNode {
     
-    AppController* _appController;
+    GameManager* _gameManager;
     
 }
 

@@ -39,10 +39,10 @@
 	if( (self=[super init])) {
         
         
-        _appController = (AppController*)[[UIApplication sharedApplication] delegate];
+        _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
         
-        NSAssert1(set > 0 && set <= _appController.numLevelSets, @"Invalid set index %d given in LevelLayer.", set);
-        NSAssert1(index > 0 && index <= _appController.numLevelIndices, @"Invalid level index %d given in LevelLayer.", index);
+        NSAssert1(set > 0 && set <= _gameManager.numLevelSets, @"Invalid set index %d given in LevelLayer.", set);
+        NSAssert1(index > 0 && index <= _gameManager.numLevelIndices, @"Invalid level index %d given in LevelLayer.", index);
 		
 		// enable events
         
@@ -110,7 +110,7 @@
  */
 -(void) playPhysicsLayer
 {
-    NSLog(@"Play Button pressed in LevelLayer with edit mode %d", _physicsLayer->_editMode);
+    // NSLog(@"Play Button pressed in LevelLayer with edit mode %d", _physicsLayer->_editMode);
     
     [_physicsLayer playLevel];
 //    _physicsLayer->_editMode = false;
@@ -181,7 +181,7 @@
     
     [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
     
-    [_appController completedLevelWithLevelSet:_levelSet AndIndex:_levelIndex];
+    [_gameManager registerCompletedLevelWithLevelSet:_levelSet AndIndex:_levelIndex];
 }
 
 /* updateStarCount:

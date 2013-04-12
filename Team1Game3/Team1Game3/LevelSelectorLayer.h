@@ -10,6 +10,7 @@
 #import "cocos2d.h"
 
 #import "AppDelegate.h"
+#import "GameManager.h"
 
 // TODO: comment back in if multiple level sets added
 //#import "CCScrollLayer.h"
@@ -18,7 +19,7 @@
 
 //    CCScrollLayer* _scroller;   // TODO: comment back in if multiple level sets added
     
-    AppController* _appController;
+    GameManager* _gameManager;
     
 }
 

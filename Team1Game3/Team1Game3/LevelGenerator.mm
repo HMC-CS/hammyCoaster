@@ -15,7 +15,7 @@
 -(id) init
 {
     if (self = [super init]) {
-        _appController = (AppController*)[[UIApplication sharedApplication] delegate];
+        _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
     }
     
     return self;
@@ -23,8 +23,8 @@
 
 -(NSMutableArray*) generateObjectsInSet:(int)set WithIndex:(int)index
 {
-    NSAssert1(set > 0 && set <= _appController.numLevelSets, @"Invalid set index %d given in LevelGenerator.", set);
-    NSAssert1(index > 0 && index <= _appController.numLevelIndices, @"Invalid level index %d given in LevelGenerator.", index);
+    NSAssert1(set > 0 && set <= _gameManager.numLevelSets, @"Invalid set index %d given in LevelGenerator.", set);
+    NSAssert1(index > 0 && index <= _gameManager.numLevelIndices, @"Invalid level index %d given in LevelGenerator.", index);
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
@@ -47,14 +47,26 @@
         }
     }
     
+    // If level is not specified in file.
+    if ([returnedObjects count] == 0)
+    {
+        // Default to first level if unspecified.
+        NSDictionary* level = [json objectAtIndex:0];
+        
+        NSArray* levelObjects = [level objectForKey:@"objects"];
+        for (NSArray* object in levelObjects) {
+            [returnedObjects addObject:object];
+        }
+    }
+    
     return returnedObjects;
 }
 
 -(NSMutableArray*) generateInventoryInSet:(int)set WithIndex:(int)index
 {
     
-    NSAssert1(set > 0 && set <= _appController.numLevelSets, @"Invalid set index %d given.", set);
-    NSAssert1(index > 0 && index <= _appController.numLevelIndices, @"Invalid level index %d given.", index);
+    NSAssert1(set > 0 && set <= _gameManager.numLevelSets, @"Invalid set index %d given.", set);
+    NSAssert1(index > 0 && index <= _gameManager.numLevelIndices, @"Invalid level index %d given.", index);
     
     NSString* path = [[NSBundle mainBundle] pathForResource:@"InitialObjects" ofType:@"json"];
     
@@ -74,6 +86,18 @@
                 [returnedInventory addObject:object];
             }
             break;
+        }
+    }
+    
+    // If level is not specified in file.
+    if ([returnedInventory count] == 0)
+    {
+        // Default to first level if unspecified.
+        NSDictionary* level = [json objectAtIndex:0];
+        
+        NSArray* levelObjects = [level objectForKey:@"inventory"];
+        for (NSArray* object in levelObjects) {
+            [returnedInventory addObject:object];
         }
     }
     

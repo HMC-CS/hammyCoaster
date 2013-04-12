@@ -114,7 +114,7 @@
 -(void) playButtonPressed
 {
     [_target performSelector:_selector1];
-    NSLog(@"PLAY in gameplay layer");
+    // NSLog(@"PLAY in gameplay layer");
 }
 
 /* resetBallPhysicsLevel:

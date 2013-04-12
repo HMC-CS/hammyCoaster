@@ -33,7 +33,7 @@
         
         CGSize size = [[CCDirector sharedDirector] winSize];
         
-        _appController = (AppController*)[[UIApplication sharedApplication] delegate];
+        _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
         
         /////////////
         
@@ -73,7 +73,7 @@
             // TODO - change these level icons... I pretty blatantly stole them from
             // my other game!!
             for (int j = 0; j < 3; ++j) {
-                for (int i = 0; i < _appController.numLevelIndices/3; ++i) {
+                for (int i = 0; i < _gameManager.numLevelIndices/3; ++i) {
                     CCSprite *levelIcon = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];   // TODO: make 0 "k" if loop added back
                     [iconSet addObject:levelIcon];
                     
@@ -94,7 +94,7 @@
                     [labelSelected setPosition:ccp(levelIconSelected.contentSize.width/2, levelIconSelected.contentSize.height/2)];
                     [levelIconSelected addChild:labelSelected];
                     
-                    if ([_appController isCompletedLevelWithLevelSet:1 AndIndex:j*(_appController.numLevelIndices/3) + i + 1]){
+                    if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
                         CCSprite *check = [CCSprite spriteWithFile:@"CheckMark.png"];
                         [check setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
                         [check setScale:0.3];

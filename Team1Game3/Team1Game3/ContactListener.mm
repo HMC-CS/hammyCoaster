@@ -39,51 +39,30 @@ void ContactListener::BeginContact(b2Contact* contact) {
         }
         if ([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"StarObject"])
         {
-            NSLog(@"Star Collision");
+           // NSLog(@"Star Collision");
             _contactStar = body2;
 
         }
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
         {
-            NSLog(@"Star Collision");
+           // NSLog(@"Star Collision");
             _contactStar = body1;
 
         }
     }
-    
-    
-//    
-//    void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
-//    if (bodyUserData) {
-//        bodyUserData->startContact();
-//    }
-
-//    //check if fixture A was a ball
-//    void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
-//    if ( bodyUserData )
-//        //static_cast<AbstractGameObject*>( bodyUserData ) startContact;
-//        //NSLog(@"contact");
-//    
-//    //check if fixture B was a ball
-//    bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
-//    //if ( bodyUserData )
-//        //static_cast<AbstractGameObject*>( bodyUserData )->startContact;
 }
 
 void ContactListener::EndContact(b2Contact* contact) {
-//    //check if fixture A was a ball
-//    void* bodyUserData = contact->GetFixtureA()->GetBody()->GetUserData();
-//    //if ( bodyUserData )
-//       // static_cast<AbstractGameObject*>( bodyUserData )->endContact;
-//    
-//    //check if fixture B was a ball
-//    bodyUserData = contact->GetFixtureB()->GetBody()->GetUserData();
-//    //if ( bodyUserData )
-//        //static_cast<AbstractGameObject*>( bodyUserData )->endContact();
+
+    // Nothing to be done here.
 }
 
 void ContactListener::PreSolve(b2Contact* contact, const b2Manifold* oldManifold) {
+    
+    // Nothing to be done here.
 }
 
 void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse) {
+    
+    // Nothing to be done here.
 }

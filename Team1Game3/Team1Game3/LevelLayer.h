@@ -22,6 +22,7 @@
 #import "GameplayLayer.h"
 
 #import "AppDelegate.h"
+#import "GameManager.h"
 
 @interface LevelLayer : CCLayer {
     InventoryLayer* _inventoryLayer;
@@ -33,7 +34,7 @@
     
     LevelGenerator* _levelGenerator;
     
-    AppController* _appController;
+    GameManager* _gameManager;
 }
 
 /* sceneWithLevelSet:AndIndex:
