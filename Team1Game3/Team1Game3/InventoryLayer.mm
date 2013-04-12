@@ -250,9 +250,15 @@
     {
         CCMenuItemImage *button = buttonArray[i];
         NSString* objectType = (NSString*) button.userData;
+<<<<<<< HEAD
         if ([objectType isEqualToString:type])
+=======
+        NSLog(@"%@ is the object we are increasing", objectType);
+        if ([type isEqualToString:objectType])
+>>>>>>> yolo
         {
             button.tag = button.tag+1;
+            NSLog(@"we actually increased object");
             
             // remove old label
             [button removeChildByTag:NSIntegerMin cleanup:YES];
