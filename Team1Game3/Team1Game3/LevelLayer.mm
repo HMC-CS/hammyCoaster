@@ -55,10 +55,6 @@
         [self createInventoryLayer];
         [self createPhysicsLayer];
         [self createGameplayLayer];
-<<<<<<< HEAD
-        
-=======
->>>>>>> Added NSAssert statements to almost all team-written functions with inputs to check boundary conditions.
         
 	}
 	return self;

@@ -27,15 +27,9 @@
  * returns NSString* of the selected object type
  */
 -(NSString*) getSelectedObject;
-<<<<<<< HEAD
--(bool) isDeleteSelected;
-- (void) increaseInventoryForType:(NSString*) type;
-///* resetInventory:
-// * resets inventory for the level
-// */
-//-(void) resetInventory;
-=======
->>>>>>> Added NSAssert statements to almost all team-written functions with inputs to check boundary conditions.
 
+-(bool) isDeleteSelected;
+
+- (void) increaseInventoryForType:(NSString*) type;
 
 @end
