@@ -31,7 +31,7 @@
     _fixtureDef.shape = &trampolineShape; // Set the line shape
     _fixtureDef.density = 0.0f; // Set the density
     _fixtureDef.friction = 0.5f; // Set the friction
-    _fixtureDef.restitution = 1.5f; // Set the restitution
+    _fixtureDef.restitution = 0.95f; // Set the restitution
     
     // Add the shape to the body
     trampoline_Body->CreateFixture(&_fixtureDef);
