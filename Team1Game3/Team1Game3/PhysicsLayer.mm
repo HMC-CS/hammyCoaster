@@ -203,7 +203,10 @@
             
             if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
             {
-                world->DestroyBody(body);
+//                NSString* type = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+//                [self objectDeletedOfType:type];
+//                world->DestroyBody(body);
+                [self deleteObjectWithBody:body];
                 NSLog(@"Body destroy");
                 return;
             }
@@ -305,6 +308,17 @@
     [_target performSelector:_selector5 withObject:type];
 }
 
+/* deleteObjectWithBody:
+ * deletes a physics body from the physics layer
+ */
+
+-(void) deleteObjectWithBody: (b2Body*) body
+{
+    NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+    [self objectDeletedOfType:objectType];
+    world->DestroyBody(body);
+}
+
 //-----BUILT-IN/BOX 2D-----//
 
 -(void) draw
@@ -391,9 +405,10 @@
             if (isDelete) {
                 CCSprite* sprite = [bodyObject getSprite];
                 [self removeChild: sprite cleanup:YES];
-                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
-                [self objectDeletedOfType:objectType];
-                world->DestroyBody(body);
+                [self deleteObjectWithBody:body];
+//                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+//                [self objectDeletedOfType:objectType];
+//                world->DestroyBody(body);
             } else {
                 // calculate the offset between the touch and the center of the object
                 b2Vec2 bodyLocation = body->GetPosition();

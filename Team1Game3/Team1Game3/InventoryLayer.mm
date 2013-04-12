@@ -53,46 +53,46 @@
         NSString* type = [item objectAtIndex:0];
         //NSString* label = [item objectAtIndex:1];
         NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
-//        
-//        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
-//        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
+        //
+        //        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", label];
+        //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", label];
         NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
-//        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
-       CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
+        //        NSString* selectedButtonLabel = [[NSString alloc] initWithFormat:@"%@IconSelected.png", type];
+        CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
         CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
         selected.color = ccc3(125,125,125);
         // and/or:
         //selected.scale = 1.2;
         
-//        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] target:self selector:@selector(buttonPressed:)];
+        //        CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] target:self selector:@selector(buttonPressed:)];
         
         //CCMenuItemImage* inventoryButton = [CCMenuItemImage itemWithNormalImage:[[NSString alloc] initWithFormat:@"%@Icon.png", type] selectedImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] disabledImage:[[NSString alloc] initWithFormat:@"%@IconSelected.png", type] block:^(id sender) {
-                //_selectedObject = type;
+        //_selectedObject = type;
         //}];
         
         CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalSprite:normal selectedSprite:selected block:^(id sender) { //selector:@selector(buttonPressed:)];
-//
-//            __selectedObject = type;
-
-        //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
-        //{
+            //
+            //            __selectedObject = type;
+            
+            //CCMenuItemImage *inventoryButton = [CCMenuItemImage itemFromNormalImage:buttonLabel selectedImage:selectedButtonLabel disabledImage:buttonLabel block:^(id sender)
+            //{
             //CCMenuItemImage *button = (CCMenuItemImage *)sender;
-        
-        //CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel //block:^(id sender){
-//            if ([(NSNumber*) inventoryButton.userData intValue] == 0)
-//            {
-//              _selectedObject = [[NSString alloc] initWithFormat:@"None"];
-//                NSLog(@"No More Objects %@ is the User Data", inventoryButton.userData);
-//           }
-//            else
-//           {
-             _selectedObject = type;
+            
+            //CCMenuItemLabel *inventoryButton = [CCMenuItemFont itemWithString:buttonLabel //block:^(id sender){
+            //            if ([(NSNumber*) inventoryButton.userData intValue] == 0)
+            //            {
+            //              _selectedObject = [[NSString alloc] initWithFormat:@"None"];
+            //                NSLog(@"No More Objects %@ is the User Data", inventoryButton.userData);
+            //           }
+            //            else
+            //           {
+            _selectedObject = type;
             //inventoryButton.userData = [NSNumber numberWithInt:([(NSNumber*) inventoryButton.userData intValue] - 1)];
-//               inventoryButton.tag = inventoryButton.tag-1;
-//                NSLog(@"Button Pressed %@ is the User Data", inventoryButton.userData);
-//            }
-        
-}];
+            //               inventoryButton.tag = inventoryButton.tag-1;
+            //                NSLog(@"Button Pressed %@ is the User Data", inventoryButton.userData);
+            //            }
+            
+        }];
         inventoryButton.tag = [numItems intValue];
         inventoryButton.userData = type;
         [buttonArray addObject:inventoryButton];
@@ -109,9 +109,9 @@
     }
     
     CCMenuItemLabel *deleteButton = [CCMenuItemFont itemWithString:@"Delete object" block:^(id sender)
-        {
-        _selectedObject = @"Delete";
-    }];
+                                     {
+                                         _selectedObject = @"Delete";
+                                     }];
     [inventoryMenu addChild:deleteButton];
     
     [inventoryMenu alignItemsVertically];
@@ -157,7 +157,7 @@
     // NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
-
+    
     if (CGRectContainsPoint(self.boundingBox, location))
     {
         return YES;
@@ -198,30 +198,30 @@
         selected.color = ccc3(125,125,125);
         if ([_selectedObject isEqualToString:objectType])
         {
-        NSLog(@"%d is button tag", button.tag);
-        if (button.tag == 0)
-        {
-            NSLog(@"No More! %d is the User Data", button.tag);
-            return @"None";
-        }
-        else
-        {
-             NSLog(@"Button Pressed %d is the User Data", button.tag);
-            button.tag = button.tag -1;
-            [button  setNormalImage:selected];
-            
-            // remove old label
-            [button removeChildByTag:NSIntegerMin cleanup:YES];
-            
-            // add new label
-            CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
-            [numLabel setColor:ccWHITE];
-            [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
-            [button addChild:numLabel z:1 tag:NSIntegerMin];
-            
-            //_selectedObject = objectType;
-            return _selectedObject;
-        }
+            NSLog(@"%d is button tag", button.tag);
+            if (button.tag == 0)
+            {
+                NSLog(@"No More! %d is the User Data", button.tag);
+                return @"None";
+            }
+            else
+            {
+                NSLog(@"Button Pressed %d is the User Data", button.tag);
+                button.tag = button.tag -1;
+                [button  setNormalImage:selected];
+                
+                // remove old label
+                [button removeChildByTag:NSIntegerMin cleanup:YES];
+                
+                // add new label
+                CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
+                [numLabel setColor:ccWHITE];
+                [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
+                [button addChild:numLabel z:1 tag:NSIntegerMin];
+                
+                //_selectedObject = objectType;
+                return _selectedObject;
+            }
         }else {
             [button  setNormalImage:normal];
         }
@@ -231,12 +231,13 @@
 }
 
 
--(bool) isDeleteSelected{
-//    NSLog(@"%@ should be the object", _selectedObject);
-  if (_selectedObject == @"Delete")
-  {
-      return YES;
-  }
+-(bool) isDeleteSelected
+{
+    //    NSLog(@"%@ should be the object", _selectedObject);
+    if ([_selectedObject isEqualToString:@"Delete"])
+    {
+        return YES;
+    }
     else
     {
         return NO;
@@ -249,7 +250,7 @@
     {
         CCMenuItemImage *button = buttonArray[i];
         NSString* objectType = (NSString*) button.userData;
-        if ([_selectedObject isEqualToString:objectType])
+        if ([objectType isEqualToString:type])
         {
             button.tag = button.tag+1;
             
@@ -261,6 +262,8 @@
             [numLabel setColor:ccWHITE];
             [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
             [button addChild:numLabel z:1 tag:NSIntegerMin];
+            
+            break;
         }
     }
 }
