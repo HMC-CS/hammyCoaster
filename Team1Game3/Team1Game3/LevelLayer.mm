@@ -47,9 +47,6 @@
         [self createInventoryLayer];
         [self createPhysicsLayer];
         [self createGameplayLayer];
-
-        
-        CGSize size = [[CCDirector sharedDirector] winSize];
         
         
 	}
