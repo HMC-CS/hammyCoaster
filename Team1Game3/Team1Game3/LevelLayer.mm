@@ -57,7 +57,7 @@
         [self createPhysicsLayer];
         [self createGameplayLayer];
         
-        
+        // Label displaying puzzle level
         CGSize size = [[CCDirector sharedDirector] winSize];
         CCLabelTTF* _levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d-%d", _levelSet, _levelIndex] fontName:@"Marker Felt" fontSize:24];
         _levelLabel.position = CGPointMake(2.9*size.width/5, 5*size.height/6);
