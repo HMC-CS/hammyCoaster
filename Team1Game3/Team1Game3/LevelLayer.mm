@@ -179,9 +179,9 @@
 //    alert.tag=1;
 //    [alert show];
     
-    [_appController completedLevelWithLevelSet:_levelSet AndIndex:_levelIndex];
-    
     [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
+    
+    [_appController completedLevelWithLevelSet:_levelSet AndIndex:_levelIndex];
 }
 
 /* updateStarCount:

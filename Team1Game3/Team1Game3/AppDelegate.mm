@@ -23,7 +23,7 @@
     _numLevelSets = 1;
     _numLevelIndices = 12;
     
-    _numLevelsCompleted = 0;
+    _numLevelsCompleted = 10;
     _levelCompletionStatuses = [[NSMutableArray alloc] init];
     for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
@@ -56,6 +56,7 @@
         //NSLog(@"completed status is %@", [_levelCompletionStatuses objectAtIndex:(set-1)*_numLevelIndices + (index-1)]);
         //NSLog(@"num levels completed is %d", _numLevelsCompleted);
         if (_numLevelsCompleted == _numLevelSets * _numLevelIndices) {
+            ++_numLevelsCompleted; // so this step happens only once
             [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
         }
     }

@@ -94,7 +94,7 @@
                     [labelSelected setPosition:ccp(levelIconSelected.contentSize.width/2, levelIconSelected.contentSize.height/2)];
                     [levelIconSelected addChild:labelSelected];
                     
-                    if ([_appController isCompletedLevelWithLevelSet:1 AndIndex:(j+1)*(i+1)]){
+                    if ([_appController isCompletedLevelWithLevelSet:1 AndIndex:j*(_appController.numLevelIndices/3) + i + 1]){
                         CCSprite *check = [CCSprite spriteWithFile:@"CheckMark.png"];
                         [check setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
                         [check setScale:0.3];

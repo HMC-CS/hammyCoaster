@@ -53,7 +53,7 @@
 	[CCMenuItemFont setFontSize:22];
 	
 	// Reset Button
-	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"New Game" block:^(id sender){
+	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"Play Game" block:^(id sender){
 		[[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
 	}];
 	

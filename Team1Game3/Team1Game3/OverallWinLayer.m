@@ -8,9 +8,12 @@
 
 #import "OverallWinLayer.h"
 
+#import "MainMenuLayer.h"
+#import "LevelSelectorLayer.h"
+
 @implementation OverallWinLayer
 
-+(CCScene *) sceneWithLevel: (int)level AndStarCount: (int) stars
++(CCScene *) scene
 {
     CCScene *scene = [CCScene node];	// 'scene' is an autorelease object.
     
@@ -22,7 +25,7 @@
 	return scene;
 }
 
--(id) initWithLevel:(int)level AndStarCount:(int)stars
+-(id) init
 {
     if (self = [super init]) {
         
@@ -35,8 +38,27 @@
         [CCMenuItemFont setFontSize:22];
         
         CCLabelTTF* _winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOU WIN!"] fontName:@"Marker Felt" fontSize:24];
-        _winLabel.position = CGPointMake(600.0, 600.0);
+        _winLabel.position = CGPointMake(size.width/2, 2*size.height/3);
         [self addChild:_winLabel];
+        
+        // Default font size will be 22 points.
+        [CCMenuItemFont setFontSize:22];
+        
+        // Reset Button
+        CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
+            [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
+        }];
+        CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
+            [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
+        }];
+        
+        CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, nil];
+        
+        [menu alignItemsVertically];
+        
+        [menu setPosition:ccp( size.width/2, size.height/2)];
+        
+        [self addChild: menu z:-1];
     }
     
     return self;

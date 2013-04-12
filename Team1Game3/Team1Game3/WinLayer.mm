@@ -47,6 +47,9 @@
         CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
             [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
         }];
+        CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
+            [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
+        }];
         CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
             [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level]];
         }];
@@ -54,7 +57,7 @@
             [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
         }];
         
-        CCMenu *menu = [CCMenu menuWithItems:mainMenu, replay, next, nil];
+        CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, replay, next, nil];
         
         [menu alignItemsVertically];
         
