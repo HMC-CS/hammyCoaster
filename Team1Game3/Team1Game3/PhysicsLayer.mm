@@ -260,8 +260,12 @@
     else if (!_selector3)
     {
         _selector3 = action;
-    }else{
+    }
+    else if (!_selector4)
+    {
         _selector4 = action;
+    }else{
+        _selector5 = action;
     }
 }
 
@@ -291,6 +295,10 @@
 -(bool) isDeleteSelected
 {
     return [_target performSelector:_selector4];
+}
+-(void) objectDeletedOfType: (NSString*) type
+{
+    [_target performSelector:_selector5 withObject:type];
 }
 
 //-----BUILT-IN/BOX 2D-----//
@@ -379,6 +387,8 @@
             if (isDelete) {
                 CCSprite* sprite = [bodyObject getSprite];
                 [self removeChild: sprite cleanup:YES];
+                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+                [self objectDeletedOfType:objectType];
                 world->DestroyBody(body);
             } else {
                 // calculate the offset between the touch and the center of the object

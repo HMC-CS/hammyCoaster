@@ -98,6 +98,11 @@
         //inventoryButton.tag = [tagVar intValue];
         NSLog(@"%@ is User Data", numItems);
         
+        CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", inventoryButton.tag] fontName:@"Marker Felt" fontSize:inventoryButton.contentSize.width*.4];
+        [numLabel setColor:ccWHITE];
+        [numLabel setPosition:ccp(inventoryButton.contentSize.width/2, inventoryButton.contentSize.height/2)];
+        [inventoryButton addChild:numLabel z:1 tag:NSIntegerMin];
+        
         [inventoryMenu addChild:inventoryButton];
     }
     
@@ -202,6 +207,16 @@
              NSLog(@"Button Pressed %d is the User Data", button.tag);
             button.tag = button.tag -1;
             [button  setNormalImage:selected];
+            
+            // remove old label
+            [button removeChildByTag:NSIntegerMin cleanup:YES];
+            
+            // add new label
+            CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
+            [numLabel setColor:ccWHITE];
+            [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
+            [button addChild:numLabel z:1 tag:NSIntegerMin];
+            
             //_selectedObject = objectType;
             return _selectedObject;
         }
@@ -222,6 +237,28 @@
     else
     {
         return NO;
+    }
+}
+
+- (void) increaseInventoryForType:(NSString*) type
+{
+    for (int i= 0; i< [buttonArray count];i++)
+    {
+        CCMenuItemImage *button = buttonArray[i];
+        NSString* objectType = (NSString*) button.userData;
+        if ([_selectedObject isEqualToString:objectType])
+        {
+            button.tag = button.tag+1;
+            
+            // remove old label
+            [button removeChildByTag:NSIntegerMin cleanup:YES];
+            
+            // add new label
+            CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
+            [numLabel setColor:ccWHITE];
+            [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
+            [button addChild:numLabel z:1 tag:NSIntegerMin];
+        }
     }
 }
 

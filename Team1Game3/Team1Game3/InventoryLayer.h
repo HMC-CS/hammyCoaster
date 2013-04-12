@@ -28,6 +28,7 @@
  */
 -(NSString*) getSelectedObject;
 -(bool) isDeleteSelected;
+- (void) increaseInventoryForType:(NSString*) type;
 ///* resetInventory:
 // * resets inventory for the level
 // */

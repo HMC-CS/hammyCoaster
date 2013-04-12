@@ -79,6 +79,7 @@
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
     [_physicsLayer setTarget:self atAction:@selector(updateStarCount)]; // physics selector 3
     [_physicsLayer setTarget:self atAction:@selector(checkIfInventoryIsDelete)]; //physics selector 4
+    [_physicsLayer setTarget:self atAction:@selector(objectDeletedOfType:)]; //physics selector 5
     [self addChild:_physicsLayer];
 }
 
@@ -151,6 +152,10 @@
     return [_inventoryLayer isDeleteSelected];
 }
 
+-(void) objectDeletedOfType:(NSString*) type;
+{
+    [_inventoryLayer increaseInventoryForType:type];
+}
 /* gameWon:
  * from: PhysicsLayer
  * to: LevelLayer
