@@ -288,9 +288,9 @@
 {
     return [_target performSelector:_selector1];
 }
--(NSString*) isDeleteSelected
+-(bool) isDeleteSelected
 {
-    return [_target performSelector: _selector4];
+    return [_target performSelector:_selector4];
 }
 
 //-----BUILT-IN/BOX 2D-----//
@@ -373,10 +373,10 @@
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
         if (!bodyObject->_isDefault && _editMode) {
-            _objectType = [self isDeleteSelected];
+            bool isDelete = [self isDeleteSelected];
             //_objectType = [self getObjectType];
             NSLog(@"%@ is the object type", _objectType);
-            if ([_objectType isEqualToString:@"Delete"]) {
+            if (isDelete) {
                 CCSprite* sprite = [bodyObject getSprite];
                 [self removeChild: sprite cleanup:YES];
                 world->DestroyBody(body);

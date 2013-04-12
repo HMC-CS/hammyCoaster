@@ -27,7 +27,7 @@
  * returns NSString* of the selected object type
  */
 -(NSString*) getSelectedObject;
--(NSString*) isDeleteSelected;
+-(bool) isDeleteSelected;
 ///* resetInventory:
 // * resets inventory for the level
 // */

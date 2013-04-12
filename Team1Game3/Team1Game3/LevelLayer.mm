@@ -149,7 +149,7 @@
 {
     return [_inventoryLayer getSelectedObject];
 }
--(NSString*) checkIfInventoryIsDelete;
+-(bool) checkIfInventoryIsDelete;
 {
     return [_inventoryLayer isDeleteSelected];
 }

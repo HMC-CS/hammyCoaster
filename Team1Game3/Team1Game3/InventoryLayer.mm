@@ -213,9 +213,16 @@
     
 }
 
--(NSString*) isDeleteSelected{
+-(bool) isDeleteSelected{
 //    NSLog(@"%@ should be the object", _selectedObject);
- return _selectedObject;
+  if (_selectedObject == @"Delete")
+  {
+      return YES;
+  }
+    else
+    {
+        return NO;
+    }
 }
 
 //-(void) resetInventory {
