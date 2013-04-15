@@ -18,6 +18,7 @@
 		AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95917129CFA007B471F /* RedPortalObject.mm */; };
 		AD57A95C17129FDE007B471F /* RedPortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A95B17129FDE007B471F /* RedPortalObject.png */; };
 		AD57A95F17142818007B471F /* WinLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95E17142818007B471F /* WinLayer.mm */; };
+		AD57A961171CAE5E007B471F /* StarObjectOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A960171CAE59007B471F /* StarObjectOutline.png */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
@@ -257,6 +258,7 @@
 		AD57A95B17129FDE007B471F /* RedPortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RedPortalObject.png; sourceTree = "<group>"; };
 		AD57A95D17142808007B471F /* WinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinLayer.h; sourceTree = "<group>"; };
 		AD57A95E17142818007B471F /* WinLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WinLayer.mm; sourceTree = "<group>"; };
+		AD57A960171CAE59007B471F /* StarObjectOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectOutline.png; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -837,6 +839,7 @@
 				AD57A95B17129FDE007B471F /* RedPortalObject.png */,
 				9CE768D516F9B1FB00EE241F /* StarObject-hd.png */,
 				9CE768D816F9B1FB00EE241F /* StarObject.png */,
+				AD57A960171CAE59007B471F /* StarObjectOutline.png */,
 				61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */,
 				61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */,
 			);
@@ -1579,6 +1582,7 @@
 				D88207701713B8EB00D74162 /* CurvedRampObjectIconSelected.png in Resources */,
 				D88207721714E8BF00D74162 /* TrampolineObject.png in Resources */,
 				D88207781717D20200D74162 /* CheckMark.png in Resources */,
+				AD57A961171CAE5E007B471F /* StarObjectOutline.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

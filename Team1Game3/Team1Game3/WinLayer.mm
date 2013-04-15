@@ -12,6 +12,7 @@
 
 #import "MainMenuLayer.h"
 #import "LevelSelectorLayer.h"
+#import "PhysicsSprite.h"
 
 
 @implementation WinLayer
@@ -35,39 +36,65 @@
         _level = level;
         _stars = stars;
         
-        CGSize size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = YES;
         
         /////////////
         
-        // Default font size will be 22 points.
-        [CCMenuItemFont setFontSize:22];
-        
-        // Reset Button
-
-        CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level]];
-        }];
-        CCMenuItemLabel *next = [CCMenuItemFont itemWithString:@"Next level" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
-        }];
-        CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
-        }];
-        CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
-        }];
-        
-        CCMenu *menu = [CCMenu menuWithItems:replay, next, mainMenu, levelMenu, nil];
-        
-        [menu alignItemsVertically];
-        
-        [menu setPosition:ccp( size.width/2, size.height/2)];
-        
-        [self addChild: menu z:-1];
+        [self createMenu];
+        [self drawStars];
     }
     
     return self;
+}
+
+-(void) createMenu
+{
+    // Default font size will be 22 points.
+    [CCMenuItemFont setFontSize:22];
+    
+    // Reset Button
+    
+    CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
+        [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level]];
+    }];
+    CCMenuItemLabel *next = [CCMenuItemFont itemWithString:@"Next level" block:^(id sender){
+        [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
+    }];
+    CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
+        [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
+    }];
+    CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
+        [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
+    }];
+    
+    CCMenu *menu = [CCMenu menuWithItems:replay, next, mainMenu, levelMenu, nil];
+    
+    [menu alignItemsVertically];
+    
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    [menu setPosition:ccp( size.width/2, size.height/2)];
+    
+    [self addChild: menu z:-1];
+}
+
+-(void) drawStars
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    
+    CGPoint starLocation = ccp(size.width/2 - 75, size.height - 100);
+    
+    for (int i = 1; i <= 3; ++i) {
+        if (_stars < i) {
+            CCSprite *sprite = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
+            [sprite setPosition:starLocation];
+            [self addChild:sprite];
+        } else {
+            CCSprite *sprite = [CCSprite spriteWithFile:@"StarObject.png"];
+            [sprite setPosition:starLocation];
+            [self addChild:sprite];
+        }
+        starLocation = ccp(starLocation.x + 75, starLocation.y);
+    }
 }
 
 @end
