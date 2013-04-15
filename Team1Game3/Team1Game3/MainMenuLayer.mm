@@ -34,11 +34,17 @@
 	if( (self=[super init])) {
 		
 		// enable events
+        
+        CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		self.isTouchEnabled = YES;
 		
 		// create menu button
 		[self createMenu];
+        
+        CCLabelTTF* titleLabel = [CCLabelTTF labelWithString:@"Hamster Coaster!" fontName:@"Marker Felt" fontSize:36];
+        titleLabel.position = CGPointMake(size.width/2, 2*size.height/3);
+        [self addChild:titleLabel];
 	}
 	return self;
 }
