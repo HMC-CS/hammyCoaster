@@ -13,7 +13,8 @@
         "inventory":
         [
             ["RampObject", "ramp", "2"],
-            ["CurvedRampObject", "curved ramp", "1"]
+            ["CurvedRampObject", "curved ramp", "1"],
+            ["FlippedRampObject", "flipped ramp", "3"]
         ]
     },
     {

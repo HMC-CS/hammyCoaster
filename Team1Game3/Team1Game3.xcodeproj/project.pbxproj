@@ -19,6 +19,11 @@
 		AD57A95C17129FDE007B471F /* RedPortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A95B17129FDE007B471F /* RedPortalObject.png */; };
 		AD57A95F17142818007B471F /* WinLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95E17142818007B471F /* WinLayer.mm */; };
 		AD57A961171CAE5E007B471F /* StarObjectOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A960171CAE59007B471F /* StarObjectOutline.png */; };
+		AD57A966171CB3D3007B471F /* FlippedRampObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A962171CB3CD007B471F /* FlippedRampObject-hd.png */; };
+		AD57A967171CB3D3007B471F /* FlippedRampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A963171CB3CE007B471F /* FlippedRampObject.png */; };
+		AD57A968171CB3D3007B471F /* FlippedRampObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A964171CB3D0007B471F /* FlippedRampObjectIcon.png */; };
+		AD57A969171CB3D3007B471F /* FlippedRampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */; };
+		AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96B171CB462007B471F /* FlippedRampObject.mm */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
@@ -259,6 +264,12 @@
 		AD57A95D17142808007B471F /* WinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinLayer.h; sourceTree = "<group>"; };
 		AD57A95E17142818007B471F /* WinLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WinLayer.mm; sourceTree = "<group>"; };
 		AD57A960171CAE59007B471F /* StarObjectOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectOutline.png; sourceTree = "<group>"; };
+		AD57A962171CB3CD007B471F /* FlippedRampObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FlippedRampObject-hd.png"; sourceTree = "<group>"; };
+		AD57A963171CB3CE007B471F /* FlippedRampObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlippedRampObject.png; sourceTree = "<group>"; };
+		AD57A964171CB3D0007B471F /* FlippedRampObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlippedRampObjectIcon.png; sourceTree = "<group>"; };
+		AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlippedRampObjectIconSelected.png; sourceTree = "<group>"; };
+		AD57A96A171CB459007B471F /* FlippedRampObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedRampObject.h; sourceTree = "<group>"; };
+		AD57A96B171CB462007B471F /* FlippedRampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlippedRampObject.mm; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -725,6 +736,8 @@
 				D8E83EA716EA7555000284EA /* BallObject.mm */,
 				D8E83EC216EBC42A000284EA /* RampObject.h */,
 				D8E83EC316EBC42A000284EA /* RampObject.mm */,
+				AD57A96A171CB459007B471F /* FlippedRampObject.h */,
+				AD57A96B171CB462007B471F /* FlippedRampObject.mm */,
 				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
 				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
 				AD57A95817129CEC007B471F /* RedPortalObject.h */,
@@ -824,6 +837,10 @@
 		D895F557170743F700ED74C5 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
+				AD57A962171CB3CD007B471F /* FlippedRampObject-hd.png */,
+				AD57A963171CB3CE007B471F /* FlippedRampObject.png */,
+				AD57A964171CB3D0007B471F /* FlippedRampObjectIcon.png */,
+				AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */,
 				D88207711714E8BF00D74162 /* TrampolineObject.png */,
 				D882076D1713B8EB00D74162 /* CurvedRampObjectIcon.png */,
 				D882076E1713B8EB00D74162 /* CurvedRampObjectIconSelected.png */,
@@ -1583,6 +1600,10 @@
 				D88207721714E8BF00D74162 /* TrampolineObject.png in Resources */,
 				D88207781717D20200D74162 /* CheckMark.png in Resources */,
 				AD57A961171CAE5E007B471F /* StarObjectOutline.png in Resources */,
+				AD57A966171CB3D3007B471F /* FlippedRampObject-hd.png in Resources */,
+				AD57A967171CB3D3007B471F /* FlippedRampObject.png in Resources */,
+				AD57A968171CB3D3007B471F /* FlippedRampObjectIcon.png in Resources */,
+				AD57A969171CB3D3007B471F /* FlippedRampObjectIconSelected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,6 +1814,7 @@
 				AD57A95F17142818007B471F /* WinLayer.mm in Sources */,
 				D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */,
 				D882077E1717F1F800D74162 /* GameManager.mm in Sources */,
+				AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
