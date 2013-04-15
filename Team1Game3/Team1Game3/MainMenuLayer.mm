@@ -7,6 +7,7 @@
 //
 
 #import "MainMenuLayer.h"
+#import "InstructionsLayer.h"
 #import "AppDelegate.h"
 #import "LevelSelectorLayer.h"
 
@@ -52,12 +53,17 @@
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
 	
-	// Reset Button
+	// Play Game Button
 	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"Play Game" block:^(id sender){
 		[[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
 	}];
+    
+    // Instructions Button
+    CCMenuItemLabel *instructions = [CCMenuItemFont itemWithString:@"Instructions" block:^(id sender){
+		[[CCDirector sharedDirector] pushScene: [InstructionsLayer scene]];
+	}];
 	
-    CCMenu *menu = [CCMenu menuWithItems:newGame, nil];
+    CCMenu *menu = [CCMenu menuWithItems:newGame, instructions, nil];
 	
 	[menu alignItemsVertically];
 	

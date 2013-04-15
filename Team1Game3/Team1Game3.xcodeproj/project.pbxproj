@@ -24,6 +24,7 @@
 		AD57A968171CB3D3007B471F /* FlippedRampObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A964171CB3D0007B471F /* FlippedRampObjectIcon.png */; };
 		AD57A969171CB3D3007B471F /* FlippedRampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */; };
 		AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96B171CB462007B471F /* FlippedRampObject.mm */; };
+		AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96E171CC476007B471F /* InstructionsLayer.mm */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
@@ -270,6 +271,8 @@
 		AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FlippedRampObjectIconSelected.png; sourceTree = "<group>"; };
 		AD57A96A171CB459007B471F /* FlippedRampObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlippedRampObject.h; sourceTree = "<group>"; };
 		AD57A96B171CB462007B471F /* FlippedRampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlippedRampObject.mm; sourceTree = "<group>"; };
+		AD57A96D171CC476007B471F /* InstructionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsLayer.h; sourceTree = "<group>"; };
+		AD57A96E171CC476007B471F /* InstructionsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InstructionsLayer.mm; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -781,6 +784,8 @@
 				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
 				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
 				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
+				AD57A96D171CC476007B471F /* InstructionsLayer.h */,
+				AD57A96E171CC476007B471F /* InstructionsLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
@@ -1815,6 +1820,7 @@
 				D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */,
 				D882077E1717F1F800D74162 /* GameManager.mm in Sources */,
 				AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */,
+				AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
