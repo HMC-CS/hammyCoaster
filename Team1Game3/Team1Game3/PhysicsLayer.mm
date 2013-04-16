@@ -228,6 +228,13 @@
     }
 }
 
+-(void) resetBall
+{
+    _editMode = YES;
+    
+}
+
+
 /* hitStar:
  * removes star from screen when it is hit
  */

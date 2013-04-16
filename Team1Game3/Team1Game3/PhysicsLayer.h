@@ -60,6 +60,12 @@
  */
 -(void) playLevel;
 
+/* resetBall:
+ * deletes the ball, replaces stars and resets startcount
+ * allows the level to be edited further
+ */
+-(void) resetBall;
+
 /* setTarget: atAction:
  * guaranteed name for function to initialize selectors and target
  */
