@@ -120,7 +120,7 @@
 }
 
 /* resetBallPhysicsLevel:
- * from: InventoryLayer
+ * from: GameplayLayer
  * to: PhysicsLayer
  * Resets the level, currently by re-creating the _physicsLayer.
  */
@@ -128,6 +128,7 @@
 -(void) resetBallButtonPressed
 {
     [_target performSelector:_selector2];
+    [self resetStarCount];
 }
 
 /* resetButtonPressed:
