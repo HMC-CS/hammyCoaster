@@ -290,7 +290,7 @@
  */
 -(void) applyMagnets
 {
-    int magnetConstant = 35;
+    int magnetConstant = 45;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])

@@ -29,6 +29,7 @@
 		D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */; };
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
 		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; };
+		D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
 		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
@@ -284,6 +285,7 @@
 		D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObjectIcon.png; sourceTree = "<group>"; };
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
 		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
+		D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObjectIcon.png; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Team1Game3Tests-Info.plist"; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 				AD57A964171CB3D0007B471F /* FlippedRampObjectIcon.png */,
 				AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */,
 				D88207711714E8BF00D74162 /* TrampolineObject.png */,
+				D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */,
 				D882076D1713B8EB00D74162 /* CurvedRampObjectIcon.png */,
 				D882076E1713B8EB00D74162 /* CurvedRampObjectIconSelected.png */,
 				D8820766170EBC0B00D74162 /* CurvedRampObject-hd.png */,
@@ -1630,6 +1633,7 @@
 				D8820916171BAD0000D74162 /* IntroLayer1.png in Resources */,
 				D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */,
 				D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */,
+				D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
