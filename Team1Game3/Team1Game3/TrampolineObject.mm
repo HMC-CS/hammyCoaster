@@ -18,11 +18,10 @@
     
     b2Vec2 vertices[4];
     int num = 4;
-    //row 1, col 1
-    vertices[0].Set(-153.4f / PTM_RATIO, -0.1f / PTM_RATIO);
-    vertices[1].Set(154.5f / PTM_RATIO, -1.0f / PTM_RATIO);
-    vertices[2].Set(157.7f / PTM_RATIO, 65.3f / PTM_RATIO);
-    vertices[3].Set(-157.0f / PTM_RATIO, 67.0f / PTM_RATIO);
+    vertices[0].Set(105.1f / PTM_RATIO, -4.0f / PTM_RATIO);
+    vertices[1].Set(-94.3f / PTM_RATIO, -2.7f / PTM_RATIO);
+    vertices[2].Set(-40.6f / PTM_RATIO, -17.4f / PTM_RATIO);
+    vertices[3].Set(47.9f / PTM_RATIO, -18.1f / PTM_RATIO);
     
     b2PolygonShape trampolineShape;
     trampolineShape.Set(vertices, num);

@@ -144,6 +144,11 @@
             ballStartingPoint = CGPointMake(px,py);
     }
     
+    // Test code for magnet
+    [self addNewSpriteOfType:@"MagnetObject" AtPosition:ccp(100/PTM_RATIO,450/PTM_RATIO) WithRotation:0 AsDefault:YES];
+
+    
+    
     //		// Code kept around for later
     //        #if 1
     //        		// Use batch node. Faster

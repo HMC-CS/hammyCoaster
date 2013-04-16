@@ -26,6 +26,9 @@
 		AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96B171CB462007B471F /* FlippedRampObject.mm */; };
 		AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96E171CC476007B471F /* InstructionsLayer.mm */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
+		D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */; };
+		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
+		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
 		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
@@ -277,6 +280,10 @@
 		AD57A96E171CC476007B471F /* InstructionsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InstructionsLayer.mm; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
+		D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObject.png; sourceTree = "<group>"; };
+		D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObjectIcon.png; sourceTree = "<group>"; };
+		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
+		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Team1Game3Tests-Info.plist"; sourceTree = "<group>"; };
@@ -745,6 +752,8 @@
 				D8E83EC316EBC42A000284EA /* RampObject.mm */,
 				AD57A96A171CB459007B471F /* FlippedRampObject.h */,
 				AD57A96B171CB462007B471F /* FlippedRampObject.mm */,
+				D8299F77171D5E4400C6E8C5 /* MagnetObject.h */,
+				D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */,
 				D87B6BE416F2848000A82C0F /* BluePortalObject.h */,
 				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
 				AD57A95817129CEC007B471F /* RedPortalObject.h */,
@@ -857,6 +866,8 @@
 				D8820767170EBC0B00D74162 /* CurvedRampObject.png */,
 				D8E83EC916EBCB1D000284EA /* RampObject-hd.png */,
 				D8E83EB216EA7625000284EA /* BallObject.png */,
+				D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */,
+				D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */,
 				D8E83EB316EA7625000284EA /* BallObject-hd.png */,
 				D87B6BE716F2849700A82C0F /* BluePortalObject.png */,
 				61772330170D59D5004F545F /* RampObjectIconSelected.png */,
@@ -1617,6 +1628,8 @@
 				AD57A969171CB3D3007B471F /* FlippedRampObjectIconSelected.png in Resources */,
 				D8820914171BAC5100D74162 /* IntroLayer.png in Resources */,
 				D8820916171BAD0000D74162 /* IntroLayer1.png in Resources */,
+				D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */,
+				D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1829,6 +1842,7 @@
 				D882077E1717F1F800D74162 /* GameManager.mm in Sources */,
 				AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */,
 				AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */,
+				D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
