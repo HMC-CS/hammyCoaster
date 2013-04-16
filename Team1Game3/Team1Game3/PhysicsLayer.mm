@@ -130,10 +130,6 @@
     rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(4*PTM_RATIO), 400/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
 
-    /* hacked ball starting position
-     * ---------------------------------------------------------------------- */
-    ballStartingPoint = CGPointMake(10.0, 600.0);
-
 }
 
 - (void) addInitialObjects
@@ -144,6 +140,8 @@
         CGFloat py = [[item objectAtIndex:2] floatValue];
         CGFloat rotation = [[item objectAtIndex:3] floatValue];
         [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
+        if ([type isEqual: @"RedPortalObject"])
+            ballStartingPoint = CGPointMake(px,py);
     }
     
     //		// Code kept around for later
