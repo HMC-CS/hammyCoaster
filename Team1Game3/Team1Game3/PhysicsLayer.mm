@@ -145,9 +145,8 @@
     }
     
     // Test code for magnet
-    [self addNewSpriteOfType:@"MagnetObject" AtPosition:ccp(100/PTM_RATIO,450/PTM_RATIO) WithRotation:0 AsDefault:YES];
+    [self addNewSpriteOfType:@"MagnetObject" AtPosition:ccp(400/PTM_RATIO,450/PTM_RATIO) WithRotation:0 AsDefault:NO];
 
-    
     
     //		// Code kept around for later
     //        #if 1
@@ -174,6 +173,8 @@
 
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
 {
+    if([type isEqualToString:@"MagnetObject"])
+        NSLog(@"MagnetObject");
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
@@ -288,6 +289,31 @@
     world->DestroyBody(starBody);
     
     [self updateStarCount];
+}
+
+/* applyMagnets:
+ * helper function to apply magnet's forces to the ball
+ */
+-(void) applyMagnets
+{
+    //find all the magnets
+    for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
+        if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
+        {
+            //get the ball's body
+            for (b2Body* ball = world->GetBodyList(); ball; ball = ball->GetNext()){
+                if ([static_cast<AbstractGameObject*>(ball->GetUserData())._tag isEqualToString:@"BallObject"])
+                {
+                    NSLog(@"I GOT THE BALL");
+                    //AbstractGameObject* a = static_cast<AbstractGameObject*>(ball->GetUserData());
+                    
+                    //double distance = ({double d1 = ball->GetPosition().x - magnet->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
+                    b2Vec2 direction = b2Vec2((magnet->GetPosition().x - ball->GetPosition().x)*10, (magnet->GetPosition().y - ball->GetPosition().y)*10);
+                    ball->ApplyForce(direction, magnet->GetPosition());
+                }
+            }
+        }
+    }
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action
@@ -406,7 +432,7 @@
         [self hitStar:(_contactListener->_contactStar)];
         _contactListener->_contactStar = NULL;
     }
-    
+    [self applyMagnets];
 }
 
 
