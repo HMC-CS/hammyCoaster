@@ -296,6 +296,7 @@
  */
 -(void) applyMagnets
 {
+    int magnetConstant = 20;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
@@ -307,9 +308,11 @@
                     NSLog(@"I GOT THE BALL");
                     //AbstractGameObject* a = static_cast<AbstractGameObject*>(ball->GetUserData());
                     
-                    //double distance = ({double d1 = ball->GetPosition().x - magnet->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
-                    b2Vec2 direction = b2Vec2((magnet->GetPosition().x - ball->GetPosition().x)*10, (magnet->GetPosition().y - ball->GetPosition().y)*10);
-                    ball->ApplyForce(direction, magnet->GetPosition());
+                    double distance = ({double d1 = ball->GetPosition().x - magnet->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
+                    
+                    b2Vec2 direction = b2Vec2(magnetConstant/distance/(magnet->GetPosition().x - ball->GetPosition().x)-10, magnetConstant/distance/(ball->GetPosition().y - magnet->GetPosition().y)-10);
+                    ball->ApplyForce(direction, ball->GetPosition());
+                    
                 }
             }
         }
