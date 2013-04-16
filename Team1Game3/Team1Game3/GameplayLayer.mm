@@ -77,7 +77,7 @@
 
     // Buttons at bottom of inventory panel
     CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
-    [gameMenu2 setPosition:ccp(size.width/8, 5*size.height/16)];
+    [gameMenu2 setPosition:ccp(size.width/8, 4*size.height/16)];
     [self addChild: gameMenu2 z:-1];
 }
 
