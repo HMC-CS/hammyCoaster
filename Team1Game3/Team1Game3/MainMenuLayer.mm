@@ -42,7 +42,7 @@
 		// create menu button
 		[self createMenu];
         
-        CCLabelTTF* titleLabel = [CCLabelTTF labelWithString:@"Hamster Coaster!" fontName:@"Marker Felt" fontSize:36];
+        CCLabelTTF* titleLabel = [CCLabelTTF labelWithString:@"Hamster Coaster!" fontName:@"Marker Felt" fontSize:72];
         titleLabel.position = CGPointMake(size.width/2, 2*size.height/3);
         [self addChild:titleLabel];
 	}

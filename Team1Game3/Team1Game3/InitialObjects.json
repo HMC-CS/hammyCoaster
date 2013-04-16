@@ -51,6 +51,7 @@
         "level": "0104",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -67,6 +68,7 @@
         "level": "0105",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -82,6 +84,7 @@
         "level": "0106",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -97,6 +100,7 @@
         "level": "0107",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -112,6 +116,7 @@
         "level": "0108",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -127,6 +132,7 @@
         "level": "0109",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -142,6 +148,7 @@
         "level": "0110",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -156,7 +163,8 @@
     {
         "level": "0111",
         "objects": 
-        [
+        [         
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
@@ -172,6 +180,7 @@
         "level": "0112",
         "objects": 
         [
+            ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],

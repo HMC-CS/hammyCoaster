@@ -44,7 +44,7 @@
 	CCSprite *background;
 	
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-		background = [CCSprite spriteWithFile:@"Default.png"];
+		background = [CCSprite spriteWithFile:@"IntroLayer1.png"];
 		background.rotation = 90;
 	} else {
 		background = [CCSprite spriteWithFile:@"IntroLayer1.png"];
@@ -55,11 +55,11 @@
 	[self addChild: background];
 	
 	// In half second, transition to the new scene(which takes half a second)
-	[self scheduleOnce:@selector(makeTransition:) delay:.5];
+	[self scheduleOnce:@selector(makeTransition:) delay:2];
 }
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:0.5 scene:[MainMenuLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1 scene:[MainMenuLayer scene] withColor:ccWHITE]];
 }
 @end

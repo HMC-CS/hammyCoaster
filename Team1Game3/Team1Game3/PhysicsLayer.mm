@@ -143,11 +143,7 @@
         if ([type isEqual: @"RedPortalObject"])
             ballStartingPoint = CGPointMake(px,py);
     }
-    
-    // Test code for magnet
-    [self addNewSpriteOfType:@"MagnetObject" AtPosition:ccp(400/PTM_RATIO,450/PTM_RATIO) WithRotation:0 AsDefault:NO];
-
-    
+      
     //		// Code kept around for later
     //        #if 1
     //        		// Use batch node. Faster
@@ -296,7 +292,7 @@
  */
 -(void) applyMagnets
 {
-    int magnetConstant = 20;
+    int magnetConstant = 10;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
@@ -310,7 +306,7 @@
                     
                     double distance = ({double d1 = ball->GetPosition().x - magnet->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
                     
-                    b2Vec2 direction = b2Vec2(magnetConstant/distance/(magnet->GetPosition().x - ball->GetPosition().x)-10, magnetConstant/distance/(ball->GetPosition().y - magnet->GetPosition().y)-10);
+                    b2Vec2 direction = b2Vec2(magnetConstant/(magnet->GetPosition().x - ball->GetPosition().x)+distance, magnetConstant/distance/(ball->GetPosition().y - magnet->GetPosition().y)+distance);
                     ball->ApplyForce(direction, ball->GetPosition());
                     
                 }
