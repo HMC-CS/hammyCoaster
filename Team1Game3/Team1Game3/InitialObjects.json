@@ -70,14 +70,15 @@
         [
             ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "400.0", "250.0", "0"],
-            ["StarObject", "500.0", "240.0", "0"],
-            ["StarObject", "600.0", "230.0", "0"],
-            ["RampObject", "578.0", "160.0", "0.7"]
+            ["StarObject", "300.0", "350.0", "0"],
+            ["StarObject", "550.0", "400.0", "0"],
+            ["StarObject", "525.0", "300.0", "0"],
+            ["RampObject", "550.0", "160.0", "0.7"]
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"]
+            ["RampObject", "ramp", "1"],
+            ["CurvedRampObject", "curved ramp", "1"]
         ]
     },
     {
@@ -101,15 +102,14 @@
         "objects": 
         [
             ["RedPortalObject", "30.0", "600.0", "0"],
-            ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "400.0", "250.0", "0"],
-            ["StarObject", "500.0", "240.0", "0"],
-            ["StarObject", "600.0", "230.0", "0"],
-            ["RampObject", "578.0", "160.0", "0.7"]
+            ["BluePortalObject", "735.0", "450.0", "0"],
+            ["StarObject", "3350.0", "400.0", "0"],
+            ["StarObject", "485.0", "450.0", "0"],
+            ["StarObject", "635.0", "400.0", "0"]
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"]
+            ["CurvedRampObject", "ramp", "2"]
         ]
     },
     {

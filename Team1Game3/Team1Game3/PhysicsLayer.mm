@@ -127,7 +127,7 @@
     rampShapeDef.shape = &rampEdge;
     
     // ramp definitions
-    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(4*PTM_RATIO), 400/PTM_RATIO));
+    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(5*PTM_RATIO), 410/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
 
 }
@@ -234,7 +234,6 @@
     for (b2Body* b = world->GetBodyList(); b; b = b->GetNext()){
         if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
         {
-            NSLog(@"I GOT THE BALL");
             AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
             CCSprite* sprite = [a getSprite];
             [self removeChild: sprite cleanup:YES];
@@ -243,7 +242,6 @@
         
         if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"StarObject"])
         {
-            NSLog(@"I GOT THE STAR");
             AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
             CCSprite* sprite = [a getSprite];
             [self removeChild: sprite cleanup:YES];
@@ -292,7 +290,7 @@
  */
 -(void) applyMagnets
 {
-    int magnetConstant = 10;
+    int magnetConstant = 35;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
@@ -301,12 +299,12 @@
             for (b2Body* ball = world->GetBodyList(); ball; ball = ball->GetNext()){
                 if ([static_cast<AbstractGameObject*>(ball->GetUserData())._tag isEqualToString:@"BallObject"])
                 {
-                    NSLog(@"I GOT THE BALL");
                     //AbstractGameObject* a = static_cast<AbstractGameObject*>(ball->GetUserData());
                     
-                    double distance = ({double d1 = ball->GetPosition().x - magnet->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
+                    double distance = ({double d1 = magnet->GetPosition().x - ball->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
                     
-                    b2Vec2 direction = b2Vec2(magnetConstant/(magnet->GetPosition().x - ball->GetPosition().x)+distance, magnetConstant/distance/(ball->GetPosition().y - magnet->GetPosition().y)+distance);
+                    b2Vec2 direction = b2Vec2(magnetConstant/(distance*distance*(magnet->GetPosition().x - ball->GetPosition().x)), -magnetConstant/(distance*distance*(ball->GetPosition().y - magnet->GetPosition().y)));
+                    
                     ball->ApplyForce(direction, ball->GetPosition());
                     
                 }
