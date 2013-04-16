@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "387432059.949482"
+         timestampString = "387795146.662868"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "289"
-         endingLineNumber = "289"
+         startingLineNumber = "321"
+         endingLineNumber = "321"
          landmarkName = "-gameWon"
          landmarkType = "5">
       </FileBreakpoint>
@@ -64,6 +64,19 @@
          startingLineNumber = "55"
          endingLineNumber = "55"
          landmarkName = "-createBody:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Team1Game3/PhysicsLayer.mm"
+         timestampString = "387794924.68376"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "144"
+         endingLineNumber = "144"
+         landmarkName = "-addInitialObjects"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

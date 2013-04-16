@@ -31,5 +31,6 @@
 -(b2Body *) createBody:(CGPoint) location;
 
 @property(retain, readonly) NSString* _tag;
+//@property(readonly) bool _isDefault;
 
 @end

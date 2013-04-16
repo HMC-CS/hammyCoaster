@@ -11,6 +11,7 @@
 @implementation AbstractGameObject
 
 @synthesize _tag;
+//@synthesize _isDefault;
 
 -(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite withTag:(NSString*) tag
 {

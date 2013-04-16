@@ -230,6 +230,38 @@
 
 -(void) resetBall
 {
+    // Delete Ball and Stars
+    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext()){
+        if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
+        {
+            NSLog(@"I GOT THE BALL");
+            AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
+            CCSprite* sprite = [a getSprite];
+            [self removeChild: sprite cleanup:YES];
+            [self deleteObjectWithBody:b];
+        }
+        
+        if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"StarObject"])
+        {
+            NSLog(@"I GOT THE STAR");
+            AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
+            CCSprite* sprite = [a getSprite];
+            [self removeChild: sprite cleanup:YES];
+            [self deleteObjectWithBody:b];
+        }
+    }
+    // put back all the stars from the JSON file
+    for (NSArray* item in _initialObjects) {
+        NSString* type = [item objectAtIndex:0];
+        if ([type isEqualToString: @"StarObject"])
+        {
+            CGFloat px = [[item objectAtIndex:1] floatValue];
+            CGFloat py = [[item objectAtIndex:2] floatValue];
+            CGFloat rotation = [[item objectAtIndex:3] floatValue];
+            [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
+        }
+    }
+    // make level editable again
     _editMode = YES;
     
 }

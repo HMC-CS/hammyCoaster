@@ -131,7 +131,7 @@
 -(void) resetBallPhysicsLayer
 {
     //reset ball and stars
-    _physicsLayer->_editMode = true;
+    [_physicsLayer resetBall];
 }
 
 /* resetPhysicsLayer:
