@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+#import "AppDelegate.h"
+#import "GameManager.h"
+
 // TODO: comment back in if multiple level sets added
 //#import "CCScrollLayer.h"
 
 @interface WinLayer : CCLayer {
     int _stars;
     int _level;
+    
+    GameManager* _gameManager;
     
 }
 

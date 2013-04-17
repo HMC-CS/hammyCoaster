@@ -38,6 +38,8 @@
         
         self.isTouchEnabled = YES;
         
+        _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
+        
         /////////////
         
         [self createMenu];
@@ -57,9 +59,6 @@
     CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
         [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level]];
     }];
-    CCMenuItemLabel *next = [CCMenuItemFont itemWithString:@"Next level" block:^(id sender){
-        [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
-    }];
     CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
         [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
     }];
@@ -67,8 +66,17 @@
         [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
     }];
     
-    CCMenu *menu = [CCMenu menuWithItems:replay, next, mainMenu, levelMenu, nil];
     
+    CCMenu* menu;
+    if (_level != _gameManager.numLevelIndices) {
+        CCMenuItemLabel *next = [CCMenuItemFont itemWithString:@"Next level" block:^(id sender){
+            [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
+        }];
+        menu = [CCMenu menuWithItems:replay, next, mainMenu, levelMenu, nil];
+    } else {
+        menu = [CCMenu menuWithItems:replay, mainMenu, levelMenu, nil];
+    }
+        
     [menu alignItemsVertically];
     
     CGSize size = [[CCDirector sharedDirector] winSize];
