@@ -18,10 +18,18 @@
     SEL _selector3; // Reset Level
     
     CCLabelTTF* _starLabel;
+    CCLabelTTF* _bestStarLabel;
+    
+    int _bestStars;
     
 }
 
 @property (readonly) int starCount;
+
+/* initWithHighScore:
+ * initializes Gameplay Layer with level high score
+ */
+-(id) initWithHighScore:(int) stars;
 
 /* setTarget: atAction:
  * guaranteed name for function to initialize selectors and target

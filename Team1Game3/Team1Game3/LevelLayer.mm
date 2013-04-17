@@ -102,7 +102,7 @@
  */
 -(void) createGameplayLayer
 {
-    _gameplayLayer = [[GameplayLayer alloc] init];
+    _gameplayLayer = [[GameplayLayer alloc] initWithHighScore:[_gameManager highScoreAtLevelSet:_levelSet AndIndex:_levelIndex]];
     [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLayer)];
     [_gameplayLayer setTarget:self atAction:@selector(resetBallPhysicsLayer)];
     [_gameplayLayer setTarget:self atAction:@selector(resetPhysicsLayer)];
@@ -187,7 +187,7 @@
     
     [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
     
-    [_gameManager registerCompletedLevelWithLevelSet:_levelSet AndIndex:_levelIndex];
+    [_gameManager registerCompletedLevelWithLevelSet:_levelSet AndIndex:_levelIndex AndStarCount:_gameplayLayer.starCount];
 }
 
 /* updateStarCount:

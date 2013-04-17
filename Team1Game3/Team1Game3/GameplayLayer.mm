@@ -12,7 +12,7 @@
 
 @implementation GameplayLayer
 
--(id) init
+-(id) initWithHighScore:(int) stars
 {
 	if( (self=[super init])) {
 		
@@ -21,6 +21,8 @@
 		self.isTouchEnabled = YES;
 		
         [self setPosition:ccp(0,0)];
+        
+        _bestStars = stars;
         
 		// create menu buttons
 		[self createMenu];
@@ -91,6 +93,10 @@
     _starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:24];
     _starLabel.position = CGPointMake(size.width/8, 3*size.height/16);
     [self addChild:_starLabel];
+    
+    _bestStarLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Best Stars: %d", _bestStars] fontName:@"Marker Felt" fontSize:24];
+    _bestStarLabel.position = CGPointMake(size.width/8, 2*size.height/16);
+    [self addChild:_bestStarLabel];
 }
 
 -(void) setTarget:(id) sender atAction:(SEL)action

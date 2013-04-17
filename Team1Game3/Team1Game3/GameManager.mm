@@ -23,6 +23,7 @@
         for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
         {
             [_levelCompletionStatuses addObject:@"false"];
+            [_levelHighScores addObject:[NSNumber numberWithInt:0]];
         }
     }
     
@@ -41,10 +42,14 @@
     }
 }
 
--(void) registerCompletedLevelWithLevelSet:(int)set AndIndex:(int)index
+-(void) registerCompletedLevelWithLevelSet:(int)set AndIndex:(int)index AndStarCount:(int)stars
 {
     NSAssert1(set > 0 && set <= _numLevelSets, @"Invalid set index %d given in AppController.", set);
     NSAssert1(index > 0 && index <= _numLevelIndices, @"Invalid level index %d given in AppController.", index);
+    
+    if (stars > [[_levelHighScores objectAtIndex:(set-1)*_numLevelIndices + (index-1)] intValue]) {
+        [_levelHighScores setObject:[NSNumber numberWithInt:stars] atIndexedSubscript:(set-1)*_numLevelIndices + (index-1)];
+    }
     
     if ([[_levelCompletionStatuses objectAtIndex:(set-1)*_numLevelIndices + (index-1)] isEqualToString:@"false"]) {
         [_levelCompletionStatuses setObject:@"true" atIndexedSubscript:(set-1)*_numLevelIndices + (index-1)];
@@ -55,6 +60,11 @@
         }
     }
     
+}
+
+-(int) highScoreAtLevelSet:(int)set AndIndex:(int)index
+{
+    return [[_levelHighScores objectAtIndex:(set-1)*_numLevelIndices + (index-1)] intValue];
 }
 
 @end

@@ -17,6 +17,7 @@
     
     int _numLevelsCompleted;
     NSMutableArray* _levelCompletionStatuses;
+    NSMutableArray* _levelHighScores;
 }
 
 @property (readonly) int numLevelSets;
@@ -28,9 +29,14 @@
  */
 -(bool) isLevelCompletedAtLevelSet: (int) set AndIndex: (int) index;
 
-/* registerCompletedLevelWithLevelSet:AndIndex:
+/* registerCompletedLevelWithLevelSet:AndIndex:AndStarCount:
  * registers a level as completed with the GameManager when it is beaten
  */
--(void) registerCompletedLevelWithLevelSet:(int)set AndIndex:(int)index;
+-(void) registerCompletedLevelWithLevelSet:(int)set AndIndex:(int)index AndStarCount:(int)stars;
+
+/* highScoreAtLevelSet:AndIndex:
+ * returns highest star count obtained in level
+ */
+-(int) highScoreAtLevelSet:(int)set AndIndex:(int)index;
 
 @end
