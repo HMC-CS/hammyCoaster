@@ -95,14 +95,39 @@
                     [levelIconSelected addChild:labelSelected];
                     
                     if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
-                        CCSprite *check = [CCSprite spriteWithFile:@"CheckMark.png"];
-                        [check setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
-                        [check setScale:0.3];
-                        [levelIcon addChild:check];
-                        CCSprite *check2 = [CCSprite spriteWithFile:@"CheckMark.png"];
-                        [check2 setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
-                        [check2 setScale:0.3];
-                        [levelIconSelected addChild:check2];
+                        
+//                        // TODO: get rid of this if we're happy with the stars
+//                        CCSprite *check = [CCSprite spriteWithFile:@"CheckMark.png"];
+//                        [check setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
+//                        [check setScale:0.3];
+//                        [levelIcon addChild:check];
+//                        CCSprite *check2 = [CCSprite spriteWithFile:@"CheckMark.png"];
+//                        [check2 setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
+//                        [check2 setScale:0.3];
+//                        [levelIconSelected addChild:check2];
+                        
+                        int numStars = [_gameManager highScoreAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1];
+                        
+                        CGPoint starLocation = ccp(levelIcon.contentSize.width/4.5, levelIcon.contentSize.height/5);
+                        
+                        for (int i = 1; i <= 3; ++i) {
+                            if (numStars < i) {
+                                CCSprite *sprite = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
+                                CCSprite *sprite2 = [CCSprite spriteWithFile:@"StarObjectOutline.png"]; 
+                                [sprite setPosition:starLocation];
+                                [sprite2 setPosition:starLocation];
+                                [levelIcon addChild:sprite];
+                                [levelIconSelected addChild:sprite2];
+                            } else {
+                                CCSprite *sprite = [CCSprite spriteWithFile:@"StarObject.png"];
+                                CCSprite *sprite2 = [CCSprite spriteWithFile:@"StarObject.png"];
+                                [sprite setPosition:starLocation];
+                                [sprite2 setPosition:starLocation];
+                                [levelIcon addChild:sprite];
+                                [levelIconSelected addChild:sprite2];
+                            }
+                            starLocation = ccp(starLocation.x + levelIcon.contentSize.width/3.5, starLocation.y);
+                        }
                     }
 
                     
