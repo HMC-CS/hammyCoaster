@@ -20,6 +20,7 @@
         
         _numLevelsCompleted = 0;
         _levelCompletionStatuses = [[NSMutableArray alloc] init];
+        _levelHighScores = [[NSMutableArray alloc] init];
         for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
         {
             [_levelCompletionStatuses addObject:@"false"];
