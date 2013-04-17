@@ -26,11 +26,12 @@
 		AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96B171CB462007B471F /* FlippedRampObject.mm */; };
 		AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96E171CC476007B471F /* InstructionsLayer.mm */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
+		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
+		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
 		D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */; };
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
 		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; };
 		D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */; };
-		D8299F7D171E0EA600C6E8C5 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F7C171E0EA600C6E8C5 /* Default-Landscape~ipad.png */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
 		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
@@ -282,12 +283,13 @@
 		AD57A96E171CC476007B471F /* InstructionsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InstructionsLayer.mm; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
+		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HamsterCoasterIcon.png; path = ../HamsterCoasterIcon.png; sourceTree = "<group>"; };
+		CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
 		D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObject.png; sourceTree = "<group>"; };
 		D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObjectIcon.png; sourceTree = "<group>"; };
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
 		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
 		D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObjectIcon.png; sourceTree = "<group>"; };
-		D8299F7C171E0EA600C6E8C5 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Team1Game3Tests-Info.plist"; sourceTree = "<group>"; };
@@ -933,7 +935,7 @@
 		D8E83C6716EA753B000284EA = {
 			isa = PBXGroup;
 			children = (
-				D8299F7C171E0EA600C6E8C5 /* Default-Landscape~ipad.png */,
+				CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */,
 				D8E83C8516EA753B000284EA /* Team1Game3 */,
 				D843EFD616FFBA16006732D5 /* Team1Game3Tests */,
 				D8E83C7216EA753B000284EA /* Frameworks */,
@@ -997,6 +999,7 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */,
 				D8820915171BAD0000D74162 /* IntroLayer1.png */,
 				D8820913171BAC5100D74162 /* IntroLayer.png */,
 				D86F71591708A7100007ED1D /* InitialObjects.json */,
@@ -1637,7 +1640,8 @@
 				D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */,
 				D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */,
 				D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */,
-				D8299F7D171E0EA600C6E8C5 /* Default-Landscape~ipad.png in Resources */,
+				CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */,
+				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

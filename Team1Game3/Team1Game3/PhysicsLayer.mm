@@ -303,7 +303,7 @@
                     
                     double distance = ({double d1 = magnet->GetPosition().x - ball->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
                     
-                    b2Vec2 direction = b2Vec2(magnetConstant/(distance*distance*(magnet->GetPosition().x - ball->GetPosition().x)), -magnetConstant/(distance*distance*(ball->GetPosition().y - magnet->GetPosition().y)));
+                    b2Vec2 direction = b2Vec2(magnetConstant/(distance*distance*(magnet->GetPosition().x - ball->GetPosition().x)), magnetConstant/(distance*distance*(magnet->GetPosition().y - ball->GetPosition().y)));
                     
                     ball->ApplyForce(direction, ball->GetPosition());
                     
