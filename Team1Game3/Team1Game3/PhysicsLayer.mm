@@ -497,7 +497,32 @@
     if (currentMoveableBody != NULL) {
         b2Vec2 newPos = b2Vec2(location.x + xOffset, location.y + yOffset);
         currentMoveableBody->SetTransform(newPos,currentMoveableBody->GetAngle());
-    }    
+    }
+    // code to check you can't drag into the inventory
+    b2Fixture* f = currentMoveableBody->GetFixtureList();
+    b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+    int count = polygonShape->GetVertexCount();
+    
+    CGFloat offset = self.boundingBox.origin.x;
+    
+    for(int i = 0; i < count; i++)
+    {
+        CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
+        CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
+        CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
+        CGPoint boundPoint = CGPointMake(point.x + touchLocation.x + offset, point.y + touchLocation.y);
+        boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+        
+        if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+        {
+            //                NSString* type = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+            //                [self objectDeletedOfType:type];
+            //                world->DestroyBody(body);
+            //[self deleteObjectWithBody:currentMoveableBody];
+            NSLog(@"Body dragged into walls");
+            return;
+        }
+    }
 }
 
 -(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {

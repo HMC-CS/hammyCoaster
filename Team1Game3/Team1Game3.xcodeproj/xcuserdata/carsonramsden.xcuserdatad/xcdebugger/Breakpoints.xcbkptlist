@@ -52,8 +52,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "310"
          endingLineNumber = "310"
-         landmarkName = "@implementation PhysicsLayer"
-         landmarkType = "3">
+         landmarkName = "-applyMagnets"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -65,7 +65,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "326"
          endingLineNumber = "326"
-         landmarkName = "-draw"
+         landmarkName = "-setTarget:atAction:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
