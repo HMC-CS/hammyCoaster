@@ -15,12 +15,15 @@
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *ramp_Body = _world->CreateBody(&_bodyDef);
     
-    b2Vec2 vertices[4];
-    int num = 4;
-    vertices[0].Set(-87.5f / PTM_RATIO, 120.5f / PTM_RATIO);
-    vertices[1].Set(-120.5f / PTM_RATIO, 87.5f / PTM_RATIO);
-    vertices[2].Set(87.5f / PTM_RATIO, -120.5f / PTM_RATIO);
-    vertices[3].Set(120.5f / PTM_RATIO, -87.5f / PTM_RATIO);
+    b2Vec2 vertices[7];
+    int num = 7;
+    vertices[0].Set(-81.4f / PTM_RATIO, 113.4f / PTM_RATIO);
+    vertices[1].Set(-94.5f / PTM_RATIO, 113.4f / PTM_RATIO);
+    vertices[2].Set(-59.6f / PTM_RATIO, 9.5f / PTM_RATIO);
+    vertices[3].Set(10.0f / PTM_RATIO, -53.9f / PTM_RATIO);
+    vertices[4].Set(87.1f / PTM_RATIO, -93.1f / PTM_RATIO);
+    vertices[5].Set(115.0f / PTM_RATIO, -91.6f / PTM_RATIO);
+    vertices[6].Set(114.0f / PTM_RATIO, -77.8f / PTM_RATIO);
     
     b2PolygonShape rampShape;
     rampShape.Set(vertices, num);
