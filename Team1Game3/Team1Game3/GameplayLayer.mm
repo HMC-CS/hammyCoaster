@@ -102,7 +102,7 @@
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
     NSAssert1(sender, @"Sender %@ for GameplayLayer setTarget is null.", sender);
-    NSAssert1(action, @"Selector %@ for GameplayLayer setTarget is null.", action);
+    NSAssert(action, @"Selector for GameplayLayer setTarget is null.");
     
     _target = sender;
     if (!_selector1) {
