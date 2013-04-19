@@ -42,7 +42,7 @@
         [self addChild:_winLabel];
         
         // Default font size will be 22 points.
-        [CCMenuItemFont setFontSize:22];
+        [CCMenuItemFont setFontSize:30];
         
         // Reset Button
         CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
@@ -54,7 +54,7 @@
         
         CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, nil];
         
-        [menu alignItemsVertically];
+        [menu alignItemsVerticallyWithPadding:30.0f];
         
         [menu setPosition:ccp( size.width/2, size.height/2)];
         

@@ -36,7 +36,7 @@
         _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
         
         /////////////
-        
+        [CCMenuItemFont setFontSize:35];
         CCMenuItem *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender) {
             [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];
         }];
@@ -96,16 +96,6 @@
                     
                     if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
                         
-//                        // TODO: get rid of this if we're happy with the stars
-//                        CCSprite *check = [CCSprite spriteWithFile:@"CheckMark.png"];
-//                        [check setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
-//                        [check setScale:0.3];
-//                        [levelIcon addChild:check];
-//                        CCSprite *check2 = [CCSprite spriteWithFile:@"CheckMark.png"];
-//                        [check2 setPosition:ccp(levelIcon.contentSize.width/5, levelIcon.contentSize.height/5)];
-//                        [check2 setScale:0.3];
-//                        [levelIconSelected addChild:check2];
-                        
                         int numStars = [_gameManager highScoreAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1];
                         
                         CGPoint starLocation = ccp(levelIcon.contentSize.width/4.5, levelIcon.contentSize.height/5);
@@ -130,7 +120,6 @@
                         }
                     }
 
-                    
                     CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {
                         // TODO: change this line to load different sets
                         [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:1 AndIndex:4*j+i+1]];  // TODO: make set "k" if loop added back

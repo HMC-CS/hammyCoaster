@@ -498,6 +498,7 @@
         b2Vec2 newPos = b2Vec2(location.x + xOffset, location.y + yOffset);
         currentMoveableBody->SetTransform(newPos,currentMoveableBody->GetAngle());
     }
+    
     // code to check you can't drag into the inventory
     b2Fixture* f = currentMoveableBody->GetFixtureList();
     b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();

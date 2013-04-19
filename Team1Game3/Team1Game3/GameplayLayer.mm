@@ -44,6 +44,8 @@
      * -------------------------------------------------------------------------
      */
     
+    [CCMenuItemFont setFontSize:30];
+    
     // Play Button: drops ball
     CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
         [self playButtonPressed];
@@ -90,12 +92,12 @@
     
     // Number of Stars label
     _starCount = 0;
-    _starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:24];
-    _starLabel.position = CGPointMake(size.width/8, 3*size.height/16);
+    _starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:30];
+    _starLabel.position = CGPointMake(size.width/8, 5*size.height/32);
     [self addChild:_starLabel];
     
-    _bestStarLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Best Stars: %d", _bestStars] fontName:@"Marker Felt" fontSize:24];
-    _bestStarLabel.position = CGPointMake(size.width/8, 2*size.height/16);
+    _bestStarLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Best Stars: %d", _bestStars] fontName:@"Marker Felt" fontSize:30];
+    _bestStarLabel.position = CGPointMake(size.width/8, 3*size.height/32);
     [self addChild:_bestStarLabel];
 }
 

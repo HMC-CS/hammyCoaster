@@ -43,7 +43,7 @@
 		[self createMenu];
         
         CCLabelTTF* titleLabel = [CCLabelTTF labelWithString:@"Hamster Coaster!" fontName:@"Marker Felt" fontSize:72];
-        titleLabel.position = CGPointMake(size.width/2, 2*size.height/3);
+        titleLabel.position = CGPointMake(size.width/2, 3*size.height/4);
         [self addChild:titleLabel];
 	}
 	return self;
@@ -56,8 +56,7 @@
 
 -(void) createMenu
 {
-	// Default font size will be 22 points.
-	[CCMenuItemFont setFontSize:22];
+	[CCMenuItemFont setFontSize:35];
 	
 	// Play Game Button
 	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"Play Game" block:^(id sender){
@@ -71,7 +70,7 @@
 	
     CCMenu *menu = [CCMenu menuWithItems:newGame, instructions, nil];
 	
-	[menu alignItemsVertically];
+	[menu alignItemsVerticallyWithPadding:40.0f];
 	
 	CGSize size = [[CCDirector sharedDirector] winSize];
 	[menu setPosition:ccp( size.width/2, size.height/2)];

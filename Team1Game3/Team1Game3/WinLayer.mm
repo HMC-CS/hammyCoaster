@@ -51,8 +51,7 @@
 
 -(void) createMenu
 {
-    // Default font size will be 22 points.
-    [CCMenuItemFont setFontSize:22];
+    [CCMenuItemFont setFontSize:30];
     
     // Reset Button
     
@@ -77,7 +76,7 @@
         menu = [CCMenu menuWithItems:replay, mainMenu, levelMenu, nil];
     }
         
-    [menu alignItemsVertically];
+    [menu alignItemsVerticallyWithPadding:30.0f];
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     [menu setPosition:ccp( size.width/2, size.height/2)];
