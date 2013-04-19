@@ -71,12 +71,12 @@
     // Buttons at top of inventory panel
     CCMenu *gameMenu0 = [CCMenu menuWithItems: playButton, nil];
     [gameMenu0 alignItemsHorizontallyWithPadding:25];
-    [gameMenu0 setPosition:ccp(size.width/8, size.height*4/5)];
+    [gameMenu0 setPosition:ccp(size.width/8, size.height*17/20)];
     [self addChild: gameMenu0 z:-1];
     
     CCMenu *gameMenu1 = [CCMenu menuWithItems: resetBallButton, resetButton, nil];
     [gameMenu1 alignItemsHorizontallyWithPadding:25];
-    [gameMenu1 setPosition:ccp(size.width/8, size.height*7/10)];
+    [gameMenu1 setPosition:ccp(size.width/8, size.height*15/20)];
     [self addChild: gameMenu1 z:-1];
 
     // Buttons at bottom of inventory panel

@@ -32,6 +32,8 @@
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
 		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; };
 		D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */; };
+		D8299F811721467C00C6E8C5 /* Delete.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D8299F801721467B00C6E8C5 /* Delete.PNG */; };
+		D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D8299F82172146F300C6E8C5 /* Delete2.PNG */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
 		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
@@ -290,6 +292,8 @@
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
 		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
 		D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObjectIcon.png; sourceTree = "<group>"; };
+		D8299F801721467B00C6E8C5 /* Delete.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Delete.PNG; path = Team1Game3/Delete.PNG; sourceTree = "<group>"; };
+		D8299F82172146F300C6E8C5 /* Delete2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete2.PNG; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D843EFD816FFBA16006732D5 /* Team1Game3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Team1Game3Tests-Info.plist"; sourceTree = "<group>"; };
@@ -803,6 +807,7 @@
 				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
 				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
 				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
+				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
 				AD57A96D171CC476007B471F /* InstructionsLayer.h */,
 				AD57A96E171CC476007B471F /* InstructionsLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
@@ -935,6 +940,7 @@
 		D8E83C6716EA753B000284EA = {
 			isa = PBXGroup;
 			children = (
+				D8299F801721467B00C6E8C5 /* Delete.PNG */,
 				CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */,
 				D8E83C8516EA753B000284EA /* Team1Game3 */,
 				D843EFD616FFBA16006732D5 /* Team1Game3Tests */,
@@ -1642,6 +1648,8 @@
 				D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */,
 				CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */,
 				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
+				D8299F811721467C00C6E8C5 /* Delete.PNG in Resources */,
+				D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
