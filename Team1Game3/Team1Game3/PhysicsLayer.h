@@ -25,6 +25,7 @@
     ObjectFactory* _objectFactory;
     ContactListener* _contactListener;
     NSString* _objectType;
+    b2Vec2 _initialPostion;
     
     
     int starCount;
