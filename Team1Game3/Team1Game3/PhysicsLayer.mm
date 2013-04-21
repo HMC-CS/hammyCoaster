@@ -173,6 +173,7 @@
 {
     if([type isEqualToString:@"MagnetObject"])
         NSLog(@"MagnetObject");
+    
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
 	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
@@ -183,15 +184,21 @@
     //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
     // = the count in the file return
     
-    b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
+    b2Body* body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
     
     [self addChild:sprite];
 	[sprite setPhysicsBody:body];
     [sprite setPosition: ccp(p.x,p.y)];
     
     body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
-    
+
     if (![static_cast<AbstractGameObject*>(body->GetUserData())._tag isEqualToString:@"BallObject"]) {
+        
+//        TODO: for when we have multiple bodies for a single object
+//        b2JointEdge* jointEdge = body->GetJointList();
+//        b2Joint* joint = jointEdge->joint;
+//        b2Body* jointBodyA = joint->GetBodyA();
+//        b2Body* jointBodyB = joint->GetBodyB();
         
         b2Fixture* f = body->GetFixtureList();
         b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
