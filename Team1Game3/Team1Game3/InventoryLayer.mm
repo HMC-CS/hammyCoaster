@@ -137,7 +137,7 @@
  */
 -(void) dealloc
 {
-    
+    [_selectedObject release];
 	[super dealloc];
 }
 

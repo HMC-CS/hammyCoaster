@@ -599,6 +599,8 @@
     
     delete world;
 	world = NULL;
+    
+    [_objectType release];
 	
 	[super dealloc];
 }
