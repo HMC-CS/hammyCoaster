@@ -57,6 +57,7 @@
         CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
         CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
         selected.color = ccc3(255,255,0);
+        //selected.color = ccc3(255,255,255);
 
         
         CCMenuItemSprite *inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected block:^(id sender) {
@@ -88,30 +89,6 @@
         [inventoryMenu addChild:inventoryButton];
     }
     
-    //[CCMenuItemFont setFontSize:30];
-    CCSprite *normalDelete = [CCSprite spriteWithFile:@"Delete2.PNG"];
-    CCSprite *selectedDelete = [CCSprite spriteWithFile:@"Delete2.PNG"];
-    selectedDelete.color = ccc3(255,255,0);
-    CCMenuItemSprite *deleteButton = [CCMenuItemSprite itemWithNormalSprite:normalDelete selectedSprite:selectedDelete block:^(id sender) {                                         // Code for when we make this a picture
-                                         for (int i= 0; i < [buttonArray count];i++)
-                                         {
-                                             CCMenuItemSprite *button = buttonArray[i];
-                                             NSString* objectType = (NSString*) button.userData;
-                                             if ([_selectedObject isEqualToString:objectType])
-                                             {
-                                                 [button unselected];
-                                             }
-                                         }
-                                         
-                                         _selectedObject = @"Delete";
-                                         [(CCMenuItemSprite*)sender selected];
-                                         
-                                         
-                                         
-                                     }];
-    deleteButton.userData = @"Delete";
-    [buttonArray addObject:deleteButton];
-    [inventoryMenu addChild:deleteButton];
     
     [inventoryMenu alignItemsVerticallyWithPadding:10.0f];
     [inventoryMenu setPosition:ccp(size.width/8, size.height/2)];

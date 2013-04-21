@@ -18,10 +18,11 @@
     b2BodyDef _bodyDef;
     b2FixtureDef _fixtureDef;
     
-    CCSprite* _sprite;
+  
     
     // TODO: we will fix these public variables for v1!
     @public
+    CCSprite* _sprite;
     NSString* _tag;
     bool _isDefault;
 }

@@ -185,6 +185,10 @@
     
     b2Body *body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
     
+    [self addChild:sprite];
+	[sprite setPhysicsBody:body];
+    [sprite setPosition: ccp(p.x,p.y)];
+    
     body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
     
     if (![static_cast<AbstractGameObject*>(body->GetUserData())._tag isEqualToString:@"BallObject"]) {
@@ -215,9 +219,6 @@
         }
     }
     
-    [self addChild:sprite];
-	[sprite setPhysicsBody:body];
-    [sprite setPosition: ccp(p.x,p.y)];
     //_initialPostion = b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO);
 }
 
@@ -383,8 +384,12 @@
 -(void) deleteObjectWithBody: (b2Body*) body
 {
     NSLog(@"we are deleting object with body");
-    NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+    //[self removeChild: static_cast <AbstractGameObject*> ( currentMoveableBody->GetUserData())->_sprite cleanup: YES ];
+    AbstractGameObject* object = static_cast<AbstractGameObject*>(body->GetUserData());
+    NSString* objectType = object._tag;
+    CCSprite* objectSprite = object->_sprite;
     [self objectDeletedOfType:objectType];
+    [self removeChild: objectSprite cleanup: YES];
     world->DestroyBody(body);
 }
 
@@ -470,17 +475,17 @@
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
         if (!bodyObject->_isDefault && _editMode) {
-            bool isDelete = [self isDeleteSelected];
-            //_objectType = [self getObjectType];
-            // NSLog(@"%@ is the object type", _objectType);
-            if (isDelete) {
-                CCSprite* sprite = [bodyObject getSprite];
-                [self removeChild: sprite cleanup:YES];
-                [self deleteObjectWithBody:body];
-                //                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
-                //                [self objectDeletedOfType:objectType];
-                //                world->DestroyBody(body);
-            } else {
+//            bool isDelete = [self isDeleteSelected];
+//            //_objectType = [self getObjectType];
+//            // NSLog(@"%@ is the object type", _objectType);
+//            if (isDelete) {
+//                CCSprite* sprite = [bodyObject getSprite];
+//                [self removeChild: sprite cleanup:YES];
+//                [self deleteObjectWithBody:body];
+//                //                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+//                //                [self objectDeletedOfType:objectType];
+//                //                world->DestroyBody(body);
+//            } else {
                 // calculate the offset between the touch and the center of the object
                 b2Vec2 bodyLocation = body->GetPosition();
                 xOffset = bodyLocation.x - location.x;
@@ -488,7 +493,7 @@
                  _initialPostion = b2Vec2(touchLocation.x/PTM_RATIO + xOffset,touchLocation.y/PTM_RATIO + yOffset);
                 body->SetType(b2_staticBody);
                 currentMoveableBody = body;
-            }
+            //}
         }
     }
     return YES;
@@ -538,9 +543,16 @@
             
             if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
             {
+                if (boundPoint.x < self.boundingBox.origin.x)
+                {
+                    [self deleteObjectWithBody:currentMoveableBody];
+                    break;
+                }else{
                 currentMoveableBody->SetTransform(_initialPostion, currentMoveableBody->GetAngle());
                 NSLog(@"Body dragged into walls");
+                }
             }
+            
         }
         currentMoveableBody = NULL;
     } else if (_editMode) {
