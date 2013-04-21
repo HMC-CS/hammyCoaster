@@ -34,13 +34,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388199709.357495"
+         timestampString = "388271428.807698"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "326"
-         endingLineNumber = "326"
-         landmarkName = "-addNewSpriteOfType:AtPosition:WithRotation:AsDefault:"
-         landmarkType = "5">
+         startingLineNumber = "328"
+         endingLineNumber = "328"
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -84,12 +84,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388199709.357495"
+         timestampString = "388200015.378725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "302"
-         endingLineNumber = "302"
-         landmarkName = "-addNewSpriteOfType:AtPosition:WithRotation:AsDefault:"
+         startingLineNumber = "297"
+         endingLineNumber = "297"
+         landmarkName = "-applyMagnets"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -97,12 +97,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388199709.357495"
+         timestampString = "388200015.378725"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "294"
-         endingLineNumber = "294"
-         landmarkName = "-addNewSpriteOfType:AtPosition:WithRotation:AsDefault:"
+         startingLineNumber = "289"
+         endingLineNumber = "289"
+         landmarkName = "-hitStar:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -58,7 +58,7 @@
     }];
     
     // Reset Button: Gets rid of all non-default items in level
-    CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Reset" block:^(id sender){
+    CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Restart Level" block:^(id sender){
         // reset level; currently just redraw everything
         [self resetButtonPressed];
     }];
@@ -67,22 +67,23 @@
     CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
         [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
     }];
+
+// TODO: put play button on top of start portal.  But for now, hopefully this layout is okay.
+//    // Buttons at top of inventory panel
+//    CCMenu *gameMenu0 = [CCMenu menuWithItems: playButton, nil];
+//    [gameMenu0 alignItemsHorizontallyWithPadding:25];
+//    [gameMenu0 setPosition:ccp(size.width/8, size.height*17/20)];
+//    [self addChild: gameMenu0 z:-1];
     
-    // Buttons at top of inventory panel
-    CCMenu *gameMenu0 = [CCMenu menuWithItems: playButton, nil];
-    [gameMenu0 alignItemsHorizontallyWithPadding:25];
-    [gameMenu0 setPosition:ccp(size.width/8, size.height*17/20)];
+    CCMenu *gameMenu0 = [CCMenu menuWithItems: playButton, resetBallButton, resetButton, nil];
+    [gameMenu0 alignItemsVerticallyWithPadding:10];
+    [gameMenu0 setPosition:ccp(size.width/8, size.height*15/20)];
     [self addChild: gameMenu0 z:-1];
-    
-    CCMenu *gameMenu1 = [CCMenu menuWithItems: resetBallButton, resetButton, nil];
-    [gameMenu1 alignItemsHorizontallyWithPadding:25];
-    [gameMenu1 setPosition:ccp(size.width/8, size.height*15/20)];
-    [self addChild: gameMenu1 z:-1];
 
     // Buttons at bottom of inventory panel
-    CCMenu *gameMenu2 = [CCMenu menuWithItems: backButton, nil];
-    [gameMenu2 setPosition:ccp(size.width/8, 4*size.height/16)];
-    [self addChild: gameMenu2 z:-1];
+    CCMenu *gameMenu1 = [CCMenu menuWithItems: backButton, nil];
+    [gameMenu1 setPosition:ccp(size.width/8, 4*size.height/16)];
+    [self addChild: gameMenu1 z:-1];
 }
 
 -(void) createLabels

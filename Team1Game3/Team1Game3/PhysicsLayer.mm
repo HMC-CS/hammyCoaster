@@ -43,7 +43,7 @@
         
         _initialObjects = objects;
         
-        _initialPostion = b2Vec2(0,0);
+        _initialPosition = b2Vec2(0,0);
         
         _objectType = [[NSString alloc] initWithFormat:@"None"];
         
@@ -216,17 +216,12 @@
             
             if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
             {
-                //                NSString* type = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
-                //                [self objectDeletedOfType:type];
-                //                world->DestroyBody(body);
                 [self deleteObjectWithBody:body];
                 NSLog(@"Body destroy");
                 return;
             }
         }
     }
-    
-    //_initialPostion = b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO);
 }
 
 
@@ -301,7 +296,7 @@
  */
 -(void) applyMagnets
 {
-    int magnetConstant = 45;
+    int magnetConstant = 150;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
@@ -312,11 +307,18 @@
                 {
                     //AbstractGameObject* a = static_cast<AbstractGameObject*>(ball->GetUserData());
                     
-                    double distance = ({double d1 = magnet->GetPosition().x - ball->GetPosition().x, d2 = ball->GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
+                    // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
                     
-                    b2Vec2 direction = b2Vec2(magnetConstant/(distance*distance*(magnet->GetPosition().x - ball->GetPosition().x)), magnetConstant/(distance*distance*(magnet->GetPosition().y - ball->GetPosition().y)));
+                    double distance = ({double d1 = magnet->GetPosition().x - ball->GetPosition().x, d2 = ball->
+                        GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
                     
-                    ball->ApplyForce(direction, ball->GetPosition());
+                    float avgMagnetSize = (static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.width + static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.height)/2;
+                    if (distance > avgMagnetSize/15) {
+                    
+                        b2Vec2 direction = b2Vec2(magnetConstant/(distance*distance*(magnet->GetPosition().x - ball->GetPosition().x)), magnetConstant/(distance*distance*(magnet->GetPosition().y - ball->GetPosition().y)));
+                    
+                        ball->ApplyForce(direction, ball->GetPosition());
+                    }
                     
                 }
             }
@@ -497,7 +499,7 @@
                 b2Vec2 bodyLocation = body->GetPosition();
                 xOffset = bodyLocation.x - location.x;
                 yOffset = bodyLocation.y - location.y;
-                 _initialPostion = b2Vec2(touchLocation.x/PTM_RATIO + xOffset,touchLocation.y/PTM_RATIO + yOffset);
+                 _initialPosition = b2Vec2(touchLocation.x/PTM_RATIO + xOffset,touchLocation.y/PTM_RATIO + yOffset);
                 body->SetType(b2_staticBody);
                 currentMoveableBody = body;
             //}
@@ -555,7 +557,7 @@
                     [self deleteObjectWithBody:currentMoveableBody];
                     break;
                 }else{
-                currentMoveableBody->SetTransform(_initialPostion, currentMoveableBody->GetAngle());
+                currentMoveableBody->SetTransform(_initialPosition, currentMoveableBody->GetAngle());
                 NSLog(@"Body dragged into walls");
                 }
             }
