@@ -11,6 +11,8 @@
 #import "IntroLayer.h"
 #import "MainMenuLayer.h"
 
+#import "SimpleAudioEngine.h"
+
 
 #pragma mark - IntroLayer
 
@@ -53,6 +55,8 @@
     
 	// add the label as a child to this Layer
 	[self addChild: background];
+    
+    [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"Background music.m4a"]; //play background music
 	
 	// In half second, transition to the new scene(which takes half a second)
 	[self scheduleOnce:@selector(makeTransition:) delay:2];

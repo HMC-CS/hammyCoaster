@@ -25,6 +25,7 @@
 		AD57A969171CB3D3007B471F /* FlippedRampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A965171CB3D3007B471F /* FlippedRampObjectIconSelected.png */; };
 		AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96B171CB462007B471F /* FlippedRampObject.mm */; };
 		AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96E171CC476007B471F /* InstructionsLayer.mm */; };
+		AD7731A91724A96C00709F80 /* Background music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AD7731A81724A96B00709F80 /* Background music.m4a */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
 		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
 		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
@@ -283,6 +284,7 @@
 		AD57A96B171CB462007B471F /* FlippedRampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FlippedRampObject.mm; sourceTree = "<group>"; };
 		AD57A96D171CC476007B471F /* InstructionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsLayer.h; sourceTree = "<group>"; };
 		AD57A96E171CC476007B471F /* InstructionsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InstructionsLayer.mm; sourceTree = "<group>"; };
+		AD7731A81724A96B00709F80 /* Background music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Background music.m4a"; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HamsterCoasterIcon.png; path = ../HamsterCoasterIcon.png; sourceTree = "<group>"; };
@@ -1005,6 +1007,7 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD7731A81724A96B00709F80 /* Background music.m4a */,
 				CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */,
 				D8820915171BAD0000D74162 /* IntroLayer1.png */,
 				D8820913171BAC5100D74162 /* IntroLayer.png */,
@@ -1650,6 +1653,7 @@
 				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
 				D8299F811721467C00C6E8C5 /* Delete.PNG in Resources */,
 				D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */,
+				AD7731A91724A96C00709F80 /* Background music.m4a in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
