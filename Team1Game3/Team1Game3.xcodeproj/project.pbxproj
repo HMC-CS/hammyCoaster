@@ -806,11 +806,10 @@
 				D882076A1713A49600D74162 /* GameplayLayer.h */,
 				D882076B1713A49600D74162 /* GameplayLayer.mm */,
 				D8E83EBF16EAC81B000284EA /* LevelLayer.h */,
+				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
 				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
 				D8E83EBA16EA7E06000284EA /* InventoryLayer.mm */,
-				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
 				AD57A96D171CC476007B471F /* InstructionsLayer.h */,
-				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
 				AD57A96E171CC476007B471F /* InstructionsLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
@@ -1007,6 +1006,7 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
 				AD7731A81724A96B00709F80 /* Background music.m4a */,
 				CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */,
 				D8820915171BAD0000D74162 /* IntroLayer1.png */,

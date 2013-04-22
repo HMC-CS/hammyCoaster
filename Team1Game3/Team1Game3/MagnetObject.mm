@@ -13,45 +13,65 @@
 
 - (b2Body *)createBody:(CGPoint)location {
     
+//    _bodyDef.type = b2_dynamicBody;
+//    _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
+//    b2Body *body = self->_world->CreateBody(&_bodyDef);
+//    
+//    b2CircleShape circle;
+//    circle.m_radius = 26.0/PTM_RATIO;
+//    
+//    _fixtureDef.shape = &circle;
+//    _fixtureDef.density = 1.0f;
+//    _fixtureDef.friction = 0.4f;
+//    _fixtureDef.restitution = 0.3f;
+//    
+//    body->CreateFixture(&_fixtureDef);
+//    body->SetUserData(self);
+//    
+//    return body;
+//    
     _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *body = self->_world->CreateBody(&_bodyDef);
     
     // TODO: magnet with north and south poles
-//    NSLog(@"trying to get sprite bounding box");
-//    
-//    float objectWidth = _sprite.boundingBox.size.width;
-//    float objectHeight = _sprite.boundingBox.size.height;
-//    
-//    NSLog(@"starting north shape");
-//    b2PolygonShape northShape;
-//    b2Vec2 northCenter = b2Vec2(location.x/PTM_RATIO + objectWidth/2, objectHeight);
-//    northShape.SetAsBox(objectWidth/2, objectHeight, northCenter, 0);
-//    _fixtureDef.shape = &northShape;
-//    _fixtureDef.density = 1.0f;
-//    _fixtureDef.friction = 0.4f;
-//    _fixtureDef.restitution = 0.3f;
-//    body->CreateFixture(&_fixtureDef);
-//    
-//    NSLog(@"starting south shape");
-//    b2PolygonShape southShape;
-//    b2Vec2 southCenter = b2Vec2(location.x/PTM_RATIO - objectWidth/2, objectHeight);
-//    southShape.SetAsBox(objectWidth/2, objectHeight, southCenter, 0);
-//    _fixtureDef.shape = &southShape;
-//    _fixtureDef.density = 1.0f;
-//    _fixtureDef.friction = 0.4f;
-//    _fixtureDef.restitution = 0.3f;
-//    body->CreateFixture(&_fixtureDef);
+    NSLog(@"trying to get sprite bounding box");
     
-    b2CircleShape circle;
-    circle.m_radius = 26.0/PTM_RATIO;
+    float objectWidth = _sprite.contentSize.width;
+    float objectHeight = _sprite.contentSize.height;
     
-    _fixtureDef.shape = &circle;
+    NSLog(@"starting north shape");
+    b2PolygonShape northShape;
+    b2Vec2 northCenter = b2Vec2(objectWidth/PTM_RATIO/4, 0);
+    northShape.SetAsBox(objectWidth/PTM_RATIO/4, objectHeight/PTM_RATIO/2, northCenter, 0);
+    _fixtureDef.shape = &northShape;
     _fixtureDef.density = 1.0f;
     _fixtureDef.friction = 0.4f;
     _fixtureDef.restitution = 0.3f;
-    
+    _fixtureDef.userData = @"NORTH";
     body->CreateFixture(&_fixtureDef);
+    
+    NSLog(@"starting south shape");
+    b2PolygonShape southShape;
+    b2Vec2 southCenter = b2Vec2(-1.0 * objectWidth/PTM_RATIO/4, 0);
+    southShape.SetAsBox(objectWidth/PTM_RATIO/4, objectHeight/PTM_RATIO/2, southCenter, 0);
+    _fixtureDef.shape = &southShape;
+    _fixtureDef.density = 1.0f;
+    _fixtureDef.friction = 0.4f;
+    _fixtureDef.restitution = 0.3f;
+    _fixtureDef.userData = @"SOUTH";
+    body->CreateFixture(&_fixtureDef);
+    
+//    b2CircleShape circle;
+//    circle.m_radius = 26.0/PTM_RATIO;
+//    
+//    _fixtureDef.shape = &circle;
+//    _fixtureDef.density = 1.0f;
+//    _fixtureDef.friction = 0.4f;
+//    _fixtureDef.restitution = 0.3f;
+//    
+//    body->CreateFixture(&_fixtureDef);
+    
     body->SetUserData(self);
     
     return body;

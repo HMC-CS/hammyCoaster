@@ -191,14 +191,14 @@
     [sprite setPosition: ccp(p.x,p.y)];
     
     body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
-
+    
     if (![static_cast<AbstractGameObject*>(body->GetUserData())._tag isEqualToString:@"BallObject"]) {
         
-//        TODO: for when we have multiple bodies for a single object
-//        b2JointEdge* jointEdge = body->GetJointList();
-//        b2Joint* joint = jointEdge->joint;
-//        b2Body* jointBodyA = joint->GetBodyA();
-//        b2Body* jointBodyB = joint->GetBodyB();
+        //        TODO: for when we have multiple bodies for a single object
+        //        b2JointEdge* jointEdge = body->GetJointList();
+        //        b2Joint* joint = jointEdge->joint;
+        //        b2Body* jointBodyA = joint->GetBodyA();
+        //        b2Body* jointBodyB = joint->GetBodyB();
         
         b2Fixture* f = body->GetFixtureList();
         b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
@@ -296,7 +296,7 @@
  */
 -(void) applyMagnets
 {
-    int magnetConstant = 150;
+    int magnetConstant = 500;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
@@ -309,16 +309,54 @@
                     
                     // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
                     
-                    double distance = ({double d1 = magnet->GetPosition().x - ball->GetPosition().x, d2 = ball->
-                        GetPosition().y - magnet->GetPosition().y; sqrt(d1 * d1 + d2 * d2); });
+                    b2Fixture* fixture1 = magnet->GetFixtureList();
+                    b2Fixture* fixture2 = fixture1->GetNext();
                     
-                    float avgMagnetSize = (static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.width + static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.height)/2;
-                    if (distance > avgMagnetSize/15) {
+                    b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
+                    b2Vec2 shape1Position = shape1->m_centroid;
                     
-                        b2Vec2 direction = b2Vec2(magnetConstant/(distance*distance*(magnet->GetPosition().x - ball->GetPosition().x)), magnetConstant/(distance*distance*(magnet->GetPosition().y - ball->GetPosition().y)));
+                    b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
+                    b2Vec2 shape2Position = shape2->m_centroid;
                     
-                        ball->ApplyForce(direction, ball->GetPosition());
+                    // Pole 1
+                    double d11 = ball->GetPosition().x - (magnet->GetPosition().x + shape1Position.x);
+                    double d12 = ball->GetPosition().y - (magnet->GetPosition().y + shape1Position.y);
+                    double distance1 = sqrt(d11 * d11 + d12 * d12);
+                    // Determine angle to face
+                    float angleRadians1 = atanf((float)d12 / (float)d11);
+                    float yComponent1 = sinf(angleRadians1);
+                    float xComponent1 = cosf(angleRadians1);
+                    
+                    // Pole 2
+                    double d21 = ball->GetPosition().x - (magnet->GetPosition().x + shape2Position.x);
+                    double d22 = ball->GetPosition().y - (magnet->GetPosition().y + shape2Position.y);
+                    double distance2 = sqrt(d21 * d21 + d22 * d22);
+                    // Determine angle to face
+                    float angleRadians2 = atanf((float)d12 / (float)d11);
+                    float yComponent2 = sinf(angleRadians2);
+                    float xComponent2 = cosf(angleRadians2);
+                    
+                    //float avgMagnetSize = (static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.width + static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.height)/2;
+                    
+                    b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
+                    b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
+                    
+                    // TODO: check if this works correctly
+                    b2Vec2 force;
+                    if ([static_cast<NSString*>(fixture1->GetUserData()) isEqualToString:@"NORTH"])
+                    {
+                        
+                        //                        if (distance > avgMagnetSize/15) {
+                        
+                        force = direction2 - direction1;
+                        //                    }
+                        
+                    } else {
+                        force = direction1 - direction2;
+                        
                     }
+                    ball->ApplyForce(force, ball->GetPosition());
+                    
                     
                 }
             }
@@ -465,7 +503,7 @@
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
     touchLocation = [self convertToNodeSpace:touchLocation];
     b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
-   
+    
     
     // Make a small box.
     b2AABB aabb;
@@ -480,28 +518,28 @@
     
     b2Body* body = callback.m_object;
     
-
+    
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
         if (!bodyObject->_isDefault && _editMode) {
-//            bool isDelete = [self isDeleteSelected];
-//            //_objectType = [self getObjectType];
-//            // NSLog(@"%@ is the object type", _objectType);
-//            if (isDelete) {
-//                CCSprite* sprite = [bodyObject getSprite];
-//                [self removeChild: sprite cleanup:YES];
-//                [self deleteObjectWithBody:body];
-//                //                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
-//                //                [self objectDeletedOfType:objectType];
-//                //                world->DestroyBody(body);
-//            } else {
-                // calculate the offset between the touch and the center of the object
-                b2Vec2 bodyLocation = body->GetPosition();
-                xOffset = bodyLocation.x - location.x;
-                yOffset = bodyLocation.y - location.y;
-                 _initialPosition = b2Vec2(touchLocation.x/PTM_RATIO + xOffset,touchLocation.y/PTM_RATIO + yOffset);
-                body->SetType(b2_staticBody);
-                currentMoveableBody = body;
+            //            bool isDelete = [self isDeleteSelected];
+            //            //_objectType = [self getObjectType];
+            //            // NSLog(@"%@ is the object type", _objectType);
+            //            if (isDelete) {
+            //                CCSprite* sprite = [bodyObject getSprite];
+            //                [self removeChild: sprite cleanup:YES];
+            //                [self deleteObjectWithBody:body];
+            //                //                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
+            //                //                [self objectDeletedOfType:objectType];
+            //                //                world->DestroyBody(body);
+            //            } else {
+            // calculate the offset between the touch and the center of the object
+            b2Vec2 bodyLocation = body->GetPosition();
+            xOffset = bodyLocation.x - location.x;
+            yOffset = bodyLocation.y - location.y;
+            _initialPosition = b2Vec2(touchLocation.x/PTM_RATIO + xOffset,touchLocation.y/PTM_RATIO + yOffset);
+            body->SetType(b2_staticBody);
+            currentMoveableBody = body;
             //}
         }
     }
@@ -557,8 +595,8 @@
                     [self deleteObjectWithBody:currentMoveableBody];
                     break;
                 }else{
-                currentMoveableBody->SetTransform(_initialPosition, currentMoveableBody->GetAngle());
-                NSLog(@"Body dragged into walls");
+                    currentMoveableBody->SetTransform(_initialPosition, currentMoveableBody->GetAngle());
+                    NSLog(@"Body dragged into walls");
                 }
             }
             

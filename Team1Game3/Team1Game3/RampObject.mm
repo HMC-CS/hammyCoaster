@@ -27,7 +27,6 @@
     
     b2PolygonShape rampShape;
     rampShape.Set(vertices, num);
-    
  
     _fixtureDef.shape = &rampShape; // Set the line shape
     _fixtureDef.density = 0.0f; // Set the density
