@@ -9,6 +9,7 @@
 #import "InstructionsLayer.h"
 
 #import "MainMenuLayer.h"
+#import "SoundManager.h"
 
 @implementation InstructionsLayer
 
@@ -57,6 +58,11 @@
 		
 		// Add the menu to the layer
 		[self addChild:menu];
+        
+        // add sound buttons
+        CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
+        soundMenu.position=ccp([[CCDirector sharedDirector] winSize].width - 100, 50);
+        [self addChild:soundMenu z:1];
 		
 	}
 	return self;

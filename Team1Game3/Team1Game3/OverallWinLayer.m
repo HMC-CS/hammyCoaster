@@ -10,6 +10,7 @@
 
 #import "MainMenuLayer.h"
 #import "LevelSelectorLayer.h"
+#import "SoundManager.h"
 
 @implementation OverallWinLayer
 
@@ -59,6 +60,11 @@
         [menu setPosition:ccp( size.width/2, size.height/2)];
         
         [self addChild: menu z:-1];
+        
+        // add sound buttons
+        CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
+        soundMenu.position=ccp([[CCDirector sharedDirector] winSize].width - 100, 50);
+        [self addChild:soundMenu z:1];
     }
     
     return self;

@@ -13,6 +13,7 @@
 #import "MainMenuLayer.h"
 #import "LevelSelectorLayer.h"
 #import "PhysicsSprite.h"
+#import "SoundManager.h"
 
 
 @implementation WinLayer
@@ -44,6 +45,11 @@
         
         [self createMenu];
         [self drawStars];
+        
+        // add sound buttons
+        CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
+        soundMenu.position=ccp([[CCDirector sharedDirector] winSize].width - 100, 50);
+        [self addChild:soundMenu z:1];
     }
     
     return self;

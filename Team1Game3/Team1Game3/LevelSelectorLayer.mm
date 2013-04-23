@@ -11,6 +11,7 @@
 #import "LevelLayer.h"
 
 #import "MainMenuLayer.h"
+#import "SoundManager.h"
 
 
 @implementation LevelSelectorLayer
@@ -145,6 +146,12 @@
 //        // TODO: comment back in if multiple level sets added
 //        CCScrollLayer* scroller = [CCScrollLayer nodeWithLayers:_levelIconLayers widthOffset:0];
 //        [self addChild:scroller];
+        
+        
+        // add sound buttons
+        CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
+        soundMenu.position=ccp([[CCDirector sharedDirector] winSize].width - 100, 50);
+        [self addChild:soundMenu z:1];
     }
 
     return self;

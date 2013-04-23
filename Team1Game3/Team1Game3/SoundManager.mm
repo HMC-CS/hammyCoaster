@@ -14,7 +14,7 @@
 {
     self = [super init];
     
-    _backgroundMusic = @"Background music.m4a";
+    _soundEffects = true;
     
     return self;
 }
@@ -40,6 +40,44 @@
 - (void) toggleSoundEffects
 {
     _soundEffects = !_soundEffects;
+}
+
+- (CCMenu*) createSoundMenu
+{
+    // Music on/off toggle
+    CCMenuItemImage* musicOnButton = [CCMenuItemImage itemWithNormalImage:@"Music on.png" selectedImage:@"Music on.png"];
+    CCMenuItemImage* musicOffButton = [CCMenuItemImage itemWithNormalImage:@"Music off.png" selectedImage:@"Music off.png"];
+    CCMenuItemToggle* musicToggle;
+    
+    if ([self isBackgroundMusicPlaying])
+        musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOnButton, musicOffButton, nil] block:^(id sender) {
+            [[SoundManager sharedSoundManager] toggleBackgroundMusic];
+        }];
+    else
+        musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOffButton, musicOnButton, nil] block:^(id sender) {
+            [[SoundManager sharedSoundManager] toggleBackgroundMusic];
+        }];
+        
+    
+    // Sound on/off toggle
+    CCMenuItemImage* soundOnButton = [CCMenuItemImage itemWithNormalImage:@"Sound on.png" selectedImage:@"Sound on.png"];
+    CCMenuItemImage* soundOffButton = [CCMenuItemImage itemWithNormalImage:@"Sound off.png" selectedImage:@"Sound off.png"];
+    CCMenuItemToggle* soundToggle;
+    
+    if (_soundEffects)
+        soundToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: soundOnButton, soundOffButton, nil] block:^(id sender) {
+            [[SoundManager sharedSoundManager] toggleSoundEffects];
+        }];
+    else
+        soundToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: soundOffButton, soundOnButton, nil] block:^(id sender) {
+            [[SoundManager sharedSoundManager] toggleSoundEffects];
+        }];
+    
+    // Combine them into a menu
+    CCMenu* menu = [CCMenu menuWithItems: musicToggle, soundToggle, nil];
+    [menu alignItemsHorizontally];
+    
+    return menu;
 }
 
 @end

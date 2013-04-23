@@ -47,22 +47,8 @@
         titleLabel.position = CGPointMake(size.width/2, 3*size.height/4);
         [self addChild:titleLabel];
         
-        CCMenuItemImage* musicOnButton = [CCMenuItemImage itemWithNormalImage:@"Music on.png" selectedImage:@"Music on.png"];
-        CCMenuItemImage* musicOffButton = [CCMenuItemImage itemWithNormalImage:@"Music off.png" selectedImage:@"Music off.png"];
-        CCMenuItemToggle* musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOnButton, musicOffButton, nil] block:^(id sender) {
-            [[SoundManager sharedSoundManager] toggleBackgroundMusic];
-        }];
-
-        CCMenuItemImage* soundOnButton = [CCMenuItemImage itemWithNormalImage:@"Sound on.png" selectedImage:@"Sound on.png"];
-        CCMenuItemImage* soundOffButton = [CCMenuItemImage itemWithNormalImage:@"Sound off.png" selectedImage:@"Sound off.png"];
-        CCMenuItemToggle* soundToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: soundOnButton, soundOffButton, nil] block:^(id sender)
-        {
-            [[SoundManager sharedSoundManager] toggleSoundEffects];
-        }];
-        
-        CCMenu* soundMenu = [CCMenu menuWithItems: musicToggle, soundToggle, nil];
+        CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
         soundMenu.position=ccp(size.width - 100, 50);
-        [soundMenu alignItemsHorizontally];
         [self addChild:soundMenu z:1];
     }
 	return self;

@@ -12,9 +12,7 @@
 @interface SoundManager : SimpleAudioEngine {
     
 @private
-    
     bool _soundEffects;
-    NSString* _backgroundMusic;
 }
 
 - (id) init;
@@ -22,7 +20,8 @@
 + (id) sharedSoundManager;
 
 - (void) toggleBackgroundMusic;
-
 - (void) toggleSoundEffects;
+
+- (CCMenu*) createSoundMenu;
 
 @end
