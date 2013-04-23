@@ -530,6 +530,7 @@
             xOffset = bodyLocation.x - location.x;
             yOffset = bodyLocation.y - location.y;
             _initialPosition = b2Vec2(touchLocation.x/PTM_RATIO + xOffset,touchLocation.y/PTM_RATIO + yOffset);
+            _initialTouchPosition = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
             body->SetType(b2_staticBody);
             currentMoveableBody = body;
             //}
@@ -546,8 +547,16 @@
     b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
     
     if (currentMoveableBody != NULL) {
-        b2Vec2 newPos = b2Vec2(location.x + xOffset, location.y + yOffset);
-        currentMoveableBody->SetTransform(newPos,currentMoveableBody->GetAngle());
+        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(currentMoveableBody->GetUserData());
+        std::vector<b2Body*> bodies = bodyObject->_bodies;
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+        {
+            b2Body* b = *i;
+            b2Vec2 newPos = b->GetPosition() + (location - _initialTouchPosition);
+            b->SetTransform(newPos,currentMoveableBody->GetAngle());
+        }
+        
+        _initialTouchPosition = location;
     }
 }
 
@@ -566,7 +575,13 @@
         location = [[CCDirector sharedDirector] convertToGL: location];
         location = [self convertToNodeSpace:location];
         
-        b2Fixture* f = currentMoveableBody->GetFixtureList();
+        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(currentMoveableBody->GetUserData());
+        std::vector<b2Body*> bodies = bodyObject->_bodies;
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+        {
+
+            b2Body* body = *i;
+        b2Fixture* f = body->GetFixtureList();
         b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
         int count = polygonShape->GetVertexCount();
         
@@ -584,14 +599,15 @@
             {
                 if (boundPoint.x < self.boundingBox.origin.x)
                 {
-                    [self deleteObjectWithBody:currentMoveableBody];
+                    [self deleteObjectWithBody:body];
                     break;
                 }else{
-                    currentMoveableBody->SetTransform(_initialPosition, currentMoveableBody->GetAngle());
+                    [self bounceBackObjectWithBody:body];
                     NSLog(@"Body dragged into walls");
                 }
             }
             
+        }
         }
         currentMoveableBody = NULL;
     } else if (_editMode) {
@@ -611,6 +627,12 @@
             }
         }
     }
+}
+
+-(void) bounceBackObjectWithBody: (b2Body*) body
+{
+    b2Vec2 bodyOffset = body->GetPosition() - currentMoveableBody->GetPosition();
+    body->SetTransform(_initialPosition + bodyOffset, body->GetAngle());
 }
 
 //-----DEALLOC-----//

@@ -26,6 +26,7 @@
     ContactListener* _contactListener;
     NSString* _objectType;
     b2Vec2 _initialPosition;
+    b2Vec2 _initialTouchPosition;
     
     
     int starCount;

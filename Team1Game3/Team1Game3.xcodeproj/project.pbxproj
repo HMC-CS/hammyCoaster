@@ -35,6 +35,7 @@
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
 		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
 		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
+		CEF445EA172647B7004B3745 /* SeesawObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF445E9172647B7004B3745 /* SeesawObject.mm */; };
 		D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */; };
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
 		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; };
@@ -302,6 +303,8 @@
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HamsterCoasterIcon.png; path = ../HamsterCoasterIcon.png; sourceTree = "<group>"; };
 		CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
+		CEF445E8172647B7004B3745 /* SeesawObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeesawObject.h; sourceTree = "<group>"; };
+		CEF445E9172647B7004B3745 /* SeesawObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SeesawObject.mm; sourceTree = "<group>"; };
 		D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObject.png; sourceTree = "<group>"; };
 		D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObjectIcon.png; sourceTree = "<group>"; };
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
@@ -795,6 +798,8 @@
 				D8E83EA716EA7555000284EA /* BallObject.mm */,
 				D8E83EC216EBC42A000284EA /* RampObject.h */,
 				D8E83EC316EBC42A000284EA /* RampObject.mm */,
+				CEF445E8172647B7004B3745 /* SeesawObject.h */,
+				CEF445E9172647B7004B3745 /* SeesawObject.mm */,
 				AD57A96A171CB459007B471F /* FlippedRampObject.h */,
 				AD57A96B171CB462007B471F /* FlippedRampObject.mm */,
 				D8299F77171D5E4400C6E8C5 /* MagnetObject.h */,
@@ -1909,6 +1914,7 @@
 				AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */,
 				D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */,
 				AD7731AC1725F84D00709F80 /* SoundManager.mm in Sources */,
+				CEF445EA172647B7004B3745 /* SeesawObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
