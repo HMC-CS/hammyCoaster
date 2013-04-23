@@ -82,6 +82,8 @@
     // Combine them into a menu
     CCMenu* menu = [CCMenu menuWithItems: musicToggle, soundToggle, nil];
     [menu alignItemsHorizontally];
+    menu.position=ccp([[CCDirector sharedDirector] winSize].width - 75, 40);
+
     
     return menu;
 }

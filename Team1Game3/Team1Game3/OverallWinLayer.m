@@ -63,7 +63,6 @@
         
         // add sound buttons
         CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
-        soundMenu.position=ccp([[CCDirector sharedDirector] winSize].width - 100, 50);
         [self addChild:soundMenu z:1];
     }
     

@@ -48,7 +48,6 @@
         [self addChild:titleLabel];
         
         CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
-        soundMenu.position=ccp(size.width - 100, 50);
         [self addChild:soundMenu z:1];
     }
 	return self;
