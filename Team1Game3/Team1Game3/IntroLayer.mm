@@ -40,6 +40,8 @@
 {
 	[super onEnter];
     
+    [[SoundManager sharedSoundManager] toggleBackgroundMusic]; //play background music
+    
 	// ask director for the window size
 	CGSize size = [[CCDirector sharedDirector] winSize];
     
@@ -55,9 +57,7 @@
     
 	// add the label as a child to this Layer
 	[self addChild: background];
-    
-    [[SoundManager sharedSoundManager] toggleBackgroundMusic]; //play background music
-	
+    	
 	// In half second, transition to the new scene(which takes half a second)
 	[self scheduleOnce:@selector(makeTransition:) delay:2];
 }

@@ -33,6 +33,15 @@ void ContactListener::BeginContact(b2Contact* contact) {
     {
         NSString* body1Type = body1Object->_tag;
         NSString* body2Type = body2Object->_tag;
+        
+        // Sound effects
+        NSString* objectType;
+        if ([body1Type isEqualToString:@"BallObject"])
+            objectType = body2Type;
+        if ([body2Type isEqualToString:@"BallObject"])
+            objectType = body1Type;
+        [[SoundManager sharedSoundManager] playEffectOfType:objectType];
+        
         if (([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"BluePortalObject"])
             || ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"BluePortalObject"])) {
             _gameWon = true;
@@ -43,15 +52,11 @@ void ContactListener::BeginContact(b2Contact* contact) {
         {
            // NSLog(@"Star Collision");
             _contactStar = body2;
-//            [[SoundManager sharedSoundManager] playEffectOfType:@"StarObject"];
-
         }
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
         {
            // NSLog(@"Star Collision");
             _contactStar = body1;
-//            [[SoundManager sharedSoundManager] playEffectOfType:@"StarObject"];
-
         }
     }
 }

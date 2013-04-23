@@ -44,7 +44,8 @@
 
 - (void) playEffectOfType:(NSString *)type
 {
-    [self playEffect: [NSString stringWithFormat: @"%@.mp3", type]];
+    if (_soundEffects)
+        [self playEffect: [NSString stringWithFormat: @"%@.mp3", type]];
 }
 
 - (CCMenu*) createSoundMenu
