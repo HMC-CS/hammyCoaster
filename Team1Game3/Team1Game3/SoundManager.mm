@@ -57,11 +57,11 @@
     
     if ([self isBackgroundMusicPlaying])
         musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOnButton, musicOffButton, nil] block:^(id sender) {
-            [[SoundManager sharedSoundManager] toggleBackgroundMusic];
+            [self toggleBackgroundMusic];
         }];
     else
         musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOffButton, musicOnButton, nil] block:^(id sender) {
-            [[SoundManager sharedSoundManager] toggleBackgroundMusic];
+            [self toggleBackgroundMusic];
         }];
         
     
@@ -72,11 +72,11 @@
     
     if (_soundEffects)
         soundToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: soundOnButton, soundOffButton, nil] block:^(id sender) {
-            [[SoundManager sharedSoundManager] toggleSoundEffects];
+            [self toggleSoundEffects];
         }];
     else
         soundToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: soundOffButton, soundOnButton, nil] block:^(id sender) {
-            [[SoundManager sharedSoundManager] toggleSoundEffects];
+            [self toggleSoundEffects];
         }];
     
     // Combine them into a menu
