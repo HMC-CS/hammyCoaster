@@ -47,6 +47,8 @@
     b2Body* _currentMoveableBody;
     UITouch* _firstTouch;
     UITouch* _secondTouch;
+    float _originalAngle;
+    float _angleOffset;
     
     NSArray* _initialObjects;
     

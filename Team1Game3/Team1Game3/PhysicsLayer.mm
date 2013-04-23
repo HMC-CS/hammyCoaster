@@ -523,6 +523,7 @@
         
         b2Body* body = callback.m_object;
         
+        // Get the current info about the body
         if (body) {
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
             if (!bodyObject->_isDefault && _editMode) {
@@ -535,20 +536,20 @@
                 _currentMoveableBody = body;
             }
         }
-    } else {
+    } else if (_currentMoveableBody != NULL) {
         _secondTouch = touch;
+        _angleOffset = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
+        _originalAngle = _currentMoveableBody->GetAngle();
     }
     return YES;
 }
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    if (touch == _firstTouch) {
-        CGPoint touchLocation = [touch locationInView:[touch view]];
-        touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-        touchLocation = [self convertToNodeSpace:touchLocation];
-        b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
-        
-        if (_currentMoveableBody != NULL) {
+    CGPoint touchLocation = [touch locationInView:[touch view]];
+    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+    if (touch == _firstTouch && _currentMoveableBody != NULL) {
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
@@ -559,9 +560,16 @@
             }
             
             _initialTouchPosition = location;
-        }
     } else if (touch == _secondTouch) {
-        
+        float touchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
+        float newAngle = _originalAngle + touchAngle - _angleOffset;
+        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
+        std::vector<b2Body*> bodies = bodyObject->_bodies;
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+        {
+            b2Body* b = *i;
+            b->SetTransform(b->GetPosition(),newAngle);
+        }
     }
 }
 
