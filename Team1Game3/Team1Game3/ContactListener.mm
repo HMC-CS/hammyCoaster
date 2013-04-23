@@ -10,6 +10,8 @@
 #import "ContactListener.h"
 #import "AbstractGameObject.h"
 
+#import "SoundManager.h"
+
 ContactListener::ContactListener() {
     _gameWon = false;
     _contactStar = NULL;
@@ -41,12 +43,14 @@ void ContactListener::BeginContact(b2Contact* contact) {
         {
            // NSLog(@"Star Collision");
             _contactStar = body2;
+//            [[SoundManager sharedSoundManager] playEffectOfType:@"StarObject"];
 
         }
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
         {
            // NSLog(@"Star Collision");
             _contactStar = body1;
+//            [[SoundManager sharedSoundManager] playEffectOfType:@"StarObject"];
 
         }
     }

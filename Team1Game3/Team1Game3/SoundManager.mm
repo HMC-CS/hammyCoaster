@@ -42,6 +42,11 @@
     _soundEffects = !_soundEffects;
 }
 
+- (void) playEffectOfType:(NSString *)type
+{
+    [self playEffect: [NSString stringWithFormat: @"%@.mp3", type]];
+}
+
 - (CCMenu*) createSoundMenu
 {
     // Music on/off toggle

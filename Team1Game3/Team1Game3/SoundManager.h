@@ -22,6 +22,8 @@
 - (void) toggleBackgroundMusic;
 - (void) toggleSoundEffects;
 
+- (void) playEffectOfType: (NSString*) type;
+
 - (CCMenu*) createSoundMenu;
 
 @end
