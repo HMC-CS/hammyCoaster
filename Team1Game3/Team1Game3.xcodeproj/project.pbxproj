@@ -26,6 +26,11 @@
 		AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96B171CB462007B471F /* FlippedRampObject.mm */; };
 		AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96E171CC476007B471F /* InstructionsLayer.mm */; };
 		AD7731A91724A96C00709F80 /* Background music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AD7731A81724A96B00709F80 /* Background music.m4a */; };
+		AD7731AC1725F84D00709F80 /* SoundManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD7731AB1725F84D00709F80 /* SoundManager.mm */; };
+		AD7731BA17261A9D00709F80 /* Music off.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B617261A9D00709F80 /* Music off.png */; };
+		AD7731BB17261A9D00709F80 /* Music on.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B717261A9D00709F80 /* Music on.png */; };
+		AD7731BC17261A9D00709F80 /* Sound off.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B817261A9D00709F80 /* Sound off.png */; };
+		AD7731BD17261A9D00709F80 /* Sound on.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B917261A9D00709F80 /* Sound on.png */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; };
 		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
 		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
@@ -285,6 +290,12 @@
 		AD57A96D171CC476007B471F /* InstructionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsLayer.h; sourceTree = "<group>"; };
 		AD57A96E171CC476007B471F /* InstructionsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InstructionsLayer.mm; sourceTree = "<group>"; };
 		AD7731A81724A96B00709F80 /* Background music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Background music.m4a"; sourceTree = "<group>"; };
+		AD7731AA1725F84500709F80 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
+		AD7731AB1725F84D00709F80 /* SoundManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SoundManager.mm; sourceTree = "<group>"; };
+		AD7731B617261A9D00709F80 /* Music off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Music off.png"; sourceTree = "<group>"; };
+		AD7731B717261A9D00709F80 /* Music on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Music on.png"; sourceTree = "<group>"; };
+		AD7731B817261A9D00709F80 /* Sound off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound off.png"; sourceTree = "<group>"; };
+		AD7731B917261A9D00709F80 /* Sound on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound on.png"; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HamsterCoasterIcon.png; path = ../HamsterCoasterIcon.png; sourceTree = "<group>"; };
@@ -751,6 +762,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD7731AD172618BD00709F80 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				AD7731B617261A9D00709F80 /* Music off.png */,
+				AD7731B717261A9D00709F80 /* Music on.png */,
+				AD7731B817261A9D00709F80 /* Sound off.png */,
+				AD7731B917261A9D00709F80 /* Sound on.png */,
+			);
+			name = Music;
+			sourceTree = "<group>";
+		};
 		CE3B319B170E43CE00F70048 /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -993,6 +1015,8 @@
 				D8E83EAD16EA75D0000284EA /* ObjectFactory.mm */,
 				D8E83EA916EA75A8000284EA /* AbstractGameObject.h */,
 				D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */,
+				AD7731AA1725F84500709F80 /* SoundManager.h */,
+				AD7731AB1725F84D00709F80 /* SoundManager.mm */,
 				CE3B319E170E440000F70048 /* Layers/Scenes */,
 				CE3B319B170E43CE00F70048 /* Objects */,
 				D895F5591707458900ED74C5 /* Extensions */,
@@ -1006,6 +1030,7 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				AD7731AD172618BD00709F80 /* Music */,
 				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
 				AD7731A81724A96B00709F80 /* Background music.m4a */,
 				CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */,
@@ -1654,6 +1679,10 @@
 				D8299F811721467C00C6E8C5 /* Delete.PNG in Resources */,
 				D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */,
 				AD7731A91724A96C00709F80 /* Background music.m4a in Resources */,
+				AD7731BA17261A9D00709F80 /* Music off.png in Resources */,
+				AD7731BB17261A9D00709F80 /* Music on.png in Resources */,
+				AD7731BC17261A9D00709F80 /* Sound off.png in Resources */,
+				AD7731BD17261A9D00709F80 /* Sound on.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1867,6 +1896,7 @@
 				AD57A96C171CB463007B471F /* FlippedRampObject.mm in Sources */,
 				AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */,
 				D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */,
+				AD7731AC1725F84D00709F80 /* SoundManager.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
