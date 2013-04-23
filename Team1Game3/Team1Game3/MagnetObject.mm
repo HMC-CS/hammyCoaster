@@ -11,7 +11,7 @@
 
 @implementation MagnetObject
 
-- (b2Body *)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBody:(CGPoint)location {
     
 //    _bodyDef.type = b2_dynamicBody;
 //    _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
@@ -76,7 +76,9 @@
     
     body->SetUserData(self);
     
-    return body;
+    _bodies.push_back(body);
+    
+    return _bodies;
 }
 
 @end

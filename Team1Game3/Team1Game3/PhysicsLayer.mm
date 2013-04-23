@@ -16,6 +16,8 @@
 #import "PhysicsSprite.h"
 #import "QueryCallback.h"
 
+#include <iostream>
+
 @implementation PhysicsLayer
 
 
@@ -145,25 +147,6 @@
         if ([type isEqual: @"RedPortalObject"])
             ballStartingPoint = CGPointMake(px,py);
     }
-    
-    //		// Code kept around for later
-    //        #if 1
-    //        		// Use batch node. Faster
-    //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];
-    //        		spriteTexture_ = [parent texture];
-    //        #else
-    //        		// doesn't use batch node. Slower
-    //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];
-    //        		CCNode *parent = [CCNode node];
-    //        #endif
-    //        		[self addChild:parent z:0 tag:kTagParentNode];
-    //
-    //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];
-    //
-    //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];
-    //		[self addChild:label z:0];
-    //		[label setColor:ccc3(0,0,255)];
-    //		label.position = ccp( size.width/2, size.height-50);
 }
 
 
@@ -186,22 +169,26 @@
     //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
     // = the count in the file return
     
-    b2Body* body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
+    std::vector<b2Body*> bodies = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
     
-    [self addChild:sprite];
-	[sprite setPhysicsBody:body];
-    [sprite setPosition: ccp(p.x,p.y)];
+    int j = 0;
+    for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
+    {
+        PhysicsSprite* s = [spriteArray objectAtIndex:j];
+        b2Body* body = *b;
+        [self addChild:s];
+        [s setPhysicsBody:body];
+        [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
+        body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
+        ++j;
+    }
     
-    body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
-    
-    if (![static_cast<AbstractGameObject*>(body->GetUserData())._tag isEqualToString:@"BallObject"]) {
+    b2Body* theBody = *(bodies.begin());
+    if (![static_cast<AbstractGameObject*>(theBody->GetUserData())._tag isEqualToString:@"BallObject"]) {
         
-        //        TODO: for when we have multiple bodies for a single object
-        //        b2JointEdge* jointEdge = body->GetJointList();
-        //        b2Joint* joint = jointEdge->joint;
-        //        b2Body* jointBodyA = joint->GetBodyA();
-        //        b2Body* jointBodyB = joint->GetBodyB();
-        
+        for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
+        {
+        b2Body* body = *b;
         b2Fixture* f = body->GetFixtureList();
         b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
         int count = polygonShape->GetVertexCount();
@@ -223,6 +210,7 @@
                 return;
             }
         }
+        }
     }
 }
 
@@ -236,6 +224,8 @@
     }
 }
 
+
+// TODO: did not change this method for multi-body because BallObject and StarObject are single-body objects.  Change if necessary.
 -(void) resetBall
 {
     // Delete Ball and Stars
@@ -243,7 +233,7 @@
         if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
         {
             AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
-            CCSprite* sprite = [a getSprite];
+            CCSprite* sprite = [[a getSprites] objectAtIndex:0];
             [self removeChild: sprite cleanup:YES];
             [self deleteObjectWithBody:b];
         }
@@ -251,7 +241,7 @@
         if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"StarObject"])
         {
             AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
-            CCSprite* sprite = [a getSprite];
+            CCSprite* sprite = [[a getSprites] objectAtIndex:0];
             [self removeChild: sprite cleanup:YES];
             [self deleteObjectWithBody:b];
         }
@@ -273,6 +263,7 @@
 }
 
 
+// TODO: did not change this method for multi-body because StarObject is single-body object.  Change if necessary.
 /* hitStar:
  * removes star from screen when it is hit
  */
@@ -282,7 +273,7 @@
     
     // delete the star sprite
     AbstractGameObject* starBodyObject = static_cast<AbstractGameObject*>(starBody->GetUserData());
-    CCSprite* sprite = [starBodyObject getSprite];
+    CCSprite* sprite = [[starBodyObject getSprites] objectAtIndex:0];
     [self removeChild: sprite cleanup:YES];
     
     // delete the star body
@@ -293,6 +284,7 @@
     [self updateStarCount];
 }
 
+// TODO: did not change this method for multi-body because BallObject and MagnetObject are single-body objects.  Change if changed.
 /* applyMagnets:
  * helper function to apply magnet's forces to the ball
  */
@@ -424,6 +416,8 @@
     [_target performSelector:_selector5 withObject:type];
 }
 
+
+// DONE: changed for multi-body
 /* deleteObjectWithBody:
  * deletes a physics body from the physics layer
  */
@@ -431,14 +425,23 @@
 -(void) deleteObjectWithBody: (b2Body*) body
 {
     NSLog(@"we are deleting object with body");
-    //[self removeChild: static_cast <AbstractGameObject*> ( currentMoveableBody->GetUserData())->_sprite cleanup: YES ];
     AbstractGameObject* object = static_cast<AbstractGameObject*>(body->GetUserData());
+    
     NSString* objectType = object._tag;
-    NSMutableArray* objectSprites = object->_sprites;
-    CCSprite* objectSprite = [objectSprites objectAtIndex:0];
     [self objectDeletedOfType:objectType];
-    [self removeChild: objectSprite cleanup: YES];
-    world->DestroyBody(body);
+    
+    std::vector<b2Body*> bodies = object->_bodies;
+    NSMutableArray* objectSprites = [object getSprites];
+    
+    int j=0;
+    for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
+    {
+        PhysicsSprite* s = [objectSprites objectAtIndex:j];
+        b2Body* body = *b;
+        [self removeChild:s cleanup:YES];
+        world->DestroyBody(body);
+        ++j;
+    }
 }
 
 //-----BUILT-IN/BOX 2D-----//
@@ -523,18 +526,6 @@
     if (body) {
         AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
         if (!bodyObject->_isDefault && _editMode) {
-            //            bool isDelete = [self isDeleteSelected];
-            //            //_objectType = [self getObjectType];
-            //            // NSLog(@"%@ is the object type", _objectType);
-            //            if (isDelete) {
-            //                CCSprite* sprite = [bodyObject getSprite];
-            //                [self removeChild: sprite cleanup:YES];
-            //                [self deleteObjectWithBody:body];
-            //                //                NSString* objectType = static_cast<AbstractGameObject*>(body->GetUserData())._tag;
-            //                //                [self objectDeletedOfType:objectType];
-            //                //                world->DestroyBody(body);
-            //            } else {
-            // calculate the offset between the touch and the center of the object
             b2Vec2 bodyLocation = body->GetPosition();
             xOffset = bodyLocation.x - location.x;
             yOffset = bodyLocation.y - location.y;

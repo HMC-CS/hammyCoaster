@@ -9,7 +9,7 @@
 #import "CurvedRampObject.h"
 
 @implementation CurvedRampObject
-- (b2Body *)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBody:(CGPoint)location {
     
     _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
@@ -225,7 +225,9 @@
     //---Done adding shapes---//
     cRamp_Body->SetUserData(self);
     
-    return cRamp_Body;
+    _bodies.push_back(cRamp_Body);
+    
+    return _bodies;
 }
 
 @end

@@ -9,7 +9,7 @@
 #import "FlippedRampObject.h"
 
 @implementation FlippedRampObject
-- (b2Body *)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBody:(CGPoint)location {
     
     _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
@@ -39,7 +39,9 @@
     ramp_Body->CreateFixture(&_fixtureDef);
     ramp_Body->SetUserData(self);
     
-    return ramp_Body;
+    _bodies.push_back(ramp_Body);
+    
+    return _bodies;
 }
 
 

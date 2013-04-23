@@ -8,7 +8,8 @@
 
 #import "AbstractGameObject.h"
 
-@interface RedPortalObject : AbstractGameObject
+#include <vector>
 
+@interface RedPortalObject : AbstractGameObject
 
 @end

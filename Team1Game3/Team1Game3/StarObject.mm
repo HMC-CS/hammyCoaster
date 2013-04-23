@@ -12,7 +12,7 @@
 
 //stars have the same shape/size as a blue portal for now
 
-- (b2Body *)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBody:(CGPoint)location {
     
     _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
@@ -37,7 +37,9 @@
     star_Body->CreateFixture(&_fixtureDef);
     star_Body->SetUserData(self);
  
-    return star_Body;
+    _bodies.push_back(star_Body);
+    
+    return _bodies;
 }
 
 @end

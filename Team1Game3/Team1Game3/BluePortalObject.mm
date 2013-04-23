@@ -10,7 +10,7 @@
 
 @implementation BluePortalObject
 
-- (b2Body *)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBody:(CGPoint)location {
     
     //b2BodyDef bluePortalBodyDef;
     _bodyDef.type = b2_staticBody;
@@ -48,7 +48,9 @@
     //_fixtureDef.restitution = 0.3f;
     
     //body->CreateFixture(&_fixtureDef);
-    return bluePortal_Body;
+    
+    _bodies.push_back(bluePortal_Body);
+    return _bodies;
 }
 
 @end

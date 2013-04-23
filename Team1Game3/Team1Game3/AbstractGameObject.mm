@@ -36,14 +36,15 @@
 
 
 // TODO: make createBody:AtLocation to make consistent with rest of code.
-- (b2Body *) createBody:(CGPoint)location
+- (std::vector<b2Body*>) createBody:(CGPoint)location
 {
     // Must create body, set user data to "self," and create tag.
     NSAssert(NO, @"The 'createBody' method must be implemented by the sub-object.");
     // this code should never execute; only included so that the
     // function returns the data type as promised
     b2Body *body = self->_world->CreateBody(&_bodyDef);
-    return body;
+    _bodies.push_back(body);
+    return _bodies;
 }
 
 @end

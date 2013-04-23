@@ -10,7 +10,7 @@
 
 @implementation TrampolineObject
 
-- (b2Body *)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBody:(CGPoint)location {
     
     _bodyDef.type = b2_staticBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
@@ -36,7 +36,9 @@
     trampoline_Body->CreateFixture(&_fixtureDef);
     trampoline_Body->SetUserData(self);
     
-    return trampoline_Body;
+    _bodies.push_back(trampoline_Body);
+    
+    return _bodies;
     
 
 }
