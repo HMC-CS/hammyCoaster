@@ -30,7 +30,6 @@
 	if( (self=[super init])) {
 		
 		// enable events
-        //		_mouseJoint = NULL;
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
 		CGSize superSize = [CCDirector sharedDirector].winSize;
@@ -44,9 +43,7 @@
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
         _initialObjects = objects;
-        
-        _initialPosition = b2Vec2(0,0);
-        
+                
         _objectType = [[NSString alloc] initWithFormat:@"None"];
         
         [self addInitialObjects];
@@ -512,17 +509,17 @@
         CGPoint touchLocation = [touch locationInView:[touch view]];
         touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
         touchLocation = [self convertToNodeSpace:touchLocation];
-        b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+        _initialTouchPosition = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
         
         // Make a small box.
         b2AABB aabb;
         b2Vec2 d;
         d.Set(0.001f, 0.001f);
-        aabb.lowerBound = location - d;
-        aabb.upperBound = location + d;
+        aabb.lowerBound = _initialTouchPosition - d;
+        aabb.upperBound = _initialTouchPosition + d;
         
         // Query the world for overlapping shapes.
-        QueryCallback callback(location);
+        QueryCallback callback(_initialTouchPosition);
         world->QueryAABB(&callback, aabb);
         
         b2Body* body = callback.m_object;
@@ -531,48 +528,59 @@
         if (body) {
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
             if (!bodyObject->_isDefault && _editMode) {
-                b2Vec2 bodyLocation = body->GetPosition();
-                _xOffset = bodyLocation.x - location.x;
-                _yOffset = bodyLocation.y - location.y;
-                _initialPosition = b2Vec2(touchLocation.x/PTM_RATIO + _xOffset,touchLocation.y/PTM_RATIO + _yOffset);
-                _initialTouchPosition = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+                
+                _initialBodyPosition = body->GetPosition();
+                
                 body->SetType(b2_staticBody);
                 _currentMoveableBody = body;
             }
         }
     } else if (_currentMoveableBody != NULL) {
         _secondTouch = touch;
-        _angleOffset = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
-        _originalAngle = _currentMoveableBody->GetAngle();
+        _initialTouchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
     }
     return YES;
 }
+
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    CGPoint touchLocation = [touch locationInView:[touch view]];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
-    if (touch == _firstTouch && _currentMoveableBody != NULL) {
+    // If it's the first touch, drag
+    if (_currentMoveableBody != NULL) {
+        if (touch == _firstTouch) {
+                // Calculate touch location
+                CGPoint touchLocation = [touch locationInView:[touch view]];
+                touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+                touchLocation = [self convertToNodeSpace:touchLocation];
+                b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+            
+                // Move each body
+                AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
+                std::vector<b2Body*> bodies = bodyObject->_bodies;
+                for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+                {
+                    b2Body* b = *i;
+                    b2Vec2 newPos = b->GetPosition() + (location - _initialTouchPosition);
+                    b->SetTransform(newPos,_currentMoveableBody->GetAngle());
+                }
+                
+                _initialTouchPosition = location;
+        }
+        // If it's the first or second touch, rotate
+        if (touch == _firstTouch || touch == _secondTouch) {
+            // Calculate angle
+            float touchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [_secondTouch locationInView:[touch view]]);
+            
+            // Rotate each body
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
                 b2Body* b = *i;
-                b2Vec2 newPos = b->GetPosition() + (location - _initialTouchPosition);
-                b->SetTransform(newPos,_currentMoveableBody->GetAngle());
+                float newAngle = b->GetAngle() + (touchAngle - _initialTouchAngle);
+                b->SetTransform(b->GetPosition(),newAngle);
             }
             
-            _initialTouchPosition = location;
-    } else if (touch == _secondTouch) {
-        float touchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
-        float newAngle = _originalAngle + touchAngle - _angleOffset;
-        AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
-        std::vector<b2Body*> bodies = bodyObject->_bodies;
-        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-        {
-            b2Body* b = *i;
-            b->SetTransform(b->GetPosition(),newAngle);
+            _initialTouchAngle = touchAngle;
         }
     }
 }
@@ -581,19 +589,16 @@
     if (touch == _firstTouch) {
         _currentMoveableBody = NULL;
         _firstTouch = NULL;
-    } else if (touch == _secondTouch) {
-        _secondTouch = NULL;
     }
+    _secondTouch = NULL;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touch == _firstTouch) {
-        _firstTouch = NULL;
-        
+        _firstTouch = NULL;        
         CGPoint location = [touch locationInView: [touch view]];
         
         if (_currentMoveableBody != NULL) {
-            NSLog(@"we are in the if statement");
             location = [[CCDirector sharedDirector] convertToGL: location];
             location = [self convertToNodeSpace:location];
             
@@ -601,35 +606,34 @@
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
-
                 b2Body* body = *i;
-            b2Fixture* f = body->GetFixtureList();
-            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-            int count = polygonShape->GetVertexCount();
-            
-            CGFloat offset = self.boundingBox.origin.x;
-            
-            for(int i = 0; i < count; i++)
-            {
-                CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
-                CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
-                CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
-                CGPoint boundPoint = CGPointMake(point.x + location.x + offset, point.y + location.y);
-                boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+                b2Fixture* f = body->GetFixtureList();
+                b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+                int count = polygonShape->GetVertexCount();
                 
-                if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+                CGFloat offset = self.boundingBox.origin.x;
+                
+                for(int i = 0; i < count; i++)
                 {
-                    if (boundPoint.x < self.boundingBox.origin.x)
+                    CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
+                    CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
+                    CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
+                    CGPoint boundPoint = CGPointMake(point.x + location.x + offset, point.y + location.y);
+                    boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+                    
+                    if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
                     {
-                        [self deleteObjectWithBody:body];
-                        break;
-                    }else{
-                        [self bounceBackObjectWithBody:body];
-                        NSLog(@"Body dragged into walls");
+                        if (boundPoint.x < self.boundingBox.origin.x)
+                        {
+                            [self deleteObjectWithBody:body];
+                            break;
+                        }else{
+                            [self bounceBackObjectWithBody:body];
+                            NSLog(@"Body dragged into walls");
+                        }
                     }
+                    
                 }
-                
-            }
             }
             _currentMoveableBody = NULL;
         } else if (_editMode) {
@@ -643,20 +647,19 @@
                 
                 // get object type from inventory
                 _objectType = [self getObjectType];
-                // NSLog(@"%@, is object type", _objectType);
                 if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
                     [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
                 }
             }
         }
-    } else if (touch == _secondTouch)
-        _secondTouch = NULL;
+    }
+    _secondTouch = NULL;
 }
 
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
     b2Vec2 bodyOffset = body->GetPosition() - _currentMoveableBody->GetPosition();
-    body->SetTransform(_initialPosition + bodyOffset, body->GetAngle());
+    body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
 }
 
 //-----DEALLOC-----//

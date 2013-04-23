@@ -25,8 +25,6 @@
     ObjectFactory* _objectFactory;
     ContactListener* _contactListener;
     NSString* _objectType;
-    b2Vec2 _initialPosition;
-    b2Vec2 _initialTouchPosition;
     
     
     int starCount;
@@ -42,13 +40,13 @@
     
     CGPoint ballStartingPoint;
     
-    float _xOffset;
-    float _yOffset;
+    // For dragging and rotation
     b2Body* _currentMoveableBody;
     UITouch* _firstTouch;
     UITouch* _secondTouch;
-    float _originalAngle;
-    float _angleOffset;
+    b2Vec2 _initialBodyPosition;
+    b2Vec2 _initialTouchPosition;
+    float _initialTouchAngle;
     
     NSArray* _initialObjects;
     
