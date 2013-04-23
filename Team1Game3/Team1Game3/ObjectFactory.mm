@@ -20,13 +20,13 @@
     return sharedObjectFactory;
 }
 
-- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault withSprite:(CCSprite*) sprite
+- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault withSprites:(NSMutableArray *)spriteArray
 {
     Class objectClass = NSClassFromString(className);
     
     NSAssert1(objectClass, @"ObjectFactory called with invalid class name %@", className);
     
-    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withSprite:(CCSprite*) sprite withTag:className];
+    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withSprites:(NSMutableArray*) spriteArray withTag:className];
     return newObject;
 }
 

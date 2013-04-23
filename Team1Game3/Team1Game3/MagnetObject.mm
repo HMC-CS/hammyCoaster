@@ -37,8 +37,10 @@
     // TODO: magnet with north and south poles
     NSLog(@"trying to get sprite bounding box");
     
-    float objectWidth = _sprite.contentSize.width;
-    float objectHeight = _sprite.contentSize.height;
+    CCSprite* sprite = [_sprites objectAtIndex:0];
+    
+    float objectWidth = sprite.contentSize.width;
+    float objectHeight = sprite.contentSize.height;
     
     NSLog(@"starting north shape");
     b2PolygonShape northShape;

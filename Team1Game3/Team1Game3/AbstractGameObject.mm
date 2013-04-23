@@ -13,25 +13,25 @@
 @synthesize _tag;
 //@synthesize _isDefault;
 
--(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite withTag:(NSString*) tag
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprites:(NSMutableArray *)spriteArray withTag:(NSString *)tag
 {
     NSAssert(world, @"Physics world passed to AbstractGameObject init is null.");
-    NSAssert1(sprite, @"Sprite %@ passed to AbstractGameObject is null.", sprite);
+    NSAssert1(spriteArray, @"Sprite array %@ passed to AbstractGameObject is null.", spriteArray);
     NSAssert1(NSClassFromString(tag), @"AbstractGameObject tag %@ does not refer to a valid class.", tag);
     
     self = [super init];
     if (self) {
         _world = world;
         _isDefault = isDefault;
-        _sprite = sprite;
+        _sprites = spriteArray;
         _tag = tag;
     }
     return self;
 }
 
--(CCSprite *) getSprite
+-(NSMutableArray *) getSprites
 {
-    return _sprite;
+    return _sprites;
 }
 
 

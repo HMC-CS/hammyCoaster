@@ -176,7 +176,9 @@
     
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
-	PhysicsSprite *sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+    // MULTI: add an if statement if there are multiple bodies in your object
+	PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+    NSMutableArray* spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
     
     //TODO:
     //read from the file to see how many objects should be added
@@ -184,7 +186,7 @@
     //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
     // = the count in the file return
     
-    b2Body* body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprite:sprite] createBody:p];
+    b2Body* body = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
     
     [self addChild:sprite];
 	[sprite setPhysicsBody:body];
@@ -336,8 +338,6 @@
                     float yComponent2 = sinf(angleRadians2);
                     float xComponent2 = cosf(angleRadians2);
                     
-                    //float avgMagnetSize = (static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.width + static_cast<AbstractGameObject*>(magnet->GetUserData())->_sprite.boundingBox.size.height)/2;
-                    
                     b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
                     b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
                     
@@ -434,7 +434,8 @@
     //[self removeChild: static_cast <AbstractGameObject*> ( currentMoveableBody->GetUserData())->_sprite cleanup: YES ];
     AbstractGameObject* object = static_cast<AbstractGameObject*>(body->GetUserData());
     NSString* objectType = object._tag;
-    CCSprite* objectSprite = object->_sprite;
+    NSMutableArray* objectSprites = object->_sprites;
+    CCSprite* objectSprite = [objectSprites objectAtIndex:0];
     [self objectDeletedOfType:objectType];
     [self removeChild: objectSprite cleanup: YES];
     world->DestroyBody(body);

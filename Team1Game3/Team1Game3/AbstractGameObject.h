@@ -22,13 +22,13 @@
     
     // TODO: we will fix these public variables for v1!
     @public
-    CCSprite* _sprite;
+    NSMutableArray* _sprites;
     NSString* _tag;
     bool _isDefault;
 }
 
--(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprite:(CCSprite*) sprite withTag:(NSString*) tag;
--(CCSprite *) getSprite;
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprites:(NSMutableArray*) spriteArray withTag:(NSString*) tag;
+-(NSMutableArray *) getSprites;
 -(b2Body *) createBody:(CGPoint) location;
 
 @property(retain, readonly) NSString* _tag;
