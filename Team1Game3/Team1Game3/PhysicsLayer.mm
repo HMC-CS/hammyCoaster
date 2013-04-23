@@ -184,8 +184,10 @@
     }
     
     b2Body* theBody = *(bodies.begin());
-    if (![static_cast<AbstractGameObject*>(theBody->GetUserData())._tag isEqualToString:@"BallObject"]) {
-        
+    // added bridge cast 
+    //if (![((__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
+    if (![((__bridge AbstractGameObject*)(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
+    {
         for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
         {
         b2Body* body = *b;
@@ -230,9 +232,11 @@
 {
     // Delete Ball and Stars
     for (b2Body* b = world->GetBodyList(); b; b = b->GetNext()){
-        if ([static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
+        // added bridge cast
+        //if ([(__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
+        if ([((__bridge AbstractGameObject*)(b->GetUserData()))._tag isEqualToString:@"BallObject"])
         {
-            AbstractGameObject* a = static_cast<AbstractGameObject*>(b->GetUserData());
+            AbstractGameObject* a =(__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(b->GetUserData());
             CCSprite* sprite = [[a getSprites] objectAtIndex:0];
             [self removeChild: sprite cleanup:YES];
             [self deleteObjectWithBody:b];
