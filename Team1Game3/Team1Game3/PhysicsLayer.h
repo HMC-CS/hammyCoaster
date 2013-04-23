@@ -42,9 +42,11 @@
     
     CGPoint ballStartingPoint;
     
-    float xOffset;
-    float yOffset;
-    b2Body* currentMoveableBody;
+    float _xOffset;
+    float _yOffset;
+    b2Body* _currentMoveableBody;
+    UITouch* _firstTouch;
+    UITouch* _secondTouch;
     
     NSArray* _initialObjects;
     
