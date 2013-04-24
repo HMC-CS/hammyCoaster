@@ -159,9 +159,16 @@
     
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
-    // MULTI: add an if statement if there are multiple bodies in your object
-	PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-    NSMutableArray* spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
+    NSMutableArray* spriteArray;
+//    if ([type isEqualToString:@"SeesawObject"]) {
+//        PhysicsSprite* sprite1 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Bottom.png", type]];
+//        PhysicsSprite* sprite2 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Top.png", type]];
+//        spriteArray = [[NSMutableArray alloc] initWithObjects:sprite1, sprite2, nil];
+//    } else {
+        PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+        spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
+//    }
+
     
     //TODO:
     //read from the file to see how many objects should be added
