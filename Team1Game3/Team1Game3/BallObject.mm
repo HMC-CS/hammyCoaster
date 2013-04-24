@@ -12,7 +12,7 @@
 
 - (std::vector<b2Body*>)createBody:(CGPoint)location {
     
-    // TODO - this is currently a dynamic body so it rests nicely on things.  We want to make this a static object.  -- wait, no we don't. It won't collide with things.
+    // TODO - this is currently a dynamic body so it rests nicely on things.  We want to make this a static object.
     _bodyDef.type = b2_dynamicBody;
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *body = _world->CreateBody(&_bodyDef);
