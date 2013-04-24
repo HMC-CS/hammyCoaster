@@ -548,7 +548,7 @@
                 _currentMoveableBody = body;
             }
         }
-    } else if (_currentMoveableBody != NULL) {
+    } else if (_secondTouch == NULL && _currentMoveableBody != NULL) {
         _secondTouch = touch;
         _initialTouchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
     }
@@ -579,7 +579,7 @@
                 _initialTouchPosition = location;
         }
         // If it's the first or second touch, rotate
-        if (touch == _firstTouch || touch == _secondTouch) {
+        if ((_secondTouch != NULL && touch == _firstTouch) || touch == _secondTouch) {
             // Calculate angle
             float touchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [_secondTouch locationInView:[touch view]]);
             
