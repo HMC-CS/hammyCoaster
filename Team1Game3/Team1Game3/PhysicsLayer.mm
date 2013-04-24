@@ -160,8 +160,18 @@
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
     // MULTI: add an if statement if there are multiple bodies in your object
-	PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-    NSMutableArray* spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
+    NSMutableArray* spriteArray;
+    if ([type isEqualToString:@"SeesawObject"])
+    {
+        PhysicsSprite* sprite1 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Bottom.png", type]];
+        PhysicsSprite* sprite2 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Top.png", type]];
+        spriteArray = [[NSMutableArray alloc] initWithObjects:sprite1, sprite2, nil];
+    } else {
+        PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+        spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
+    }
+    
+    NSLog(@"made sprite array for %@", type);
     
     //TODO:
     //read from the file to see how many objects should be added
@@ -170,6 +180,8 @@
     // = the count in the file return
     
     std::vector<b2Body*> bodies = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
+    
+    NSLog(@"got bodies for %@", type);
     
     int j = 0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -182,6 +194,8 @@
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
         ++j;
     }
+    
+    NSLog(@"got through loop for %@", type);
     
     b2Body* theBody = *(bodies.begin());
     // added bridge cast 
@@ -207,8 +221,8 @@
             
             if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
             {
-                [self deleteObjectWithBody:body];
                 NSLog(@"Body destroy");
+                [self deleteObjectWithBody:body];
                 return;
             }
         }
@@ -431,14 +445,21 @@
 
 -(void) deleteObjectWithBody: (b2Body*) body
 {
-    NSLog(@"we are deleting object with body");
+    NSLog(@"we are deleting object %@ with body", static_cast<AbstractGameObject*>(body->GetUserData())._tag);
     AbstractGameObject* object = static_cast<AbstractGameObject*>(body->GetUserData());
+    
+    NSLog(@"passed static_cast");
     
     NSString* objectType = object._tag;
     [self objectDeletedOfType:objectType];
     
+    NSLog(@"passed object deleted of type");
+    
     std::vector<b2Body*> bodies = object->_bodies;
+    NSLog(@"got bodies");
+    
     NSMutableArray* objectSprites = [object getSprites];
+    NSLog(@"got sprites");
     
     int j=0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -466,7 +487,8 @@
 	
 	kmGLPushMatrix();
 	
-	//world->DrawDebugData();
+    //NOTE: can also comment this out to put back debug draw
+	world->DrawDebugData();
 	
 	kmGLPopMatrix();
 }
@@ -496,7 +518,34 @@
         [self hitStar:(_contactListener->_contactStar)];
         _contactListener->_contactStar = NULL;
     }
+    
     [self applyMagnets];
+    
+    for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext())
+    {
+        AbstractGameObject* object = static_cast<AbstractGameObject*>(joint->GetUserData());
+        NSString* type = object._tag;
+        if ([type isEqualToString:@"SeesawObject"]) {
+            const float springTorqForce = 1.0f;
+            float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
+            if ( jointAngle != 0 ) {
+                float torque = fabs(jointAngle * springTorqForce + 1);
+                if (jointAngle > 0.0)
+                {
+                    joint->GetBodyA()->ApplyTorque(-torque);
+                } else {
+                    joint->GetBodyA()->ApplyTorque(torque);
+                }
+                //joint->GetBodyA()->ApplyTorque(fabs(jointAngle * springTorqForce + 8.0f * 100.0));
+                //joint->GetBodyA
+//                joint->SetMaxMotorTorque( fabs( jointAngle * springTorqForce + joint->GetJointSpeed() * 100.0 ) );
+                NSLog(@"joint angle %f", jointAngle);
+                //joint->GetBodyA()->ApplyAngularImpulse(( jointAngle > 0.0 ) ? -8.0 : 8.0);
+                //joint->SetMotorSpeed( ( jointAngle > 0.0 ) ? -1000.0 : 1000.0 );
+            }
+
+        }
+    }
 }
 
 
@@ -566,7 +615,7 @@
                 {
                     b2Body* b = *i;
                     b2Vec2 newPos = b->GetPosition() + (location - _initialTouchPosition);
-                    b->SetTransform(newPos,_currentMoveableBody->GetAngle());
+                    b->SetTransform(newPos,b->GetAngle());
                 }
                 
                 _initialTouchPosition = location;
@@ -664,8 +713,18 @@
 
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
-    b2Vec2 bodyOffset = body->GetPosition() - _currentMoveableBody->GetPosition();
-    body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
+    std::vector<b2Body*> bodies = static_cast<AbstractGameObject*>(body->GetUserData())->_bodies;
+    int j=0;
+    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+    {
+        
+        // THIS IS WRONG RIGHT NOW
+        //NSLog(@"Body number %d", ++j);
+        b2Body* body = *i;
+        b2Vec2 bodyOffset = body->GetPosition() - _currentMoveableBody->GetPosition();
+        body->SetTransform(_initialBodyPosition /*+ bodyOffset*/, body->GetAngle());
+    }
+    
 }
 
 //-----DEALLOC-----//

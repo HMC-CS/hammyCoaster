@@ -12,7 +12,8 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "2"]
+            ["RampObject", "ramp", "2"],
+            ["SeesawObject", "seesaw", "2"]
         ]
     },
     {
