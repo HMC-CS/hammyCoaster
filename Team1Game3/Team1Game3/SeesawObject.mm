@@ -45,7 +45,7 @@
     teeterShape.SetAsBox(teeterWidth, teeterHeight);
     b2FixtureDef teeterFixtureDef;
     teeterFixtureDef.shape = &teeterShape;
-    teeterFixtureDef.density = 4.0f;
+    teeterFixtureDef.density = 1.5f;
     teeterFixtureDef.friction = 200.0f;
     teeterBody->CreateFixture(&teeterFixtureDef);
     

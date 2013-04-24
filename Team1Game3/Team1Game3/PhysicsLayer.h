@@ -47,6 +47,7 @@
     b2Vec2 _initialBodyPosition;
     b2Vec2 _initialTouchPosition;
     float _initialTouchAngle;
+    NSMutableArray* _moveableDynamicStatus;
     
     NSArray* _initialObjects;
     

@@ -51,6 +51,8 @@
 		[self scheduleUpdate];
         
         _editMode = YES;
+        
+        _moveableDynamicStatus = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -313,7 +315,7 @@
  */
 -(void) applyMagnets
 {
-    int magnetConstant = 500;
+    int magnetConstant = 400000000;
     //find all the magnets
     for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([static_cast<AbstractGameObject*>(magnet->GetUserData())._tag isEqualToString:@"MagnetObject"])
@@ -329,16 +331,19 @@
                     b2Fixture* fixture1 = magnet->GetFixtureList();
                     b2Fixture* fixture2 = fixture1->GetNext();
                     
+                    
                     b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
                     b2Vec2 shape1Position = shape1->m_centroid;
+                    NSLog(@"SOUTH position %f, %f", shape1Position.x, shape1Position.y);
                     
                     b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
                     b2Vec2 shape2Position = shape2->m_centroid;
+                    NSLog(@"NORTH position %f, %f", shape2Position.x, shape2Position.y);
                     
                     // Pole 1
                     double d11 = ball->GetPosition().x - (magnet->GetPosition().x + shape1Position.x);
                     double d12 = ball->GetPosition().y - (magnet->GetPosition().y + shape1Position.y);
-                    double distance1 = sqrt(d11 * d11 + d12 * d12);
+                    double distance1 = sqrt(d11 * d11 + d12 * d12) * 1000;
                     // Determine angle to face
                     float angleRadians1 = atanf((float)d12 / (float)d11);
                     float yComponent1 = sinf(angleRadians1);
@@ -347,7 +352,9 @@
                     // Pole 2
                     double d21 = ball->GetPosition().x - (magnet->GetPosition().x + shape2Position.x);
                     double d22 = ball->GetPosition().y - (magnet->GetPosition().y + shape2Position.y);
-                    double distance2 = sqrt(d21 * d21 + d22 * d22);
+                    double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
+                    
+                    NSLog(@"south distance %f, north distance %f", distance1, distance2);
                     // Determine angle to face
                     float angleRadians2 = atanf((float)d12 / (float)d11);
                     float yComponent2 = sinf(angleRadians2);
@@ -360,14 +367,36 @@
                     b2Vec2 force;
                     if ([static_cast<NSString*>(fixture1->GetUserData()) isEqualToString:@"NORTH"])
                     {
+                        NSLog(@"we're here");
                         
                         //                        if (distance > avgMagnetSize/15) {
                         
-                        force = direction2 - direction1;
+                        if (distance2 > distance1)
+                        {
+                            force = direction2 - direction1;
+                        } else {
+                            force = direction1 - direction2;
+                        }
+                        
+                        scanf("force is %f, %f", force.x, force.y);
+                        b2Vec2 force2 = -force;
+                        scanf("negative force is %f, %f", force2.x, force2.y);
                         //                    }
                         
                     } else {
-                        force = direction1 - direction2;
+//                        NSLog(@"we're here instead");
+//                        force = direction1 - direction2;
+//                        NSLog(@"force is %f, %f", force.x, force.y);
+//                        b2Vec2 force2 = -force;
+//                        NSLog(@"negative force is %f, %f", force2.x, force2.y);
+                        
+                        if (distance2 > distance1)
+                        {
+                            force = direction1 - direction2;
+                        } else {
+                            force = direction2 - direction1;
+                        }
+
                         
                     }
                     ball->ApplyForce(force, ball->GetPosition());
@@ -529,7 +558,7 @@
             const float springTorqForce = 1.0f;
             float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
             if ( jointAngle != 0 ) {
-                float torque = fabs(jointAngle * springTorqForce + 1);
+                float torque = fabs(jointAngle * springTorqForce * 50);
                 if (jointAngle > 0.0)
                 {
                     joint->GetBodyA()->ApplyTorque(-torque);
@@ -539,7 +568,6 @@
                 //joint->GetBodyA()->ApplyTorque(fabs(jointAngle * springTorqForce + 8.0f * 100.0));
                 //joint->GetBodyA
 //                joint->SetMaxMotorTorque( fabs( jointAngle * springTorqForce + joint->GetJointSpeed() * 100.0 ) );
-                NSLog(@"joint angle %f", jointAngle);
                 //joint->GetBodyA()->ApplyAngularImpulse(( jointAngle > 0.0 ) ? -8.0 : 8.0);
                 //joint->SetMotorSpeed( ( jointAngle > 0.0 ) ? -1000.0 : 1000.0 );
             }
@@ -582,12 +610,28 @@
         // Get the current info about the body
         if (body) {
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(body->GetUserData());
+            
             if (!bodyObject->_isDefault && _editMode) {
                 
                 _initialBodyPosition = body->GetPosition();
                 
-                body->SetType(b2_staticBody);
                 _currentMoveableBody = body;
+                
+                [_moveableDynamicStatus removeAllObjects];
+                
+                std::vector<b2Body*> bodies = bodyObject->_bodies;
+                for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
+                    b2Body* loopBody = *i;
+                    
+                    if (loopBody->GetType() == b2_dynamicBody) {
+                        [_moveableDynamicStatus addObject:@"dynamic"];
+                        loopBody->SetType(b2_staticBody);
+                    } else {
+                        [_moveableDynamicStatus addObject:@"static"];
+                    }
+                }
+                
+                
             }
         }
     } else if (_secondTouch == NULL && _currentMoveableBody != NULL) {
@@ -659,9 +703,17 @@
             
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
             std::vector<b2Body*> bodies = bodyObject->_bodies;
+            
+            int statusCounter = 0;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
                 b2Body* body = *i;
+                
+                if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"])
+                {
+                    body->SetType(b2_dynamicBody);
+                }
+                
                 b2Fixture* f = body->GetFixtureList();
                 b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
                 int count = polygonShape->GetVertexCount();
@@ -689,6 +741,7 @@
                     }
                     
                 }
+                ++statusCounter;
             }
             _currentMoveableBody = NULL;
         } else if (_editMode) {
