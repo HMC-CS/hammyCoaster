@@ -173,8 +173,6 @@
         spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
     }
     
-    NSLog(@"made sprite array for %@", type);
-    
     //TODO:
     //read from the file to see how many objects should be added
     //Check how many sprites have been added
@@ -182,8 +180,6 @@
     // = the count in the file return
     
     std::vector<b2Body*> bodies = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
-    
-    NSLog(@"got bodies for %@", type);
     
     int j = 0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -196,8 +192,6 @@
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
         ++j;
     }
-    
-    NSLog(@"got through loop for %@", type);
     
     b2Body* theBody = *(bodies.begin());
     // added bridge cast
@@ -227,27 +221,6 @@
                     [self deleteObjectWithBody:body];
                     return;
                 }
-                
-                // Necessary?
-//                b2Vec2 vertex = b2Vec2(boundPoint.x, boundPoint.y);
-//                // Make a small box.
-//                b2AABB aabb;
-//                b2Vec2 d;
-//                d.Set(0.001f, 0.001f);
-//                aabb.lowerBound = vertex - d;
-//                aabb.upperBound = vertex + d;
-//                
-//                
-//                QueryCallback callback(vertex);
-//                world->QueryAABB(&callback, aabb);
-//                
-//                b2Body* b = callback.m_object;
-//                
-//                if (b && (b != body)) {
-//                    [self deleteObjectWithBody:body];
-//                    return;
-//                }
-
                 
             }
         }
@@ -356,11 +329,9 @@
                     
                     b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
                     b2Vec2 shape1Position = shape1->m_centroid;
-                    NSLog(@"SOUTH position %f, %f", shape1Position.x, shape1Position.y);
                     
                     b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
                     b2Vec2 shape2Position = shape2->m_centroid;
-                    NSLog(@"NORTH position %f, %f", shape2Position.x, shape2Position.y);
                     
                     // Pole 1
                     double d11 = ball->GetPosition().x - (magnet->GetPosition().x + shape1Position.x);
@@ -376,7 +347,6 @@
                     double d22 = ball->GetPosition().y - (magnet->GetPosition().y + shape2Position.y);
                     double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
                     
-                    NSLog(@"south distance %f, north distance %f", distance1, distance2);
                     // Determine angle to face
                     float angleRadians2 = atanf((float)d12 / (float)d11);
                     float yComponent2 = sinf(angleRadians2);
@@ -385,13 +355,10 @@
                     b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
                     b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
                     
-                    // TODO: check if this works correctly
                     b2Vec2 force;
                     if ([static_cast<NSString*>(fixture1->GetUserData()) isEqualToString:@"NORTH"])
                     {
                         NSLog(@"we're here");
-                        
-                        //                        if (distance > avgMagnetSize/15) {
                         
                         if (distance2 > distance1)
                         {
@@ -400,17 +367,7 @@
                             force = direction1 - direction2;
                         }
                         
-                        scanf("force is %f, %f", force.x, force.y);
-                        b2Vec2 force2 = -force;
-                        scanf("negative force is %f, %f", force2.x, force2.y);
-                        //                    }
-                        
                     } else {
-                        //                        NSLog(@"we're here instead");
-                        //                        force = direction1 - direction2;
-                        //                        NSLog(@"force is %f, %f", force.x, force.y);
-                        //                        b2Vec2 force2 = -force;
-                        //                        NSLog(@"negative force is %f, %f", force2.x, force2.y);
                         
                         if (distance2 > distance1)
                         {
@@ -496,21 +453,14 @@
 
 -(void) deleteObjectWithBody: (b2Body*) body
 {
-    NSLog(@"we are deleting object %@ with body", static_cast<AbstractGameObject*>(body->GetUserData())._tag);
     AbstractGameObject* object = static_cast<AbstractGameObject*>(body->GetUserData());
-    
-    NSLog(@"passed static_cast");
     
     NSString* objectType = object._tag;
     [self objectDeletedOfType:objectType];
     
-    NSLog(@"passed object deleted of type");
-    
     std::vector<b2Body*> bodies = object->_bodies;
-    NSLog(@"got bodies");
     
     NSMutableArray* objectSprites = [object getSprites];
-    NSLog(@"got sprites");
     
     int j=0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -668,7 +618,7 @@
     } else if (_secondTouch == NULL && _currentMoveableBody != NULL) {
         _secondTouch = touch;
         _initialTouchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
-    } 
+    }
     return YES;
 }
 
@@ -770,6 +720,30 @@
                             NSLog(@"Body dragged into walls");
                         }
                     }
+           // PRIYA: deal with dragging collision callbacks
+//                    // Necessary?
+//                    b2Vec2 vertex = b2Vec2(xCoordinate, yCoordinate);
+//                    NSLog(@"the bound points %f, %f", point.x, point.y);
+//                    NSLog(@"another way %f, %f", xCoordinate, yCoordinate);
+//                    NSLog(@"body world coordinates %f, %f", body->GetWorldCenter().x, body->GetWorldCenter().y);
+//                    // Make a small box.
+//                    b2AABB aabb;
+//                    b2Vec2 d;
+//                    d.Set(0.001f, 0.001f);
+//                    aabb.lowerBound = vertex - d;
+//                    aabb.upperBound = vertex + d;
+//                    
+//                    
+//                    QueryCallback callback(vertex);
+//                    world->QueryAABB(&callback, aabb);
+//                    
+//                    b2Body* b = callback.m_object;
+//                    
+//                    if (b && (b != body)) {
+//                        [self bounceBackObjectWithBody:body];
+//                        return;
+//                    }
+                    
                 }
                 ++statusCounter;
             }
@@ -786,7 +760,7 @@
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
     {
         
-        // THIS IS WRONG RIGHT NOW
+        // TODO: THIS IS WRONG RIGHT NOW
         //NSLog(@"Body number %d", ++j);
         b2Body* body = *i;
         b2Vec2 bodyOffset = body->GetPosition() - _currentMoveableBody->GetPosition();
