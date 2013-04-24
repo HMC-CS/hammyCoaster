@@ -43,7 +43,7 @@
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
         _initialObjects = objects;
-                
+        
         _objectType = [[NSString alloc] initWithFormat:@"None"];
         
         [self addInitialObjects];
@@ -200,34 +200,56 @@
     NSLog(@"got through loop for %@", type);
     
     b2Body* theBody = *(bodies.begin());
-    // added bridge cast 
+    // added bridge cast
     //if (![((__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
     if (![((__bridge AbstractGameObject*)(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
     {
         for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
         {
-        b2Body* body = *b;
-        b2Fixture* f = body->GetFixtureList();
-        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-        int count = polygonShape->GetVertexCount();
-        
-        CGFloat offset = self.boundingBox.origin.x;
-        
-        for(int i = 0; i < count; i++)
-        {
-            CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
-            CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
-            CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
-            CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
-            boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+            b2Body* body = *b;
+            b2Fixture* f = body->GetFixtureList();
+            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+            int count = polygonShape->GetVertexCount();
             
-            if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+            CGFloat offset = self.boundingBox.origin.x;
+            
+            for(int i = 0; i < count; i++)
             {
-                NSLog(@"Body destroy");
-                [self deleteObjectWithBody:body];
-                return;
+                CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
+                CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
+                CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
+                CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
+                boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+                
+                if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+                {
+                    NSLog(@"Body destroy");
+                    [self deleteObjectWithBody:body];
+                    return;
+                }
+                
+                // Necessary?
+//                b2Vec2 vertex = b2Vec2(boundPoint.x, boundPoint.y);
+//                // Make a small box.
+//                b2AABB aabb;
+//                b2Vec2 d;
+//                d.Set(0.001f, 0.001f);
+//                aabb.lowerBound = vertex - d;
+//                aabb.upperBound = vertex + d;
+//                
+//                
+//                QueryCallback callback(vertex);
+//                world->QueryAABB(&callback, aabb);
+//                
+//                b2Body* b = callback.m_object;
+//                
+//                if (b && (b != body)) {
+//                    [self deleteObjectWithBody:body];
+//                    return;
+//                }
+
+                
             }
-        }
         }
     }
 }
@@ -384,11 +406,11 @@
                         //                    }
                         
                     } else {
-//                        NSLog(@"we're here instead");
-//                        force = direction1 - direction2;
-//                        NSLog(@"force is %f, %f", force.x, force.y);
-//                        b2Vec2 force2 = -force;
-//                        NSLog(@"negative force is %f, %f", force2.x, force2.y);
+                        //                        NSLog(@"we're here instead");
+                        //                        force = direction1 - direction2;
+                        //                        NSLog(@"force is %f, %f", force.x, force.y);
+                        //                        b2Vec2 force2 = -force;
+                        //                        NSLog(@"negative force is %f, %f", force2.x, force2.y);
                         
                         if (distance2 > distance1)
                         {
@@ -396,7 +418,7 @@
                         } else {
                             force = direction2 - direction1;
                         }
-
+                        
                         
                     }
                     ball->ApplyForce(force, ball->GetPosition());
@@ -565,13 +587,8 @@
                 } else {
                     joint->GetBodyA()->ApplyTorque(torque);
                 }
-                //joint->GetBodyA()->ApplyTorque(fabs(jointAngle * springTorqForce + 8.0f * 100.0));
-                //joint->GetBodyA
-//                joint->SetMaxMotorTorque( fabs( jointAngle * springTorqForce + joint->GetJointSpeed() * 100.0 ) );
-                //joint->GetBodyA()->ApplyAngularImpulse(( jointAngle > 0.0 ) ? -8.0 : 8.0);
-                //joint->SetMotorSpeed( ( jointAngle > 0.0 ) ? -1000.0 : 1000.0 );
             }
-
+            
         }
     }
 }
@@ -633,11 +650,25 @@
                 
                 
             }
+        } else if (_editMode) {
+            
+            //Add a new body/atlas sprite at the touched location
+            CGPoint location = [touch locationInView: [touch view]];
+            if (CGRectContainsPoint(self.boundingBox, location)) {
+                location = [[CCDirector sharedDirector] convertToGL: location];
+                location = [self convertToNodeSpace:location];
+                
+                // get object type from inventory
+                _objectType = [self getObjectType];
+                if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
+                    [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
+                }
+            }
         }
     } else if (_secondTouch == NULL && _currentMoveableBody != NULL) {
         _secondTouch = touch;
         _initialTouchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
-    }
+    } 
     return YES;
 }
 
@@ -646,23 +677,23 @@
     // If it's the first touch, drag
     if (_currentMoveableBody != NULL) {
         if (touch == _firstTouch) {
-                // Calculate touch location
-                CGPoint touchLocation = [touch locationInView:[touch view]];
-                touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-                touchLocation = [self convertToNodeSpace:touchLocation];
-                b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+            // Calculate touch location
+            CGPoint touchLocation = [touch locationInView:[touch view]];
+            touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+            touchLocation = [self convertToNodeSpace:touchLocation];
+            b2Vec2 location = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
             
-                // Move each body
-                AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
-                std::vector<b2Body*> bodies = bodyObject->_bodies;
-                for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-                {
-                    b2Body* b = *i;
-                    b2Vec2 newPos = b->GetPosition() + (location - _initialTouchPosition);
-                    b->SetTransform(newPos,b->GetAngle());
-                }
-                
-                _initialTouchPosition = location;
+            // Move each body
+            AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
+            std::vector<b2Body*> bodies = bodyObject->_bodies;
+            for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+            {
+                b2Body* b = *i;
+                b2Vec2 newPos = b->GetPosition() + (location - _initialTouchPosition);
+                b->SetTransform(newPos,b->GetAngle());
+            }
+            
+            _initialTouchPosition = location;
         }
         // If it's the first or second touch, rotate
         if ((_secondTouch != NULL && touch == _firstTouch) || touch == _secondTouch) {
@@ -694,7 +725,7 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touch == _firstTouch) {
-        _firstTouch = NULL;        
+        _firstTouch = NULL;
         CGPoint location = [touch locationInView: [touch view]];
         
         if (_currentMoveableBody != NULL) {
@@ -739,26 +770,10 @@
                             NSLog(@"Body dragged into walls");
                         }
                     }
-                    
                 }
                 ++statusCounter;
             }
             _currentMoveableBody = NULL;
-        } else if (_editMode) {
-            
-            //Add a new body/atlas sprite at the touched location
-            
-            if (CGRectContainsPoint(self.boundingBox, location)) {
-                
-                location = [[CCDirector sharedDirector] convertToGL: location];
-                location = [self convertToNodeSpace:location];
-                
-                // get object type from inventory
-                _objectType = [self getObjectType];
-                if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
-                    [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
-                }
-            }
         }
     }
     _secondTouch = NULL;
