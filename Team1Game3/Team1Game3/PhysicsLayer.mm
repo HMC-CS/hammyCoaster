@@ -156,8 +156,8 @@
 
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
 {
-    if([type isEqualToString:@"MagnetObject"])
-        NSLog(@"MagnetObject");
+    if([type isEqualToString:@"SeesawObject"])
+        NSLog(@"SeesawObject");
     
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
@@ -172,14 +172,17 @@
         PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
         spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
     }
+    NSLog(@"finished adding sprites");
     
     //TODO:
     //read from the file to see how many objects should be added
     //Check how many sprites have been added
     //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
     // = the count in the file return
-    
+
     std::vector<b2Body*> bodies = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
+    
+    NSLog(@"finished getting bodies");
     
     int j = 0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -192,6 +195,7 @@
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
         ++j;
     }
+    NSLog(@"finished body loop");
     
     b2Body* theBody = *(bodies.begin());
     // added bridge cast
@@ -471,6 +475,7 @@
         world->DestroyBody(body);
         ++j;
     }
+    NSLog(@"bodies destroyed successfully");
 }
 
 //-----BUILT-IN/BOX 2D-----//
@@ -596,6 +601,8 @@
                     } else {
                         [_moveableDynamicStatus addObject:@"static"];
                     }
+                    
+                    loopBody->SetActive(false);
                 }
                 
                 
@@ -700,15 +707,10 @@
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             
-            int statusCounter = 0;
+            
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
                 b2Body* body = *i;
-                
-                if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"])
-                {
-                    body->SetType(b2_dynamicBody);
-                }
                 
                 b2Fixture* f = body->GetFixtureList();
                 b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
@@ -732,36 +734,46 @@
                             break;
                         }else{
                             [self bounceBackObjectWithBody:body];
+                            break;
                             NSLog(@"Body dragged into walls");
                         }
                     }
-           // PRIYA: deal with dragging collision callbacks
-//                    // Necessary?
-//                    b2Vec2 vertex = b2Vec2(xCoordinate, yCoordinate);
-//                    NSLog(@"the bound points %f, %f", point.x, point.y);
-//                    NSLog(@"another way %f, %f", xCoordinate, yCoordinate);
-//                    NSLog(@"body world coordinates %f, %f", body->GetWorldCenter().x, body->GetWorldCenter().y);
-//                    // Make a small box.
-//                    b2AABB aabb;
-//                    b2Vec2 d;
-//                    d.Set(0.001f, 0.001f);
-//                    aabb.lowerBound = vertex - d;
-//                    aabb.upperBound = vertex + d;
-//                    
-//                    
-//                    QueryCallback callback(vertex);
-//                    world->QueryAABB(&callback, aabb);
-//                    
-//                    b2Body* b = callback.m_object;
-//                    
-//                    if (b && (b != body)) {
-//                        [self bounceBackObjectWithBody:body];
-//                        return;
-//                    }
+                    
+                    b2Vec2 vertex = b2Vec2(xCoordinate + location.x/PTM_RATIO, yCoordinate + location.y/PTM_RATIO);
+
+                    // Make a small box.
+                    b2AABB aabb;
+                    b2Vec2 d;
+                    // TODO: if want less overlap, make bounding box bigger
+                    d.Set(5.0f, 5.0f);
+                    aabb.lowerBound = vertex - d;
+                    aabb.upperBound = vertex + d;
+                    
+                    QueryCallback callback(vertex);
+                    world->QueryAABB(&callback, aabb);
+                    
+                    b2Body* b = callback.m_object;
+                    
+                    if (b && (b != body)) {
+                        [self bounceBackObjectWithBody:body];
+                    }
                     
                 }
+                
+            }
+            
+            int statusCounter = 0;
+            for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+            {
+                b2Body* body = *i;
+                if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"])
+                {
+                    body->SetType(b2_dynamicBody);
+                }
+                body->SetActive(true);
                 ++statusCounter;
             }
+            
             _currentMoveableBody = NULL;
         }
     }
@@ -770,16 +782,16 @@
 
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
+    b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
     std::vector<b2Body*> bodies = static_cast<AbstractGameObject*>(body->GetUserData())->_bodies;
-    int j=0;
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
     {
         
         // TODO: THIS IS WRONG RIGHT NOW
         //NSLog(@"Body number %d", ++j);
         b2Body* body = *i;
-        b2Vec2 bodyOffset = body->GetPosition() - _currentMoveableBody->GetPosition();
-        body->SetTransform(_initialBodyPosition /*+ bodyOffset*/, body->GetAngle());
+        b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
+        body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
     }
     
 }

@@ -34,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388488329.871427"
+         timestampString = "388525990.096535"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "348"
-         endingLineNumber = "348"
+         startingLineNumber = "352"
+         endingLineNumber = "352"
          landmarkName = "-applyMagnets"
          landmarkType = "5">
       </FileBreakpoint>
@@ -65,45 +65,6 @@
          endingLineNumber = "51"
          landmarkName = "-createBody:"
          landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388485605.126507"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "146"
-         endingLineNumber = "146"
-         landmarkName = "-addInitialObjects"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388488329.871427"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "316"
-         endingLineNumber = "316"
-         landmarkName = "-applyMagnets"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388488329.871427"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "308"
-         endingLineNumber = "308"
-         landmarkName = "@implementation PhysicsLayer"
-         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
