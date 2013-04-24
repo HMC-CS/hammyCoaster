@@ -57,8 +57,6 @@
         CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
         CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
         selected.color = ccc3(255,255,0);
-        //selected.color = ccc3(255,255,255);
-
         
         CCMenuItemSprite *inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected block:^(id sender) {
             

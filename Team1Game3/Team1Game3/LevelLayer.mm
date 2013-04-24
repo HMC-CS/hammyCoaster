@@ -38,6 +38,13 @@
 {
 	if( (self=[super init])) {
         
+        // background image
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        CCSprite *background;
+        background = [CCSprite spriteWithFile:@"levelbackground.png"];
+        background.position = ccp(size.width/2, size.height/2);
+        [self addChild: background];
+        
         
         _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
         
@@ -58,7 +65,7 @@
         [self createGameplayLayer];
         
         // Label displaying puzzle level
-        CGSize size = [[CCDirector sharedDirector] winSize];
+        //CGSize size = [[CCDirector sharedDirector] winSize];
         CCLabelTTF* _levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d-%d", _levelSet, _levelIndex] fontName:@"Marker Felt" fontSize:30];
         _levelLabel.position = CGPointMake(2.9*size.width/5, 5*size.height/6);
         [self addChild:_levelLabel];
@@ -102,11 +109,22 @@
  */
 -(void) createGameplayLayer
 {
-    _gameplayLayer = [[GameplayLayer alloc] initWithHighScore:[_gameManager highScoreAtLevelSet:_levelSet AndIndex:_levelIndex]];
+    _gameplayLayer = [[GameplayLayer alloc] initWithHighScore:[_gameManager highScoreAtLevelSet:_levelSet AndIndex:_levelIndex] StartButtonLocation:[self getBallStartPoint]];
     [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLayer)];
     [_gameplayLayer setTarget:self atAction:@selector(resetBallPhysicsLayer)];
     [_gameplayLayer setTarget:self atAction:@selector(resetPhysicsLayer)];
     [self addChild:_gameplayLayer];
+}
+
+/* getBallStartPoint:
+ * from: GameplayLayer
+ * to: PhysicsLayer
+ * returns starting location of ball
+ */
+-(CGPoint) getBallStartPoint
+{
+    NSLog(@"LevelLayer Ball Start:  x: %f y:%f", [_physicsLayer getBallStartingPoint].x, [_physicsLayer getBallStartingPoint].y);
+    return [_physicsLayer getBallStartingPoint];
 }
 
 /* playPhysicsLevel:
@@ -142,13 +160,14 @@
 
 -(void) resetPhysicsLayer
 {
+    [self removeChild:_inventoryLayer cleanup:YES];
+    [self createInventoryLayer];
+    
     [self removeChild:_physicsLayer cleanup:YES];
     [self createPhysicsLayer];
     
-    //[_inventoryLayer resetInventory];
-    
-    [self removeChild:_inventoryLayer cleanup:YES];
-    [self createInventoryLayer];
+    [self removeChild:_gameplayLayer cleanup:YES];
+    [self createGameplayLayer];
 }
 
 /* getInventorySelectedObject:

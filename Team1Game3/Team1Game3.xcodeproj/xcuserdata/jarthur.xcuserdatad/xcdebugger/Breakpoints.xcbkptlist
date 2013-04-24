@@ -34,13 +34,13 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388271428.807698"
+         timestampString = "388452984.015282"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "328"
-         endingLineNumber = "328"
-         landmarkName = "@implementation PhysicsLayer"
-         landmarkType = "3">
+         startingLineNumber = "336"
+         endingLineNumber = "336"
+         landmarkName = "-applyMagnets"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388200015.378725"
+         timestampString = "388452984.015282"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "297"
-         endingLineNumber = "297"
+         startingLineNumber = "305"
+         endingLineNumber = "305"
          landmarkName = "-applyMagnets"
          landmarkType = "5">
       </FileBreakpoint>
@@ -97,13 +97,26 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388200015.378725"
+         timestampString = "388452984.015282"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "289"
-         endingLineNumber = "289"
-         landmarkName = "-hitStar:"
-         landmarkType = "5">
+         startingLineNumber = "297"
+         endingLineNumber = "297"
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Team1Game3/GameplayLayer.mm"
+         timestampString = "388458197.462214"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "179"
+         endingLineNumber = "179"
+         landmarkName = "@implementation GameplayLayer"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

@@ -142,7 +142,10 @@
         CGFloat rotation = [[item objectAtIndex:3] floatValue];
         [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
         if ([type isEqual: @"RedPortalObject"])
+        {
             ballStartingPoint = CGPointMake(px,py);
+            NSLog(@"ball starting point is %f, %f", ballStartingPoint.x, ballStartingPoint.y);
+        }
     }
 }
 
@@ -213,6 +216,11 @@
     }
 }
 
+-(CGPoint)getBallStartingPoint
+{
+    NSLog(@"Physics Layer ball starting point x: %f y: %f", ballStartingPoint.x, ballStartingPoint.y);
+    return ballStartingPoint;
+}
 
 -(void)playLevel
 {
@@ -368,11 +376,7 @@
     }
     else if (!_selector2) {
         _selector2 = action;
-    }//else{
-    // _selector3 = action;
-    //}
-    
-    
+    }
     else if (!_selector3)
     {
         _selector3 = action;
@@ -380,7 +384,9 @@
     else if (!_selector4)
     {
         _selector4 = action;
-    }else{
+    }
+    else
+    {
         _selector5 = action;
     }
 }
@@ -460,7 +466,7 @@
 	
 	kmGLPushMatrix();
 	
-	world->DrawDebugData();
+	//world->DrawDebugData();
 	
 	kmGLPopMatrix();
 }

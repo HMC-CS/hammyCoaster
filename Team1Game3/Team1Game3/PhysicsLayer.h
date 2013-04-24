@@ -59,6 +59,12 @@
  */
 -(id) initWithObjects: (NSArray*) objects;
 
+
+/* getBallStartingPoint:
+ * returns ballStartingPoint
+ */
+-(CGPoint) getBallStartingPoint;
+
 /* playLevel:
  * Places a BallObject at ballStartingPoint
  */

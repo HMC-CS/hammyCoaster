@@ -21,7 +21,7 @@
     CCLabelTTF* _bestStarLabel;
     
     int _bestStars;
-    
+    CGPoint _startButtonLocation;
 }
 
 @property (readonly) int starCount;
@@ -29,7 +29,7 @@
 /* initWithHighScore:
  * initializes Gameplay Layer with level high score
  */
--(id) initWithHighScore:(int) stars;
+-(id) initWithHighScore:(int) stars StartButtonLocation:(CGPoint) startButtonPoint;
 
 /* setTarget: atAction:
  * guaranteed name for function to initialize selectors and target

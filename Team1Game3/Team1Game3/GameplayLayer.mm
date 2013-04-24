@@ -13,7 +13,7 @@
 
 @implementation GameplayLayer
 
--(id) initWithHighScore:(int) stars
+-(id) initWithHighScore:(int) stars StartButtonLocation:(CGPoint) startButtonPoint
 {
 	if( (self=[super init])) {
 		
@@ -24,6 +24,7 @@
         [self setPosition:ccp(0,0)];
         
         _bestStars = stars;
+        _startButtonLocation = startButtonPoint;
         
 		// create menu buttons
 		[self createMenu];
@@ -52,16 +53,29 @@
     [CCMenuItemFont setFontSize:30];
     
     // Play Button: drops ball
-    CCMenuItemLabel *playButton = [CCMenuItemFont itemWithString:@"Get the Ball Rolling!" block:^(id sender){
-        [self playButtonPressed];
-        // stick a ball on the screen at starting position;
-    }];
+    CCMenuItemLabel *playButton;
     
     // Reset Ball Button: Gets rid of ball, puts stars back, sets editMode to true.
-    CCMenuItemLabel *resetBallButton = [CCMenuItemFont itemWithString:@"Reset Ball" block:^(id sender){
-        [self resetBallButtonPressed];
-    }];
+    CCMenuItemLabel *resetBallButton;
     
+    playButton = [CCMenuItemFont itemWithString:@"Start!" block:^(id sender){
+        [self playButtonPressed];
+        [self switchButtons];
+        // stick a ball on the screen at starting position;
+    }];
+    playButton.tag = 42;
+    playButton.userData = @"playButton";
+    
+    resetBallButton = [CCMenuItemFont itemWithString:@"Reset Ball" block:^(id sender){
+        [self resetBallButtonPressed];
+        [self switchButtons];
+    }];
+    resetBallButton.tag = 42;
+    resetBallButton.userData = @"resetBall";
+    [resetBallButton setIsEnabled:NO];
+    [resetBallButton setVisible:NO];
+    //[resetBallButton setOpacity:[resetBallButton isEnabled]*100];
+
     // Reset Button: Gets rid of all non-default items in level
     CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Restart Level" block:^(id sender){
         // reset level; currently just redraw everything
@@ -80,7 +94,7 @@
 //    [gameMenu0 setPosition:ccp(size.width/8, size.height*17/20)];
 //    [self addChild: gameMenu0 z:-1];
     
-    CCMenu *gameMenu0 = [CCMenu menuWithItems: playButton, resetBallButton, resetButton, nil];
+    CCMenu *gameMenu0 = [CCMenu menuWithItems: resetButton, nil];
     [gameMenu0 alignItemsVerticallyWithPadding:10];
     [gameMenu0 setPosition:ccp(size.width/8, size.height*15/20)];
     [self addChild: gameMenu0 z:-1];
@@ -89,6 +103,39 @@
     CCMenu *gameMenu1 = [CCMenu menuWithItems: backButton, nil];
     [gameMenu1 setPosition:ccp(size.width/8, 4*size.height/16)];
     [self addChild: gameMenu1 z:-1];
+
+    CCLOG(@"play button location x: %f y: %f", _startButtonLocation.x, _startButtonLocation.y);
+    _startButtonLocation.x += (size.width/4);
+    
+    CCMenu *gameMenu2 = [CCMenu menuWithItems: playButton, nil];
+    [gameMenu2 setPosition:_startButtonLocation];
+     gameMenu2.userData = @"playMenu";
+    [self addChild: gameMenu2 z:-1];
+
+    CCMenu *gameMenu3 = [CCMenu menuWithItems: resetBallButton, nil];
+    [gameMenu3 setPosition:_startButtonLocation];
+    [self addChild: gameMenu3 z:-1];
+    gameMenu3.userData = @"resetBallMenu";
+}
+
+-(void)switchButtons
+{
+    NSLog(@"switch!");
+    for (CCNode* menu in [self children])
+    {
+        NSLog(@" found a child!");
+        NSLog(@"user data: %@", [menu userData]);
+        NSString* menuData = (NSString*)[menu userData];
+        if (([menuData isEqualToString:@"playMenu"] || [menuData isEqualToString:@"resetBallMenu"])/*&& [child isKindOfClass: NSClassFromString(@"CCMenuItem*")]*/)
+        {
+            CCMenuItem* child = (CCMenuItem*)[(CCMenu*)menu getChildByTag:42];
+            [child setIsEnabled: ![child isEnabled]];
+            [child setVisible:[child isEnabled]];
+            //[child setOpacity:[child isEnabled]*100];
+            //NSLog(@"%@ is enabled? %d", childData, [child isEnabled]);
+
+        }
+    }
 }
 
 -(void) createLabels
@@ -123,6 +170,13 @@
         _selector3 = action;
     }
 }
+/*
+-(void)getPlayButtonLocation
+{
+    //CGPoint returnValue = (CGPoint)[_target performSelector:_selector1]
+    NSLog(@"GamePlay Layer ball starting point %@", [_target performSelector:_selector1]);
+    // (CGPoint)[_target performSelector:_selector1];
+}*/
 
 /* playButtonPressed:
  * asks LevelLayer to start the level
