@@ -617,7 +617,14 @@
         }
     } else if (_secondTouch == NULL && _currentMoveableBody != NULL) {
         _secondTouch = touch;
-        _initialTouchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [touch locationInView:[touch view]]);
+        CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
+        CGPoint xaxis = CGPointMake(-1, 0);
+        if (point.y >= 0) {
+            _initialTouchAngle = ccpAngle(point, xaxis);
+        } else {
+            point = CGPointMake(point.x, -point.y);
+            _initialTouchAngle = -ccpAngle(point, xaxis);
+        }
     }
     return YES;
 }
@@ -646,9 +653,17 @@
             _initialTouchPosition = location;
         }
         // If it's the first or second touch, rotate
-        if ((_secondTouch != NULL && touch == _firstTouch) || touch == _secondTouch) {
+        if ((touch == _firstTouch && _secondTouch != NULL) || touch == _secondTouch) {
             // Calculate angle
-            float touchAngle = ccpAngle([_firstTouch locationInView:[touch view]], [_secondTouch locationInView:[touch view]]);
+            CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
+            CGPoint xaxis = CGPointMake(-1, 0);
+            float touchAngle;
+            if (point.y >= 0) {
+                touchAngle = ccpAngle(point, xaxis);
+            } else {
+                point = CGPointMake(point.x, -point.y);
+                touchAngle = -ccpAngle(point, xaxis);
+            }
             
             // Rotate each body
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
