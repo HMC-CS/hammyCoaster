@@ -123,8 +123,6 @@
     NSLog(@"switch!");
     for (CCNode* menu in [self children])
     {
-        NSLog(@" found a child!");
-        NSLog(@"user data: %@", [menu userData]);
         NSString* menuData = (NSString*)[menu userData];
         if (([menuData isEqualToString:@"playMenu"] || [menuData isEqualToString:@"resetBallMenu"])/*&& [child isKindOfClass: NSClassFromString(@"CCMenuItem*")]*/)
         {
