@@ -19,7 +19,7 @@
     b2Body* circleBody = _world->CreateBody(&_bodyDef);
     
     CCSprite* circleSprite = [_sprites objectAtIndex:0];
-    float circleHeight = circleSprite.contentSize.height/PTM_RATIO/2;
+    float circleHeight = circleSprite.contentSize.height/PTM_RATIO/2 * 0.63;
     float circleWidth = circleSprite.contentSize.width/PTM_RATIO/2;
     b2PolygonShape circleShape;
     circleShape.SetAsBox(circleWidth, circleHeight);
