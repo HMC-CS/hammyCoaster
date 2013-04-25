@@ -57,7 +57,9 @@
         
         NSMutableArray* _selectedLevelIcons = [[NSMutableArray alloc] init];
         NSMutableArray* levelIcons = [[NSMutableArray alloc] init];
+        //NSMutableArray* lockedLevelIcons = [[NSMutableArray alloc] init];
         
+        //creating locked levels add an array of the locked levels all but the first 2
         double iconSize = size.height/6;
 
 //        // TODO: comment back in if multiple level sets added
@@ -77,6 +79,17 @@
                 for (int i = 0; i < _gameManager.numLevelIndices/3; ++i) {
                     CCSprite *levelIcon = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];   // TODO: make 0 "k" if loop added back
                     [iconSet addObject:levelIcon];
+                    
+//                    [lockedLevelIcons addObject:levelIcon];
+//                    
+//                    //locked changes now lock every level but 1 TO FIX!
+//                    if ( !(i == 0 && j== 0))
+//                    {
+//                    levelIcon.userData = @"Locked";
+//                    CCSprite* lock = [CCSprite spriteWithFile:@"lock.png"];
+//                    [lock setPosition:ccp(levelIcon.contentSize.width/4, levelIcon.contentSize.height/4)];
+//                    [levelIcon addChild:lock];
+//                    }
                     
                     // Change label to "k-(4j+i+1)" format if we have multiple sets
                     CCLabelTTF *label = [CCLabelTTF labelWithString: [NSString stringWithFormat:@"%d", 4*j+i+1] fontName:@"Marker Felt" fontSize:levelIcon.contentSize.width*0.4];
@@ -120,10 +133,26 @@
                             starLocation = ccp(starLocation.x + levelIcon.contentSize.width/3.5, starLocation.y);
                         }
                     }
+                    
+                    // Check here if 2 of the levels have been completed
+                    // if so remove two more from the locked levels array
+                    // and unlock them
+//                    if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
+//                        CCSprite* levelUnlock1 = [lockedLevelIcons objectAtIndex:i+3];
+//                        levelUnlock1.userData = @"Unlocked";
+//                        
+//                    }
+                    
 
                     CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {
                         // TODO: change this line to load different sets
+                        NSString* lockString = (NSString *)levelIcon.userData;
+                        if (![lockString isEqualToString:@"Locked"])
+                        {
                         [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:1 AndIndex:4*j+i+1]];  // TODO: make set "k" if loop added back
+                        }else{
+                            return;
+                        }
                     }];
                     menuItem.scale = (iconSize * levelIcon.scale)/levelIcon.contentSize.width;
                     [menuItem setPosition:ccp(size.width*((i+1.0)/5.0-0.5), -size.height*((j+1.0)/4.0-0.5))];

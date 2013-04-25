@@ -577,6 +577,10 @@
         QueryCallback callback(_initialTouchPosition);
         world->QueryAABB(&callback, aabb);
         
+//        CCSprite* trash = [CCSprite spriteWithFile:@"Delete2.png"];
+//        trash.position = ccp(0, 0);
+//        [self addChild:trash];
+        
         b2Body* body = callback.m_object;
         
         // Get the current info about the body
