@@ -51,9 +51,11 @@
     b2PolygonShape trampolineShape2;
     trampolineShape2.Set(vertices2, num2);
     
+    b2Filter trampolineFilter;
+    trampolineFilter.maskBits = 0;
     b2FixtureDef _fixtureDef2;
     _fixtureDef2.shape = &trampolineShape2; // Set the line shape
-    _fixtureDef2.isSensor = YES;
+    _fixtureDef2.filter = trampolineFilter;
     
     // Add the shape to the body
     trampoline_Body->CreateFixture(&_fixtureDef2);

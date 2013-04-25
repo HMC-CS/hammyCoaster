@@ -311,6 +311,25 @@
     [self updateStarCount];
 }
 
+
+-(void) trampolineDraggable
+{
+    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
+    {
+        
+        if ([static_cast<AbstractGameObject*>(body->GetUserData())._tag isEqualToString:@"TrampolineObject"])
+             {
+                 for ( b2Fixture* f = body->GetFixtureList(); f; f = f->GetNext() ) {
+                     
+                 }
+             }
+    }
+}
+
+
+
+
+
 // TODO: did not change this method for multi-body because BallObject and MagnetObject are single-body objects.  Change if changed.
 /* applyMagnets:
  * helper function to apply magnet's forces to the ball
