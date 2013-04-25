@@ -35,12 +35,14 @@ void ContactListener::BeginContact(b2Contact* contact) {
         NSString* body2Type = body2Object->_tag;
         
         // Sound effects
-        NSString* objectType;
-        if ([body1Type isEqualToString:@"BallObject"])
-            objectType = body2Type;
-        if ([body2Type isEqualToString:@"BallObject"])
-            objectType = body1Type;
-        [[SoundManager sharedSoundManager] playEffectOfType:objectType];
+        if ([body1Type isEqualToString:@"BallObject"] || [body2Type isEqualToString:@"BallObject"]) {
+            NSString* objectType;
+            if ([body1Type isEqualToString:@"BallObject"])
+                objectType = body2Type;
+            else
+                objectType = body1Type;
+            [[SoundManager sharedSoundManager] playEffectOfType:objectType];
+        }
         
         if (([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"BluePortalObject"])
             || ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"BluePortalObject"])) {
