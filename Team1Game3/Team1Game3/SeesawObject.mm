@@ -18,8 +18,14 @@
     _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body* circleBody = _world->CreateBody(&_bodyDef);
     
-    b2CircleShape circleShape;
-    circleShape.m_radius = 26.0/PTM_RATIO;
+    CCSprite* circleSprite = [_sprites objectAtIndex:0];
+    float circleHeight = circleSprite.contentSize.height/PTM_RATIO/2;
+    float circleWidth = circleSprite.contentSize.width/PTM_RATIO/2;
+    b2PolygonShape circleShape;
+    circleShape.SetAsBox(circleWidth, circleHeight);
+    
+//    b2CircleShape circleShape;
+//    circleShape.m_radius = 26.0/PTM_RATIO;
     
     b2FixtureDef circleFixtureDef;
     circleFixtureDef.shape = &circleShape;

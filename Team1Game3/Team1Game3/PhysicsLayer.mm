@@ -359,14 +359,34 @@
                     b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
                     b2Vec2 shape2Position = shape2->m_centroid;
                     
+//                    CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
+//                    CGPoint xaxis = CGPointMake(-1, 0);
+//                    if (point.y >= 0) {
+//                        _initialTouchAngle = ccpAngle(point, xaxis);
+//                    } else {
+//                        point = CGPointMake(point.x, -point.y);
+//                        _initialTouchAngle = -ccpAngle(point, xaxis);
+//                    }
+                    
                     // Pole 1
                     double d11 = ball->GetPosition().x - (magnet->GetPosition().x + shape1Position.x);
                     double d12 = ball->GetPosition().y - (magnet->GetPosition().y + shape1Position.y);
                     double distance1 = sqrt(d11 * d11 + d12 * d12) * 1000;
                     // Determine angle to face
                     float angleRadians1 = atanf((float)d12 / (float)d11);
+                    
+//                    float angleRadians1;
+//                    if (d12 > 0)
+//                    {
+//                        angleRadians1 = atanf((float)d12 / (float)d11);
+//                    } else {
+//                        angleRadians1 = -1.0 * atanf((float)d12 / (float)d11);
+//                    }
+                    
                     float yComponent1 = sinf(angleRadians1);
                     float xComponent1 = cosf(angleRadians1);
+                    
+
                     
                     // Pole 2
                     double d21 = ball->GetPosition().x - (magnet->GetPosition().x + shape2Position.x);
@@ -374,7 +394,17 @@
                     double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
                     
                     // Determine angle to face
-                    float angleRadians2 = atanf((float)d12 / (float)d11);
+                    float angleRadians2 = atanf((float)d22 / (float)d21);
+                    
+//                    float angleRadians2;
+//                    if (d22 > 0)
+//                    {
+//                        angleRadians2 = atanf((float)d22 / (float)d21);
+//                    } else {
+//                        angleRadians2 = -1.0 * atanf((float)d22 / (float)d21);
+//                    }
+//                    
+                    
                     float yComponent2 = sinf(angleRadians2);
                     float xComponent2 = cosf(angleRadians2);
                     
@@ -393,6 +423,8 @@
                             force = direction1 - direction2;
                         }
                         
+//                        force = direction2 - direction1;
+                        
                     } else {
                         
                         NSLog(@"we're here instead");
@@ -403,6 +435,8 @@
                         } else {
                             force = direction2 - direction1;
                         }
+                        
+//                        force = direction1 - direction2;
                         
                         
                     }
@@ -749,7 +783,7 @@
             AbstractGameObject* bodyObject = static_cast<AbstractGameObject*>(_currentMoveableBody->GetUserData());
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             
-            
+            bool objectModified = false;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
                 b2Body* body = *i;
@@ -773,9 +807,11 @@
                         if (boundPoint.x < self.boundingBox.origin.x)
                         {
                             [self deleteObjectWithBody:body];
+                            objectModified = true;
                             break;
                         }else{
                             [self bounceBackObjectWithBody:body];
+                            objectModified = true;
                             break;
                             NSLog(@"Body dragged into walls");
                         }
@@ -798,8 +834,13 @@
                     
                     if (b && (b != body)) {
                         [self bounceBackObjectWithBody:body];
+                        objectModified = true;
                     }
                     
+                }
+                
+                if (objectModified) {
+                    break;
                 }
                 
             }
