@@ -303,7 +303,8 @@
     // delete the star body
     // (this doesn't actually happen 'till end of collision because
     //  hitStar is called inside the update function, but it doesn't seem to matter.)
-    world->DestroyBody(starBody);
+    //world->DestroyBody(starBody);
+    _bodiesToDestroy.push_back(starBody);
     
     [self updateStarCount];
 }
@@ -372,6 +373,8 @@
                         }
                         
                     } else {
+                        
+                        NSLog(@"we're here instead");
                         
                         if (distance2 > distance1)
                         {
@@ -472,7 +475,10 @@
         PhysicsSprite* s = [objectSprites objectAtIndex:j];
         b2Body* body = *b;
         [self removeChild:s cleanup:YES];
-        world->DestroyBody(body);
+        //body->SetAwake(false);
+        //world->DestroyBody(body);
+        //body = NULL;
+        _bodiesToDestroy.push_back(body);
         ++j;
     }
     NSLog(@"bodies destroyed successfully");
@@ -524,6 +530,13 @@
         [self hitStar:(_contactListener->_contactStar)];
         _contactListener->_contactStar = NULL;
     }
+    
+    for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
+    {
+        b2Body* body = *i;
+        world->DestroyBody(body);
+    }
+    _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
     
     [self applyMagnets];
     
@@ -752,7 +765,7 @@
                     b2AABB aabb;
                     b2Vec2 d;
                     // TODO: if want less overlap, make bounding box bigger
-                    d.Set(5.0f, 5.0f);
+                    d.Set(10.0f, 10.0f);
                     aabb.lowerBound = vertex - d;
                     aabb.upperBound = vertex + d;
                     

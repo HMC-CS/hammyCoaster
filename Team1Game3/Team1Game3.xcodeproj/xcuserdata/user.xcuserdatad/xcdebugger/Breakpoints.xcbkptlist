@@ -13,7 +13,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "218"
          endingLineNumber = "218"
-         landmarkName = "-playLevel"
+         landmarkName = "-addNewSpriteOfType:AtPosition:WithRotation:AsDefault:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

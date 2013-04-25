@@ -51,6 +51,8 @@
     
     NSArray* _initialObjects;
     
+    std::vector<b2Body*> _bodiesToDestroy;
+    
     @public
     bool _editMode;
 }
