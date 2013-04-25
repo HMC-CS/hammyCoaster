@@ -642,9 +642,9 @@
 
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    // If it's the first touch, drag
+    // If there's only one touch
     if (_currentMoveableBody != NULL) {
-        if (touch == _firstTouch) {
+        if (touch == _firstTouch && _secondTouch == NULL) {
             // Calculate touch location
             CGPoint touchLocation = [touch locationInView:[touch view]];
             touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
@@ -664,7 +664,7 @@
             _initialTouchPosition = location;
         }
         // If it's the first or second touch, rotate
-        if ((touch == _firstTouch && _secondTouch != NULL) || touch == _secondTouch) {
+        if (_secondTouch != NULL && (touch == _firstTouch || touch == _secondTouch)) {
             // Calculate angle
             CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
             CGPoint xaxis = CGPointMake(-1, 0);
