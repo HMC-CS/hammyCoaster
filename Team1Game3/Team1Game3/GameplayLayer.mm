@@ -66,7 +66,7 @@
     playButton.tag = 42;
     playButton.userData = @"playButton";
     
-    resetBallButton = [CCMenuItemFont itemWithString:@"Reset Ball" block:^(id sender){
+    resetBallButton = [CCMenuItemFont itemWithString:@"Reset\nBall" block:^(id sender){
         [self resetBallButtonPressed];
         [self switchButtons];
     }];
