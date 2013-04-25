@@ -642,8 +642,8 @@
 
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    // If there's only one touch
     if (_currentMoveableBody != NULL) {
+        // If there's only one touch, drag
         if (touch == _firstTouch && _secondTouch == NULL) {
             // Calculate touch location
             CGPoint touchLocation = [touch locationInView:[touch view]];
@@ -663,7 +663,7 @@
             
             _initialTouchPosition = location;
         }
-        // If it's the first or second touch, rotate
+        // If there are 2 touches, rotate
         if (_secondTouch != NULL && (touch == _firstTouch || touch == _secondTouch)) {
             // Calculate angle
             CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
@@ -695,13 +695,16 @@
     if (touch == _firstTouch) {
         _currentMoveableBody = NULL;
         _firstTouch = NULL;
+        _secondTouch = NULL;
+    } else if (touch == _secondTouch) {
+        _secondTouch = NULL;
     }
-    _secondTouch = NULL;
 }
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touch == _firstTouch) {
         _firstTouch = NULL;
+        _secondTouch = NULL;
         CGPoint location = [touch locationInView: [touch view]];
         
         if (_currentMoveableBody != NULL) {
@@ -780,8 +783,9 @@
             
             _currentMoveableBody = NULL;
         }
+    } else if (touch == _secondTouch) {
+        _secondTouch = NULL;
     }
-    _secondTouch = NULL;
 }
 
 -(void) bounceBackObjectWithBody: (b2Body*) body
