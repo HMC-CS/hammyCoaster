@@ -25,6 +25,7 @@
     ObjectFactory* _objectFactory;
     ContactListener* _contactListener;
     NSString* _objectType;
+    CCSprite* _trash;
     
     
     int starCount;

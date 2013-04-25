@@ -44,6 +44,8 @@
         
         _initialObjects = objects;
         
+        _trash = NULL;
+        
         _objectType = [[NSString alloc] initWithFormat:@"None"];
         
         [self addInitialObjects];
@@ -590,9 +592,9 @@
         QueryCallback callback(_initialTouchPosition);
         world->QueryAABB(&callback, aabb);
         
-//        CCSprite* trash = [CCSprite spriteWithFile:@"Delete2.png"];
-//        trash.position = ccp(0, 0);
-//        [self addChild:trash];
+        _trash = [CCSprite spriteWithFile:@"trashCan.png"];
+        _trash.position = ccp(-self.boundingBox.size.width/6, self.boundingBox.size.height/2);
+        [self addChild:_trash];
         
         b2Body* body = callback.m_object;
         
@@ -718,6 +720,7 @@
     if (touch == _firstTouch) {
         _firstTouch = NULL;
         _secondTouch = NULL;
+        [self removeChild:_trash cleanup:YES];
         CGPoint location = [touch locationInView: [touch view]];
         
         if (_currentMoveableBody != NULL) {

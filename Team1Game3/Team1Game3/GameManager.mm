@@ -21,10 +21,17 @@
         _numLevelsCompleted = 0;
         _levelCompletionStatuses = [[NSMutableArray alloc] init];
         _levelHighScores = [[NSMutableArray alloc] init];
+        _isLevelLocked = [[NSMutableArray alloc] init];
         for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
         {
             [_levelCompletionStatuses addObject:@"false"];
             [_levelHighScores addObject:[NSNumber numberWithInt:0]];
+            if (i == 0 || i == 1)
+            {
+                [_isLevelLocked addObject:@"false"];
+            }else{
+                [_isLevelLocked addObject:@"true"];
+            }
         }
     }
     
@@ -59,6 +66,14 @@
             ++_numLevelsCompleted; // so this step happens only once
             [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
         }
+        for ( int i = (set-1)*_numLevelIndices + (index-1); i < _numLevelSets * _numLevelIndices; i++ )
+        {
+            if ([[_isLevelLocked objectAtIndex:i] isEqualToString: @"true"])
+            {
+                [_isLevelLocked setObject:@"false" atIndexedSubscript:i];
+                return;
+            }
+        }
     }
     
 }
@@ -66,6 +81,16 @@
 -(int) highScoreAtLevelSet:(int)set AndIndex:(int)index
 {
     return [[_levelHighScores objectAtIndex:(set-1)*_numLevelIndices + (index-1)] intValue];
+}
+
+-(bool) isLevelLockedAtSet:(int)set AndIndex:(int)index
+{
+    if ([[_isLevelLocked objectAtIndex:(set-1)*_numLevelIndices + (index-1)] isEqualToString: @"true"])
+        {
+            return YES;
+        }else{
+            return NO;
+        }
 }
 
 @end

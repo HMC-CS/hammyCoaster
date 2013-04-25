@@ -18,6 +18,7 @@
     int _numLevelsCompleted;
     NSMutableArray* _levelCompletionStatuses;
     NSMutableArray* _levelHighScores;
+    NSMutableArray* _isLevelLocked;
 }
 
 @property (readonly) int numLevelSets;
@@ -38,5 +39,7 @@
  * returns highest star count obtained in level
  */
 -(int) highScoreAtLevelSet:(int)set AndIndex:(int)index;
+
+-(bool) isLevelLockedAtSet:(int)set AndIndex:(int)index;
 
 @end

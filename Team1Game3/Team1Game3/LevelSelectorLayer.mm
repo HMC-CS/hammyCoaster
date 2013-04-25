@@ -108,9 +108,19 @@
                     [labelSelected setPosition:ccp(levelIconSelected.contentSize.width/2, levelIconSelected.contentSize.height/2)];
                     [levelIconSelected addChild:labelSelected];
                     
+                    if([_gameManager isLevelLockedAtSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1 ])
+                        {
+                            levelIcon.userData = @"Locked";
+                            CCSprite* lock = [CCSprite spriteWithFile:@"lock.png"];
+                            [lock setPosition:ccp(levelIcon.contentSize.width/4, levelIcon.contentSize.height/4)];
+                            [levelIcon addChild:lock];
+                        }
+                    
                     if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
                         
                         int numStars = [_gameManager highScoreAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1];
+                        
+                        [_gameManager registerCompletedLevelWithLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1 AndStarCount:numStars];
                         
                         CGPoint starLocation = ccp(levelIcon.contentSize.width/4.5, levelIcon.contentSize.height/5);
                         
@@ -134,10 +144,12 @@
                         }
                     }
                     
+                    
+                    
                     // Check here if 2 of the levels have been completed
                     // if so remove two more from the locked levels array
                     // and unlock them
-//                    if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
+                    //if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1]){
 //                        CCSprite* levelUnlock1 = [lockedLevelIcons objectAtIndex:i+3];
 //                        levelUnlock1.userData = @"Unlocked";
 //                        
