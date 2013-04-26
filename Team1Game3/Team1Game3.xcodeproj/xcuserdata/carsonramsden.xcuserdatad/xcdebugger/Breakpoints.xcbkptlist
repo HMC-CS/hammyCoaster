@@ -52,7 +52,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "320"
          endingLineNumber = "320"
-         landmarkName = "-applyMagnets"
+         landmarkName = "-trampolineDraggable"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -65,8 +65,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "336"
          endingLineNumber = "336"
-         landmarkName = "-applyMagnets"
-         landmarkType = "5">
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"

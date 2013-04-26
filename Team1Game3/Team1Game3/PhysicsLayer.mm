@@ -645,9 +645,8 @@
         QueryCallback callback(_initialTouchPosition);
         world->QueryAABB(&callback, aabb);
         
-        _trash = [CCSprite spriteWithFile:@"trashyCan.png"];
-        _trash.position = ccp(-self.boundingBox.size.width/6, self.boundingBox.size.height/2);
-        [self addChild:_trash];
+
+        
         
         b2Body* body = callback.m_object;
         
@@ -662,6 +661,12 @@
                 _currentMoveableBody = body;
                 
                 [_moveableDynamicStatus removeAllObjects];
+                
+                
+                _trash = [CCSprite spriteWithFile:@"trashyCan.png"];
+                _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
+                [self addChild:_trash z:0];
+                
                 
                 std::vector<b2Body*> bodies = bodyObject->_bodies;
                 for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
