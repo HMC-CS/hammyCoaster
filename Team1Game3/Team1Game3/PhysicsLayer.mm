@@ -645,7 +645,7 @@
         QueryCallback callback(_initialTouchPosition);
         world->QueryAABB(&callback, aabb);
         
-        _trash = [CCSprite spriteWithFile:@"trashCan.png"];
+        _trash = [CCSprite spriteWithFile:@"trashyCan.png"];
         _trash.position = ccp(-self.boundingBox.size.width/6, self.boundingBox.size.height/2);
         [self addChild:_trash];
         
