@@ -90,4 +90,5 @@
  */
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation  AsDefault:(bool)isDefault;
 
+
 @end

@@ -663,9 +663,10 @@
                 [_moveableDynamicStatus removeAllObjects];
                 
                 
-                _trash = [CCSprite spriteWithFile:@"trashyCan.png"];
+                _trash = [CCSprite spriteWithFile:@"trash2.png"];
                 _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
-                [self addChild:_trash z:0];
+                [self addChild:_trash z:10000];
+                
                 
                 
                 std::vector<b2Body*> bodies = bodyObject->_bodies;
@@ -809,8 +810,10 @@
                     
                     if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
                     {
-                        if (boundPoint.x < self.boundingBox.origin.x)
+                        if (boundPoint.x < self.boundingBox.origin.x&& boundPoint.y > self.boundingBox.size.height/5 && boundPoint.y < self.boundingBox .size.height/2)
                         {
+                            NSLog(@"bound point is %f", boundPoint.y);
+                            NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
                             [self deleteObjectWithBody:body];
                             objectModified = true;
                             break;
@@ -884,6 +887,7 @@
     }
     
 }
+
 
 //-----DEALLOC-----//
 

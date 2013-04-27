@@ -16,6 +16,7 @@
     NSMutableArray* buttonArray;
     
     NSArray* _items;
+    
 }
 
 /* initWithItems:
@@ -29,6 +30,8 @@
 -(NSString*) getSelectedObject;
 
 -(bool) isDeleteSelected;
+
+
 
 - (void) increaseInventoryForType:(NSString*) type;
 

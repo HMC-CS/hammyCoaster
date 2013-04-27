@@ -92,6 +92,7 @@
     [inventoryMenu alignItemsVerticallyWithPadding:10.0f];
     [inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
     [self addChild: inventoryMenu z:2];
+    
 }
 
 /* registerWithTouchDispacher:
@@ -213,6 +214,8 @@
         }
     }
 }
+
+
 
 @end
 
