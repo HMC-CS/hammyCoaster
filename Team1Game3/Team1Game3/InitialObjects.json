@@ -38,9 +38,9 @@
         [
             ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "340.0", "240.0", "0"],
-            ["StarObject", "440.0", "170.0", "0"],
-            ["StarObject", "540.0", "240.0", "0"]
+            ["StarObject", "335.0", "235.0", "0"],
+            ["StarObject", "435.0", "165.0", "0"],
+            ["StarObject", "535.0", "235.0", "0"]
         ],
         "inventory":
         [

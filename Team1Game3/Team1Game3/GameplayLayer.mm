@@ -78,7 +78,7 @@
     }];
     
     // Back Button: goes back to level selector menu
-    CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
+    CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Level Select" block:^(id sender){
         [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
     }];
 
