@@ -101,6 +101,7 @@
     [_physicsLayer setTarget:self atAction:@selector(updateStarCount)]; // physics selector 3
     [_physicsLayer setTarget:self atAction:@selector(checkIfInventoryIsDelete)]; //physics selector 4
     [_physicsLayer setTarget:self atAction:@selector(objectDeletedOfType:)]; //physics selector 5
+    [_physicsLayer setTarget:self atAction:@selector(togglePlayResetButton)];
     [self addChild:_physicsLayer];
 }
 
@@ -125,6 +126,11 @@
 {
     NSLog(@"LevelLayer Ball Start:  x: %f y:%f", [_physicsLayer getBallStartingPoint].x, [_physicsLayer getBallStartingPoint].y);
     return [_physicsLayer getBallStartingPoint];
+}
+
+-(void) togglePlayResetButton
+{
+    [_gameplayLayer->_playResetToggle setSelectedIndex: 1 - [_gameplayLayer->_playResetToggle selectedIndex]];
 }
 
 /* playPhysicsLevel:

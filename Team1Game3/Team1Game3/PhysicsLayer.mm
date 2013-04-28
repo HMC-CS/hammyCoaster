@@ -469,9 +469,13 @@
     {
         _selector4 = action;
     }
-    else
+    else if (!_selector5)
     {
         _selector5 = action;
+    }
+    else
+    {
+        _selector6 = action;
     }
 }
 
@@ -683,9 +687,10 @@
                     loopBody->SetActive(false);
                 }
                 
-                
+            // Clicking on the ball resets the ball
             } else if ([bodyObject->_tag isEqualToString:@"BallObject"]) {
                 [self resetBall];
+                [_target performSelector:_selector6];
             }
         } else if (_editMode) {
             

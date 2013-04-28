@@ -53,17 +53,18 @@
     // Music on/off toggle
     CCMenuItemImage* musicOnButton = [CCMenuItemImage itemWithNormalImage:@"Music on.png" selectedImage:@"Music on.png"];
     CCMenuItemImage* musicOffButton = [CCMenuItemImage itemWithNormalImage:@"Music off.png" selectedImage:@"Music off.png"];
-    CCMenuItemToggle* musicToggle;
+    
+    NSArray* musicButtonArray;
     
     if ([self isBackgroundMusicPlaying])
-        musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOnButton, musicOffButton, nil] block:^(id sender) {
-            [self toggleBackgroundMusic];
-        }];
+        musicButtonArray = [NSArray arrayWithObjects: musicOnButton, musicOffButton, nil];
     else
-        musicToggle = [CCMenuItemToggle itemWithItems: [NSArray arrayWithObjects: musicOffButton, musicOnButton, nil] block:^(id sender) {
-            [self toggleBackgroundMusic];
-        }];
-        
+        musicButtonArray = [NSArray arrayWithObjects: musicOffButton, musicOnButton, nil];
+    
+    CCMenuItemToggle* musicToggle = [CCMenuItemToggle itemWithItems: musicButtonArray block:^(id sender) {
+        [self toggleBackgroundMusic];
+    }];
+    
     
     // Sound on/off toggle
     CCMenuItemImage* soundOnButton = [CCMenuItemImage itemWithNormalImage:@"Sound on.png" selectedImage:@"Sound on.png"];

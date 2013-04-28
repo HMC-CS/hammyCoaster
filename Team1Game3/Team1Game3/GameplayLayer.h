@@ -22,6 +22,9 @@
     
     int _bestStars;
     CGPoint _startButtonLocation;
+    
+@public
+    CCMenuItemToggle* _playResetToggle;
 }
 
 @property (readonly) int starCount;
