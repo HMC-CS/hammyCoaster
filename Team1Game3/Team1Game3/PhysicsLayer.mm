@@ -684,6 +684,8 @@
                 }
                 
                 
+            } else if ([bodyObject->_tag isEqualToString:@"BallObject"]) {
+                [self resetBall];
             }
         } else if (_editMode) {
             
