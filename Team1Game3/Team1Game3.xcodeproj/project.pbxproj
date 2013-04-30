@@ -30,7 +30,6 @@
 		AD7731BC17261A9D00709F80 /* Sound off.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B817261A9D00709F80 /* Sound off.png */; };
 		AD7731BD17261A9D00709F80 /* Sound on.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B917261A9D00709F80 /* Sound on.png */; };
 		AD7731C01726416900709F80 /* StarObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731BF1726416900709F80 /* StarObject.mp3 */; };
-		AD7731C317265ACE00709F80 /* FlippedRampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C117265ACD00709F80 /* FlippedRampObject.mp3 */; };
 		AD7731C417265ACE00709F80 /* RampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C217265ACD00709F80 /* RampObject.mp3 */; };
 		AD7731C617265B4C00709F80 /* CurvedRampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C517265B4C00709F80 /* CurvedRampObject.mp3 */; };
 		AD7731C8172660EF00709F80 /* TrampolineObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C7172660EF00709F80 /* TrampolineObject.mp3 */; };
@@ -302,7 +301,6 @@
 		AD7731B817261A9D00709F80 /* Sound off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound off.png"; sourceTree = "<group>"; };
 		AD7731B917261A9D00709F80 /* Sound on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound on.png"; sourceTree = "<group>"; };
 		AD7731BF1726416900709F80 /* StarObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = StarObject.mp3; sourceTree = "<group>"; };
-		AD7731C117265ACD00709F80 /* FlippedRampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = FlippedRampObject.mp3; sourceTree = "<group>"; };
 		AD7731C217265ACD00709F80 /* RampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RampObject.mp3; sourceTree = "<group>"; };
 		AD7731C517265B4C00709F80 /* CurvedRampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CurvedRampObject.mp3; sourceTree = "<group>"; };
 		AD7731C7172660EF00709F80 /* TrampolineObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrampolineObject.mp3; sourceTree = "<group>"; };
@@ -794,7 +792,6 @@
 			children = (
 				AD7731C7172660EF00709F80 /* TrampolineObject.mp3 */,
 				AD7731C517265B4C00709F80 /* CurvedRampObject.mp3 */,
-				AD7731C117265ACD00709F80 /* FlippedRampObject.mp3 */,
 				AD7731C217265ACD00709F80 /* RampObject.mp3 */,
 				AD7731BF1726416900709F80 /* StarObject.mp3 */,
 				AD7731A81724A96B00709F80 /* Background music.m4a */,
@@ -1712,7 +1709,6 @@
 				AD7731BC17261A9D00709F80 /* Sound off.png in Resources */,
 				AD7731BD17261A9D00709F80 /* Sound on.png in Resources */,
 				AD7731C01726416900709F80 /* StarObject.mp3 in Resources */,
-				AD7731C317265ACE00709F80 /* FlippedRampObject.mp3 in Resources */,
 				AD7731C417265ACE00709F80 /* RampObject.mp3 in Resources */,
 				AD7731C617265B4C00709F80 /* CurvedRampObject.mp3 in Resources */,
 				AD7731C8172660EF00709F80 /* TrampolineObject.mp3 in Resources */,
