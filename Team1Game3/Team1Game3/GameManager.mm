@@ -26,7 +26,7 @@
         {
             [_levelCompletionStatuses addObject:@"false"];
             [_levelHighScores addObject:[NSNumber numberWithInt:0]];
-            if (i == 0 || i == 1)
+            if (i == 0 || i == 1 || i == 11)
             {
                 [_isLevelLocked addObject:@"false"];
             }else{

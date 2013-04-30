@@ -12,7 +12,7 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "2"],
+            ["RampObject", "ramp", "1"],
             ["SeesawObject", "seesaw", "2"]
         ]
     },
@@ -28,8 +28,7 @@
         ],
         "inventory": 
         [
-            ["RampObject", "ramp", "1"],
-            ["FlippedRampObject", "flipped ramp", "1"]
+            ["RampObject", "ramp", "2"]
         ]
 
     },
@@ -158,8 +157,7 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"],
-            ["FlippedRampObject", "flipped ramp", "1"],
+            ["RampObject", "ramp", "2"],
             ["MagnetObject", "magnet", "1"]
         ]
     },
@@ -189,7 +187,7 @@
             ["StarObject", "200.0", "400.0", "0"],
             ["StarObject", "500.0", "350.0", "0"],
             ["StarObject", "400.0", "250.0", "0"],
-            ["FlippedRampObject", "640.0", "400.0", "0.0"]
+            ["RampObject", "640.0", "400.0", "1.5"]
         ],
         "inventory":
         [
