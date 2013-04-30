@@ -16,8 +16,6 @@
 #import "PhysicsSprite.h"
 #import "QueryCallback.h"
 
-#include <iostream>
-
 @implementation PhysicsLayer
 
 
