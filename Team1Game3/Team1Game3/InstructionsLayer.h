@@ -10,8 +10,11 @@
 #import "cocos2d.h"
 
 #import "CCLayer.h"
+#import "CCScrollLayer.h"
 
-@interface InstructionsLayer : CCLayer
+@interface InstructionsLayer : CCLayer {
+    CCScrollLayer* _scroller;
+}
 
 /* scene:
  * returns a CCScene that contains the MainMenuLayer as the only child
