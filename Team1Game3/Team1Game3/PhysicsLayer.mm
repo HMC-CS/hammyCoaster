@@ -191,7 +191,7 @@
     {
         PhysicsSprite* s = [spriteArray objectAtIndex:j];
         b2Body* body = *b;
-        [self addChild:s z:1];
+        [self addChild:s];
         [s setPhysicsBody:body];
         [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
@@ -806,6 +806,8 @@
                 b2Body* body = *i;
                 
                 b2Fixture* f = body->GetFixtureList();
+                for (f= body->GetFixtureList(); f != NULL; f = f->GetNext())
+                {
                 b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
                 int count = polygonShape->GetVertexCount();
                 
@@ -837,7 +839,11 @@
                             break;
                             NSLog(@"Body dragged into walls");
                         }
+                    }else
+                    {
+                        NSLog(@"something is very wrong");
                     }
+                
                     
                     b2Vec2 vertex = b2Vec2(xCoordinate + location.x/PTM_RATIO, yCoordinate + location.y/PTM_RATIO);
 
@@ -884,6 +890,7 @@
     } else if (touch == _secondTouch) {
         _secondTouch = NULL;
     }
+}
 }
 
 -(void) bounceBackObjectWithBody: (b2Body*) body

@@ -165,7 +165,7 @@
                 CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
                 [numLabel setColor:ccWHITE];
                 [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
-                [button addChild:numLabel z:1 tag:NSIntegerMin];
+                [button addChild:numLabel z:-1 tag:NSIntegerMin];
             
                 return _selectedObject;
             }
