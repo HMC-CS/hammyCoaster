@@ -837,9 +837,6 @@
                             break;
                             NSLog(@"Body dragged into walls");
                         }
-                    }else
-                    {
-                        NSLog(@"something is very wrong");
                     }
                 
                     
