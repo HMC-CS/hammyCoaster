@@ -191,7 +191,7 @@
     {
         PhysicsSprite* s = [spriteArray objectAtIndex:j];
         b2Body* body = *b;
-        [self addChild:s];
+        [self addChild:s z:1];
         [s setPhysicsBody:body];
         [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
@@ -806,6 +806,7 @@
                 int count = polygonShape->GetVertexCount();
                 
                 CGFloat offset = self.boundingBox.origin.x;
+            
                 
                 for(int i = 0; i < count; i++)
                 {
@@ -817,7 +818,7 @@
                     
                     if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
                     {
-                        if (boundPoint.x < self.boundingBox.origin.x&& boundPoint.y > self.boundingBox.size.height/5 && boundPoint.y < self.boundingBox .size.height/2)
+                        if (boundPoint.x < self.boundingBox.origin.x && boundPoint.y > self.boundingBox.size.height/5 && boundPoint.y < self.boundingBox.size.height*4/5)
                         {
                             NSLog(@"bound point is %f", boundPoint.y);
                             NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
@@ -827,6 +828,8 @@
                         }else{
                             [self bounceBackObjectWithBody:body];
                             objectModified = true;
+                            NSLog(@"bound point is %f", boundPoint.y);
+                            NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
                             break;
                             NSLog(@"Body dragged into walls");
                         }
