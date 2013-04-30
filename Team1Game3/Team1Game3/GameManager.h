@@ -12,6 +12,8 @@
 #import "CCNode.h"
 
 @interface GameManager : CCNode {
+    NSUserDefaults* _defaults;
+    
     int _numLevelSets;
     int _numLevelIndices;
     
@@ -23,6 +25,11 @@
 
 @property (readonly) int numLevelSets;
 @property (readonly) int numLevelIndices;
+
+/* resetUserData
+ * resets the user completion/unlock data
+ */
+-(void)resetUserData;
 
 /* isLevelCompletedAtLevelSet:AndIndex:
  * returns whether a given level has been completed 

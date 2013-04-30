@@ -42,7 +42,11 @@
             [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];
         }];
         
-        CCMenu *menu = [CCMenu menuWithItems: mainMenu, nil];
+        CCMenuItem *resetDefaults = [CCMenuItemFont itemWithString:@"Reset Game Data" block:^(id sender) {
+            [_gameManager resetUserData];
+        }];
+        
+        CCMenu *menu = [CCMenu menuWithItems: mainMenu, resetDefaults, nil];
 		
 		[menu alignItemsHorizontallyWithPadding:20];
 		[menu setPosition:ccp( size.width/2, size.height/15 )];

@@ -76,8 +76,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "177"
          endingLineNumber = "177"
-         landmarkName = "@implementation GameplayLayer"
-         landmarkType = "3">
+         landmarkName = "-resetButtonPressed"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>
