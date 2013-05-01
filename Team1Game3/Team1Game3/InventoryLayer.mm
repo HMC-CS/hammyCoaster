@@ -76,7 +76,7 @@
         }];
         
         inventoryButton.tag = [numItems intValue];
-        inventoryButton.userData = type;
+        inventoryButton.userData = (__bridge void*) type;
         [buttonArray addObject:inventoryButton];
         
         CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", inventoryButton.tag] fontName:@"Marker Felt" fontSize:inventoryButton.contentSize.width*.4];
