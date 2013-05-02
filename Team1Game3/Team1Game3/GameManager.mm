@@ -33,7 +33,9 @@
         {
             bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
             bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
-            int levelStars = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+            int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+            
+            NSLog(@"Defaults: level %d complete: %d locked: %d stars:%d", i, levelComplete, levelLocked, levelStars);
             
             // if level is completed according to user settings, set completion true
             if (levelComplete)
@@ -63,26 +65,27 @@
     _defaults = [NSUserDefaults standardUserDefaults];
     
     [_defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
+                                 @"0",         @"levels_complete",
                                  @"NO",         @"level_0_locked",
                                  @"NO",         @"level_1_locked",
-//                                 @"YES",        @"level_2_locked",
-//                                 @"YES",        @"level_3_locked",
-//                                 @"YES",        @"level_4_locked",
-//                                 @"YES",        @"level_5_locked",
-//                                 @"YES",        @"level_6_locked",
-//                                 @"YES",        @"level_7_locked",
-//                                 @"YES",        @"level_8_locked",
-//                                 @"YES",        @"level_9_locked",
-//                                 @"YES",        @"level_10_locked",
-                                 @"NO",        @"level_2_locked",
-                                 @"NO",        @"level_3_locked",
-                                 @"NO",        @"level_4_locked",
-                                 @"NO",        @"level_5_locked",
-                                 @"NO",        @"level_6_locked",
-                                 @"NO",        @"level_7_locked",
-                                 @"NO",        @"level_8_locked",
-                                 @"NO",        @"level_9_locked",
-                                 @"NO",        @"level_10_locked",
+                                 @"YES",        @"level_2_locked",
+                                 @"YES",        @"level_3_locked",
+                                 @"YES",        @"level_4_locked",
+                                 @"YES",        @"level_5_locked",
+                                 @"YES",        @"level_6_locked",
+                                 @"YES",        @"level_7_locked",
+                                 @"YES",        @"level_8_locked",
+                                 @"YES",        @"level_9_locked",
+                                 @"YES",        @"level_10_locked",
+//                                 @"NO",        @"level_2_locked",
+//                                 @"NO",        @"level_3_locked",
+//                                 @"NO",        @"level_4_locked",
+//                                 @"NO",        @"level_5_locked",
+//                                 @"NO",        @"level_6_locked",
+//                                 @"NO",        @"level_7_locked",
+//                                 @"NO",        @"level_8_locked",
+//                                 @"NO",        @"level_9_locked",
+//                                 @"NO",        @"level_10_locked",
                                  @"NO",         @"level_11_locked",
                                  @"NO",         @"level_0_complete",
                                  @"NO",         @"level_1_complete",
@@ -127,42 +130,31 @@
 //    int level_12_stars;
     
     
-    /*
-    NSArray* initialObjects = [_levelGenerator generateObjectsInSet:_levelSet WithIndex:_levelIndex]
-    
-    for (NSArray* item in _savedGame) {
-        NSString* type = [item objectAtIndex:0];
-        CGFloat px = [[item objectAtIndex:1] floatValue];
-        CGFloat py = [[item objectAtIndex:2] floatValue];
-        CGFloat rotation = [[item objectAtIndex:3] floatValue];
-        [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
-        if ([type isEqual: @"RedPortalObject"])
-        {
-            ballStartingPoint = CGPointMake(px,py);
-            NSLog(@"ball starting point is %f, %f", ballStartingPoint.x, ballStartingPoint.y);
-        }
-    }
-*/
+
 }
 
 -(void) resetUserData
 {
     [NSUserDefaults resetStandardUserDefaults];
-    [NSUserDefaults standardUserDefaults];
+    _defaults = [NSUserDefaults standardUserDefaults];
+    //[[NSUserDefaults standardUserDefaults] setObject:apikey forKey:@"apiKey"];
+    
     
     // haxxx
     //... that also crashes. Yay! TODO: fix it
-    /*
+    
      for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
-        bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
-        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
-        int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+        NSLog(@"index: %d", i);
+//        bool levelComplete = [_defaults boolForKey:@"level_4_complete"];//[_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
+//        NSLog(@"got past levelComplete");
+//        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
+//        int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+            
+      
+      //  [self highScoreAtLevelSet:levelStars AndIndex:i];
+    }
     
-        [self isLevelCompletedAtLevelSet:levelComplete AndIndex:i];
-        [self isLevelLockedAtSet:levelLocked AndIndex:i];
-        [self highScoreAtLevelSet:levelStars AndIndex:i];
-            }*/
 // end hax
     
 }
@@ -188,7 +180,7 @@
         [_levelHighScores setObject:[NSNumber numberWithInt:stars] atIndexedSubscript:(set-1)*_numLevelIndices + (index-1)];
         
         //update user data
-        [_defaults setInteger:stars forKey:[NSString stringWithFormat:@"level_%d_complete", index]];
+        [_defaults setInteger:stars forKey:[NSString stringWithFormat:@"level_%d_stars", index]];
     }
     
     

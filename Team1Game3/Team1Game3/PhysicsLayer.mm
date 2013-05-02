@@ -371,15 +371,17 @@
                     double d12 = ball->GetPosition().y - (magnet->GetPosition().y + shape1Position.y);
                     double distance1 = sqrt(d11 * d11 + d12 * d12) * 1000;
                     // Determine angle to face
-                    //float angleRadians1 = atanf((float)d12 / (float)d11);
                     
-                    float angleRadians1;
-                    if (d12 > 0)
-                    {
-                        angleRadians1 = atanf((float)d12 / (float)d11);
-                    } else {
-                        angleRadians1 = -1.0 * atanf((float)d12 / (float)d11);
-                    }
+                    float angleRadians1 = atanf((float)d12 / (float)d11);
+                    
+                    
+//                    float angleRadians1;
+//                    if (d12 > 0)
+//                    {
+//                        angleRadians1 = atanf((float)d12 / (float)d11);
+//                    } else {
+//                        angleRadians1 = -1.0 * atanf((float)d12 / (float)d11);
+//                    }
                     
                     NSLog(@"angle 1: %f", angleRadians1);
                     
@@ -394,15 +396,15 @@
                     double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
                     
                     // Determine angle to face
-                    //float angleRadians2 = atanf((float)d22 / (float)d21);
+                    float angleRadians2 = atanf((float)d22 / (float)d21);
                     
-                    float angleRadians2;
-                    if (d22 > 0)
-                    {
-                        angleRadians2 = atanf((float)d22 / (float)d21);
-                    } else {
-                        angleRadians2 = -1.0 * atanf((float)d22 / (float)d21);
-                    }
+//                    float angleRadians2;
+//                    if (d22 > 0)
+//                    {
+//                        angleRadians2 = atanf((float)d22 / (float)d21);
+//                    } else {
+//                        angleRadians2 = -1.0 * atanf((float)d22 / (float)d21);
+//                    }
                     
                     NSLog(@"angle 2: %f", angleRadians2);
                     
