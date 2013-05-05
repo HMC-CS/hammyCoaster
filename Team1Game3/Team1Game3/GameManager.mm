@@ -135,8 +135,13 @@
 
 -(void) resetUserData
 {
-    [NSUserDefaults resetStandardUserDefaults];
-    _defaults = [NSUserDefaults standardUserDefaults];
+    NSLog(@"resetUserData");
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    [self loadGame];
+    
+    //[NSUserDefaults resetStandardUserDefaults];
+    //_defaults = [NSUserDefaults standardUserDefaults];
     //[[NSUserDefaults standardUserDefaults] setObject:apikey forKey:@"apiKey"];
     
     
@@ -145,7 +150,7 @@
     
      for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
-        NSLog(@"index: %d", i);
+       // NSLog(@"index: %d", i);
 //        bool levelComplete = [_defaults boolForKey:@"level_4_complete"];//[_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
 //        NSLog(@"got past levelComplete");
 //        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
