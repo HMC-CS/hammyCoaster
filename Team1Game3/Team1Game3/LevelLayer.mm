@@ -257,13 +257,5 @@
 /* dealloc:
  * deallocates everything in LevelLayer
  */
--(void) dealloc
-{
-    [_levelGenerator release];
-    [_gameplayLayer release];
-    [_inventoryLayer release];
-    [_physicsLayer release];
-	[super dealloc];
-}
 
 @end

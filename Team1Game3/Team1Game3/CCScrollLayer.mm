@@ -89,7 +89,7 @@ enum
 
 +(id) nodeWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
 {
-	return [[[self alloc] initWithLayers: layers widthOffset:widthOffset] autorelease];
+	return [[self alloc] initWithLayers: layers widthOffset:widthOffset];
 }
 
 -(id) initWithLayers:(NSArray *)layers widthOffset: (int) widthOffset
@@ -138,10 +138,7 @@ enum
 {
 	self.delegate = nil;
 	
-	[layers_ release];
-	layers_ = nil;
 	
-	[super dealloc];
 }
 
 - (void) updatePages

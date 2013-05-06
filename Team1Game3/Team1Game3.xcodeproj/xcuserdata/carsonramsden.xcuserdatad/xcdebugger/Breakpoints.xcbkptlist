@@ -47,26 +47,26 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388620160.068911"
+         timestampString = "389245747.12084"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "320"
-         endingLineNumber = "320"
-         landmarkName = "-trampolineDraggable"
-         landmarkType = "5">
+         startingLineNumber = "327"
+         endingLineNumber = "327"
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "388620160.068911"
+         timestampString = "389245747.12084"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "336"
-         endingLineNumber = "336"
-         landmarkName = "-applyMagnets"
-         landmarkType = "5">
+         startingLineNumber = "343"
+         endingLineNumber = "343"
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -86,11 +86,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "389054820.356556"
+         timestampString = "389245747.12084"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "818"
-         endingLineNumber = "818"
+         startingLineNumber = "833"
+         endingLineNumber = "833"
          landmarkName = "-ccTouchEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -99,12 +99,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/PhysicsLayer.mm"
-         timestampString = "389082633.975832"
+         timestampString = "389245747.12084"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "259"
-         endingLineNumber = "259"
+         startingLineNumber = "263"
+         endingLineNumber = "263"
          landmarkName = "-resetBall"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Team1Game3/PhysicsLayer.mm"
+         timestampString = "389245747.12084"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "532"
+         endingLineNumber = "532"
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Team1Game3/PhysicsLayer.mm"
+         timestampString = "389245747.12084"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "530"
+         endingLineNumber = "530"
+         landmarkName = "@implementation PhysicsLayer"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Team1Game3/PhysicsLayer.mm"
+         timestampString = "389245747.12084"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "913"
+         endingLineNumber = "913"
+         landmarkName = "-ccTouchEnded:withEvent:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -18,6 +18,7 @@
 
 @implementation PhysicsLayer
 
+@synthesize objectTag;
 
 //-----INITIALIZATION-----//
 
@@ -27,6 +28,10 @@
     
 	if( (self=[super init])) {
 		
+        
+        _createdObjects = [NSMutableArray array];
+        
+        
 		// enable events
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
@@ -41,6 +46,8 @@
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
         _initialObjects = objects;
+        
+        _objectArray = NULL;
         
         _trash = NULL;
         
@@ -162,15 +169,15 @@
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     
     // MULTI: add an if statement if there are multiple bodies in your object
-    NSMutableArray* spriteArray;
+    NSArray *spriteArray = [NSArray array];
     if ([type isEqualToString:@"SeesawObject"])
     {
         PhysicsSprite* sprite1 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Bottom.png", type]];
         PhysicsSprite* sprite2 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Top.png", type]];
-        spriteArray = [[NSMutableArray alloc] initWithObjects:sprite1, sprite2, nil];
+        spriteArray = @[sprite1, sprite2];
     } else {
         PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
-        spriteArray = [[NSMutableArray alloc] initWithObjects:sprite, nil];
+        spriteArray = @[sprite];
     }
     NSLog(@"finished adding sprites");
     
@@ -180,7 +187,11 @@
     //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
     // = the count in the file return
 
-    std::vector<b2Body*> bodies = [[_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:spriteArray] createBody:p];
+    
+    AbstractGameObject *createdObj = [_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:[spriteArray mutableCopy]];
+    
+    [_createdObjects addObject:createdObj];
+    std::vector<b2Body*> bodies = [createdObj createBody:p];
     
     NSLog(@"finished getting bodies");
     
@@ -194,6 +205,7 @@
         [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
         ++j;
+        //[_objectArray addObject:((__bridge AbstractGameObject*)(body->GetUserData()))];
     }
     NSLog(@"finished body loop");
     
@@ -257,16 +269,18 @@
         if ([((__bridge AbstractGameObject*)(b->GetUserData()))._tag isEqualToString:@"BallObject"])
         {
             AbstractGameObject* a = (__bridge AbstractGameObject*)(b->GetUserData());
+            CFBridgingRetain(a);
             CCSprite* sprite = [[a getSprites] objectAtIndex:0];
-            [self removeChild: sprite cleanup:YES];
+            [self removeChild: sprite cleanup:NO]; // cleanup removed
             [self deleteObjectWithBody:b];
         }
         
         if ([((__bridge AbstractGameObject*)(b->GetUserData()))._tag isEqualToString:@"StarObject"])
         {
             AbstractGameObject* a = (__bridge AbstractGameObject*)(b->GetUserData());
+            CFBridgingRetain(a);
             CCSprite* sprite = [[a getSprites] objectAtIndex:0];
-            [self removeChild: sprite cleanup:YES];
+            [self removeChild: sprite cleanup:NO]; // cleanup removed
             [self deleteObjectWithBody:b];
         }
     }
@@ -297,8 +311,9 @@
     
     // delete the star sprite
     AbstractGameObject* starBodyObject = (__bridge AbstractGameObject*)(starBody->GetUserData());
+    CFBridgingRetain(starBodyObject);
     CCSprite* sprite = [[starBodyObject getSprites] objectAtIndex:0];
-    [self removeChild: sprite cleanup:YES];
+    [self removeChild: sprite cleanup:NO]; //cleanup removed
     
     // delete the star body
     // (this doesn't actually happen 'till end of collision because
@@ -525,11 +540,13 @@
 {
     AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
     
+    CFBridgingRetain(object);
+
+    
     NSString* objectType = object._tag;
     [self objectDeletedOfType:objectType];
-    
     std::vector<b2Body*> bodies = object->_bodies;
-    
+ 
     NSMutableArray* objectSprites = [object getSprites];
     
     int j=0;
@@ -537,7 +554,7 @@
     {
         PhysicsSprite* s = [objectSprites objectAtIndex:j];
         b2Body* body = *b;
-        [self removeChild:s cleanup:YES];
+        [self removeChild:s cleanup:NO]; //cleanup removed
         //body->SetAwake(false);
         //world->DestroyBody(body);
         //body = NULL;
@@ -545,6 +562,7 @@
         ++j;
     }
     NSLog(@"bodies destroyed successfully");
+    [_objectArray removeObject:object];
 }
 
 //-----BUILT-IN/BOX 2D-----//
@@ -606,6 +624,7 @@
     for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext())
     {
         AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
+        CFBridgingRetain(object);
         NSString* type = object._tag;
         if ([type isEqualToString:@"SeesawObject"]) {
             const float springTorqForce = 1.0f;
@@ -661,6 +680,7 @@
         // Get the current info about the body
         if (body) {
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(body->GetUserData());
+            CFBridgingRetain(bodyObject);
             
             if (!bodyObject->_isDefault && _editMode) {
                 
@@ -738,6 +758,7 @@
             
             // Move each body
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
+            CFBridgingRetain(bodyObject);
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
@@ -763,6 +784,7 @@
             
             // Rotate each body
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
+                CFBridgingRetain(bodyObject);
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
@@ -790,7 +812,7 @@
     if (touch == _firstTouch) {
         _firstTouch = NULL;
         _secondTouch = NULL;
-        [self removeChild:_trash cleanup:YES];
+        [self removeChild:_trash cleanup:NO]; //cleanup removed
         CGPoint location = [touch locationInView: [touch view]];
         
         if (_currentMoveableBody != NULL) {
@@ -798,6 +820,7 @@
             location = [self convertToNodeSpace:location];
             
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
+                CFBridgingRetain(bodyObject);
             std::vector<b2Body*> bodies = bodyObject->_bodies;
             
             bool objectModified = false;
@@ -828,6 +851,8 @@
                         {
                             NSLog(@"bound point is %f", boundPoint.y);
                             NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
+                            // add an array here to get the body from ?
+                            //[_objectArray addObject:body];
                             [self deleteObjectWithBody:body];
                             objectModified = true;
                             break;
@@ -926,9 +951,7 @@
     delete world;
 	world = NULL;
     
-    [_objectType release];
 	
-	[super dealloc];
 }
 
 @end

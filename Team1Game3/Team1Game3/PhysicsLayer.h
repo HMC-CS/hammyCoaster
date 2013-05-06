@@ -50,6 +50,7 @@
     b2Vec2 _initialTouchPosition;
     float _initialTouchAngle;
     NSMutableArray* _moveableDynamicStatus;
+    NSMutableArray* _objectArray;
     
     NSArray* _initialObjects;
     
@@ -58,6 +59,10 @@
     @public
     bool _editMode;
 }
+@property (nonatomic, unsafe_unretained) id objectTag;
+
+
+@property NSMutableArray *createdObjects;
 
 /* initWithObjects:
  * Initializes a physics layer of level Set-Index

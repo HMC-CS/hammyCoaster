@@ -63,7 +63,7 @@
  */
 @interface CCScrollLayer : CCLayer 
 {	
-	NSObject <CCScrollLayerDelegate> *delegate_;
+	NSObject <CCScrollLayerDelegate> *__unsafe_unretained delegate_;
 	
 	// Holds the current page being displayed.
 	int currentScreen_;
@@ -106,7 +106,7 @@
 	CGFloat marginOffset_;
 }
 
-@property (readwrite, assign) NSObject <CCScrollLayerDelegate> *delegate;
+@property (readwrite, unsafe_unretained) NSObject <CCScrollLayerDelegate> *delegate;
 
 #pragma mark Scroll Config Properties
 

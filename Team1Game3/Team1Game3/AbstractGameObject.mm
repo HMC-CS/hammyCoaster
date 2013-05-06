@@ -23,7 +23,7 @@
     if (self) {
         _world = world;
         _isDefault = isDefault;
-        _sprites = spriteArray;
+        _sprites = [[NSMutableArray alloc] initWithArray:spriteArray];
         _tag = tag;
     }
     return self;

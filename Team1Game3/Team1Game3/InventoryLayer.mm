@@ -135,11 +135,6 @@
 /* dealloc:
  * deallocates everything in InventoryLayer
  */
--(void) dealloc
-{
-    [_selectedObject release];
-	[super dealloc];
-}
 
 // public functions, documented in InventoryLayer.h
 
@@ -159,7 +154,7 @@
                 button.tag = button.tag -1;
                 
                 // remove old label
-                [button removeChildByTag:NSIntegerMin cleanup:YES];
+                [button removeChildByTag:NSIntegerMin cleanup:NO]; //cleanup removed
                 
                 // add new label
                 CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
@@ -202,7 +197,7 @@
             NSLog(@"we actually increased object");
             
             // remove old label
-            [button removeChildByTag:NSIntegerMin cleanup:YES];
+            [button removeChildByTag:NSIntegerMin cleanup:NO]; // cleanup removed
             
             // add new label
             CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
