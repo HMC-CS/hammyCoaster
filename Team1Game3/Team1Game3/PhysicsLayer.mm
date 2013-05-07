@@ -231,12 +231,12 @@
                 CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
                 boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
                 
-                if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
-                {
-                    NSLog(@"Body destroy");
-                    [self deleteObjectWithBody:body];
-                    return;
-                }
+//                if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
+//                {
+//                    NSLog(@"Body destroy");
+//                    [self deleteObjectWithBody:body];
+//                    return;
+//                }
                 
             }
         }
@@ -652,7 +652,9 @@
 }
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event {
+    NSLog(@"Physics touch began");
     if (_firstTouch == NULL) {
+        NSLog(@"First touch");
         _firstTouch = touch;
         
         //Get tap location and convert to cocos2d-box2d coordinates
@@ -660,6 +662,16 @@
         touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
         touchLocation = [self convertToNodeSpace:touchLocation];
         _initialTouchPosition = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
+        NSLog([[NSString alloc] initWithFormat:@"Physics touch location: %f, %f", touchLocation.x, touchLocation.y]);
+        
+        //If the touch is in the inventory, add an object where the touch is
+        if (touchLocation.x < 0) {
+            NSLog(@"Touch in inventory");
+            NSString* type = [_target performSelector:_selector1];
+            if (![type isEqualToString:@"None"]) {
+                [self addNewSpriteOfType:type AtPosition:touchLocation WithRotation:0.0 AsDefault:false];
+            }
+        }
         
         // Make a small box.
         b2AABB aabb;
@@ -690,11 +702,11 @@
                 
                 [_moveableDynamicStatus removeAllObjects];
                 
-                
-                _trash = [CCSprite spriteWithFile:@"trash2.png"];
-                _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
-                [self addChild:_trash z:10000];
-                
+                if (touchLocation.x > 0) {
+                    _trash = [CCSprite spriteWithFile:@"trash2.png"];
+                    _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
+                    [self addChild:_trash z:10000];
+                }
                 
                 
                 std::vector<b2Body*> bodies = bodyObject->_bodies;

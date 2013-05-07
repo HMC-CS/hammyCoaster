@@ -17,6 +17,8 @@
     
     NSArray* _items;
     
+    CCMenu* _inventoryMenu;
+   
 }
 
 /* initWithItems:

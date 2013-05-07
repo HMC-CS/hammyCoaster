@@ -186,6 +186,7 @@
 {
     return [_inventoryLayer getSelectedObject];
 }
+
 -(bool) checkIfInventoryIsDelete;
 {
     return [_inventoryLayer isDeleteSelected];

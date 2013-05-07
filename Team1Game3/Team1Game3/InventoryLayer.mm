@@ -23,7 +23,7 @@
 		
 		self.isTouchEnabled = YES;
         
-        _selectedObject = [[NSString alloc] initWithFormat:@"None"];
+        _selectedObject = @"None";
 		
         [self setContentSize:CGSizeMake(size.width*0.25, size.height)];
         [self setPosition:ccp(0,0)];
@@ -46,7 +46,7 @@
 	// Default font size will be 22 points.
 	[CCMenuItemFont setFontSize:22];
     //CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
-    CCMenu *inventoryMenu = [CCMenu node];
+    _inventoryMenu = [CCMenu node];
     buttonArray = [[NSMutableArray alloc] init];
     
     for (NSArray* item in _items) {
@@ -60,18 +60,18 @@
         
         CCMenuItemSprite *inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected block:^(id sender) {
             
-            for (int i= 0; i < [buttonArray count];i++)
-            {
-                CCMenuItemSprite *button = buttonArray[i];
-                NSString* objectType = (NSString*) button.userData;
-                if ([_selectedObject isEqualToString:objectType])
-                {
-                    [button unselected];
-                }
-            }
-
-            _selectedObject = type;
-            [(CCMenuItemSprite*)sender selected];
+//            for (int i= 0; i < [buttonArray count];i++)
+//            {
+//                CCMenuItemSprite *button = buttonArray[i];
+//                NSString* objectType = (NSString*) button.userData;
+//                if ([_selectedObject isEqualToString:objectType])
+//                {
+//                    [button unselected];
+//                }
+//            }
+//
+//            _selectedObject = type;
+//            [(CCMenuItemSprite*)sender selected];
             
         }];
         
@@ -84,14 +84,15 @@
         [numLabel setPosition:ccp(inventoryButton.contentSize.width/2, inventoryButton.contentSize.height/2)];
         [inventoryButton addChild:numLabel z:1 tag:NSIntegerMin];
         
-        [inventoryMenu addChild:inventoryButton];
+        [_inventoryMenu addChild:inventoryButton];
         
     }
     
     
-    [inventoryMenu alignItemsVerticallyWithPadding:10.0f];
-    [inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
-    [self addChild: inventoryMenu z:2];
+    [_inventoryMenu alignItemsVerticallyWithPadding:10.0f];
+    [_inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
+    _inventoryMenu.isTouchEnabled = false;
+    [self addChild: _inventoryMenu z:2];
     
 }
 
@@ -101,7 +102,7 @@
  */
 -(void)registerWithTouchDispatcher
 {
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:-1 swallowsTouches:NO];
 }
 
 /* ccTouchBegan:
@@ -110,15 +111,32 @@
  */
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    // NSLog(@"Inventory touch began");
+    NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
     
+    // If the touch is in the inventory
     if (CGRectContainsPoint(self.boundingBox, location))
     {
+        // Convert the touch to the same coordinate system as the sprites
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:location];
+        location = [_inventoryMenu convertToNodeSpace:location];
+        
+        // For each sprite, check if the touch was in that sprite. If it was, pass it on to the physics layer.
+        for (int i = 0; i < [[_inventoryMenu children] count]; i++) {
+            CCMenuItemSprite* sprite = [[_inventoryMenu children] objectAtIndex:i];
+                        
+            if (CGRectContainsPoint([sprite boundingBox], location)) {
+                NSLog(@"Inventory touch in menu item");
+                _selectedObject = static_cast<NSString*>(sprite.userData);
+                return NO;
+            }
+        }
+        _selectedObject = @"None";
         return YES;
     }
-    
+    _selectedObject = @"None";
     return NO;
 }
 
@@ -139,6 +157,7 @@
 // public functions, documented in InventoryLayer.h
 
 -(NSString*) getSelectedObject {
+    NSLog(@"Inventory: getSelectedObject");
     for (int i= 0; i< [buttonArray count];i++)
     {
         CCMenuItemImage *button = buttonArray[i];
@@ -169,7 +188,6 @@
     return _selectedObject;
     
 }
-
 
 -(bool) isDeleteSelected
 {

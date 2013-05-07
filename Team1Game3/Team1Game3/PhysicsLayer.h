@@ -39,6 +39,7 @@
     SEL _selector4; //tells if an object should be deleted or dragged
     SEL _selector5;
     SEL _selector6;
+    SEL _selector7; //getTouchedObject
     
     CGPoint ballStartingPoint;
     
