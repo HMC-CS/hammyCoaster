@@ -44,6 +44,8 @@
         
         CCMenuItem *resetDefaults = [CCMenuItemFont itemWithString:@"Reset Game Data" block:^(id sender) {
             [_gameManager resetUserData];
+            [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
+
         }];
         
         CCMenu *menu = [CCMenu menuWithItems: mainMenu, resetDefaults, nil];
