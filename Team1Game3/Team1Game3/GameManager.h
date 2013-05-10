@@ -2,7 +2,7 @@
 //  GameManager.h
 //  Team1Game3
 //
-//  Created by jarthur on 4/12/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 4/12/13.
 //
 //
 

@@ -2,7 +2,7 @@
 //  MainMenuLayer.m
 //  Team1Game
 //
-//  Created by jarthur on 3/8/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 3/8/13.
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  PhysicsLayer.m
 //  Team1Game3
 //
-//  Created by jarthur on 3/8/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 3/8/13.
 //
 //
 
@@ -15,6 +15,9 @@
 
 #import "PhysicsSprite.h"
 #import "QueryCallback.h"
+
+#import "MathHelper.h"
+
 
 @implementation PhysicsLayer
 
@@ -71,21 +74,21 @@
 	
 	b2Vec2 gravity;
 	gravity.Set(0.0f, -10.0f);
-	world = new b2World(gravity);
+	_world = new b2World(gravity);
 	
 	// Do we want to let bodies sleep?
-	world->SetAllowSleeping(true);
+	_world->SetAllowSleeping(true);
 	
-	world->SetContinuousPhysics(true);
+	_world->SetContinuousPhysics(true);
     
     // For collision callbacks
     _contactListener = new ContactListener();
-    world->SetContactListener(_contactListener);
+    _world->SetContactListener(_contactListener);
 	
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
     
     // NOTE: comment this line out to disable debug draw
-	world->SetDebugDraw(m_debugDraw);
+	_world->SetDebugDraw(m_debugDraw);
 	
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
@@ -102,7 +105,7 @@
 	// Call the body factory which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
-	b2Body* groundBody = world->CreateBody(&groundBodyDef);
+	b2Body* groundBody = _world->CreateBody(&groundBodyDef);
 	
 	// Define the ground box shape.
 	b2EdgeShape groundBox;
@@ -131,7 +134,7 @@
     b2BodyDef rampBodyDef;
     rampBodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
     
-    b2Body *rampBody = world->CreateBody(&rampBodyDef);
+    b2Body *rampBody = _world->CreateBody(&rampBodyDef);
     b2EdgeShape rampEdge;
     b2FixtureDef rampShapeDef;
     rampShapeDef.shape = &rampEdge;
@@ -152,8 +155,7 @@
         [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
         if ([type isEqual: @"RedPortalObject"])
         {
-            ballStartingPoint = CGPointMake(px,py);
-            NSLog(@"ball starting point is %f, %f", ballStartingPoint.x, ballStartingPoint.y);
+            _ballStartingPoint = CGPointMake(px,py);
         }
     }
 }
@@ -179,7 +181,7 @@
         PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
         spriteArray = @[sprite];
     }
-    NSLog(@"finished adding sprites");
+    //NSLog(@"finished adding sprites");
     
     //TODO:
     //read from the file to see how many objects should be added
@@ -188,12 +190,12 @@
     // = the count in the file return
 
     
-    AbstractGameObject *createdObj = [_objectFactory objectFromString:type forWorld:world asDefault:isDefault withSprites:[spriteArray mutableCopy]];
+    AbstractGameObject *createdObj = [_objectFactory objectFromString:type forWorld:_world asDefault:isDefault withSprites:[spriteArray mutableCopy]];
     
     [_createdObjects addObject:createdObj];
     std::vector<b2Body*> bodies = [createdObj createBody:p];
     
-    NSLog(@"finished getting bodies");
+    //NSLog(@"finished getting bodies");
     
     int j = 0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -207,7 +209,7 @@
         ++j;
         //[_objectArray addObject:((__bridge AbstractGameObject*)(body->GetUserData()))];
     }
-    NSLog(@"finished body loop");
+    //NSLog(@"finished body loop");
     
     b2Body* theBody = *(bodies.begin());
     // added bridge cast
@@ -245,8 +247,8 @@
 
 -(CGPoint)getBallStartingPoint
 {
-    NSLog(@"Physics Layer ball starting point x: %f y: %f", ballStartingPoint.x, ballStartingPoint.y);
-    return ballStartingPoint;
+    NSLog(@"Physics Layer ball starting point x: %f y: %f", _ballStartingPoint.x, _ballStartingPoint.y);
+    return _ballStartingPoint;
 }
 
 -(void)playLevel
@@ -254,7 +256,7 @@
     // NSLog(@"Physics PlayLevel");
     if (_editMode) { // So you can only do it once before resetting.
         _editMode = NO;
-        [self addNewSpriteOfType:@"BallObject" AtPosition:ballStartingPoint WithRotation:0 AsDefault:NO];
+        [self addNewSpriteOfType:@"BallObject" AtPosition:_ballStartingPoint WithRotation:0 AsDefault:NO];
     }
 }
 
@@ -263,7 +265,7 @@
 -(void) resetBall
 {
     // Delete Ball and Stars
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext()){
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext()){
         // added bridge cast
         //if ([(__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
         if ([((__bridge AbstractGameObject*)(b->GetUserData()))._tag isEqualToString:@"BallObject"])
@@ -318,7 +320,7 @@
     // delete the star body
     // (this doesn't actually happen 'till end of collision because
     //  hitStar is called inside the update function, but it doesn't seem to matter.)
-    //world->DestroyBody(starBody);
+    //_world->DestroyBody(starBody);
     _bodiesToDestroy.push_back(starBody);
     
     [self updateStarCount];
@@ -327,7 +329,7 @@
 
 -(void) trampolineDraggable
 {
-    for (b2Body* body = world->GetBodyList(); body; body = body->GetNext())
+    for (b2Body* body = _world->GetBodyList(); body; body = body->GetNext())
     {
         
         if ([((__bridge AbstractGameObject*)(body->GetUserData()))._tag isEqualToString:@"TrampolineObject"])
@@ -351,112 +353,49 @@
 {
     int magnetConstant = 400000000;
     //find all the magnets
-    for (b2Body* magnet = world->GetBodyList(); magnet; magnet = magnet->GetNext()){
+    for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()){
         if ([((__bridge AbstractGameObject*)(magnet->GetUserData()))._tag isEqualToString:@"MagnetObject"])
         {
             //get the ball's body
-            for (b2Body* ball = world->GetBodyList(); ball; ball = ball->GetNext()){
+            for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()){
                 if ([((__bridge AbstractGameObject*)(ball->GetUserData()))._tag isEqualToString:@"BallObject"])
                 {
-                    //AbstractGameObject* a = static_cast<AbstractGameObject*>(ball->GetUserData());
                     
                     // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
                     
                     b2Fixture* fixture1 = magnet->GetFixtureList();
-                    b2Fixture* fixture2 = fixture1->GetNext();
-                    
-                    
                     b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
                     b2Vec2 shape1Position = shape1->m_centroid;
-                    
-                    b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
-                    b2Vec2 shape2Position = shape2->m_centroid;
-                    
-//                    CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
-//                    CGPoint xaxis = CGPointMake(-1, 0);
-//                    if (point.y >= 0) {
-//                        _initialTouchAngle = ccpAngle(point, xaxis);
-//                    } else {
-//                        point = CGPointMake(point.x, -point.y);
-//                        _initialTouchAngle = -ccpAngle(point, xaxis);
-//                    }
-                    
-                    // Pole 1
-                    double d11 = ball->GetPosition().x - (magnet->GetPosition().x + shape1Position.x);
-                    double d12 = ball->GetPosition().y - (magnet->GetPosition().y + shape1Position.y);
+                    b2Vec2 shape1WorldPosition = magnet->GetWorldPoint(shape1Position);
+                    double d11 = ball->GetPosition().x - shape1WorldPosition.x;
+                    double d12 = ball->GetPosition().y - shape1WorldPosition.y;
                     double distance1 = sqrt(d11 * d11 + d12 * d12) * 1000;
-                    // Determine angle to face
-                    
-                    float angleRadians1 = atanf((float)d12 / (float)d11);
-                    
-                    
-//                    float angleRadians1;
-//                    if (d12 > 0)
-//                    {
-//                        angleRadians1 = atanf((float)d12 / (float)d11);
-//                    } else {
-//                        angleRadians1 = -1.0 * atanf((float)d12 / (float)d11);
-//                    }
-                    
-                    NSLog(@"angle 1: %f", angleRadians1);
-                    
+                    float angleRadians1 = GetAngle(ball->GetPosition().x, ball->GetPosition().y, shape1WorldPosition.x, shape1WorldPosition.y);
                     float yComponent1 = sinf(angleRadians1);
                     float xComponent1 = cosf(angleRadians1);
+                    b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
                     
-
                     
-                    // Pole 2
-                    double d21 = ball->GetPosition().x - (magnet->GetPosition().x + shape2Position.x);
-                    double d22 = ball->GetPosition().y - (magnet->GetPosition().y + shape2Position.y);
+                    b2Fixture* fixture2 = fixture1->GetNext();
+                    b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
+                    b2Vec2 shape2Position = shape2->m_centroid;
+                    b2Vec2 shape2WorldPosition = magnet->GetWorldPoint(shape2Position);
+                    double d21 = ball->GetPosition().x - shape2WorldPosition.x;
+                    double d22 = ball->GetPosition().y - shape2WorldPosition.y;
                     double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
-                    
-                    // Determine angle to face
-                    float angleRadians2 = atanf((float)d22 / (float)d21);
-                    
-//                    float angleRadians2;
-//                    if (d22 > 0)
-//                    {
-//                        angleRadians2 = atanf((float)d22 / (float)d21);
-//                    } else {
-//                        angleRadians2 = -1.0 * atanf((float)d22 / (float)d21);
-//                    }
-                    
-                    NSLog(@"angle 2: %f", angleRadians2);
-                    
-                    
+                    float angleRadians2 = GetAngle(ball->GetPosition().x, ball->GetPosition().y, shape2WorldPosition.x, shape2WorldPosition.y);
                     float yComponent2 = sinf(angleRadians2);
                     float xComponent2 = cosf(angleRadians2);
-                    
-                    b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
                     b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
                     
                     b2Vec2 force;
                     if ([(__bridge NSString*)(fixture1->GetUserData()) isEqualToString:@"NORTH"])
                     {
-                        //NSLog(@"we're here");
-                        
-//                        if (distance2 > distance1)
-//                        {
-//                            force = direction2 - direction1;
-//                        } else {
-//                            force = direction1 - direction2;
-//                        }
-                        
                         force = direction2 - direction1;
                         
                     } else {
-                        
-                        //NSLog(@"we're here instead");
-                        
-//                        if (distance2 > distance1)
-//                        {
-//                            force = direction1 - direction2;
-//                        } else {
-//                            force = direction2 - direction1;
-//                        }
-                        
+
                         force = direction1 - direction2;
-                        
                         
                     }
                     ball->ApplyForce(force, ball->GetPosition());
@@ -464,6 +403,7 @@
                     break;
                 }
             }
+            break;
         }
     }
 }
@@ -556,12 +496,12 @@
         b2Body* body = *b;
         [self removeChild:s cleanup:NO]; //cleanup removed
         //body->SetAwake(false);
-        //world->DestroyBody(body);
+        //_world->DestroyBody(body);
         //body = NULL;
         _bodiesToDestroy.push_back(body);
         ++j;
     }
-    NSLog(@"bodies destroyed successfully");
+    //NSLog(@"bodies destroyed successfully");
     [_objectArray removeObject:object];
 }
 
@@ -581,7 +521,7 @@
 	kmGLPushMatrix();
 	
     //NOTE: can also comment this out to put back debug draw
-	world->DrawDebugData();
+	_world->DrawDebugData();
 	
 	kmGLPopMatrix();
 }
@@ -601,7 +541,7 @@
 	
 	// Instruct the world to perform a single step of simulation. It is
 	// generally best to keep the time step and iterations fixed.
-	world->Step(dt, velocityIterations, positionIterations);
+	_world->Step(dt, velocityIterations, positionIterations);
     
     if (_contactListener->_gameWon) {
         _contactListener->_gameWon = false;
@@ -615,13 +555,13 @@
     for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
     {
         b2Body* body = *i;
-        world->DestroyBody(body);
+        _world->DestroyBody(body);
     }
     _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
     
     [self applyMagnets];
     
-    for (b2Joint* joint = world->GetJointList(); joint; joint = joint->GetNext())
+    for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext())
     {
         AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
         CFBridgingRetain(object);
@@ -682,7 +622,7 @@
         
         // Query the world for overlapping shapes.
         QueryCallback callback(_initialTouchPosition);
-        world->QueryAABB(&callback, aabb);
+        _world->QueryAABB(&callback, aabb);
         
 
         
@@ -890,7 +830,7 @@
                     aabb.upperBound = vertex + d;
                     
                     QueryCallback callback(vertex);
-                    world->QueryAABB(&callback, aabb);
+                    _world->QueryAABB(&callback, aabb);
                     
                     b2Body* b = callback.m_object;
                     
@@ -950,20 +890,21 @@
 {
 	delete m_debugDraw;
 	m_debugDraw = NULL;
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
     {
         b->SetAwake(false);
     }
     
-    for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
     {
-        world->DestroyBody(b);
+        _world->DestroyBody(b);
     }
     
-    delete world;
-	world = NULL;
+    delete _world;
+	_world = NULL;
     
 	
 }
+
 
 @end

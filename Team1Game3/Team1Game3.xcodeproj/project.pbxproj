@@ -84,6 +84,7 @@
 		D895F553170743CA00ED74C5 /* LevelIcon3.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54D170743CA00ED74C5 /* LevelIcon3.png */; };
 		D895F554170743CA00ED74C5 /* LevelIcon4.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54E170743CA00ED74C5 /* LevelIcon4.png */; };
 		D895F555170743CA00ED74C5 /* LevelIcon5.png in Resources */ = {isa = PBXBuildFile; fileRef = D895F54F170743CA00ED74C5 /* LevelIcon5.png */; };
+		D8A47F6B173CBB5B00CF1B87 /* MathHelper.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */; };
 		D8E83C7416EA753B000284EA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7316EA753B000284EA /* QuartzCore.framework */; };
 		D8E83C7616EA753B000284EA /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7516EA753B000284EA /* OpenGLES.framework */; };
 		D8E83C7816EA753B000284EA /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7716EA753B000284EA /* OpenAL.framework */; };
@@ -365,6 +366,8 @@
 		D895F54D170743CA00ED74C5 /* LevelIcon3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon3.png; sourceTree = "<group>"; };
 		D895F54E170743CA00ED74C5 /* LevelIcon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon4.png; sourceTree = "<group>"; };
 		D895F54F170743CA00ED74C5 /* LevelIcon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon5.png; sourceTree = "<group>"; };
+		D8A47F69173CBADF00CF1B87 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
+		D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MathHelper.mm; path = ../MathHelper.mm; sourceTree = "<group>"; };
 		D8E83C7016EA753B000284EA /* Team1Game3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Game3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E83C7316EA753B000284EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8E83C7516EA753B000284EA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -715,8 +718,8 @@
 		D8E83E8B16EA753F000284EA /* LICENSE_Box2D.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Box2D.txt; path = libs/LICENSE_Box2D.txt; sourceTree = "<group>"; };
 		D8E83E8D16EA753F000284EA /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		D8E83E8E16EA753F000284EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D8E83E9016EA753F000284EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		D8E83E9116EA753F000284EA /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		D8E83E9016EA753F000284EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D8E83E9116EA753F000284EA /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = AppDelegate.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D8E83E9616EA753F000284EA /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		D8E83E9716EA753F000284EA /* IntroLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroLayer.mm; sourceTree = "<group>"; };
 		D8E83E9916EA753F000284EA /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
@@ -724,10 +727,10 @@
 		D8E83E9C16EA753F000284EA /* PhysicsSprite.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhysicsSprite.h; sourceTree = "<group>"; };
 		D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PhysicsSprite.mm; sourceTree = "<group>"; };
 		D8E83E9F16EA753F000284EA /* blocks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blocks.png; path = Resources/blocks.png; sourceTree = "<group>"; };
-		D8E83EA616EA7555000284EA /* BallObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BallObject.h; sourceTree = "<group>"; };
-		D8E83EA716EA7555000284EA /* BallObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BallObject.mm; sourceTree = "<group>"; };
-		D8E83EA916EA75A8000284EA /* AbstractGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractGameObject.h; sourceTree = "<group>"; };
-		D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AbstractGameObject.mm; sourceTree = "<group>"; };
+		D8E83EA616EA7555000284EA /* BallObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BallObject.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D8E83EA716EA7555000284EA /* BallObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = BallObject.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D8E83EA916EA75A8000284EA /* AbstractGameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AbstractGameObject.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = AbstractGameObject.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D8E83EAC16EA75D0000284EA /* ObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectFactory.h; sourceTree = "<group>"; };
 		D8E83EAD16EA75D0000284EA /* ObjectFactory.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ObjectFactory.mm; sourceTree = "<group>"; };
 		D8E83EAF16EA75F4000284EA /* MainMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuLayer.h; sourceTree = "<group>"; };
@@ -861,6 +864,8 @@
 				AD57A96E171CC476007B471F /* InstructionsLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
+				D8A47F69173CBADF00CF1B87 /* MathHelper.h */,
+				D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
 				AD57A95E17142818007B471F /* WinLayer.mm */,
 				D88207791717D3D200D74162 /* OverallWinLayer.h */,
@@ -1933,6 +1938,7 @@
 				D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */,
 				AD7731AC1725F84D00709F80 /* SoundManager.mm in Sources */,
 				CEF445EA172647B7004B3745 /* SeesawObject.mm in Sources */,
+				D8A47F6B173CBB5B00CF1B87 /* MathHelper.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -2,7 +2,7 @@
 //  MagnetObject.h
 //  Team1Game3
 //
-//  Created by jarthur on 4/16/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 4/16/13.
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 

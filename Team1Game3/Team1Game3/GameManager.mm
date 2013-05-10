@@ -2,7 +2,7 @@
 //  GameManager.m
 //  Team1Game3
 //
-//  Created by jarthur on 4/12/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 4/12/13.
 //
 //
 
@@ -54,7 +54,8 @@
 //            if (i == 0 || i == 1)
 //>>>>>>> Dragging from inventory!!
             {
-                [_isLevelLocked addObject:@"true"];
+                //[_isLevelLocked addObject:@"true"];
+                [_isLevelLocked addObject:@"false"];
             }else{
                 [_isLevelLocked addObject:@"false"];
             }

@@ -2,7 +2,7 @@
 //  Team1Game3Tests.m
 //  Team1Game3Tests
 //
-//  Created by jarthur on 3/24/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 3/24/13.
 //
 //
 
