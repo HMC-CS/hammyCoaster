@@ -99,9 +99,8 @@
     [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
     [_physicsLayer setTarget:self atAction:@selector(updateStarCount)]; // physics selector 3
-    [_physicsLayer setTarget:self atAction:@selector(checkIfInventoryIsDelete)]; //physics selector 4
-    [_physicsLayer setTarget:self atAction:@selector(objectDeletedOfType:)]; //physics selector 5
-    [_physicsLayer setTarget:self atAction:@selector(togglePlayResetButton)];
+    [_physicsLayer setTarget:self atAction:@selector(objectDeletedOfType:)]; //physics selector 4
+    [_physicsLayer setTarget:self atAction:@selector(togglePlayResetButton)]; // physics selector 5
     [self addChild:_physicsLayer];
 }
 
@@ -203,14 +202,6 @@
  */
 -(void) gameWon
 {
-//    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"CONGRATULATIONS, YOU'VE WON!"
-//                                                    message:@"Play Again?"
-//                                                   delegate:self
-//                                          cancelButtonTitle:@"Yes!"
-//                                          otherButtonTitles:@"No, thanks.", nil];
-//    alert.tag=1;
-//    [alert show];
-    
     [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
     
     [_gameManager registerCompletedLevelWithLevelSet:_levelSet AndIndex:_levelIndex AndStarCount:_gameplayLayer.starCount];

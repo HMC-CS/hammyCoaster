@@ -52,12 +52,10 @@ void ContactListener::BeginContact(b2Contact* contact) {
         }
         if ([body1Type isEqualToString:@"BallObject"] && [body2Type isEqualToString:@"StarObject"])
         {
-           // NSLog(@"Star Collision");
             _contactStar = body2;
         }
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"])
         {
-           // NSLog(@"Star Collision");
             _contactStar = body1;
         }
     }

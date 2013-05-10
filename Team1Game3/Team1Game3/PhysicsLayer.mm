@@ -16,8 +16,6 @@
 #import "PhysicsSprite.h"
 #import "QueryCallback.h"
 
-#import "MathHelper.h"
-
 
 @implementation PhysicsLayer
 
@@ -45,6 +43,7 @@
         
 		// init physics
 		[self initPhysics];
+        _worldManager = [[WorldManager alloc] initWithWorld:_world];
         
 		_objectFactory = [ObjectFactory sharedObjectFactory];
         
@@ -160,7 +159,6 @@
     }
 }
 
-
 //-----GAME METHODS-----//
 
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation AsDefault:(bool)isDefault;
@@ -181,21 +179,12 @@
         PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
         spriteArray = @[sprite];
     }
-    //NSLog(@"finished adding sprites");
-    
-    //TODO:
-    //read from the file to see how many objects should be added
-    //Check how many sprites have been added
-    //getBodylist() then loop through and for each body apperance you are looking for count 1 and if count
-    // = the count in the file return
-
     
     AbstractGameObject *createdObj = [_objectFactory objectFromString:type forWorld:_world asDefault:isDefault withSprites:[spriteArray mutableCopy]];
     
     [_createdObjects addObject:createdObj];
     std::vector<b2Body*> bodies = [createdObj createBody:p];
     
-    //NSLog(@"finished getting bodies");
     
     int j = 0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -207,13 +196,9 @@
         [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
         body->SetTransform(b2Vec2(p.x/PTM_RATIO,p.y/PTM_RATIO), rotation);
         ++j;
-        //[_objectArray addObject:((__bridge AbstractGameObject*)(body->GetUserData()))];
     }
-    //NSLog(@"finished body loop");
     
     b2Body* theBody = *(bodies.begin());
-    // added bridge cast
-    //if (![((__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
     if (![((__bridge AbstractGameObject*)(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
     {
         for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -232,14 +217,6 @@
                 CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
                 CGPoint boundPoint = CGPointMake(point.x + p.x + offset, point.y + p.y);
                 boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
-                
-//                if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
-//                {
-//                    NSLog(@"Body destroy");
-//                    [self deleteObjectWithBody:body];
-//                    return;
-//                }
-                
             }
         }
     }
@@ -247,13 +224,11 @@
 
 -(CGPoint)getBallStartingPoint
 {
-    NSLog(@"Physics Layer ball starting point x: %f y: %f", _ballStartingPoint.x, _ballStartingPoint.y);
     return _ballStartingPoint;
 }
 
 -(void)playLevel
 {
-    // NSLog(@"Physics PlayLevel");
     if (_editMode) { // So you can only do it once before resetting.
         _editMode = NO;
         [self addNewSpriteOfType:@"BallObject" AtPosition:_ballStartingPoint WithRotation:0 AsDefault:NO];
@@ -345,68 +320,68 @@
 
 
 
-// TODO: did not change this method for multi-body because BallObject and MagnetObject are single-body objects.  Change if changed.
-/* applyMagnets:
- * helper function to apply magnet's forces to the ball
- */
--(void) applyMagnets
-{
-    int magnetConstant = 400000000;
-    //find all the magnets
-    for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()){
-        if ([((__bridge AbstractGameObject*)(magnet->GetUserData()))._tag isEqualToString:@"MagnetObject"])
-        {
-            //get the ball's body
-            for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()){
-                if ([((__bridge AbstractGameObject*)(ball->GetUserData()))._tag isEqualToString:@"BallObject"])
-                {
-                    
-                    // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
-                    
-                    b2Fixture* fixture1 = magnet->GetFixtureList();
-                    b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
-                    b2Vec2 shape1Position = shape1->m_centroid;
-                    b2Vec2 shape1WorldPosition = magnet->GetWorldPoint(shape1Position);
-                    double d11 = ball->GetPosition().x - shape1WorldPosition.x;
-                    double d12 = ball->GetPosition().y - shape1WorldPosition.y;
-                    double distance1 = sqrt(d11 * d11 + d12 * d12) * 1000;
-                    float angleRadians1 = GetAngle(ball->GetPosition().x, ball->GetPosition().y, shape1WorldPosition.x, shape1WorldPosition.y);
-                    float yComponent1 = sinf(angleRadians1);
-                    float xComponent1 = cosf(angleRadians1);
-                    b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
-                    
-                    
-                    b2Fixture* fixture2 = fixture1->GetNext();
-                    b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
-                    b2Vec2 shape2Position = shape2->m_centroid;
-                    b2Vec2 shape2WorldPosition = magnet->GetWorldPoint(shape2Position);
-                    double d21 = ball->GetPosition().x - shape2WorldPosition.x;
-                    double d22 = ball->GetPosition().y - shape2WorldPosition.y;
-                    double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
-                    float angleRadians2 = GetAngle(ball->GetPosition().x, ball->GetPosition().y, shape2WorldPosition.x, shape2WorldPosition.y);
-                    float yComponent2 = sinf(angleRadians2);
-                    float xComponent2 = cosf(angleRadians2);
-                    b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
-                    
-                    b2Vec2 force;
-                    if ([(__bridge NSString*)(fixture1->GetUserData()) isEqualToString:@"NORTH"])
-                    {
-                        force = direction2 - direction1;
-                        
-                    } else {
-
-                        force = direction1 - direction2;
-                        
-                    }
-                    ball->ApplyForce(force, ball->GetPosition());
-                    
-                    break;
-                }
-            }
-            break;
-        }
-    }
-}
+//// TODO: did not change this method for multi-body because BallObject and MagnetObject are single-body objects.  Change if changed.
+///* applyMagnets:
+// * helper function to apply magnet's forces to the ball
+// */
+//-(void) applyMagnets
+//{
+//    int magnetConstant = 400000000;
+//    //find all the magnets
+//    for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()){
+//        if ([((__bridge AbstractGameObject*)(magnet->GetUserData()))._tag isEqualToString:@"MagnetObject"])
+//        {
+//            //get the ball's body
+//            for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()){
+//                if ([((__bridge AbstractGameObject*)(ball->GetUserData()))._tag isEqualToString:@"BallObject"])
+//                {
+//                    
+//                    // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
+//                    
+//                    b2Fixture* fixture1 = magnet->GetFixtureList();
+//                    b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
+//                    b2Vec2 shape1Position = shape1->m_centroid;
+//                    b2Vec2 shape1WorldPosition = magnet->GetWorldPoint(shape1Position);
+//                    double d11 = ball->GetPosition().x - shape1WorldPosition.x;
+//                    double d12 = ball->GetPosition().y - shape1WorldPosition.y;
+//                    double distance1 = sqrt(d11 * d11 + d12 * d12) * 1000;
+//                    float angleRadians1 = GetAngle(ball->GetPosition().x, ball->GetPosition().y, shape1WorldPosition.x, shape1WorldPosition.y);
+//                    float yComponent1 = sinf(angleRadians1);
+//                    float xComponent1 = cosf(angleRadians1);
+//                    b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
+//                    
+//                    
+//                    b2Fixture* fixture2 = fixture1->GetNext();
+//                    b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
+//                    b2Vec2 shape2Position = shape2->m_centroid;
+//                    b2Vec2 shape2WorldPosition = magnet->GetWorldPoint(shape2Position);
+//                    double d21 = ball->GetPosition().x - shape2WorldPosition.x;
+//                    double d22 = ball->GetPosition().y - shape2WorldPosition.y;
+//                    double distance2 = sqrt(d21 * d21 + d22 * d22) * 1000;
+//                    float angleRadians2 = GetAngle(ball->GetPosition().x, ball->GetPosition().y, shape2WorldPosition.x, shape2WorldPosition.y);
+//                    float yComponent2 = sinf(angleRadians2);
+//                    float xComponent2 = cosf(angleRadians2);
+//                    b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
+//                    
+//                    b2Vec2 force;
+//                    if ([(__bridge NSString*)(fixture1->GetUserData()) isEqualToString:@"NORTH"])
+//                    {
+//                        force = direction2 - direction1;
+//                        
+//                    } else {
+//
+//                        force = direction1 - direction2;
+//                        
+//                    }
+//                    ball->ApplyForce(force, ball->GetPosition());
+//                    
+//                    break;
+//                }
+//            }
+//            break;
+//        }
+//    }
+//}
 
 -(void) setTarget:(id) sender atAction:(SEL)action
 {
@@ -428,13 +403,9 @@
     {
         _selector4 = action;
     }
-    else if (!_selector5)
-    {
-        _selector5 = action;
-    }
     else
     {
-        _selector6 = action;
+        _selector5 = action;
     }
 }
 
@@ -461,13 +432,9 @@
 {
     return [_target performSelector:_selector1];
 }
--(bool) isDeleteSelected
-{
-    return [_target performSelector:_selector4];
-}
 -(void) objectDeletedOfType: (NSString*) type
 {
-    [_target performSelector:_selector5 withObject:type];
+    [_target performSelector:_selector4 withObject:type];
 }
 
 
@@ -559,28 +526,8 @@
     }
     _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
     
-    [self applyMagnets];
-    
-    for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext())
-    {
-        AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
-        CFBridgingRetain(object);
-        NSString* type = object._tag;
-        if ([type isEqualToString:@"SeesawObject"]) {
-            const float springTorqForce = 1.0f;
-            float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
-            if ( jointAngle != 0 ) {
-                float torque = fabs(jointAngle * springTorqForce * 50);
-                if (jointAngle > 0.0)
-                {
-                    joint->GetBodyA()->ApplyTorque(-torque);
-                } else {
-                    joint->GetBodyA()->ApplyTorque(torque);
-                }
-            }
-            
-        }
-    }
+    [_worldManager applyMagnets];
+    [_worldManager springSeesaw];
 }
 
 
@@ -666,7 +613,7 @@
             // Clicking on the ball resets the ball
             } else if ([bodyObject->_tag isEqualToString:@"BallObject"]) {
                 [self resetBall];
-                [_target performSelector:_selector6];
+                [_target performSelector:_selector5];
             }
         } else if (_editMode) {
             
