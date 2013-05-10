@@ -16,7 +16,6 @@
 #import "GLES-Render.h"
 #import "ObjectFactory.h"
 #import "ContactListener.h"
-#import "WorldManager.h"
 
 @interface PhysicsLayer : CCLayer {
     
@@ -24,7 +23,6 @@
 
     b2World* _world;
     ContactListener* _contactListener;
-    WorldManager* _worldManager;
     
     ObjectFactory* _objectFactory;
     NSString* _objectType;
