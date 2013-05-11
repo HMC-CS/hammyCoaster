@@ -24,7 +24,7 @@
 @property (readonly) UINavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
 
-// gameManager - holds game data, notifies when game is won.
+// Game Manager - holds game data
 @property (nonatomic, retain) GameManager* gameManager;
 
 @end

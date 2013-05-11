@@ -114,7 +114,7 @@
                     [labelSelected setPosition:ccp(levelIconSelected.contentSize.width/2, levelIconSelected.contentSize.height/2)];
                     [levelIconSelected addChild:labelSelected];
                     
-                    if([_gameManager isLevelLockedAtSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1 ])
+                    if([_gameManager isLevelLockedAtLevelSet:1 AndIndex:j*(_gameManager.numLevelIndices/3) + i + 1 ])
                         {
                             levelIcon.userData = (__bridge void*) @"Locked";
                             CCSprite* lock = [CCSprite spriteWithFile:@"lock.png"];

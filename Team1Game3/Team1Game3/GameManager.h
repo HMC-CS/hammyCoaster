@@ -13,15 +13,15 @@
 
 @interface GameManager : CCNode {
     
-    NSUserDefaults* _defaults;
+    NSUserDefaults* _defaults;      // Stores user information
     
-    int _numLevelSets;
-    int _numLevelIndices;
-    int _numLevelsCompleted;
+    int _numLevelSets;              // Number of level "packs"
+    int _numLevelIndices;           // Number of levels per "pack"
+    int _numLevelsCompleted;        // Counts number of levels completed
     
-    NSMutableArray* _levelCompletionStatuses;
-    NSMutableArray* _levelHighScores;
-    NSMutableArray* _isLevelLocked;
+    NSMutableArray* _levelCompletionStatuses;   // Tracks if levels are completed
+    NSMutableArray* _levelHighScores;           // Tracks max stars obtained in each level
+    NSMutableArray* _isLevelLocked;             // Tracks if user is allowed to play level
 }
 
 @property (readonly) int numLevelSets;
@@ -48,6 +48,9 @@
  */
 -(int) highScoreAtLevelSet:(int)set AndIndex:(int)index;
 
--(bool) isLevelLockedAtSet:(int)set AndIndex:(int)index;
+/* isLevelLockedAtLevelSet:AndIndex:
+ * returns whether a user is allowed to play a particular level
+ */
+-(bool) isLevelLockedAtLevelSet:(int)set AndIndex:(int)index;
 
 @end
