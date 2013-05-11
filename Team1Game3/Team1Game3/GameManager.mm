@@ -31,7 +31,6 @@
         _isLevelLocked = [[NSMutableArray alloc] init];
         for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
         {
-//<<<<<<< HEAD
             bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
             bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
             int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
@@ -48,11 +47,6 @@
             [_levelHighScores addObject:[NSNumber numberWithInt:levelStars]];
             
             if (levelLocked)
-//=======
-//            [_levelCompletionStatuses addObject:@"false"];
-//            [_levelHighScores addObject:[NSNumber numberWithInt:0]];
-//            if (i == 0 || i == 1)
-//>>>>>>> Dragging from inventory!!
             {
                 //[_isLevelLocked addObject:@"true"];
                 [_isLevelLocked addObject:@"false"];

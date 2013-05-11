@@ -790,7 +790,7 @@
                             }
                             objectModified = true;
                             break;
-                        }else{
+                        } else {
                             [self bounceBackObjectWithBody:body];
                             objectModified = true;
                             NSLog(@"bound point is %f", boundPoint.y);
@@ -851,6 +851,10 @@
 
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
+    if (_initialBodyPosition.x < 0)
+    {
+        [self deleteObjectWithBody:body];
+    }
     b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
     std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData()))->_bodies;
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
