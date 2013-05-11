@@ -156,8 +156,10 @@
 
 // public functions, documented in InventoryLayer.h
 
--(NSString*) getSelectedObject {
+-(NSString*) getSelectedObjectForAddingNewObject:(bool) isAddingNewObject {
     NSLog(@"Inventory: getSelectedObject");
+    
+    if (isAddingNewObject) {
     for (int i= 0; i< [buttonArray count];i++)
     {
         CCMenuItemImage *button = buttonArray[i];
@@ -171,6 +173,7 @@
             else
             {
                 button.tag = button.tag -1;
+                NSLog(@"decreased button tag");
                 
                 // remove old label
                 [button removeChildByTag:NSIntegerMin cleanup:NO]; //cleanup removed
@@ -179,11 +182,12 @@
                 CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
                 [numLabel setColor:ccWHITE];
                 [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
-                [button addChild:numLabel z:-1 tag:NSIntegerMin];
+                [button addChild:numLabel z:0 tag:NSIntegerMin];
             
                 return _selectedObject;
             }
         }
+    }
     }
     return _selectedObject;
     
@@ -204,6 +208,7 @@
 
 - (void) increaseInventoryForType:(NSString*) type
 {
+    NSLog(@"increasing inventory for type");
     for (int i= 0; i< [buttonArray count];i++)
     {
         CCMenuItemImage *button = buttonArray[i];

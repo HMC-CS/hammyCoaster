@@ -96,7 +96,7 @@
     NSArray* initialObjects = [_levelGenerator generateObjectsInSet:_levelSet WithIndex:_levelIndex];
     
     _physicsLayer = [[PhysicsLayer alloc] initWithObjects:initialObjects];
-    [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObject)]; //physics selector1
+    [_physicsLayer setTarget:self atAction:@selector(getInventorySelectedObjectForAddingNewObject:)]; //physics selector1
     [_physicsLayer setTarget:self atAction:@selector(gameWon)]; //physics selector2
     [_physicsLayer setTarget:self atAction:@selector(updateStarCount)]; // physics selector 3
     [_physicsLayer setTarget:self atAction:@selector(objectDeletedOfType:)]; //physics selector 4
@@ -181,9 +181,10 @@
  * Gets the currently selected object from the InventoryLayer.
  * Used so that physics layer can tell what's selected.
  */
--(NSString*)getInventorySelectedObject;
+-(NSString*)getInventorySelectedObjectForAddingNewObject: (NSString*) isAddingNewObject;
 {
-    return [_inventoryLayer getSelectedObject];
+    bool addingNewObject = [isAddingNewObject isEqualToString:@"YES"];
+    return [_inventoryLayer getSelectedObjectForAddingNewObject:addingNewObject];
 }
 
 -(bool) checkIfInventoryIsDelete;

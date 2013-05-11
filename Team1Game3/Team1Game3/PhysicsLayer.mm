@@ -456,9 +456,9 @@
 /* getObjectType:
  * gets type of object to be added to screen
  */
-- (NSString*) getObjectType
+- (NSString*) getObjectTypeForAddingNewObject: (NSString*) isAddingNewObject
 {
-    return [_target performSelector:_selector1];
+    return [_target performSelector:_selector1 withObject:isAddingNewObject];
 }
 -(void) objectDeletedOfType: (NSString*) type
 {
@@ -604,7 +604,7 @@
         //If the touch is in the inventory, add an object where the touch is
         if (touchLocation.x < 0) {
             NSLog(@"Touch in inventory");
-            NSString* type = [self getObjectType];
+            NSString* type = [self getObjectTypeForAddingNewObject:@"YES"];
             if (![type isEqualToString:@"None"]) {
                 [self addNewSpriteOfType:type AtPosition:touchLocation WithRotation:0.0 AsDefault:false];
             }
@@ -665,21 +665,22 @@
                 [self resetBall];
                 [_target performSelector:_selector5];
             }
-        } else if (_editMode) {
-            
-            //Add a new body/atlas sprite at the touched location
-            CGPoint location = [touch locationInView: [touch view]];
-            if (CGRectContainsPoint(self.boundingBox, location)) {
-                location = [[CCDirector sharedDirector] convertToGL: location];
-                location = [self convertToNodeSpace:location];
-                
-                // get object type from inventory
-                _objectType = [self getObjectType];
-                if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
-                    [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
-                }
-            }
         }
+//        } else if (_editMode) {
+//            
+//            //Add a new body/atlas sprite at the touched location
+//            CGPoint location = [touch locationInView: [touch view]];
+//            if (CGRectContainsPoint(self.boundingBox, location)) {
+//                location = [[CCDirector sharedDirector] convertToGL: location];
+//                location = [self convertToNodeSpace:location];
+//                
+//                // get object type from inventory
+//                _objectType = [self getObjectType];
+//                if(_objectType && ![_objectType isEqualToString:@"None"] && ![_objectType isEqualToString:@"Delete"]){
+//                    [self addNewSpriteOfType:_objectType AtPosition:location WithRotation:0 AsDefault:NO];
+//                }
+//            }
+//        }
     } else if (_secondTouch == NULL && _currentMoveableBody != NULL) {
         _secondTouch = touch;
         CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);
@@ -802,7 +803,9 @@
                             NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
                             // add an array here to get the body from ?
                             //[_objectArray addObject:body];
+                            if (!objectModified) {
                             [self deleteObjectWithBody:body];
+                            }
                             objectModified = true;
                             break;
                         }else{

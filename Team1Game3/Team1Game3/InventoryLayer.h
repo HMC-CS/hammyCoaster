@@ -29,7 +29,7 @@
 /* getSelectedObject:
  * returns NSString* of the selected object type
  */
--(NSString*) getSelectedObject;
+-(NSString*) getSelectedObjectForAddingNewObject:(bool) isAddingNewObject;
 
 -(bool) isDeleteSelected;
 
