@@ -12,12 +12,13 @@
 #import "CCNode.h"
 
 @interface GameManager : CCNode {
+    
     NSUserDefaults* _defaults;
     
     int _numLevelSets;
     int _numLevelIndices;
-    
     int _numLevelsCompleted;
+    
     NSMutableArray* _levelCompletionStatuses;
     NSMutableArray* _levelHighScores;
     NSMutableArray* _isLevelLocked;

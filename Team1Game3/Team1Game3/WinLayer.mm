@@ -3,7 +3,7 @@
 //  Team1Game3
 //
 //  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 3/30/13.
-//  Copyright 2013 __MyCompanyName__. All rights reserved.
+//  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
 #import "WinLayer.h"

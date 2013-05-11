@@ -3,7 +3,7 @@
 //  Team1Game3
 //
 //  Created by jarthur on 5/9/13.
-//  Copyright 2013 __MyCompanyName__. All rights reserved.
+//  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
 #import "WorldManager.h"
