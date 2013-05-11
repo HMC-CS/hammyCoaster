@@ -8,7 +8,7 @@
 
 #import "MainMenuLayer.h"
 #import "InstructionsLayer.h"
-#import "AppDelegate.h"
+#import "AppController.h"
 #import "LevelSelectorLayer.h"
 
 #import "SoundManager.h"

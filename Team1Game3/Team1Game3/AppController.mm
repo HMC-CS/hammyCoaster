@@ -8,7 +8,7 @@
 
 #import "cocos2d.h"
 
-#import "AppDelegate.h"
+#import "AppController.h"
 #import "IntroLayer.h"
 
 @implementation AppController

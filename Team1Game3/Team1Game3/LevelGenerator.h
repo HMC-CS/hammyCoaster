@@ -9,21 +9,23 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-#import "AppDelegate.h"
+#import "AppController.h"
 #import "GameManager.h"
 
 @interface LevelGenerator : CCNode {
     
-    GameManager* _gameManager;
+    GameManager* _gameManager;      // To get level data
     
 }
 
 /* generateObjectsInSet:WithIndex:
- Returns the objects in level Set-Index */
+ * Returns the objects in level Set-Index 
+ */
 -(NSMutableArray*) generateObjectsInSet:(int) set WithIndex:(int) index;
 
 /* generateInventoryInSet:WithIndex:
- Returns the inventory in level Set-Index */
+ * Returns the inventory in level Set-Index 
+ */
 -(NSMutableArray*) generateInventoryInSet:(int) set WithIndex:(int) index;
 
 @end

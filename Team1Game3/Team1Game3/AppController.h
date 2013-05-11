@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  AppController.h
 //  Team1Game3
 //
 //  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 3/8/13.

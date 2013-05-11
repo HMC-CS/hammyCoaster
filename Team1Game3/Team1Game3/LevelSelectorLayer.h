@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-#import "AppDelegate.h"
+#import "AppController.h"
 #import "GameManager.h"
 
 // TODO: comment back in if multiple level sets added

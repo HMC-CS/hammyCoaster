@@ -21,7 +21,7 @@
 #import "LevelGenerator.h"
 #import "GameplayLayer.h"
 
-#import "AppDelegate.h"
+#import "AppController.h"
 #import "GameManager.h"
 
 @interface LevelLayer : CCLayer {

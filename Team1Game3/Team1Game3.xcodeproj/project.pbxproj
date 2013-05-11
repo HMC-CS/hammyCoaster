@@ -254,7 +254,7 @@
 		D8E83E8516EA753F000284EA /* b2WheelJoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E8416EA753F000284EA /* b2WheelJoint.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83E8916EA753F000284EA /* b2Rope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E8816EA753F000284EA /* b2Rope.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83E8F16EA753F000284EA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E8E16EA753F000284EA /* main.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		D8E83E9216EA753F000284EA /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E9116EA753F000284EA /* AppDelegate.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D8E83E9216EA753F000284EA /* AppController.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E9116EA753F000284EA /* AppController.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83E9816EA753F000284EA /* IntroLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E9716EA753F000284EA /* IntroLayer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83E9B16EA753F000284EA /* GLES-Render.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E9A16EA753F000284EA /* GLES-Render.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83E9E16EA753F000284EA /* PhysicsSprite.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -721,8 +721,8 @@
 		D8E83E8B16EA753F000284EA /* LICENSE_Box2D.txt */ = {isa = PBXFileReference; lastKnownFileType = text; name = LICENSE_Box2D.txt; path = libs/LICENSE_Box2D.txt; sourceTree = "<group>"; };
 		D8E83E8D16EA753F000284EA /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		D8E83E8E16EA753F000284EA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		D8E83E9016EA753F000284EA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		D8E83E9116EA753F000284EA /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = AppDelegate.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D8E83E9016EA753F000284EA /* AppController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		D8E83E9116EA753F000284EA /* AppController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; lineEnding = 0; path = AppController.mm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		D8E83E9616EA753F000284EA /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		D8E83E9716EA753F000284EA /* IntroLayer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IntroLayer.mm; sourceTree = "<group>"; };
 		D8E83E9916EA753F000284EA /* GLES-Render.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GLES-Render.h"; sourceTree = "<group>"; };
@@ -1037,8 +1037,8 @@
 		D8E83C8516EA753B000284EA /* Team1Game3 */ = {
 			isa = PBXGroup;
 			children = (
-				D8E83E9016EA753F000284EA /* AppDelegate.h */,
-				D8E83E9116EA753F000284EA /* AppDelegate.mm */,
+				D8E83E9016EA753F000284EA /* AppController.h */,
+				D8E83E9116EA753F000284EA /* AppController.mm */,
 				D882077C1717F1F600D74162 /* GameManager.h */,
 				D882077D1717F1F700D74162 /* GameManager.mm */,
 				D86F714A17088D960007ED1D /* LevelGenerator.h */,
@@ -1912,7 +1912,7 @@
 				D8E83E8516EA753F000284EA /* b2WheelJoint.cpp in Sources */,
 				D8E83E8916EA753F000284EA /* b2Rope.cpp in Sources */,
 				D8E83E8F16EA753F000284EA /* main.m in Sources */,
-				D8E83E9216EA753F000284EA /* AppDelegate.mm in Sources */,
+				D8E83E9216EA753F000284EA /* AppController.mm in Sources */,
 				D8E83E9816EA753F000284EA /* IntroLayer.mm in Sources */,
 				D8E83E9B16EA753F000284EA /* GLES-Render.mm in Sources */,
 				D8E83E9E16EA753F000284EA /* PhysicsSprite.mm in Sources */,
