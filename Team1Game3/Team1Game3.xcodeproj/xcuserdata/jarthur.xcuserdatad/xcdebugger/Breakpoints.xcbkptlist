@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Team1Game3/ContactListener.mm"
-         timestampString = "385947497.549829"
+         timestampString = "390004466.217309"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "51"
-         endingLineNumber = "51"
+         startingLineNumber = "59"
+         endingLineNumber = "59"
          landmarkName = "ContactListener::BeginContact(b2Contact* contact)"
          landmarkType = "5">
       </FileBreakpoint>

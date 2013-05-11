@@ -523,14 +523,15 @@
 	// generally best to keep the time step and iterations fixed.
 	_world->Step(dt, velocityIterations, positionIterations);
     
-    if (_contactListener->_gameWon) {
-        _contactListener->_gameWon = false;
+    if (_contactListener->IsLevelWon()) {
+        _contactListener->SetLevelWonStatus(false);
         [self gameWon];
     }
-    if (_contactListener->_contactStar != NULL) {
-        [self hitStar:(_contactListener->_contactStar)];
-        _contactListener->_contactStar = NULL;
-    }
+    
+    b2Body* contactStar = _contactListener->GetContactStar();
+    if (contactStar) {
+        [self hitStar:contactStar];
+        _contactListener->EraseContactStar();    }
     
     //    for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
     //    {

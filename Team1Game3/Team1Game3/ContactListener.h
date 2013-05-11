@@ -12,29 +12,53 @@
 #import <vector>
 #import <algorithm>
 
-//struct MyContact {
-//    b2Fixture *fixtureA;
-//    b2Fixture *fixtureB;
-//    bool operator==(const MyContact& other) const
-//    {
-//        return (fixtureA == other.fixtureA) && (fixtureB == other.fixtureB);
-//    }
-//};
 
 class ContactListener : public b2ContactListener {
     
 public:
-//    std::vector<MyContact>_contacts;
     
+    /*
+     * Constructor and destructor
+     */
     ContactListener();
     ~ContactListener();
     
+    /*
+     * Functions to deal with objects colliding
+     */
     virtual void BeginContact(b2Contact* contact);
     virtual void EndContact(b2Contact* contact);
     virtual void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
     virtual void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
     
-    bool _gameWon;
-    b2Body* _contactStar;
+    /*
+     * IsLevelWon()
+     * Returns true if the level has been won (the ball has collided with red portal)
+     * Returns false otherwise.
+     */
+    bool IsLevelWon();
+    
+    /*
+     * SetGameWonStatus
+     * Gives user the ability to set level win status to true or false.
+     */
+    void SetLevelWonStatus(bool levelWon);
+    
+    /*
+     * GetContactStar
+     * Returns the body of the star that the ball has hit.
+     */
+    b2Body* GetContactStar();
+    
+    /*
+     * EraseContactStar
+     * Sets body of contact star to null.
+     */
+    void EraseContactStar();
+
+private:
+    
+    bool _levelWon;                  // Keeps track of if level is won.
+    b2Body* _contactStar;            // Body of star that has been hit.
     
 };
