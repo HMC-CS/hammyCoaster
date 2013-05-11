@@ -193,7 +193,7 @@
     // = the count in the file return
     
     
-    AbstractGameObject *createdObj = [_objectFactory objectFromString:type forWorld:_world asDefault:isDefault withSprites:[spriteArray mutableCopy]];
+    AbstractGameObject *createdObj = [_objectFactory objectFromString:type ForWorld:_world AsDefault:isDefault WithSprites:[spriteArray mutableCopy]];
     
     [_createdObjects addObject:createdObj];
     std::vector<b2Body*> bodies = [createdObj createBody:p];

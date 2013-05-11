@@ -16,7 +16,7 @@
 
 @interface AbstractGameObject : NSObject
 {
-    b2World* _world;
+    b2World* _world;                // The world in which the object resides
     b2BodyDef _bodyDef;
     b2FixtureDef _fixtureDef;
   

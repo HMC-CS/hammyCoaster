@@ -13,8 +13,16 @@
 
 @interface ObjectFactory : NSObject
 
+/* sharedObjectFactory
+ * Implements Object Factory as a singleton class
+ * Returns the object factory
+ */
 + (id) sharedObjectFactory;
 
-- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool) isDefault withSprites:(NSMutableArray*) spriteArray;
+/* objectFromString:ForWorld:AsDefault:WithSprites
+ * Creates a game object given specifications.
+ * Returns the game object.
+ */
+- (AbstractGameObject *) objectFromString:(NSString *)className ForWorld:(b2World *)world AsDefault:(bool) isDefault WithSprites:(NSMutableArray*) spriteArray;
 
 @end

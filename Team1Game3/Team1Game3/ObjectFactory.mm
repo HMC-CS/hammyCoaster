@@ -13,20 +13,26 @@
 +(id)sharedObjectFactory
 {
     static ObjectFactory *sharedObjectFactory = nil;
+    
+    // Make sure a class can't make two object factories.
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedObjectFactory = [[self alloc] init];
     });
+    
     return sharedObjectFactory;
 }
 
-- (AbstractGameObject *) objectFromString:(NSString *)className forWorld:(b2World *)world asDefault:(bool)isDefault withSprites:(NSMutableArray *)spriteArray
+
+- (AbstractGameObject *) objectFromString:(NSString *)className ForWorld:(b2World *)world AsDefault:(bool)isDefault WithSprites:(NSMutableArray *)spriteArray
 {
     Class objectClass = NSClassFromString(className);
     
     NSAssert1(objectClass, @"ObjectFactory called with invalid class name %@", className);
     
+    // Make a new object with the given parameters
     AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withSprites:(NSMutableArray*) spriteArray withTag:className];
+    
     return newObject;
 }
 
