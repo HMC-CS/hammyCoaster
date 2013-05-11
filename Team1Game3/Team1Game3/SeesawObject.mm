@@ -48,11 +48,24 @@
     b2Body* teeterBody = _world->CreateBody(&_bodyDef2);
     NSLog(@"got through next one too");
     
-    CCSprite* teeterSprite = [_sprites objectAtIndex:1];
+   /* CCSprite* teeterSprite = [_sprites objectAtIndex:1];
     float teeterHeight = teeterSprite.contentSize.height/PTM_RATIO/2;
     float teeterWidth = teeterSprite.contentSize.width/PTM_RATIO/2;
+    */
+    b2Vec2 vertices[8];
+    int num = 8;
+    vertices[0].Set(149.8f / PTM_RATIO, 12.2f / PTM_RATIO);
+    vertices[1].Set(-148.2f / PTM_RATIO, 11.9f / PTM_RATIO);
+    vertices[2].Set(-157.5f / PTM_RATIO, 5.6f / PTM_RATIO);
+    vertices[3].Set(-157.5f / PTM_RATIO, -14.2f / PTM_RATIO);
+    vertices[4].Set(-147.7f / PTM_RATIO, -21.7f / PTM_RATIO);
+    vertices[5].Set(145.2f / PTM_RATIO, -21.9f / PTM_RATIO);
+    vertices[6].Set(157.2f / PTM_RATIO, -17.9f / PTM_RATIO);
+    vertices[7].Set(159.7f / PTM_RATIO, 1.6f / PTM_RATIO);
+    
     b2PolygonShape teeterShape;
-    teeterShape.SetAsBox(teeterWidth, teeterHeight);
+    teeterShape.Set(vertices, num);
+    //teeterShape.SetAsBox(teeterWidth, teeterHeight);
     b2FixtureDef teeterFixtureDef;
     teeterFixtureDef.shape = &teeterShape;
     teeterFixtureDef.density = 1.5f;

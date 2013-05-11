@@ -39,8 +39,8 @@
     
     CCSprite* sprite = [_sprites objectAtIndex:0];
     
-    float objectWidth = sprite.contentSize.width;
-    float objectHeight = sprite.contentSize.height;
+    float objectWidth = 100;//sprite.contentSize.width;
+    float objectHeight = 32;//sprite.contentSize.height;
     
     NSLog(@"starting north shape");
     b2PolygonShape northShape;
