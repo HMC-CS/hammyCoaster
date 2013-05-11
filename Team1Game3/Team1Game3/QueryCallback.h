@@ -12,10 +12,12 @@
 class QueryCallback : public b2QueryCallback
 {
 public:
-    b2Body* m_object;
     QueryCallback(const b2Vec2& point);
+    b2AABB getAABB(float boxSize);
+    b2Body* getm_object();
     
 private:
     bool ReportFixture(b2Fixture* fixture);
     b2Vec2  m_point;
+    b2Body* m_object;
 };

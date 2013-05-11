@@ -13,7 +13,7 @@ QueryCallback::QueryCallback(const b2Vec2& point)
     m_point = point;
     m_object = nil;
 }
-    
+
 bool QueryCallback::ReportFixture(b2Fixture* fixture)
 {
     if (fixture->IsSensor()) return true; //ignore sensors
@@ -28,4 +28,20 @@ bool QueryCallback::ReportFixture(b2Fixture* fixture)
     
     // Continue the query.
     return true;
+}
+
+b2Body* QueryCallback::getm_object()
+{
+    return m_object;
+}
+
+b2AABB QueryCallback::getAABB(float boxSize)
+{
+    b2AABB aabb;
+    b2Vec2 d;
+    d.Set(boxSize, boxSize);
+    aabb.lowerBound = m_point - d;
+    aabb.upperBound = m_point + d;
+    
+    return aabb;
 }
