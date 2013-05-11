@@ -33,7 +33,6 @@
         
         _createdObjects = [NSMutableArray array];
         
-        
 		// enable events
 		self.isTouchEnabled = YES;
 		self.isAccelerometerEnabled = YES;
@@ -141,6 +140,8 @@
     // ramp definitions
     rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(5*PTM_RATIO), 410/PTM_RATIO));
     rampBody->CreateFixture(&rampShapeDef);
+    
+    _worldManager = [[WorldManager alloc] initWithWorld:_world];
     
 }
 
@@ -310,17 +311,20 @@
 {
     NSAssert(starBody, @"Star body in hitStar in Physics Layer is null.");
     
-    // delete the star sprite
-    AbstractGameObject* starBodyObject = (__bridge AbstractGameObject*)(starBody->GetUserData());
-    CFBridgingRetain(starBodyObject);
-    CCSprite* sprite = [[starBodyObject getSprites] objectAtIndex:0];
-    [self removeChild: sprite cleanup:NO]; //cleanup removed
+    [self deleteObjectWithBody:starBody];
     
-    // delete the star body
-    // (this doesn't actually happen 'till end of collision because
-    //  hitStar is called inside the update function, but it doesn't seem to matter.)
-    //_world->DestroyBody(starBody);
-    _bodiesToDestroy.push_back(starBody);
+//    // delete the star sprite
+//    AbstractGameObject* starBodyObject = (__bridge AbstractGameObject*)(starBody->GetUserData());
+//    CFBridgingRetain(starBodyObject);
+//    CCSprite* sprite = [[starBodyObject getSprites] objectAtIndex:0];
+//    [self removeChild: sprite cleanup:NO]; //cleanup removed
+//    
+//    // delete the star body
+//    // (this doesn't actually happen 'till end of collision because
+//    //  hitStar is called inside the update function, but it doesn't seem to matter.)
+//    //_world->DestroyBody(starBody);
+//    //_bodiesToDestroy.push_back(starBody);
+//    [_worldManager destroyBody:starBody];
     
     [self updateStarCount];
 }
@@ -489,7 +493,7 @@
         //body->SetAwake(false);
         //_world->DestroyBody(body);
         //body = NULL;
-        _bodiesToDestroy.push_back(body);
+        [_worldManager destroyBody:body];
         ++j;
     }
     //NSLog(@"bodies destroyed successfully");
@@ -543,35 +547,37 @@
         _contactListener->_contactStar = NULL;
     }
     
-    for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
-    {
-        b2Body* body = *i;
-        _world->DestroyBody(body);
-    }
-    _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
+//    for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
+//    {
+//        b2Body* body = *i;
+//        _world->DestroyBody(body);
+//    }
+//    _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
     
-    [self applyMagnets];
+//    [self applyMagnets];
+//    
+//    for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext())
+//    {
+//        AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
+//        CFBridgingRetain(object);
+//        NSString* type = object._tag;
+//        if ([type isEqualToString:@"SeesawObject"]) {
+//            const float springTorqForce = 1.0f;
+//            float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
+//            if ( jointAngle != 0 ) {
+//                float torque = fabs(jointAngle * springTorqForce * 50);
+//                if (jointAngle > 0.0)
+//                {
+//                    joint->GetBodyA()->ApplyTorque(-torque);
+//                } else {
+//                    joint->GetBodyA()->ApplyTorque(torque);
+//                }
+//            }
+//            
+//        }
+//    }
     
-    for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext())
-    {
-        AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
-        CFBridgingRetain(object);
-        NSString* type = object._tag;
-        if ([type isEqualToString:@"SeesawObject"]) {
-            const float springTorqForce = 1.0f;
-            float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
-            if ( jointAngle != 0 ) {
-                float torque = fabs(jointAngle * springTorqForce * 50);
-                if (jointAngle > 0.0)
-                {
-                    joint->GetBodyA()->ApplyTorque(-torque);
-                } else {
-                    joint->GetBodyA()->ApplyTorque(torque);
-                }
-            }
-            
-        }
-    }
+    [_worldManager update];
 }
 
 
@@ -598,7 +604,7 @@
         //If the touch is in the inventory, add an object where the touch is
         if (touchLocation.x < 0) {
             NSLog(@"Touch in inventory");
-            NSString* type = [_target performSelector:_selector1];
+            NSString* type = [self getObjectType];
             if (![type isEqualToString:@"None"]) {
                 [self addNewSpriteOfType:type AtPosition:touchLocation WithRotation:0.0 AsDefault:false];
             }

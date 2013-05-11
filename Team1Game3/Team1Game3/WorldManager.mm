@@ -15,12 +15,9 @@
 
 @implementation WorldManager
 
--(id) initWithWorld: (b2World*) world andSize:(CGSize)size andPosition:(CGPoint)position
+-(id) initWithWorld: (b2World*) world
 {
     if (self = [super init]) {
-        
-        [self setContentSize:size];
-        [self setPosition:position];
         _world = world;
     }
     
@@ -115,11 +112,9 @@
 }
 
 
--(void) setContactListener:(ContactListener *)contactListener andObjectFactory:(ObjectFactory *) objectFactory andSize: (CGSize) size
+-(void) setObjectFactory:(ObjectFactory *) objectFactory 
 {
-    _contactListener = contactListener;
     _objectFactory = objectFactory;
-    _parentSize = size;
 }
 
 -(void) destroyBody:(b2Body *)body
@@ -127,84 +122,10 @@
     _bodiesToDestroy.push_back(body);
 }
 
--(void) initPhysics
-{
-	
-	CGSize size = _parentSize;
-	
-//	b2Vec2 gravity;
-//	gravity.Set(0.0f, -10.0f);
-//	_world = new b2World(gravity);
-	
-	// Do we want to let bodies sleep?
-	_world->SetAllowSleeping(true);
-	
-	_world->SetContinuousPhysics(true);
-    
-    // For collision callbacks
-    _world->SetContactListener(_contactListener);
-	
-	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
-    
-    //#ifdef DEBUG_DRAW
-	_world->SetDebugDraw(m_debugDraw);
-    //#endif
-	
-	uint32 flags = 0;
-	flags += b2Draw::e_shapeBit;
-	m_debugDraw->SetFlags(flags);
-	
-    NSLog(@"setting ground body def");
-    
-	// Define the ground body.
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0, 0); // bottom-left corner
-	
-	// Call the body factory which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	b2Body* groundBody = _world->CreateBody(&groundBodyDef);
-	
-	// Define the ground box shape.
-	b2EdgeShape groundBox;
-	
-	// bottom
-	groundBox.Set(b2Vec2(0,0), b2Vec2(size.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// top
-	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// left
-	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(0,0));
-	groundBody->CreateFixture(&groundBox,0);
-	
-	// right
-	groundBox.Set(b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
-    
-    
-    /* hacked default ramps
-     * ---------------------------------------------------------------------- */
-    
-    // Starting ramp
-    b2BodyDef rampBodyDef;
-    rampBodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
-    
-    b2Body *rampBody = _world->CreateBody(&rampBodyDef);
-    b2EdgeShape rampEdge;
-    b2FixtureDef rampShapeDef;
-    rampShapeDef.shape = &rampEdge;
-    
-    // ramp definitions
-    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(5*PTM_RATIO), 410/PTM_RATIO));
-    rampBody->CreateFixture(&rampShapeDef);
-    
-}
-
 -(void) update
 {
+    [self applyMagnets];
+    [self springSeesaw];
     
     for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
     {

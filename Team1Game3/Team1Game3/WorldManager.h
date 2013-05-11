@@ -6,8 +6,6 @@
 //  Copyright 2013 __MyCompanyName__. All rights reserved.
 //
 
-#import "CCLayer.h"
-
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
@@ -17,7 +15,7 @@
 
 #import "GLES-Render.h"
 
-@interface WorldManager : CCLayer {
+@interface WorldManager : NSObject {
     
     GLESDebugDraw* m_debugDraw;         // debug draw
     
@@ -31,12 +29,12 @@
     
 }
 
--(id) initWithWorld: (b2World*) world andSize:(CGSize)size andPosition:(CGPoint)position;
+-(id) initWithWorld: (b2World*) world;
 -(void) applyMagnets;
 -(void) springSeesaw;
 -(void) initPhysics;
 
--(void) setContactListener:(ContactListener *)contactListener andObjectFactory:(ObjectFactory *) objectFactory andSize: (CGSize) size;
+-(void) setObjectFactory:(ObjectFactory *) objectFactory;
 
 -(void) destroyBody: (b2Body*) body;
 
