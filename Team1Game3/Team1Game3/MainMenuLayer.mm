@@ -17,36 +17,32 @@
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
 	MainMenuLayer *layer = [MainMenuLayer node];
 	
-	// add layer as a child to scene
+	// Add layer as a child to scene
 	[scene addChild: layer];
     
-	// return the scene
 	return scene;
 }
 
 -(id) init
 {
 	if( (self=[super init])) {
-		
-		// enable events
-        
+
         CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		self.isTouchEnabled = YES;
 		
-		// create menu button
+		// Create menu buttons
 		[self createMenu];
         
+        // Display game title
         CCLabelTTF* titleLabel = [CCLabelTTF labelWithString:@"Hamster Coaster!" fontName:@"Marker Felt" fontSize:72];
         titleLabel.position = CGPointMake(size.width/2, 3*size.height/4);
         [self addChild:titleLabel];
         
+        // Sound buttons
         CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
         [self addChild:soundMenu z:1];
     }
@@ -54,6 +50,11 @@
 }
 
 
+/* ////////////////////////////// Private Functions ////////////////////////////// */
+
+/* createMenu
+ * Helper function to create the menu for the scene.
+ */
 -(void) createMenu
 {
 	[CCMenuItemFont setFontSize:35];

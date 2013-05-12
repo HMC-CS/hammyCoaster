@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface MainMenuLayer : CCLayer {
-    
-}
+@interface MainMenuLayer : CCLayer
+
 
 /* scene:
  * returns a CCScene that contains the MainMenuLayer as the only child 

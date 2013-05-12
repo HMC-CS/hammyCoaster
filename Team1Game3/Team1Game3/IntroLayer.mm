@@ -16,10 +16,10 @@
 
 #pragma mark - IntroLayer
 
-// IntroLaye implementation
+// IntroLayer implementation
 @implementation IntroLayer
 
-// Helper class method that creates a Scene with the IntroLaye as the only child.
+// Helper class method that creates a Scene with the IntroLayer as the only child.
 +(CCScene *) scene
 {
 	// 'scene' is an autorelease object.
