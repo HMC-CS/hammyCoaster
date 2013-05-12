@@ -14,9 +14,10 @@
 
 -(std::vector<b2Body*>)createBody:(CGPoint)location {
     
-    _bodyDef.type = b2_staticBody;
-    _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
-    b2Body* circleBody = _world->CreateBody(&_bodyDef);
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
+    bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    b2Body* circleBody = _world->CreateBody(&bodyDef);
     
     CCSprite* circleSprite = [_sprites objectAtIndex:0];
     float circleHeight = circleSprite.contentSize.height/PTM_RATIO/2 * 0.63;
@@ -38,14 +39,15 @@
     
     b2Vec2 anchor1 = circleBody->GetWorldCenter();
     anchor1.y += 26.0/(PTM_RATIO*2.0);
-    _bodyDef2.type = b2_dynamicBody;
-    _bodyDef2.position.Set(anchor1.x, anchor1.y);
+    b2BodyDef bodyDef2;
+    bodyDef2.type = b2_dynamicBody;
+    bodyDef2.position.Set(anchor1.x, anchor1.y);
     
     
     NSLog(@"finished second body Def");
     
     // TODO: this line is causing the code to crash!  figure out why?
-    b2Body* teeterBody = _world->CreateBody(&_bodyDef2);
+    b2Body* teeterBody = _world->CreateBody(&bodyDef2);
     NSLog(@"got through next one too");
     
    /* CCSprite* teeterSprite = [_sprites objectAtIndex:1];

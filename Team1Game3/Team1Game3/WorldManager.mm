@@ -33,11 +33,11 @@
     int magnetConstant = 400000000;
     //find all the magnets
     for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()){
-        if ([((__bridge AbstractGameObject*)(magnet->GetUserData()))._tag isEqualToString:@"MagnetObject"])
+        if ([((__bridge AbstractGameObject*)(magnet->GetUserData())).type isEqualToString:@"MagnetObject"])
         {
             //get the ball's body
             for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()){
-                if ([((__bridge AbstractGameObject*)(ball->GetUserData()))._tag isEqualToString:@"BallObject"])
+                if ([((__bridge AbstractGameObject*)(ball->GetUserData())).type isEqualToString:@"BallObject"])
                 {
                     
                     // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
@@ -93,7 +93,7 @@
     {
         AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
         CFBridgingRetain(object);
-        NSString* type = object._tag;
+        NSString* type = object.type;
         if ([type isEqualToString:@"SeesawObject"]) {
             const float springTorqForce = 1.0f;
             float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body

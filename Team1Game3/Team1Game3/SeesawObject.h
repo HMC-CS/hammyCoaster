@@ -8,9 +8,7 @@
 
 #import "AbstractGameObject.h"
 
-@interface SeesawObject : AbstractGameObject {
-    
-    b2BodyDef _bodyDef2;
-}
+@interface SeesawObject : AbstractGameObject
+
 
 @end

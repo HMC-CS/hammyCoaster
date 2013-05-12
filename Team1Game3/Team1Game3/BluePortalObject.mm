@@ -12,10 +12,10 @@
 
 - (std::vector<b2Body*>)createBody:(CGPoint)location {
     
-    //b2BodyDef bluePortalBodyDef;
-    _bodyDef.type = b2_staticBody;
-    _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
-    b2Body *bluePortal_Body = _world->CreateBody(&_bodyDef);
+    b2BodyDef bodyDef;;
+    bodyDef.type = b2_staticBody;
+    bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    b2Body *bluePortal_Body = _world->CreateBody(&bodyDef);
     
     b2Vec2 vertices[4];
     //row 1, col 1
@@ -29,25 +29,25 @@
     b2PolygonShape bluePortalShape;
     bluePortalShape.Set(vertices, num);
     
-    //b2FixtureDef _fixtureDef;
-    _fixtureDef.shape = &bluePortalShape; // Set the line shape
-    _fixtureDef.density = 100.0f; // Set the density
-    _fixtureDef.friction = 0.5f; // Set the friction
-    _fixtureDef.restitution = 0.1f; // Set the restitution
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &bluePortalShape; // Set the line shape
+    fixtureDef.density = 100.0f; // Set the density
+    fixtureDef.friction = 0.5f; // Set the friction
+    fixtureDef.restitution = 0.1f; // Set the restitution
     
     // Add the shape to the body
-    bluePortal_Body->CreateFixture(&_fixtureDef);
+    bluePortal_Body->CreateFixture(&fixtureDef);
     bluePortal_Body->SetUserData(self);
     //b2Fixture->SetUserData("bluePortal");[/code]
     //b2CircleShape circle;
     //circle.m_radius = 26.0/PTM_RATIO;
     
-    //_fixtureDef.shape = &circle;
-    //_fixtureDef.density = 1.0f;
-    //_fixtureDef.friction = 0.4f;
-    //_fixtureDef.restitution = 0.3f;
+    //fixtureDef.shape = &circle;
+    //fixtureDef.density = 1.0f;
+    //fixtureDef.friction = 0.4f;
+    //fixtureDef.restitution = 0.3f;
     
-    //body->CreateFixture(&_fixtureDef);
+    //body->CreateFixture(&fixtureDef);
     
     _bodies.push_back(bluePortal_Body);
     return _bodies;

@@ -217,7 +217,7 @@
     b2Body* theBody = *(bodies.begin());
     // added bridge cast
     //if (![((__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
-    if (![((__bridge AbstractGameObject*)(theBody->GetUserData()))._tag isEqualToString:@"BallObject"])
+    if (![((__bridge AbstractGameObject*)(theBody->GetUserData())).type isEqualToString:@"BallObject"])
     {
         for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
         {
@@ -271,20 +271,20 @@
     for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext()){
         // added bridge cast
         //if ([(__bridge AbstractGameObject*) static_cast<AbstractGameObject*>(b->GetUserData())._tag isEqualToString:@"BallObject"])
-        if ([((__bridge AbstractGameObject*)(b->GetUserData()))._tag isEqualToString:@"BallObject"])
+        if ([((__bridge AbstractGameObject*)(b->GetUserData())).type isEqualToString:@"BallObject"])
         {
             AbstractGameObject* a = (__bridge AbstractGameObject*)(b->GetUserData());
             CFBridgingRetain(a);
-            CCSprite* sprite = [[a getSprites] objectAtIndex:0];
+            CCSprite* sprite = [a.sprites objectAtIndex:0];
             [self removeChild: sprite cleanup:NO]; // cleanup removed
             [self deleteObjectWithBody:b];
         }
         
-        if ([((__bridge AbstractGameObject*)(b->GetUserData()))._tag isEqualToString:@"StarObject"])
+        if ([((__bridge AbstractGameObject*)(b->GetUserData())).type isEqualToString:@"StarObject"])
         {
             AbstractGameObject* a = (__bridge AbstractGameObject*)(b->GetUserData());
             CFBridgingRetain(a);
-            CCSprite* sprite = [[a getSprites] objectAtIndex:0];
+            CCSprite* sprite = [a.sprites objectAtIndex:0];
             [self removeChild: sprite cleanup:NO]; // cleanup removed
             [self deleteObjectWithBody:b];
         }
@@ -316,19 +316,6 @@
     
     [self deleteObjectWithBody:starBody];
     
-    //    // delete the star sprite
-    //    AbstractGameObject* starBodyObject = (__bridge AbstractGameObject*)(starBody->GetUserData());
-    //    CFBridgingRetain(starBodyObject);
-    //    CCSprite* sprite = [[starBodyObject getSprites] objectAtIndex:0];
-    //    [self removeChild: sprite cleanup:NO]; //cleanup removed
-    //
-    //    // delete the star body
-    //    // (this doesn't actually happen 'till end of collision because
-    //    //  hitStar is called inside the update function, but it doesn't seem to matter.)
-    //    //_world->DestroyBody(starBody);
-    //    //_bodiesToDestroy.push_back(starBody);
-    //    [_worldManager destroyBody:starBody];
-    
     [self updateStarCount];
 }
 
@@ -342,11 +329,11 @@
     int magnetConstant = 400000000;
     //find all the magnets
     for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()){
-        if ([((__bridge AbstractGameObject*)(magnet->GetUserData()))._tag isEqualToString:@"MagnetObject"])
+        if ([((__bridge AbstractGameObject*)(magnet->GetUserData())).type isEqualToString:@"MagnetObject"])
         {
             //get the ball's body
             for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()){
-                if ([((__bridge AbstractGameObject*)(ball->GetUserData()))._tag isEqualToString:@"BallObject"])
+                if ([((__bridge AbstractGameObject*)(ball->GetUserData())).type isEqualToString:@"BallObject"])
                 {
                     
                     // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
@@ -463,11 +450,11 @@
     CFBridgingRetain(object);
     
     
-    NSString* objectType = object._tag;
+    NSString* objectType = object.type;
     [self objectDeletedOfType:objectType];
-    std::vector<b2Body*> bodies = object->_bodies;
+    std::vector<b2Body*> bodies = object.bodies;
     
-    NSMutableArray* objectSprites = [object getSprites];
+    NSMutableArray* objectSprites = object.sprites;
     
     int j=0;
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
@@ -598,7 +585,7 @@
             CFBridgingRetain(bodyObject);
             
             // If the object is draggable, set up dragging for that object
-            if (!bodyObject->_isDefault && _editMode) {
+            if (!bodyObject.isDefault && _editMode) {
                 
                 // Save the body and its location
                 _initialBodyPosition = body->GetPosition();
@@ -610,10 +597,10 @@
                 }
                 
                 // Save if each object body is dynamic or static
-                [self getMoveableDynamicStatusForBodies:bodyObject->_bodies];
+                [self getMoveableDynamicStatusForBodies:bodyObject.bodies];
                 
                 // Clicking on the ball resets the ball
-            } else if ([bodyObject->_tag isEqualToString:@"BallObject"]) {
+            } else if ([bodyObject.type isEqualToString:@"BallObject"]) {
                 [self resetBall];
                 [_target performSelector:_selector5];
             }
@@ -641,7 +628,7 @@
             // Move each body
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
             CFBridgingRetain(bodyObject);
-            std::vector<b2Body*> bodies = bodyObject->_bodies;
+            std::vector<b2Body*> bodies = bodyObject.bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
                 b2Body* b = *i;
@@ -660,7 +647,7 @@
             // Rotate each body
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
             CFBridgingRetain(bodyObject);
-            std::vector<b2Body*> bodies = bodyObject->_bodies;
+            std::vector<b2Body*> bodies = bodyObject.bodies;
             for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
             {
                 b2Body* b = *i;
@@ -798,7 +785,7 @@
 {
 //    NSLog([[NSString alloc] initWithFormat:@"Touch at location: %f, %f", location.x, location.y]);
     
-    std::vector<b2Body*> bodies = bodyObject->_bodies;
+    std::vector<b2Body*> bodies = bodyObject.bodies;
     
     bool deleteObject = false;
     bool bounceBackObject = false;
@@ -875,7 +862,7 @@
         [self deleteObjectWithBody:body];
     } else {
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
-        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData()))->_bodies;
+        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
         for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
             // TODO: THIS IS WRONG RIGHT NOW
             //NSLog(@"Body number %d", ++j);

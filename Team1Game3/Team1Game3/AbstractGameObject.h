@@ -17,23 +17,19 @@
 @interface AbstractGameObject : NSObject
 {
     b2World* _world;                // The world in which the object resides
-    b2BodyDef _bodyDef;
-    b2FixtureDef _fixtureDef;
-  
     
-    // TODO: we will fix these public variables for v1!
-    @public
     NSMutableArray* _sprites;
     std::vector<b2Body*> _bodies;
-    NSString* _tag;
+    NSString* _type;
     bool _isDefault;
 }
 
--(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprites:(NSMutableArray*) spriteArray withTag:(NSString*) tag;
--(NSMutableArray *) getSprites;
--(std::vector<b2Body*>) createBody:(CGPoint) location;
+@property(retain, readonly) NSMutableArray* sprites;
+@property(readonly) std::vector<b2Body*> bodies;
+@property(retain, readonly) NSString* type;
+@property(readonly) bool isDefault;
 
-@property(retain, readonly) NSString* _tag;
-//@property(readonly) bool _isDefault;
+-(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprites:(NSMutableArray*) spriteArray withType:(NSString*) type;
+-(std::vector<b2Body*>) createBody:(CGPoint) location;
 
 @end

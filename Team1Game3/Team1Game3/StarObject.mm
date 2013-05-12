@@ -14,9 +14,10 @@
 
 - (std::vector<b2Body*>)createBody:(CGPoint)location {
     
-    _bodyDef.type = b2_staticBody;
-    _bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
-    b2Body *star_Body = _world->CreateBody(&_bodyDef);
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_staticBody;
+    bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
+    b2Body *star_Body = _world->CreateBody(&bodyDef);
     
     b2Vec2 vertices[5];
     int num = 5;
@@ -29,12 +30,12 @@
     b2PolygonShape starShape;
     starShape.Set(vertices, num);
     
-    //b2FixtureDef _fixtureDef;
-    _fixtureDef.shape = &starShape; // Set the line shape
-    _fixtureDef.isSensor = TRUE; // make the star a sensor (no interaction with other bodies)
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &starShape; // Set the line shape
+    fixtureDef.isSensor = TRUE; // make the star a sensor (no interaction with other bodies)
     
     // Add the shape to the body
-    star_Body->CreateFixture(&_fixtureDef);
+    star_Body->CreateFixture(&fixtureDef);
     star_Body->SetUserData(self);
  
     _bodies.push_back(star_Body);

@@ -37,8 +37,8 @@ void ContactListener::BeginContact(b2Contact* contact)
     if (body1Object && body2Object)
     {
         // Find the object types
-        NSString* body1Type = body1Object->_tag;
-        NSString* body2Type = body2Object->_tag;
+        NSString* body1Type = body1Object.type;
+        NSString* body2Type = body2Object.type;
         
         // Sound effects for ball collisions
         if ([body1Type isEqualToString:@"BallObject"] || [body2Type isEqualToString:@"BallObject"]) {
