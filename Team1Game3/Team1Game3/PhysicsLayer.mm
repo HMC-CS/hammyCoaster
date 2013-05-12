@@ -567,72 +567,11 @@
 }
 
 
-//-----TOUCHING WITH DRAGGING-----//
+//-----TOUCH HANDLING-----//
 
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
-}
-
--(CGPoint) getTouchLocation:(UITouch *) touch
-{
-    CGPoint touchLocation = [touch locationInView:[touch view]];
-    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
-    touchLocation = [self convertToNodeSpace:touchLocation];
-    
-    return touchLocation;
-}
-
--(b2Body*) getBodyAtLocation:(b2Vec2) location WithAABBSize:(float) boxSize
-{
-    QueryCallback callback(_initialTouchPosition);
-    b2AABB aabb = callback.getAABB(0.001f);
-    _world->QueryAABB(&callback, aabb);
-    
-    return callback.getm_object();
-}
-
--(void) addTrash
-{
-    _trash = [CCSprite spriteWithFile:@"trash2.png"];
-    _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
-    [self addChild:_trash z:10000];
-}
-
--(void) setMoveableDynamicStatusForBodies:(std::vector<b2Body*>) bodies
-{
-    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
-        b2Body* loopBody = *i;
-        
-        if (loopBody->GetType() == b2_dynamicBody) {
-            [_moveableDynamicStatus addObject:@"dynamic"];
-            loopBody->SetType(b2_staticBody);
-        } else {
-            [_moveableDynamicStatus addObject:@"static"];
-        }
-        
-        loopBody->SetActive(false);
-    }
-}
-
--(bool) isTouchInInventory:(CGPoint) touchLocation
-{
-    return touchLocation.x < 0;
-}
-
--(float) calculateTouchAngle
-{
-    CGPoint point = ccpSub([_secondTouch locationInView:[_secondTouch view]], [_firstTouch locationInView:[_firstTouch view]]);
-    CGPoint xaxis = CGPointMake(-1, 0);
-    float touchAngle;
-    if (point.y >= 0) {
-        touchAngle = ccpAngle(point, xaxis);
-    } else {
-        point = CGPointMake(point.x, -point.y);
-        touchAngle = -ccpAngle(point, xaxis);
-    }
-    
-    return touchAngle;
 }
 
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -666,12 +605,12 @@
                 _currentMoveableBody = body;
                 
                 // Unless the touch is in the inventory, turn the inventory into the trash can
-                if (![self isTouchInInventory:touchLocation]) {
+                if (![self pointInInventory:touchLocation]) {
                     [self addTrash];
                 }
                 
                 // Save if each object body is dynamic or static
-                [self setMoveableDynamicStatusForBodies:bodyObject->_bodies];
+                [self getMoveableDynamicStatusForBodies:bodyObject->_bodies];
                 
                 // Clicking on the ball resets the ball
             } else if ([bodyObject->_tag isEqualToString:@"BallObject"]) {
@@ -746,122 +685,198 @@
 
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touch == _firstTouch) {
-        _firstTouch = NULL;
-        _secondTouch = NULL;
-        [self removeChild:_trash cleanup:NO];
+        
         CGPoint location = [touch locationInView: [touch view]];
         
+        // If we were moving a body, maybe delete or bounce back
         if (_currentMoveableBody != NULL) {
-            //            location = [[CCDirector sharedDirector] convertToGL: location];
-            //            location = [self convertToNodeSpace:location];
-            location = [self getTouchLocation:touch];
             
+            location = [self getTouchLocation:touch];
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
             CFBridgingRetain(bodyObject);
-            std::vector<b2Body*> bodies = bodyObject->_bodies;
             
-            bool objectModified = false;
-            for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-            {
-                b2Body* body = *i;
-                
-                b2Fixture* f = body->GetFixtureList();
-                for (f= body->GetFixtureList(); f != NULL; f = f->GetNext())
-                {
-                    b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-                    int count = polygonShape->GetVertexCount();
-                    
-                    CGFloat offset = self.boundingBox.origin.x;
-                    
-                    
-                    for(int i = 0; i < count; i++)
-                    {
-                        CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
-                        CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
-                        CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
-                        CGPoint boundPoint = CGPointMake(point.x + location.x + offset, point.y + location.y);
-                        boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
-                        
-                        if ( !CGRectContainsPoint(self.boundingBox, boundPoint))
-                        {
-                            if (boundPoint.x < self.boundingBox.origin.x && boundPoint.y > self.boundingBox.size.height/5 && boundPoint.y < self.boundingBox.size.height*4/5)
-                            {
-                                NSLog(@"bound point is %f", boundPoint.y);
-                                NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
-                                // add an array here to get the body from ?
-                                //[_objectArray addObject:body];
-                                if (!objectModified) {
-                                    [self deleteObjectWithBody:body];
-                                }
-                                objectModified = true;
-                                break;
-                            } else {
-                                [self bounceBackObjectWithBody:body];
-                                objectModified = true;
-                                NSLog(@"bound point is %f", boundPoint.y);
-                                NSLog(@"boundingBox height is %f", self.boundingBox.size.height);
-                                break;
-                                NSLog(@"Body dragged into walls");
-                            }
-                        }
-                        
-                        
-                        b2Vec2 vertex = b2Vec2(xCoordinate + location.x/PTM_RATIO, yCoordinate + location.y/PTM_RATIO);
-                        
-                        QueryCallback callback(vertex);
-                        b2AABB aabb = callback.getAABB(10.0f);
-                        _world->QueryAABB(&callback, aabb);
-                        
-                        b2Body* b = callback.getm_object();
-                        
-                        if (b && (b != body)) {
-                            [self bounceBackObjectWithBody:body];
-                            objectModified = true;
-                        }
-                        
-                    }
-                    
-                    if (objectModified) {
-                        break;
-                    }
-                    
-                }
-                
-                int statusCounter = 0;
-                for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-                {
-                    b2Body* body = *i;
-                    if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"])
-                    {
-                        body->SetType(b2_dynamicBody);
-                    }
-                    body->SetActive(true);
-                    ++statusCounter;
-                }
-                
-                // Make everything static
-                [_moveableDynamicStatus removeAllObjects];
-                _currentMoveableBody = NULL;
-            }
+            [self endedTouchAtLocation:location WithObject:bodyObject];
+            
+            // Reset everything for touching
+            _firstTouch = NULL;
+            _secondTouch = NULL;
+            [self removeChild:_trash cleanup:NO];
+            [_moveableDynamicStatus removeAllObjects];
+            _currentMoveableBody = NULL;
         } else if (touch == _secondTouch) {
             _secondTouch = NULL;
         }
     }
 }
 
+//----TOUCH HELPER FUNCTIONS----//
+
+-(CGPoint) getTouchLocation:(UITouch *) touch
+{
+    CGPoint touchLocation = [touch locationInView:[touch view]];
+    touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
+    touchLocation = [self convertToNodeSpace:touchLocation];
+    
+    return touchLocation;
+}
+
+-(b2Body*) getBodyAtLocation:(b2Vec2) location WithAABBSize:(float) boxSize
+{
+    QueryCallback callback(_initialTouchPosition);
+    b2AABB aabb = callback.getAABB(0.001f);
+    _world->QueryAABB(&callback, aabb);
+    
+    return callback.getm_object();
+}
+
+-(void) addTrash
+{
+    _trash = [CCSprite spriteWithFile:@"trash2.png"];
+    _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
+    [self addChild:_trash z:10000];
+}
+
+-(void) getMoveableDynamicStatusForBodies:(std::vector<b2Body*>) bodies
+{
+    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
+        b2Body* loopBody = *i;
+        
+        if (loopBody->GetType() == b2_dynamicBody) {
+            [_moveableDynamicStatus addObject:@"dynamic"];
+            loopBody->SetType(b2_staticBody);
+        } else {
+            [_moveableDynamicStatus addObject:@"static"];
+        }
+        
+        loopBody->SetActive(false);
+    }
+}
+
+-(void) setMoveableDynamicStatusForBodies:(std::vector<b2Body*>) bodies
+{
+    int statusCounter = 0;
+    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+    {
+        b2Body* body = *i;
+        if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"])
+        {
+            body->SetType(b2_dynamicBody);
+        }
+        body->SetActive(true);
+        ++statusCounter;
+    }
+}
+
+-(bool) pointInInventory:(CGPoint) point
+{
+    return point.x < 0;
+}
+
+-(bool) pointInTrash: (CGPoint) point
+{
+    return (point.x < self.boundingBox.origin.x &&
+            point.y > self.boundingBox.size.height/5 &&
+            point.y < self.boundingBox.size.height*4/5);
+}
+
+-(float) calculateTouchAngle
+{
+    CGPoint point = ccpSub([_secondTouch locationInView:[_secondTouch view]], [_firstTouch locationInView:[_firstTouch view]]);
+    CGPoint xaxis = CGPointMake(-1, 0);
+    float touchAngle;
+    if (point.y >= 0) {
+        touchAngle = ccpAngle(point, xaxis);
+    } else {
+        point = CGPointMake(point.x, -point.y);
+        touchAngle = -ccpAngle(point, xaxis);
+    }
+    
+    return touchAngle;
+}
+
+-(void) endedTouchAtLocation: (CGPoint) location WithObject: (AbstractGameObject*) bodyObject
+{
+//    NSLog([[NSString alloc] initWithFormat:@"Touch at location: %f, %f", location.x, location.y]);
+    
+    std::vector<b2Body*> bodies = bodyObject->_bodies;
+    
+    bool deleteObject = false;
+    bool bounceBackObject = false;
+    
+    // Iterate through all the bodies in the object
+    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
+        b2Body* body = *i;
+        
+        // Iterate through all the fixtures in each body
+        for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+            int count = polygonShape->GetVertexCount();
+            
+            CGFloat offset = self.boundingBox.origin.x;
+            
+            // Iterate through all the vertices in each fixture
+            for (int i = 0; i < count; i++) {
+                // Get the location of the vertex
+//                b2Vec2 vertexPoint = polygonShape->GetVertex(i);
+//                CGPoint boundPoint2 = ccp(vertexPoint.x, vertexPoint.y);
+//                boundPoint2 = [[CCDirector sharedDirector] convertToGL: boundPoint2];
+//                
+//                NSLog([[NSString alloc] initWithFormat:@"Bound point 2: %f, %f", boundPoint2.x, boundPoint2.y]);
+                
+                
+                CGFloat xCoordinate =(CGFloat) (&polygonShape->GetVertex(i))->x;
+                CGFloat yCoordinate = (CGFloat) (&polygonShape->GetVertex(i))->y;
+                CGPoint point = ccpMult(CGPointMake(xCoordinate, yCoordinate), PTM_RATIO);
+                CGPoint boundPoint = CGPointMake(point.x + location.x + offset, point.y + location.y);
+                boundPoint = [[CCDirector sharedDirector] convertToGL: boundPoint];
+                
+//                NSLog([[NSString alloc] initWithFormat:@"Bound point: %f, %f", boundPoint.x, boundPoint.y]);
+                
+                // If the point is in the inventory
+                if ( !CGRectContainsPoint(self.boundingBox, boundPoint)) {
+                    if ([self pointInTrash:boundPoint]) {
+                        deleteObject = true;
+                        break;
+                    } else {
+                        bounceBackObject = true;
+                        break;
+                    }
+                }
+                
+                
+                b2Vec2 vertex = b2Vec2(xCoordinate + location.x/PTM_RATIO, yCoordinate + location.y/PTM_RATIO);
+                b2Body* b = [self getBodyAtLocation:vertex WithAABBSize:10.0f];
+                
+                if (b && (b != body)) {
+                    bounceBackObject = true;
+                    break;
+                }
+                
+            }
+            
+            if (deleteObject || bounceBackObject) {
+                break;
+            }
+        }
+        
+        if (deleteObject) {
+            [self deleteObjectWithBody:_currentMoveableBody];
+        } else if (bounceBackObject) {
+            [self bounceBackObjectWithBody:_currentMoveableBody];
+        }
+        
+        [self setMoveableDynamicStatusForBodies:bodies];
+    }
+}
+
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
-    if (_initialBodyPosition.x < 0)
-    {
+    if (_initialBodyPosition.x < 0) {
         [self deleteObjectWithBody:body];
-    }
-    else
-    {
+    } else {
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData()))->_bodies;
-        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-        {
-            
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
             // TODO: THIS IS WRONG RIGHT NOW
             //NSLog(@"Body number %d", ++j);
             b2Body* body = *i;
@@ -878,20 +893,16 @@
 {
 	delete m_debugDraw;
 	m_debugDraw = NULL;
-    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
-    {
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext()) {
         b->SetAwake(false);
     }
     
-    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext())
-    {
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext()) {
         _world->DestroyBody(b);
     }
     
     delete _world;
 	_world = NULL;
-    
-	
 }
 
 

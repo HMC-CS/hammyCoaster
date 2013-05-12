@@ -111,7 +111,6 @@
  */
 -(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    NSLog(@"Inventory touch began");
     
     CGPoint location = [touch locationInView:[touch view]];
     
