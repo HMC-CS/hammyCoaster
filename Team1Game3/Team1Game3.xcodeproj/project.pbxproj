@@ -12,6 +12,7 @@
 		61772331170D59D5004F545F /* RampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61772330170D59D5004F545F /* RampObjectIconSelected.png */; };
 		619EE6C91728F0440005D077 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 619EE6C81728F0440005D077 /* lock.png */; };
 		619EE6D01729DD880005D077 /* trashCan.png in Resources */ = {isa = PBXBuildFile; fileRef = 619EE6CF1729DD880005D077 /* trashCan.png */; };
+		61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */; };
 		61DF4BEB170E2FD2002187F6 /* StarObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */; };
 		61DF4BEC170E2FD2002187F6 /* StarObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */; };
 		9CE768D916F9B1FB00EE241F /* StarObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D516F9B1FB00EE241F /* StarObject-hd.png */; };
@@ -279,6 +280,8 @@
 		61772330170D59D5004F545F /* RampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObjectIconSelected.png; sourceTree = "<group>"; };
 		619EE6C81728F0440005D077 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		619EE6CF1729DD880005D077 /* trashCan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashCan.png; sourceTree = "<group>"; };
+		61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteResizingFunctions.h; path = ../SpriteResizingFunctions.h; sourceTree = "<group>"; };
+		61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SpriteResizingFunctions.mm; path = ../SpriteResizingFunctions.mm; sourceTree = "<group>"; };
 		61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIcon.png; sourceTree = "<group>"; };
 		61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIconSelected.png; sourceTree = "<group>"; };
 		9CE768D516F9B1FB00EE241F /* StarObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-hd.png"; sourceTree = "<group>"; };
@@ -859,6 +862,8 @@
 				D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */,
 				D882076A1713A49600D74162 /* GameplayLayer.h */,
 				D882076B1713A49600D74162 /* GameplayLayer.mm */,
+				61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */,
+				61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */,
 				D8E83EBF16EAC81B000284EA /* LevelLayer.h */,
 				D8E83EC016EAC81B000284EA /* LevelLayer.mm */,
 				D8E83EB916EA7E05000284EA /* InventoryLayer.h */,
@@ -1945,6 +1950,7 @@
 				CEF445EA172647B7004B3745 /* SeesawObject.mm in Sources */,
 				D8A47F6B173CBB5B00CF1B87 /* MathHelper.mm in Sources */,
 				D8A47F6E173CC1EB00CF1B87 /* WorldManager.mm in Sources */,
+				61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
