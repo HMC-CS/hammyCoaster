@@ -25,6 +25,7 @@
 #import "GameManager.h"
 
 @interface LevelLayer : CCLayer {
+    
     InventoryLayer* _inventoryLayer;
     PhysicsLayer* _physicsLayer;
     GameplayLayer* _gameplayLayer;

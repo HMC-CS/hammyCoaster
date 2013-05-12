@@ -15,213 +15,84 @@
 {
     NSAssert1(items, @"Items array %@ given to InventoryLayer is null.", items);
     
-	if( (self=[super init])) {
+	if (self = [super init]) {
 		
-		// enable events
-        
         CGSize size = [CCDirector sharedDirector].winSize;
 		
 		self.isTouchEnabled = YES;
         
+        // By default, no inventory object is selected.
         _selectedObject = @"None";
 		
+        // Inventory is in the first fourth of the screen
         [self setContentSize:CGSizeMake(size.width*0.25, size.height)];
         [self setPosition:ccp(0,0)];
         
         _items = items;
         
-		// create menu button
+		// Create inventory menu buttons
 		[self createMenu];
 	}
 	return self;
 }
 
-/* createMenu:
- * creates all the buttons in InventoryLayer
- */
--(void) createMenu
+
+-(NSString*) getSelectedObject
 {
-	CGSize size = [[CCDirector sharedDirector] winSize];
-    
-	// Default font size will be 22 points.
-	[CCMenuItemFont setFontSize:22];
-    //CCMenu *inventoryMenu = [CCMenu menuWithItems:selectRampButton, nil];
-    _inventoryMenu = [CCMenu node];
-    buttonArray = [[NSMutableArray alloc] init];
-    
-    for (NSArray* item in _items) {
-        NSString* type = [item objectAtIndex:0];
-        //NSString* label = [item objectAtIndex:1];
-        NSNumber* numItems = [item objectAtIndex:2];   // Number of inventory items, when needed
-        NSString* buttonLabel = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
-        CCSprite *normal = [CCSprite spriteWithFile:buttonLabel];
-        CCSprite *selected = [CCSprite spriteWithFile:buttonLabel];
-        selected.color = ccc3(255,255,0);
+    // Search for the appropriate button
+    for (int i=0; i < [buttonArray count]; ++i) {
         
-        CCMenuItemSprite *inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected block:^(id sender) {
-            
-//            for (int i= 0; i < [buttonArray count];i++)
-//            {
-//                CCMenuItemSprite *button = buttonArray[i];
-//                NSString* objectType = (NSString*) button.userData;
-//                if ([_selectedObject isEqualToString:objectType])
-//                {
-//                    [button unselected];
-//                }
-//            }
-//
-//            _selectedObject = type;
-//            [(CCMenuItemSprite*)sender selected];
-            
-        }];
-        
-        inventoryButton.tag = [numItems intValue];
-        inventoryButton.userData = (__bridge void*) type;
-        [buttonArray addObject:inventoryButton];
-        
-        CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", inventoryButton.tag] fontName:@"Marker Felt" fontSize:inventoryButton.contentSize.width*.4];
-        [numLabel setColor:ccWHITE];
-        [numLabel setPosition:ccp(inventoryButton.contentSize.width/2, inventoryButton.contentSize.height/2)];
-        [inventoryButton addChild:numLabel z:1 tag:NSIntegerMin];
-        
-        [_inventoryMenu addChild:inventoryButton];
-        
-    }
-    
-    
-    [_inventoryMenu alignItemsVerticallyWithPadding:10.0f];
-    [_inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
-    _inventoryMenu.isTouchEnabled = false;
-    [self addChild: _inventoryMenu z:2];
-    
-}
-
-/* registerWithTouchDispacher:
- * Initializes touches for InventoryLayer. Makes it "swallow"
- * touches so no layer below it in the scene will feel them.
- */
--(void)registerWithTouchDispatcher
-{
-    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:-1 swallowsTouches:NO];
-}
-
-/* ccTouchBegan:
- * guaranteed name. Deals with touch-downs within InventoryLayer.
- * Does not deal with sensing menu item button presses specifically
- */
--(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    
-    CGPoint location = [touch locationInView:[touch view]];
-    
-    // If the touch is in the inventory
-    if (CGRectContainsPoint(self.boundingBox, location))
-    {
-        // Convert the touch to the same coordinate system as the sprites
-        location = [[CCDirector sharedDirector] convertToGL:location];
-        location = [self convertToNodeSpace:location];
-        location = [_inventoryMenu convertToNodeSpace:location];
-        
-        // For each sprite, check if the touch was in that sprite. If it was, pass it on to the physics layer.
-        for (int i = 0; i < [[_inventoryMenu children] count]; i++) {
-            CCMenuItemSprite* sprite = [[_inventoryMenu children] objectAtIndex:i];
-                        
-            if (CGRectContainsPoint([sprite boundingBox], location)) {
-                NSLog(@"Inventory touch in menu item");
-                _selectedObject = static_cast<NSString*>(sprite.userData);
-                return NO;
-            }
-        }
-        _selectedObject = @"None";
-        return YES;
-    }
-    _selectedObject = @"None";
-    return NO;
-}
-
-/* ccTouchEnded:
- * guaranteed name. Deals with touch-ups within InventoryLayer.
- * Does not deal with sensing menu item button presses specifically
- */
--(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    // NSLog(@"Inventory touch ended");
-    //[_target performSelector:_selector1]; //selector one is playPhysicsLevel
-}
-
-/* dealloc:
- * deallocates everything in InventoryLayer
- */
-
-// public functions, documented in InventoryLayer.h
-
--(NSString*) getSelectedObjectForAddingNewObject:(bool) isAddingNewObject {
-    NSLog(@"Inventory: getSelectedObject");
-    
-    if (isAddingNewObject) {
-    for (int i= 0; i< [buttonArray count];i++)
-    {
         CCMenuItemImage *button = buttonArray[i];
         NSString* objectType = (NSString*) button.userData;
-        if ([_selectedObject isEqualToString:objectType] && ![_selectedObject isEqualToString:@"Delete"])
-        {
-            if (button.tag == 0)
-            {
+        
+        // Found the correct button
+        if ([_selectedObject isEqualToString:objectType]) {
+            
+            // No more objects available to add
+            if (button.tag == 0) {
                 return @"None";
-            }
-            else
-            {
-                button.tag = button.tag -1;
-                NSLog(@"decreased button tag");
+            } else {
+                // Decrease object count
+                button.tag = button.tag - 1;
                 
-                // remove old label
-                [button removeChildByTag:NSIntegerMin cleanup:NO]; //cleanup removed
+                // Remove old label.  Note: cleanup removed for ARC.
+                [button removeChildByTag:NSIntegerMin cleanup:NO]; 
                 
-                // add new label
+                // Add new number label in fromt of button
                 CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
                 [numLabel setColor:ccWHITE];
                 [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
                 [button addChild:numLabel z:0 tag:NSIntegerMin];
-            
+                
+                // Let user know which object is selected
                 return _selectedObject;
             }
         }
     }
-    }
-    return _selectedObject;
     
+    // If the button isn't found, return the previously selected object.
+    return _selectedObject;    
 }
 
--(bool) isDeleteSelected
-{
-    //    NSLog(@"%@ should be the object", _selectedObject);
-    if ([_selectedObject isEqualToString:@"Delete"])
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-}
 
 - (void) increaseInventoryForType:(NSString*) type
 {
-    NSLog(@"increasing inventory for type");
-    for (int i= 0; i< [buttonArray count];i++)
-    {
+    // Search for the appropriate button
+    for (int i=0; i < [buttonArray count]; ++i) {
+        
         CCMenuItemImage *button = buttonArray[i];
         NSString* objectType = (NSString*) button.userData;
-
-        if ([type isEqualToString:objectType])
-        {
-            button.tag = button.tag+1;
-            NSLog(@"we actually increased object");
+        
+        // Found the correct button
+        if ([type isEqualToString:objectType]) {
             
-            // remove old label
-            [button removeChildByTag:NSIntegerMin cleanup:NO]; // cleanup removed
+            // Increase number of object available
+            button.tag = button.tag + 1;
             
-            // add new label
+            // Remove old label.  Note: cleanup removed for ARC.
+            [button removeChildByTag:NSIntegerMin cleanup:NO];
+            
+            // Add new number label in front of button.
             CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
             [numLabel setColor:ccWHITE];
             [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
@@ -233,6 +104,117 @@
 }
 
 
+/* ////////////////////////////// Private Functions ////////////////////////////// */
+
+
+/* createMenu:
+ * Creates all the buttons in InventoryLayer
+ */
+-(void) createMenu
+{
+	CGSize size = [[CCDirector sharedDirector] winSize];
+    
+	[CCMenuItemFont setFontSize:22];
+
+    _inventoryMenu = [CCMenu node];
+    buttonArray = [[NSMutableArray alloc] init];
+    
+    for (NSArray* item in _items) {
+        
+        // Get type and number of each inventory item
+        NSString* type = [item objectAtIndex:0];
+        NSNumber* numItems = [item objectAtIndex:1];
+        
+        // Get picture for inventory button
+        NSString* buttonSprite = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
+        CCSprite* normal = [CCSprite spriteWithFile:buttonSprite];
+        CCSprite* selected = [CCSprite spriteWithFile:buttonSprite];
+        selected.color = ccc3(255,255,0);
+        
+        // Set inventory button atrributes
+        CCMenuItemSprite* inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected];
+        inventoryButton.tag = [numItems intValue];
+        inventoryButton.userData = (__bridge void*) type;
+        [buttonArray addObject:inventoryButton];
+        
+        // Put a label displaying the number of items left on the button
+        CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", inventoryButton.tag] fontName:@"Marker Felt" fontSize:inventoryButton.contentSize.width*.4];
+        [numLabel setColor:ccWHITE];
+        [numLabel setPosition:ccp(inventoryButton.contentSize.width/2, inventoryButton.contentSize.height/2)];
+        [inventoryButton addChild:numLabel z:1 tag:NSIntegerMin];
+        
+        // Add button to menu
+        [_inventoryMenu addChild:inventoryButton];
+        
+    }
+    
+    // Format the inventory menu
+    [_inventoryMenu alignItemsVerticallyWithPadding:10.0f];
+    [_inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
+    _inventoryMenu.isTouchEnabled = false;
+    [self addChild: _inventoryMenu z:2];
+    
+}
+
+
+/* ////////////////////////////// Touch Functions ////////////////////////////// */
+
+
+/* registerWithTouchDispacher:
+ * Initializes touches for InventoryLayer. Makes it "swallow"
+ * touches so no layer below it in the scene will feel them.
+ */
+-(void)registerWithTouchDispatcher
+{
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:-1 swallowsTouches:NO];
+}
+
+
+/* ccTouchBegan:
+ * Deals with touch-downs within InventoryLayer.
+ * Does not deal with sensing menu item button presses specifically
+ */
+-(BOOL) ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+    CGPoint location = [touch locationInView:[touch view]];
+    
+    // If the touch is in the inventory
+    if (CGRectContainsPoint(self.boundingBox, location)) {
+        
+        // Convert the touch to the same coordinate system as the sprites
+        location = [[CCDirector sharedDirector] convertToGL:location];
+        location = [self convertToNodeSpace:location];
+        location = [_inventoryMenu convertToNodeSpace:location];
+        
+        // For each sprite, check if the touch was in that sprite. If it was, pass it on to the physics layer.
+        for (int i = 0; i < [[_inventoryMenu children] count]; i++) {
+            CCMenuItemSprite* sprite = [[_inventoryMenu children] objectAtIndex:i];
+            if (CGRectContainsPoint([sprite boundingBox], location)) {
+                _selectedObject = static_cast<NSString*>(sprite.userData);
+                return NO;
+            }
+        }
+        
+        // Otherwise, there is no selected object
+        _selectedObject = @"None";
+        return YES;
+    }
+    
+    // Otherwise, there is no selected object
+    _selectedObject = @"None";
+    return NO;
+}
+
+
+/* ccTouchEnded:
+ * Deals with touch-ups within InventoryLayer.
+ * Does not deal with sensing menu item button presses specifically
+ */
+-(void) ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    // Nothing to be done here.
+}
 
 @end
 

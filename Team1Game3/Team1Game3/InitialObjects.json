@@ -12,8 +12,8 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"],
-            ["SeesawObject", "seesaw", "2"]
+            ["RampObject", "1"],
+            ["SeesawObject", "2"]
         ]
     },
     {
@@ -28,7 +28,7 @@
         ],
         "inventory": 
         [
-            ["RampObject", "ramp", "2"]
+            ["RampObject", "2"]
         ]
 
     },
@@ -44,7 +44,7 @@
         ],
         "inventory":
         [
-         ["CurvedRampObject", "curved ramp", "1"]
+         ["CurvedRampObject", "1"]
         ]
     },
     {
@@ -61,7 +61,7 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"]
+            ["RampObject", "1"]
         ]
     },
     {
@@ -77,8 +77,8 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"],
-            ["CurvedRampObject", "curved ramp", "1"]
+            ["RampObject", "1"],
+            ["CurvedRampObject", "1"]
         ]
     },
     {
@@ -94,7 +94,7 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"]
+            ["RampObject", "1"]
         ]
     },
     {
@@ -109,7 +109,7 @@
         ],
         "inventory":
         [
-            ["CurvedRampObject", "ramp", "2"]
+            ["CurvedRampObject", "2"]
         ]
     },
     {
@@ -125,7 +125,7 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"]
+            ["RampObject", "1"]
         ]
     },
     {
@@ -141,7 +141,7 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "1"]
+            ["RampObject", "1"]
         ]
     },
     {
@@ -157,8 +157,8 @@
         ],
         "inventory":
         [
-            ["RampObject", "ramp", "2"],
-            ["MagnetObject", "magnet", "1"]
+            ["RampObject", "2"],
+            ["MagnetObject", "1"]
         ]
     },
     {
@@ -173,9 +173,9 @@
         ],
         "inventory":
         [
-            ["TrampolineObject", "trampoline", "1"],
-            ["MagnetObject", "magnet", "1"],
-            ["StarObject", "ramp", "2"]
+            ["TrampolineObject", "1"],
+            ["MagnetObject", "1"],
+            ["StarObject", "2"]
         ]
     },
     {
@@ -191,8 +191,8 @@
         ],
         "inventory":
         [
-            ["TrampolineObject", "trampoline", "1"],
-            ["MagnetObject", "magnet", "1"]
+            ["TrampolineObject", "1"],
+            ["MagnetObject", "1"]
         ]
     }
 ]

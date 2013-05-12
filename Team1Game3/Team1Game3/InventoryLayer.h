@@ -11,13 +11,10 @@
 
 @interface InventoryLayer : CCLayer {
     
-    NSString* _selectedObject;
-    
-    NSMutableArray* buttonArray;
-    
-    NSArray* _items;
-    
-    CCMenu* _inventoryMenu;
+    NSString* _selectedObject;      // Object selected for addition into physics layer
+    NSMutableArray* buttonArray;    // Array of objects available
+    NSArray* _items;                // Initial items in inventory (with counts)
+    CCMenu* _inventoryMenu;         // Displayed buttons
    
 }
 
@@ -26,15 +23,17 @@
  */
 -(id) initWithItems:(NSArray*) items;
 
-/* getSelectedObject:
- * returns NSString* of the selected object type
+
+/* getSelectedObject
+ * Returns NSString* of the selected object type
+ * Also decreases the amount of available items of type "type" by 1
  */
--(NSString*) getSelectedObjectForAddingNewObject:(bool) isAddingNewObject;
-
--(bool) isDeleteSelected;
+-(NSString*) getSelectedObject;
 
 
-
+/* increaseInventoryForType:
+ * Increases the amount of available items of type "type" by 1
+ */
 - (void) increaseInventoryForType:(NSString*) type;
 
 @end
