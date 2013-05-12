@@ -15,11 +15,9 @@
 -(id) init
 {
     if (self = [super init]) {
-        
         // The game manager is the same as the AppController's game manager
         _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
     }
-    
     return self;
 }
 

@@ -19,8 +19,7 @@
     NSAssert1(spriteArray, @"Sprite array %@ passed to AbstractGameObject is null.", spriteArray);
     NSAssert1(NSClassFromString(type), @"AbstractGameObject type %@ does not refer to a valid class.", type);
     
-    self = [super init];
-    if (self) {
+    if (self = [super init]) {
         _world = world;
         _isDefault = isDefault;
         _sprites = [[NSMutableArray alloc] initWithArray:spriteArray];
