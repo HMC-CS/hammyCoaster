@@ -10,7 +10,7 @@
 
 @implementation TrampolineObject
 
-- (std::vector<b2Body*>)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
@@ -69,36 +69,5 @@
     return _bodies;
 
 }
-
-// For reference
-//- (b2Body *)createBody:(CGPoint)location {
-//    
-//    bodyDef.type = b2_staticBody;
-//    bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
-//    b2Body *ramp_Body = _world->CreateBody(&bodyDef);
-//    
-//    b2Vec2 vertices[4];
-//    int num = 4;
-//    vertices[0].Set(-87.5f / PTM_RATIO, 120.5f / PTM_RATIO);
-//    vertices[1].Set(-120.5f / PTM_RATIO, 87.5f / PTM_RATIO);
-//    vertices[2].Set(87.5f / PTM_RATIO, -120.5f / PTM_RATIO);
-//    vertices[3].Set(120.5f / PTM_RATIO, -87.5f / PTM_RATIO);
-//    
-//    b2PolygonShape rampShape;
-//    rampShape.Set(vertices, num);
-//    
-//    
-//    fixtureDef.shape = &rampShape; // Set the line shape
-//    fixtureDef.density = 0.0f; // Set the density
-//    fixtureDef.friction = 0.5f; // Set the friction
-//    fixtureDef.restitution = 0.5f; // Set the restitution
-//    
-//    // Add the shape to the body
-//    ramp_Body->CreateFixture(&fixtureDef);
-//    ramp_Body->SetUserData(self);
-//    
-//    return ramp_Body;
-//}
-
 
 @end

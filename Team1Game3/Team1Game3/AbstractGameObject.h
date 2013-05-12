@@ -18,10 +18,10 @@
 {
     b2World* _world;                // The world in which the object resides
     
-    NSMutableArray* _sprites;
-    std::vector<b2Body*> _bodies;
-    NSString* _type;
-    bool _isDefault;
+    NSMutableArray* _sprites;       // The object's sprites
+    std::vector<b2Body*> _bodies;   // The object's bodies
+    NSString* _type;                // The object's class (type)
+    bool _isDefault;                // Whether the object was added by default or by the player
 }
 
 @property(retain, readonly) NSMutableArray* sprites;
@@ -29,7 +29,17 @@
 @property(retain, readonly) NSString* type;
 @property(readonly) bool isDefault;
 
--(id) initWithWorld:(b2World *) world asDefault:(bool) isDefault withSprites:(NSMutableArray*) spriteArray withType:(NSString*) type;
--(std::vector<b2Body*>) createBody:(CGPoint) location;
+
+/* initWithWorld:AsDefault:WithSprites:WithType:
+ * Init function for AbstractGameObject
+ */
+-(id) initWithWorld:(b2World *) world AsDefault:(bool) isDefault WithSprites:(NSMutableArray*) spriteArray WithType:(NSString*) type;
+
+
+/* createBodyAtLocation:
+ * Creates an object at a given location
+ * Returns a vector of the object's b2Bodies
+ */
+-(std::vector<b2Body*>) createBodyAtLocation:(CGPoint) location;
 
 @end

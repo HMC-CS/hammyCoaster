@@ -12,7 +12,7 @@
 
 // Code from http://www.cocos2d-iphone.org/forum/topic/10193
 
--(std::vector<b2Body*>)createBody:(CGPoint)location {
+-(std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;

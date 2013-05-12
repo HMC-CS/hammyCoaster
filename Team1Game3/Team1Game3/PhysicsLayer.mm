@@ -196,7 +196,7 @@
     AbstractGameObject *createdObj = [_objectFactory objectFromString:type ForWorld:_world AsDefault:isDefault WithSprites:[spriteArray mutableCopy]];
     
     [_createdObjects addObject:createdObj];
-    std::vector<b2Body*> bodies = [createdObj createBody:p];
+    std::vector<b2Body*> bodies = [createdObj createBodyAtLocation:p];
     
     //NSLog(@"finished getting bodies");
     

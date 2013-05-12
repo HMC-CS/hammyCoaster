@@ -9,7 +9,7 @@
 #import "RampObject.h"
 
 @implementation RampObject
-- (std::vector<b2Body*>)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);

@@ -31,7 +31,7 @@
     NSAssert1(objectClass, @"ObjectFactory called with invalid class name %@", className);
     
     // Make a new object with the given parameters
-    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world asDefault:isDefault withSprites:(NSMutableArray*) spriteArray withType:className];
+    AbstractGameObject* newObject = [[objectClass alloc] initWithWorld:world AsDefault:isDefault WithSprites:(NSMutableArray*) spriteArray WithType:className];
     
     return newObject;
 }

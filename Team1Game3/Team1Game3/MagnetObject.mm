@@ -11,7 +11,7 @@
 
 @implementation MagnetObject
 
-- (std::vector<b2Body*>)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
     
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;

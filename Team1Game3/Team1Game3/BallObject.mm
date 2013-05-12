@@ -10,7 +10,7 @@
 
 @implementation BallObject
 
-- (std::vector<b2Body*>)createBody:(CGPoint)location {
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
     
     // TODO - this is currently a dynamic body so it rests nicely on things.  We want to make this a static object.
     b2BodyDef bodyDef;
