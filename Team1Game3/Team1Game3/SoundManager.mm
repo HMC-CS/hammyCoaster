@@ -2,7 +2,7 @@
 //  SoundManager.mm
 //  Team1Game3
 //
-//  Created by mchesley on 4/22/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 4/22/13.
 //
 //
 
