@@ -12,34 +12,39 @@
 
 @interface GameplayLayer : CCLayer {
     
-    id _target;
-    SEL _selector1; // Play Button Pressed
-    SEL _selector2; // Reset Ball
-    SEL _selector3; // Reset Level
+    id _target;     // Level Layer
+    SEL _selector1; // Play button pressed
+    SEL _selector2; // Reset ball
+    SEL _selector3; // Reset level
     
-    CCLabelTTF* _starLabel;
-    CCLabelTTF* _bestStarLabel;
+    CCLabelTTF* _starLabel;         // Displays number of stars user has gotten in level
+    CCLabelTTF* _bestStarLabel;     // Displays high score
+    int _starCount;                 // Number of stars user has gotten
+    int _bestStars;                 // High score
     
-    int _bestStars;
-    CGPoint _startButtonLocation;
+    CGPoint _startButtonLocation;   // Location for start portal (and ball starting point)
     
-@public
-    CCMenuItemToggle* _playResetToggle;
+    CCMenuItemToggle* _playResetToggle;     // Toggle for button on start portal
 }
 
+
 @property (readonly) int starCount;
+@property (readonly) CCMenuItemToggle* playResetToggle;
+
 
 /* initWithHighScore:
  * initializes Gameplay Layer with level high score
  */
--(id) initWithHighScore:(int) stars StartButtonLocation:(CGPoint) startButtonPoint;
+-(id) initWithHighScore:(int) stars AndStartButtonLocation:(CGPoint) startButtonPoint;
 
-/* setTarget: atAction:
+
+/* setTarget:atAction:
  * guaranteed name for function to initialize selectors and target
  */
--(void) setTarget:(id) sender atAction:(SEL)action;
+-(void) setTarget:(id) sender AtAction:(SEL)action;
 
-/* updateStarCount:
+
+/* updateStarCount
  * increments the star counter when the ball hits a star
  */
 -(void) updateStarCount;

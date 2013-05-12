@@ -109,10 +109,10 @@
  */
 -(void) createGameplayLayer
 {
-    _gameplayLayer = [[GameplayLayer alloc] initWithHighScore:[_gameManager highScoreAtLevelSet:_levelSet AndIndex:_levelIndex] StartButtonLocation:[self getBallStartPoint]];
-    [_gameplayLayer setTarget:self atAction:@selector(playPhysicsLayer)];
-    [_gameplayLayer setTarget:self atAction:@selector(resetBallPhysicsLayer)];
-    [_gameplayLayer setTarget:self atAction:@selector(resetPhysicsLayer)];
+    _gameplayLayer = [[GameplayLayer alloc] initWithHighScore:[_gameManager highScoreAtLevelSet:_levelSet AndIndex:_levelIndex] AndStartButtonLocation:[self getBallStartPoint]];
+    [_gameplayLayer setTarget:self AtAction:@selector(playPhysicsLayer)];
+    [_gameplayLayer setTarget:self AtAction:@selector(resetBallPhysicsLayer)];
+    [_gameplayLayer setTarget:self AtAction:@selector(resetPhysicsLayer)];
     [self addChild:_gameplayLayer];
 }
 
@@ -129,7 +129,7 @@
 
 -(void) togglePlayResetButton
 {
-    [_gameplayLayer->_playResetToggle setSelectedIndex: 1 - [_gameplayLayer->_playResetToggle selectedIndex]];
+    [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
 }
 
 /* playPhysicsLevel:
