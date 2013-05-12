@@ -12,16 +12,16 @@
 #import "AppController.h"
 #import "GameManager.h"
 
-// TODO: comment back in if multiple level sets added
-//#import "CCScrollLayer.h"
+#import "CCScrollLayer.h"
 
 @interface LevelSelectorLayer : CCLayer {
 
-//    CCScrollLayer* _scroller;   // TODO: comment back in if multiple level sets added
+    CCScrollLayer* _scroller;
     
     GameManager* _gameManager;
     
 }
+
 
 /* scene:
  * returns a CCScene containing LevelSelectorLayer as the only child
