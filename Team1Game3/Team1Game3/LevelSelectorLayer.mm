@@ -113,6 +113,7 @@
         for (int j = 0; j < 3; ++j) {
             for (int i = 0; i < row; ++i) {
                 
+                int levelSet = k + 1;
                 int levelIndex = (j*row) + i + 1;
                 
                 // Normal icon for each level
@@ -146,11 +147,11 @@
                     CCSprite* lock = [CCSprite spriteWithFile:@"lock.png"];
                     [lock setPosition:ccp(levelIcon.contentSize.width/4, levelIcon.contentSize.height/4)];
                     [levelIcon addChild:lock];
-                } else if ([_gameManager isLevelCompletedAtLevelSet:1 AndIndex:levelIndex]){
+                } else if ([_gameManager isLevelCompletedAtLevelSet:levelSet AndIndex:levelIndex]){
                     
                     // Display the number of stars
-                    int numStars = [_gameManager highScoreAtLevelSet:1 AndIndex:levelIndex];
-                    [_gameManager registerCompletedLevelWithLevelSet:1 AndIndex:levelIndex AndStarCount:numStars];
+                    int numStars = [_gameManager highScoreAtLevelSet:levelSet AndIndex:levelIndex];
+                    [_gameManager registerCompletedLevelWithLevelSet:levelSet AndIndex:levelIndex AndStarCount:numStars];
                     
                     CGPoint starLocation = ccp(levelIcon.contentSize.width/4.5, levelIcon.contentSize.height/5);
                     
@@ -181,7 +182,7 @@
                 CCMenuItemSprite *menuItem = [CCMenuItemSprite itemWithNormalSprite:levelIcon selectedSprite:levelIconSelected block:^(id sender) {
                     NSString* lockString = (NSString *)levelIcon.userData;
                     if (![lockString isEqualToString:@"Locked"]) {
-                        [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:1 AndIndex:4*j+i+1]];
+                        [[CCDirector sharedDirector] pushScene:[LevelLayer sceneWithLevelSet:levelSet AndIndex:levelIndex]];
                     } else{
                         return;
                     }

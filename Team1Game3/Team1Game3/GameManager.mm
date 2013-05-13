@@ -48,7 +48,7 @@
             [_levelHighScores addObject:[NSNumber numberWithInt:levelStars]];
             
             if (levelLocked) {
-                [_isLevelLocked addObject:@"true"];
+                [_isLevelLocked addObject:@"false"];
             } else{
                 [_isLevelLocked addObject:@"false"];
             }

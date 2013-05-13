@@ -18,23 +18,24 @@
 
 @implementation WinLayer
 
-+(CCScene *) sceneWithLevel: (int)level AndStarCount: (int) stars
++(CCScene *) sceneWithLevelSet:(int)levelSet AndIndex:(int)levelIndex AndStarCount:(int)stars
 {
-    CCScene *scene = [CCScene node];	// 'scene' is an autorelease object.
+    CCScene *scene = [CCScene node];
+    WinLayer* winLayer = [[WinLayer alloc] initWithLevelSet:levelSet AndIndex:levelIndex AndStarCount:stars];
     
-    WinLayer* winLayer = [[WinLayer alloc] initWithLevel:level AndStarCount:stars];
-    
+    // Add layer as a child to scene
     [scene addChild:winLayer];
 	
-	// return the scene
 	return scene;
 }
 
--(id) initWithLevel:(int)level AndStarCount:(int)stars
+
+-(id) initWithLevelSet:(int)levelSet AndIndex:(int)levelIndex AndStarCount:(int)stars
 {
     if (self = [super init]) {
         
-        _level = level;
+        _levelSet = levelSet;
+        _levelIndex = levelIndex;
         _stars = stars;
         
         self.isTouchEnabled = YES;
@@ -54,14 +55,21 @@
     return self;
 }
 
+
+/* ////////////////////////////// Private Functions ////////////////////////////// */
+
+
+/* createMenu
+ * Create menu buttons on Win Layer
+ */
 -(void) createMenu
 {
     [CCMenuItemFont setFontSize:30];
     
-    // Reset Button
-    
+
+    // Replay, main menu, and level selector menu buttons
     CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
-        [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level]];
+        [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:_levelSet AndIndex:_levelIndex]];
     }];
     CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
         [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
@@ -70,11 +78,15 @@
         [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
     }];
     
-    
+    // Different menus based on whether you've hit the next level or not.
+    int levelNumber = _gameManager.numLevelIndices * (_levelSet - 1) + _levelIndex;
     CCMenu* menu;
-    if (_level != _gameManager.numLevelIndices) {
+    if (levelNumber != _gameManager.numLevelIndices * _gameManager.numLevelSets) {
+        ++levelNumber;
+        int nextLevelSet = (levelNumber-1)/_gameManager.numLevelIndices + 1;
+        int nextLevelIndex = (levelNumber-1) % _gameManager.numLevelIndices + 1;
         CCMenuItemLabel *next = [CCMenuItemFont itemWithString:@"Next level" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:1 AndIndex:_level+1]];
+            [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:nextLevelSet AndIndex:nextLevelIndex]];
         }];
         menu = [CCMenu menuWithItems:replay, next, mainMenu, levelMenu, nil];
     } else {
@@ -89,6 +101,10 @@
     [self addChild: menu z:-1];
 }
 
+
+/* drawStars
+ * Draws the stars on the WinLayer screen based on number of stars obtained in level
+ */
 -(void) drawStars
 {
     CGSize size = [[CCDirector sharedDirector] winSize];

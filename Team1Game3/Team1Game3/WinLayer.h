@@ -12,22 +12,26 @@
 #import "AppController.h"
 #import "GameManager.h"
 
-// TODO: comment back in if multiple level sets added
-//#import "CCScrollLayer.h"
 
 @interface WinLayer : CCLayer {
-    int _stars;
-    int _level;
     
-    GameManager* _gameManager;
+    int _stars;                     // Number of stars obtained in level
+    int _levelSet;                  // The level set
+    int _levelIndex;                // The level index
     
+    GameManager* _gameManager;      // GameManager (holds game data)
 }
 
-/* scene:
- * returns a CCScene containing LevelSelectorLayer as the only child
- */
-+(CCScene *) sceneWithLevel: (int) level AndStarCount: (int) stars;
 
--(id) initWithLevel: (int) level AndStarCount: (int) stars;
+/* sceneWithLevelSet:AndIndex:AndStarCount:
+ * Returns a CCScene containing LevelSelectorLayer as the only child
+ */
++(CCScene *) sceneWithLevelSet: (int) levelSet AndIndex: (int) levelIndex AndStarCount: (int) stars;
+
+
+/* initWithLevelSet:AndIndex:AndStarCount:
+ * Constructor for WinLayer
+ */
+-(id) initWithLevelSet: (int) levelSet AndIndex: (int) levelIndex AndStarCount: (int) stars;
 
 @end

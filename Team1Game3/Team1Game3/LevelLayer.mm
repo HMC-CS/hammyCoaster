@@ -197,7 +197,7 @@
  */
 -(void) gameWon
 {
-    [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevel:_levelIndex AndStarCount:_gameplayLayer.starCount]];
+    [[CCDirector sharedDirector] pushScene:[WinLayer sceneWithLevelSet:_levelSet AndIndex:_levelIndex AndStarCount:_gameplayLayer.starCount]];
     
     [_gameManager registerCompletedLevelWithLevelSet:_levelSet AndIndex:_levelIndex AndStarCount:_gameplayLayer.starCount];
 }
