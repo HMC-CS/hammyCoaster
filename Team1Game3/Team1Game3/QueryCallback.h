@@ -19,12 +19,12 @@ public:
     QueryCallback(const b2Vec2& point);
     
     /* getAABB
-     * (DESCRIPTION)
+     * Returns an AABB of size boxSize centered at the point specified in the constructor.
      */
     b2AABB getAABB(float boxSize);
     
     /* getm_object
-     * (DESCRIPTION)
+     * Returns the body found at the point specified in the constructor.
      */
     b2Body* getm_object();
     
@@ -32,10 +32,10 @@ public:
 private:
     
     /* ReportFixture
-     * (DESCRIPTION)
+     * Overwrites b2QueryCallback's ReportFixture to ignore censors.
      */
     bool ReportFixture(b2Fixture* fixture);
     
-    b2Vec2  m_point;            // (DESCRIPTION)
-    b2Body* m_object;           // (DESCRIPTION)
+    b2Vec2  m_point;            // The center point for the query
+    b2Body* m_object;           // The body found at or near m_point
 };
