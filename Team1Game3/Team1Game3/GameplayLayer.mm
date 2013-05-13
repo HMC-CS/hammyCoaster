@@ -83,11 +83,9 @@
     // Play and reset ball buttons, which are toggle-able.
     CCMenuItem* playButton = [CCMenuItemFont itemWithString:@"Start!" block:^(id sender) {
         [self playButtonPressed];
-        NSLog(@"Play button pressed");
     }];
     CCMenuItem* resetBallButton = [CCMenuItemFont itemWithString:@"Reset\nBall" block:^(id sender) {
         [self resetBallButtonPressed];
-        NSLog(@"Reset ball button pressed");
     }];
     _playResetToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: playButton, resetBallButton, nil] block:^(id sender) {
         [self playResetButtonPressed];

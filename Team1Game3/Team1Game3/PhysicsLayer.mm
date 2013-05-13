@@ -168,8 +168,6 @@
     if ([type isEqualToString:@"None"]) {
         return;
     }
-    if([type isEqualToString:@"SeesawObject"])
-        NSLog(@"SeesawObject");
     
     NSAssert1(NSClassFromString(type), @"Type %@ given to addNewSpriteOfType in PhysicsLayer is not a valid object type", type);
     

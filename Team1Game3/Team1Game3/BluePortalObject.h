@@ -10,5 +10,4 @@
 
 @interface BluePortalObject : AbstractGameObject
 
-
 @end

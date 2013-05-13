@@ -9,8 +9,10 @@
 #import "CurvedRampObject.h"
 
 @implementation CurvedRampObject
-- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
-    
+
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location
+{    
+    // Create body
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
@@ -18,8 +20,7 @@
     
     //---Add Polygons to make curved ramp---//
     
-    // Fixture 1/14
-    // ---
+    // Define vertices for polygons
     b2Vec2 allVertices[30];
     allVertices[0].Set(130.0f / PTM_RATIO, 45.6f / PTM_RATIO);
     allVertices[1].Set(161.4f / PTM_RATIO, 39.3f / PTM_RATIO);
@@ -51,6 +52,7 @@
     int num = 4;
     b2Vec2 vertices[4];
     
+    // Create multiple fixtures
     for(int v = 0; v<12; v++){
         vertices[0] = allVertices[(v*2)+1];
         vertices[1] = allVertices[(v*2)+0];
@@ -70,10 +72,8 @@
         cRamp_Body->CreateFixture(&fixtureDef);
     }
         
-        
-    //---Done adding shapes---//
+    // Set user data to self and add body to list of bodies
     cRamp_Body->SetUserData(self);
-    
     _bodies.push_back(cRamp_Body);
     
     return _bodies;

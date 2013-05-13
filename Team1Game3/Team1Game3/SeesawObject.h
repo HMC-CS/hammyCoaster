@@ -10,5 +10,4 @@
 
 @interface SeesawObject : AbstractGameObject
 
-
 @end

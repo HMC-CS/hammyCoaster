@@ -12,13 +12,16 @@
 
 //stars have the same shape/size as a blue portal for now
 
-- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
-    
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location
+{
+    // Create body
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *star_Body = _world->CreateBody(&bodyDef);
     
+    
+    // Create fixture
     b2Vec2 vertices[5];
     int num = 5;
     vertices[0].Set(0.0f / PTM_RATIO, 21.2f / PTM_RATIO);
@@ -36,8 +39,10 @@
     
     // Add the shape to the body
     star_Body->CreateFixture(&fixtureDef);
+    
+    
+    // Set user data to self and add bodies to list of bodies
     star_Body->SetUserData(self);
- 
     _bodies.push_back(star_Body);
     
     return _bodies;

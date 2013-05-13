@@ -31,7 +31,7 @@
 
 - (std::vector<b2Body*>) createBodyAtLocation:(CGPoint)location
 {
-    // Must create body and set user data to "self"
+    // Must create bodies (and add to body list), and set user data for each body to "self"
     NSAssert(NO, @"The 'createBody' method must be implemented by the sub-object.");
     
     // This code should never execute; only included so that the

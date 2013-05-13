@@ -22,8 +22,8 @@
     CGFloat newHeight = size * (layer.boundingBox.size.height/4);
     [sprite setScaleX: (newWidth/sprite.contentSize.width)];
     [sprite setScaleY: (newHeight/sprite.contentSize.height)];
-    NSLog(@"%f s content size", newWidth);
-    NSLog(@"%f is content size", newHeight);
+    NSLog(@"%f s content size", newWidth); // new
+    NSLog(@"%f is content size", newHeight); // new
     
 }
 

@@ -9,12 +9,15 @@
 #import "RampObject.h"
 
 @implementation RampObject
-- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location {
+- (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location
+{    
+    // Create the body
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
     bodyDef.position.Set(location.x/PTM_RATIO, location.y/PTM_RATIO);
     b2Body *ramp_Body = _world->CreateBody(&bodyDef);
     
+    // Create the fixture
     b2Vec2 vertices[7];
     int num = 7;
     vertices[0].Set(-81.4f / PTM_RATIO, 113.4f / PTM_RATIO);
@@ -36,8 +39,9 @@
     
     // Add the shape to the body
     ramp_Body->CreateFixture(&fixtureDef);
+    
+    // Set user data to self and add body to list of bodies
     ramp_Body->SetUserData(self);
-  
     _bodies.push_back(ramp_Body);
     
     return _bodies;
