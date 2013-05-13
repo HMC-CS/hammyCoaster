@@ -35,7 +35,7 @@ b2Body* QueryCallback::getm_object()
 
 bool QueryCallback::ReportFixture(b2Fixture* fixture)
 {
-    if (fixture->IsSensor()) return true; //ignore sensors
+//    if (fixture->IsSensor()) return true; //ignore sensors
     
     bool inside = fixture->TestPoint(m_point);
     if (inside)

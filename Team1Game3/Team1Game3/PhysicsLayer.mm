@@ -682,11 +682,10 @@
         // If we were moving a body, maybe delete or bounce back
         if (_currentMoveableBody != NULL) {
             
-            CGPoint location = [self getTouchLocation:touch];
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData());
             CFBridgingRetain(bodyObject);
             
-            [self endedTouchAtLocation:location WithObject:bodyObject];
+            [self finishedMovingObject:bodyObject];
         }
         
         [self resetTouch];
@@ -789,8 +788,8 @@
     _currentMoveableBody = NULL;
 }
 
--(void) endedTouchAtLocation: (CGPoint) location WithObject: (AbstractGameObject*) bodyObject
-{    
+-(void) finishedMovingObject: (AbstractGameObject*) bodyObject
+{
     std::vector<b2Body*> bodies = bodyObject.bodies;
     
     bool deleteObject = false;
@@ -807,11 +806,11 @@
                         
             // Iterate through all the vertices in each fixture
             for (int i = 0; i < count; i++) {
+                
                 // Get the location of the vertex
-                b2Vec2 vertexPoint = polygonShape->GetVertex(i);
-                CGPoint boundPoint = ccp(vertexPoint.x, vertexPoint.y);
-                boundPoint = ccpMult(boundPoint, PTM_RATIO);
-                boundPoint = ccpAdd(ccpAdd(boundPoint, location), self.boundingBox.origin);
+                b2Vec2 vertexPoint = polygonShape->GetVertex(i) + body->GetPosition();
+                CGPoint boundPoint = ccpMult(ccp(vertexPoint.x, vertexPoint.y), PTM_RATIO);
+                boundPoint = ccpAdd(boundPoint, self.boundingBox.origin);
                 
                 // Check if the point is in the inventory
                 if ( !CGRectContainsPoint(self.boundingBox, boundPoint)) {
@@ -825,11 +824,17 @@
                 }
                 
                 // Check if the vertex is in another body
-                b2Vec2 vertex = b2Vec2(boundPoint.x/PTM_RATIO, boundPoint.y/PTM_RATIO);
-                b2Body* b = [self getBodyAtLocation:vertex WithAABBSize:10.0f];
+                b2Body* b = [self getBodyAtLocation:vertexPoint WithAABBSize:10.0f];
                 if (b && (b != body)) {
-                    bounceBackObject = true;
-                    break;
+                    
+                    AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(b->GetUserData());
+                    NSString* bodyType = bodyObject.type;
+                    
+                    // Allow overlap with stars
+                    if (![bodyType isEqualToString:@"StarObject"]) {
+                        bounceBackObject = true;
+                        break;
+                    }
                 }
                 
             }
