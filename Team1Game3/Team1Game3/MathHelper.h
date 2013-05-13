@@ -17,7 +17,7 @@ extern "C" {
     /* GetAngle
      * Gets the angle between two points with coordinates (x1, y1) and (x2,y2).
      * Returns the angle in radians.
-     * Function from http://www.cocos2d-iphone.org/forum/topic/10138
+     * Function from http://www.cocos2d-iphone.org/forum/topic/10138 (comments added)
      */
     float GetAngle(float x1, float y1, float x2, float y2);
     

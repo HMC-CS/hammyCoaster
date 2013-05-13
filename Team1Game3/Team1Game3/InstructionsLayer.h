@@ -12,7 +12,9 @@
 #import "CCLayer.h"
 #import "CCScrollLayer.h"
 
+
 @interface InstructionsLayer : CCLayer {
+    
     CCScrollLayer* _scroller;
 }
 

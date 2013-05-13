@@ -15,27 +15,20 @@
 
 +(CCScene *) scene
 {
-	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
-	
-	// 'layer' is an autorelease object.
 	InstructionsLayer *layer = [InstructionsLayer node];
 	
-	// add layer as a child to scene
+	// Add layer as a child to scene
 	[scene addChild: layer];
     
-	// return the scene
 	return scene;
 }
 
 -(id) init
 {
-	if( (self=[super init])) {
-		
-		// enable events
+	if (self = [super init]) {
 		
 		self.isTouchEnabled = YES;
-        
         CGSize size = [CCDirector sharedDirector].winSize;
         
         NSMutableArray* _instructionLayers = [[NSMutableArray alloc] init];
@@ -49,40 +42,42 @@
         
         NSArray* instructionLabels = [NSArray arrayWithObjects:instructionLabel0, instructionLabel1, instructionLabel2, nil];
         
-        for (int i = 0; i < [instructionLabels count]; i++)
-        {
+        for (int i = 0; i < [instructionLabels count]; i++) {
+            
+            // Make a new layer for each instruction
             CCLayer* instructionLayer = [[CCLayer alloc] init];
-
+            
+            // Add instructions to it
             CCLabelTTF* instructionLabel = instructionLabels[i];
             CGSize textSize = [instructionLabel.string sizeWithFont:[UIFont fontWithName:@"Marker Felt" size:24]];
-            //instructionLabel.position = CGPointMake(self.boundingBox.origin.x, self.boundingBox.origin.y);
             [instructionLabel setAnchorPoint: ccp(0.5f, 0.05f)];
-            //instructionLabel.anchorPoint = ccp(0.0f,0.25f); //CGPointZero;
             instructionLabel.position = ccp((instructionLabel.boundingBox.size.width)/2, textSize.height/2.0);
             [instructionLayer addChild:instructionLabel];
 
+            // Make menu on layer to go back to main menu
             CCMenuItem *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender) {
                 [[CCDirector sharedDirector] replaceScene:[MainMenuLayer scene]];
             }];
-            
             CCMenu *menu = [CCMenu menuWithItems: mainMenu, nil];
-            
             [menu alignItemsHorizontallyWithPadding:20];
             [menu setPosition:ccp( size.width/2, size.height/15 )];
-                        
             // Add the menu to the layer
             [self addChild:menu];
             
-            // add sound buttons
+            
+            // Add sound buttons
             CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
             [self addChild:soundMenu z:1];
             
+            // Add this layer to the set of layers
             [_instructionLayers addObject:instructionLayer];
         }
         
+        // Add all layers to the scroller
         _scroller = [CCScrollLayer nodeWithLayers:_instructionLayers widthOffset:0];
         [self addChild:_scroller];
 	}
+    
 	return self;
 }
 
