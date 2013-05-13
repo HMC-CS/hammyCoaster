@@ -85,7 +85,7 @@
 /* setTarget: atAction:
  * guaranteed name for function to initialize selectors and target
  */
--(void) setTarget:(id) sender atAction:(SEL)action;
+-(void) setTarget:(id) sender AtAction:(SEL)action;
 
 /* addNewSpriteOfType:AtPosition:WithRotation:AsDefault
  * Adds sprite to physics layer (with parameters).

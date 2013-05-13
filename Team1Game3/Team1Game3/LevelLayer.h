@@ -26,26 +26,29 @@
 
 @interface LevelLayer : CCLayer {
     
-    InventoryLayer* _inventoryLayer;
-    PhysicsLayer* _physicsLayer;
-    GameplayLayer* _gameplayLayer;
+    int _levelSet;                         // Level set (level notation is set-index)
+    int _levelIndex;                       // Level index (level notation is set-index)
     
-    int _levelSet;
-    int _levelIndex;
+    LevelGenerator* _levelGenerator;       // Generates items for the given level
     
-    LevelGenerator* _levelGenerator;
+    InventoryLayer* _inventoryLayer;       // Layer containing inventory items
+    PhysicsLayer* _physicsLayer;           // Layer containing level
+    GameplayLayer* _gameplayLayer;         // Layer containing control buttons
     
-    GameManager* _gameManager;
+    GameManager* _gameManager;             // Holds game data
 }
 
+
 /* sceneWithLevelSet:AndIndex:
- * returns a CCScene containing LevelLayer (with Level Set-Index) as the only child
+ * Returns a CCScene containing LevelLayer (with level set-index) as the only child
+ */
++(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
+
+
+/* initWithLevelSet:AndIndex:
+ * Constructor for LevelLayer of level set-index
  */
 -(id) initWithLevelSet:(int) set AndIndex:(int) index;
 
-/* sceneWithLevelSet:AndIndex:
- * returns a CCScene containing LevelLayer (with Level Set-Index) as the only child
- */
-+(CCScene *) sceneWithLevelSet:(int) set AndIndex:(int) index;
 
 @end
