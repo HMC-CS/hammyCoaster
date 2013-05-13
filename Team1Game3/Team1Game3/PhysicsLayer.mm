@@ -571,7 +571,14 @@
         // If the touch is in the inventory, add an object where the touch is
         if (touchLocation.x < 0) {
             NSString* type = [self getObjectTypeForAddingNewObject:@"YES"];
-            [self addNewSpriteOfType:type AtPosition:touchLocation WithRotation:0.0 AsDefault:false];
+            CGPoint objectLocation = touchLocation;
+            
+            // We need to shift curved ramps up so part of the object overlaps with the touch
+            if ([type isEqualToString:@"CurvedRampObject"]) {
+                objectLocation.y += 50;
+            }
+            
+            [self addNewSpriteOfType:type AtPosition:objectLocation WithRotation:0.0 AsDefault:false];
         }
         
         
