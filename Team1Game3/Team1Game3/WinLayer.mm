@@ -66,7 +66,6 @@
 {
     [CCMenuItemFont setFontSize:30];
     
-
     // Replay, main menu, and level selector menu buttons
     CCMenuItemLabel *replay = [CCMenuItemFont itemWithString:@"Replay level" block:^(id sender){
         [[CCDirector sharedDirector] pushScene: [LevelLayer sceneWithLevelSet:_levelSet AndIndex:_levelIndex]];
@@ -78,9 +77,10 @@
         [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
     }];
     
-    // Different menus based on whether you've hit the next level or not.
     int levelNumber = _gameManager.numLevelIndices * (_levelSet - 1) + _levelIndex;
     CCMenu* menu;
+    
+    // Different menus based on whether you've hit the last level or not.
     if (levelNumber != _gameManager.numLevelIndices * _gameManager.numLevelSets) {
         ++levelNumber;
         int nextLevelSet = (levelNumber-1)/_gameManager.numLevelIndices + 1;
@@ -92,12 +92,11 @@
     } else {
         menu = [CCMenu menuWithItems:replay, mainMenu, levelMenu, nil];
     }
-        
-    [menu alignItemsVerticallyWithPadding:30.0f];
     
+    // Format the menu and add it to the scene
+    [menu alignItemsVerticallyWithPadding:30.0f];
     CGSize size = [[CCDirector sharedDirector] winSize];
     [menu setPosition:ccp( size.width/2, size.height/2)];
-    
     [self addChild: menu z:-1];
 }
 
@@ -111,6 +110,7 @@
     
     CGPoint starLocation = ccp(size.width/2 - 75, size.height - 100);
     
+    // Insert star outlines or filled-in stars based on how many stars have been obtained
     for (int i = 1; i <= 3; ++i) {
         if (_stars < i) {
             CCSprite *sprite = [CCSprite spriteWithFile:@"StarObjectOutline.png"];

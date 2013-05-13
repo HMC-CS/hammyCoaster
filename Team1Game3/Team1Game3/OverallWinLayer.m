@@ -16,15 +16,15 @@
 
 +(CCScene *) scene
 {
-    CCScene *scene = [CCScene node];	// 'scene' is an autorelease object.
-    
+    CCScene *scene = [CCScene node];
     OverallWinLayer* overallWinLayer = [[OverallWinLayer alloc] init];
     
+    // Add the layer to the scene
     [scene addChild:overallWinLayer];
 	
-	// return the scene
 	return scene;
 }
+
 
 -(id) init
 {
@@ -33,19 +33,16 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = YES;
         
-        /////////////
-        
-        // Default font size will be 22 points.
+        // Label declaring "YOU WIN!"
         [CCMenuItemFont setFontSize:22];
-        
         CCLabelTTF* _winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOU WIN!"] fontName:@"Marker Felt" fontSize:24];
         _winLabel.position = CGPointMake(size.width/2, 2*size.height/3);
         [self addChild:_winLabel];
         
-        // Default font size will be 22 points.
-        [CCMenuItemFont setFontSize:30];
         
-        // Reset Button
+        
+        // Main menu and level selector menu buttons
+        [CCMenuItemFont setFontSize:30];
         CCMenuItemLabel *mainMenu = [CCMenuItemFont itemWithString:@"Main Menu" block:^(id sender){
             [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
         }];
@@ -53,15 +50,15 @@
             [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
         }];
         
+        // Format main menu/level selector menu and add it to the layer
         CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, nil];
-        
         [menu alignItemsVerticallyWithPadding:30.0f];
-        
         [menu setPosition:ccp( size.width/2, size.height/2)];
-        
         [self addChild: menu z:-1];
         
-        // add sound buttons
+        
+        
+        // Add sound buttons
         CCMenu* soundMenu = [[SoundManager sharedSoundManager] createSoundMenu];
         [self addChild:soundMenu z:1];
     }
