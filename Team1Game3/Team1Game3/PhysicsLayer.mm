@@ -808,14 +808,14 @@
             for (int i = 0; i < count; i++) {
                 
                 // Get the location of the vertex
-                b2Vec2 vertexPoint = polygonShape->GetVertex(i);
-                vertexPoint = body->GetWorldPoint(vertexPoint);
-                CGPoint boundPoint = ccpMult(ccp(vertexPoint.x, vertexPoint.y), PTM_RATIO);
-                boundPoint = ccpAdd(boundPoint, self.boundingBox.origin);
+                b2Vec2 vertex = polygonShape->GetVertex(i);
+                vertex = body->GetWorldPoint(vertex);
+                CGPoint vertexPoint = ccpMult(ccp(vertex.x, vertex.y), PTM_RATIO);
+                vertexPoint = ccpAdd(vertexPoint, self.boundingBox.origin);
                 
                 // Check if the point is in the inventory
-                if ( !CGRectContainsPoint(self.boundingBox, boundPoint)) {
-                    if ([self pointInTrash:boundPoint]) {
+                if ( !CGRectContainsPoint(self.boundingBox, vertexPoint)) {
+                    if ([self pointInTrash:vertexPoint]) {
                         deleteObject = true;
                         break;
                     } else {
@@ -825,7 +825,7 @@
                 }
                 
                 // Check if the vertex is in another body
-                b2Body* b = [self getBodyAtLocation:vertexPoint WithAABBSize:10.0f];
+                b2Body* b = [self getBodyAtLocation:vertex WithAABBSize:10.0f];
                 if (b && (b != body)) {
                     
                     AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(b->GetUserData());
