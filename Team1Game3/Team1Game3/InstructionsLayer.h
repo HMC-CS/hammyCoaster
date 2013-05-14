@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef INSTRUCTIONS_LAYER_INCLUDED
+#define INSTRUCTIONS_LAYER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -24,3 +27,5 @@
 +(CCScene *) scene;
 
 @end
+
+#endif  // INSTRUCTIONS_LAYER_INCLUDED

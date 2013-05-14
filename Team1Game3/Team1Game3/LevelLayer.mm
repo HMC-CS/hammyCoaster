@@ -123,7 +123,7 @@
  */
 -(CGPoint) getBallStartPoint
 {
-    return [_physicsLayer getBallStartingPoint];
+    return _physicsLayer.ballStartingPoint;
 }
 
 

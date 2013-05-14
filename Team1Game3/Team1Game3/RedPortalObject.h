@@ -6,10 +6,13 @@
 //
 //
 
-#import "AbstractGameObject.h"
+#ifndef RED_PORTAL_OBJECT_INCLUDED
+#define RED_PORTAL_OBJECT_INCLUDED 1
 
-#include <vector>
+#import "AbstractGameObject.h"
 
 @interface RedPortalObject : AbstractGameObject
 
 @end
+
+#endif  // RED_PORTAL_OBJECT_INCLUDED

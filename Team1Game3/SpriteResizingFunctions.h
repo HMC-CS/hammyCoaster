@@ -6,10 +6,12 @@
 //
 //
 
+#ifndef SPRITE_RESIZING_FUNCTIONS_INCLUDED
+#define SPRITE_RESIZING_FUNCTIONS_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 
 #import "PhysicsSprite.h"
-
 
 #import "CCLayer.h"
 
@@ -18,3 +20,5 @@
 + (void) setSpriteSize: (CCSprite*) sprite inLayer: (CCLayer*) layer withSize: (CGFloat) size;;
 
 @end
+
+#endif  // SPRITE_RESIZING_FUNCTIONS_INCLUDED

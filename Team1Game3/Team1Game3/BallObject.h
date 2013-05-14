@@ -6,8 +6,13 @@
 //
 //
 
+#ifndef BALL_OBJECT_INCLUDED
+#define BALL_OBJECT_INCLUDED 1
+
 #import "AbstractGameObject.h"
 
 @interface BallObject : AbstractGameObject
 
 @end
+
+#endif  // BALL_OBJECT_INCLUDED

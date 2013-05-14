@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef OBJECT_FACTORY_INCLUDED
+#define OBJECT_FACTORY_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "AbstractGameObject.h"
@@ -26,3 +29,5 @@
 - (AbstractGameObject *) objectFromString:(NSString *)className ForWorld:(b2World *)world AsDefault:(bool) isDefault WithSprites:(NSMutableArray*) spriteArray;
 
 @end
+
+#endif  // OBJECT_FACTORY_INCLUDED

@@ -6,6 +6,9 @@
 //  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
+#ifndef WIN_LAYER_INCLUDED
+#define WIN_LAYER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -35,3 +38,5 @@
 -(id) initWithLevelSet: (int) levelSet AndIndex: (int) levelIndex AndStarCount: (int) stars;
 
 @end
+
+#endif  // WIN_LAYER_INCLUDED

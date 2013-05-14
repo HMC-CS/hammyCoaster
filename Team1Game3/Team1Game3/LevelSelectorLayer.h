@@ -6,6 +6,9 @@
 //  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
+#ifndef LEVEL_SELECTOR_LAYER_INCLUDED
+#define LEVEL_SELECTOR_LAYER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -29,3 +32,5 @@
 +(CCScene *) scene;
 
 @end
+
+#endif  // LEVEL_SELECTOR_LAYER_INCLUDED

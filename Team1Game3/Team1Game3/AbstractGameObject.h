@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef ABSTRACT_GAME_OBJECT_INCLUDED
+#define ABSTRACT_GAME_OBJECT_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
@@ -43,3 +46,5 @@
 -(std::vector<b2Body*>) createBodyAtLocation:(CGPoint) location;
 
 @end
+
+#endif  // ABSTRACT_GAME_OBJECT_INCLUDED

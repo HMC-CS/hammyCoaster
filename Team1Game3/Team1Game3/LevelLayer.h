@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef LEVEL_LAYER_INCLUDED
+#define LEVEL_LAYER_INCLUDED 1
+
 #import "CCScene.h"
 
 #import <GameKit/GameKit.h>
@@ -52,3 +55,5 @@
 
 
 @end
+
+#endif  // LEVEL_LAYER_INCLUDED

@@ -6,8 +6,10 @@
 //
 //
 
-#import "CCLayer.h"
+#ifndef GAMEPLAY_LAYER_INCLUDED
+#define GAMEPLAY_LAYER_INCLUDED 1
 
+#import "CCLayer.h"
 #import "cocos2d.h"
 
 @interface GameplayLayer : CCLayer {
@@ -38,7 +40,7 @@
 -(id) initWithHighScore:(int) stars AndStartButtonLocation:(CGPoint) startButtonPoint;
 
 
-/* setTarget:atAction:
+/* setTarget:AtAction:
  * guaranteed name for function to initialize selectors and target
  */
 -(void) setTarget:(id) sender AtAction:(SEL)action;
@@ -50,3 +52,5 @@
 -(void) updateStarCount;
 
 @end
+
+#endif  // GAMEPLAYER_LAYER_INCLUDED

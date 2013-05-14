@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef QUERY_CALLBACK_INCLUDED
+#define QUERY_CALLBACK_INCLUDED 1
+
 #import "cocos2d.h"
 #import "Box2D.h"
 
@@ -32,10 +35,12 @@ public:
 private:
     
     /* ReportFixture
-     * Overwrites b2QueryCallback's ReportFixture to ignore censors.
+     * Overwrites b2QueryCallback's ReportFixture to ignore sensors.
      */
     bool ReportFixture(b2Fixture* fixture);
     
     b2Vec2  m_point;            // The center point for the query
     b2Body* m_object;           // The body found at or near m_point
 };
+
+#endif  // QUERY_CALLBACK_INCLUDED

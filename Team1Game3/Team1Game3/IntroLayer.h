@@ -6,6 +6,8 @@
 //  Copyright CS121:Team 1 Physics 2013. All rights reserved.
 //
 
+#ifndef INTRO_LAYER_INCLUDED
+#define INTRO_LAYER_INCLUDED 1
 
 #import "cocos2d.h"
 
@@ -19,3 +21,5 @@
 +(CCScene *) scene;
 
 @end
+
+#endif  // INTRO_LAYER_INCLUDED

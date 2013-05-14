@@ -2,7 +2,7 @@
 //  StarObject.m
 //  Team1Game3
 //
-//  Created by William O'Brien on 3/20/13.
+//  Created by Michelle Chesley, Priya Donti, Claire Murphy, and Carson Ramsden on 3/20/13.
 //
 //
 

@@ -6,6 +6,9 @@
 //  Copyright CS121:Team 1 Physics 2013. All rights reserved.
 //
 
+#ifndef APP_CONTROLLER_INCLUDED
+#define APP_CONTROLLER_INCLUDED 1
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
@@ -28,3 +31,5 @@
 @property (nonatomic, retain) GameManager* gameManager;
 
 @end
+
+#endif  // APP_CONTROLLER_INCLUDED

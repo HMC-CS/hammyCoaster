@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Zynga. All rights reserved.
 //
 
+#ifndef PHYSICS_SPRITE_INCLUDED
+#define PHYSICS_SPRITE_INCLUDED 1
+
 #import "cocos2d.h"
 #import "Box2D.h"
 
@@ -17,3 +20,5 @@
 -(b2Body) getPhysicsBody;
 
 @end
+
+#endif  // PHYSICS_SPRITE_INCLUDED

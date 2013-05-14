@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef GAME_MANAGER_INCLUDED
+#define GAME_MANAGER_INCLUDED 1
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
@@ -54,3 +57,5 @@
 -(bool) isLevelLockedAtLevelSet:(int)set AndIndex:(int)index;
 
 @end
+
+#endif  // GAME_MANAGER_INCLUDED

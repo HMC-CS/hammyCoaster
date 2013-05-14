@@ -6,8 +6,13 @@
 //
 //
 
+#ifndef BLUE_PORTAL_OBJECT_INCLUDED
+#define BLUE_PORTAL_OBJECT_INCLUDED 1
+
 #import "AbstractGameObject.h"
 
 @interface BluePortalObject : AbstractGameObject
 
 @end
+
+#endif  // BLUE_PORTAL_OBJECT_INCLUDED

@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef MATHHELPER_H_INCLUDED
-#define MATHHELPER_H_INCLUDED
+#ifndef MATHHELPER_INCLUDED
+#define MATHHELPER_INCLUDED
 
 
 #ifdef __cplusplus
@@ -26,4 +26,4 @@ extern "C" {
 #endif
 
 
-#endif //MATHHELPER_H_INCLUDED
+#endif //MATHHELPER_INCLUDED

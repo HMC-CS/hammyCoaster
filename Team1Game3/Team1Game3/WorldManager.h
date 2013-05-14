@@ -6,6 +6,9 @@
 //  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
+#ifndef WORLD_MANAGER_INCLUDED
+#define WORLD_MANAGER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
@@ -41,3 +44,5 @@
 -(void) update;
 
 @end
+
+#endif  // WORLD_MANAGER_INCLUDED

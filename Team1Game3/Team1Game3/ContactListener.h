@@ -6,6 +6,9 @@
 //  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
+#ifndef CONTACT_LISTENER_INCLUDED
+#define CONTACT_LISTENER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "Box2D.h"
@@ -62,3 +65,5 @@ private:
     b2Body* _contactStar;            // Body of star that has been hit.
     
 };
+
+#endif  // CONTACT_LISTENER_INCLUDED

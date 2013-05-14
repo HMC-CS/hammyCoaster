@@ -33,6 +33,9 @@
  *
  */
 
+#ifndef CC_SCROLL_LAYER_INCLUDED
+#define CC_SCROLL_LAYER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -218,4 +221,6 @@
 -(void) selectPage:(int)page;
 
 @end
+
+#endif  // CC_SCROLL_LAYER
 

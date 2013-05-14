@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef OVERALL_WIN_LAYER_INCLUDED
+#define OVERALL_WIN_LAYER_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -21,3 +24,5 @@
 +(CCScene *) scene;
 
 @end
+
+#endif  // OVERALL_WIN_LAYER_INCLUDED

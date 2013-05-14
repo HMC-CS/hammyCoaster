@@ -50,11 +50,9 @@
     _target = sender;
     if (!_selector1) {
         _selector1 = action;
-    }
-    else if (!_selector2){
+    } else if (!_selector2){
         _selector2 = action;
-    }
-    else {
+    } else {
         _selector3 = action;
     }
 }
@@ -155,6 +153,18 @@
 }
 
 
+/* resetStarCount:
+ * Resets the star count to 0 if the level is reset
+ */
+-(void) resetStarCount
+{
+    _starCount = 0;
+    [_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
+}
+
+
+/* ///////////////////////// Target-Selector Functions ///////////////////////// */
+
 /* playButtonPressed
  * Asks LevelLayer to start the level
  */
@@ -181,16 +191,6 @@
 {
     [_target performSelector:_selector3];
     [self resetStarCount];
-}
-
-
-/* resetStarCount:
- * Resets the star count to 0 if the level is reset
- */
--(void) resetStarCount
-{
-    _starCount = 0;
-    [_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
 }
 
 

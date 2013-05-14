@@ -6,6 +6,9 @@
 //  Copyright 2013 CS121:Team 1 Physics. All rights reserved.
 //
 
+#ifndef LEVEL_GENERATOR_INCLUDED
+#define LEVEL_GENERATOR_INCLUDED 1
+
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
@@ -29,3 +32,5 @@
 -(NSMutableArray*) generateInventoryInSet:(int) set WithIndex:(int) index;
 
 @end
+
+#endif  // LEVEL_GENERATOR_INCLUDED

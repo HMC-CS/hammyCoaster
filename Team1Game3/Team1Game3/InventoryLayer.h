@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef INVENTORY_LAYER_INCLUDED
+#define INVENTORY_LAYER_INCLUDED 1
+
 #import "CCLayer.h"
 #import "Cocos2d.h"
 
@@ -37,3 +40,5 @@
 - (void) increaseInventoryForType:(NSString*) type;
 
 @end
+
+#endif  // INVENTORY_LAYER_INCLUDED

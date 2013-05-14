@@ -6,8 +6,13 @@
 //
 //
 
+#ifndef SEESAW_OBJECT_INCLUDED
+#define SEESAW_OBJECT_INCLUDED 1
+
 #import "AbstractGameObject.h"
 
 @interface SeesawObject : AbstractGameObject
 
 @end
+
+#endif  // SEESAW_OBJECT_INCLUDED

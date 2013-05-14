@@ -6,6 +6,9 @@
 //
 //
 
+#ifndef SOUND_MANAGER_INCLUDED
+#define SOUND_MANAGER_INCLUDED 1
+
 #import "cocos2d.h"
 #import "SimpleAudioEngine.h"
 
@@ -45,3 +48,5 @@
 - (CCMenu*) createSoundMenu;
 
 @end
+
+#endif  // SOUND_MANAGER_INCLUDED
