@@ -43,7 +43,14 @@
         _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
         
         /////////////
-          
+        
+        // put picture as background
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        CCSprite *background;
+        background = [CCSprite spriteWithFile:@"GoalLayer.png"];
+        background.position = ccp(size.width/2, size.height/2);
+        [self addChild: background z:-2];
+        
         [self createMenu];
         [self drawStars];
         

@@ -31,7 +31,13 @@
 -(id) init
 {
     if (self = [super init]) {
-        
+        CGSize size = [[CCDirector sharedDirector] winSize];        
+        // put picture as background
+        CCSprite *background;
+        background = [CCSprite spriteWithFile:@"LevelSelectorLayer.png"];
+        background.position = ccp(size.width/2, size.height/2);
+        [self addChild: background z:-2];
+
         _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
 
         [self createButtons];

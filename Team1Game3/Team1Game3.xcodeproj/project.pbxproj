@@ -37,6 +37,9 @@
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
 		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
+		CECEFAB01742709B00C0F604 /* GoalLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = CECEFAAE1742709B00C0F604 /* GoalLayer.png */; };
+		CECEFAB11742709B00C0F604 /* MainMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = CECEFAAF1742709B00C0F604 /* MainMenu.png */; };
+		CECEFABB17427A3E00C0F604 /* LevelSelectorLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */; };
 		CEF445EA172647B7004B3745 /* SeesawObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CEF445E9172647B7004B3745 /* SeesawObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8299F75171D5DFB00C6E8C5 /* MagnetObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */; };
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
@@ -313,6 +316,9 @@
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
 		CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
+		CECEFAAE1742709B00C0F604 /* GoalLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GoalLayer.png; path = "Backgrounds and Screens/GoalLayer.png"; sourceTree = "<group>"; };
+		CECEFAAF1742709B00C0F604 /* MainMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainMenu.png; path = "Backgrounds and Screens/MainMenu.png"; sourceTree = "<group>"; };
+		CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LevelSelectorLayer.png; path = "Backgrounds and Screens/LevelSelectorLayer.png"; sourceTree = "<group>"; };
 		CEF445E8172647B7004B3745 /* SeesawObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeesawObject.h; sourceTree = "<group>"; };
 		CEF445E9172647B7004B3745 /* SeesawObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SeesawObject.mm; sourceTree = "<group>"; };
 		D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObject.png; sourceTree = "<group>"; };
@@ -876,7 +882,10 @@
 		D878F95B17423C5C00F7BD46 /* Backgrounds and Screens */ = {
 			isa = PBXGroup;
 			children = (
+				CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */,
 				D878F95C17423CDF00F7BD46 /* WinScreen.png */,
+				CECEFAAE1742709B00C0F604 /* GoalLayer.png */,
+				CECEFAAF1742709B00C0F604 /* MainMenu.png */,
 				D88BB91617273DC800FC28DC /* levelbackground.png */,
 			);
 			name = "Backgrounds and Screens";
@@ -1718,6 +1727,9 @@
 				D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */,
 				D878F96E1742439A00F7BD46 /* SeesawObject.png in Resources */,
 				D878F970174245B100F7BD46 /* InitialRampObject.png in Resources */,
+				CECEFAB01742709B00C0F604 /* GoalLayer.png in Resources */,
+				CECEFAB11742709B00C0F604 /* MainMenu.png in Resources */,
+				CECEFABB17427A3E00C0F604 /* LevelSelectorLayer.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

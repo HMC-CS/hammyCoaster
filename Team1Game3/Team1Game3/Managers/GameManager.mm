@@ -18,7 +18,7 @@
         [self loadGame];
         
         // Control the number of levels with these variables.
-        _numLevelSets = 1;
+        _numLevelSets = 2;
         _numLevelIndices = 12;
         
         // Load level and game information using NSUserDefaults
@@ -28,8 +28,7 @@
         _levelCompletionStatuses = [[NSMutableArray alloc] init];
         _levelHighScores = [[NSMutableArray alloc] init];
         _isLevelLocked = [[NSMutableArray alloc] init];
-        for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
-        {
+        for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i) {
             // Load level information using NSUserDefaults
             bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
             bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
@@ -46,7 +45,7 @@
             [_levelHighScores addObject:[NSNumber numberWithInt:levelStars]];
             
             if (levelLocked) {
-                [_isLevelLocked addObject:@"false"];
+                [_isLevelLocked addObject:@"true"];
             } else{
                 [_isLevelLocked addObject:@"false"];
             }
@@ -61,34 +60,34 @@
 -(void) resetUserData
 {
     
-    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
-    {
-    bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
-    bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
-    int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
-    NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
-        
+    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i) {
+        NSString *levelComplete =[_levelCompletionStatuses objectAtIndex:i];
+        NSString *levelLocked = [_isLevelLocked objectAtIndex: i];
+        NSNumber *levelStars = [_levelHighScores objectAtIndex: i];
+        NSLog(@"level %d, Complete: %@ Locked: %@, Stars: %@", i, levelComplete, levelLocked, levelStars);
     }
     NSLog(@"resetUserData");//new
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [self loadGame];
-     
-    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
-    {
+    
+    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i) {
         bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
         bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
         int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
         NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
-    
-//        if (levelComplete){
-//            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:YES]];
-//        }else{
-            [_levelCompletionStatuses replaceObjectAtIndex: i-1 withObject:[NSNumber numberWithBool:NO]];
-        //[_isLevelLocked replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelLocked]];
-        //[_levelHighScores replaceObjectAtIndex: i withObject:[NSNumber numberWithInteger:levelStars ]];
-//        }
-
+        
+        if (levelComplete) {
+            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:@"true"];
+        }else{
+            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:@"false"];
+        }
+        if(levelLocked) {
+            [_isLevelLocked replaceObjectAtIndex: i withObject:@"true"];
+        }else{
+            [_isLevelLocked replaceObjectAtIndex: i withObject:@"false"];
+        }
+        [_levelHighScores setObject:[NSNumber numberWithInt:levelStars] atIndexedSubscript:i];
     }
 }
 
@@ -190,7 +189,20 @@
                                  @"YES",        @"level_8_locked",
                                  @"YES",        @"level_9_locked",
                                  @"YES",        @"level_10_locked",
-                                 @"NO",         @"level_11_locked",
+                                 @"YES",        @"level_11_locked",
+                                 @"YES",        @"level_12_locked",
+                                 @"YES",        @"level_13_locked",
+                                 @"YES",        @"level_14_locked",
+                                 @"YES",        @"level_15_locked",
+                                 @"YES",        @"level_16_locked",
+                                 @"YES",        @"level_17_locked",
+                                 @"YES",        @"level_18_locked",
+                                 @"YES",        @"level_19_locked",
+                                 @"YES",        @"level_20_locked",
+                                 @"YES",        @"level_21_locked",
+                                 @"YES",        @"level_22_locked",
+                                 @"YES",        @"level_23_locked",
+                                 @"YES",        @"level_24_locked",
                                  @"NO",         @"level_0_complete",
                                  @"NO",         @"level_1_complete",
                                  @"NO",         @"level_2_complete",
@@ -203,6 +215,19 @@
                                  @"NO",         @"level_9_complete",
                                  @"NO",         @"level_10_complete",
                                  @"NO",         @"level_11_complete",
+                                 @"NO",         @"level_12_complete",
+                                 @"NO",         @"level_13_complete",
+                                 @"NO",         @"level_14_complete",
+                                 @"NO",         @"level_15_complete",
+                                 @"NO",         @"level_16_complete",
+                                 @"NO",         @"level_17_complete",
+                                 @"NO",         @"level_18_complete",
+                                 @"NO",         @"level_19_complete",
+                                 @"NO",         @"level_20_complete",
+                                 @"NO",         @"level_21_complete",
+                                 @"NO",         @"level_22_complete",
+                                 @"NO",         @"level_23_complete",
+                                 @"NO",         @"level_24_complete",
                                  @"0",          @"level_0_stars",
                                  @"0",          @"level_1_stars",
                                  @"0",          @"level_2_stars",
@@ -215,6 +240,20 @@
                                  @"0",          @"level_9_stars",
                                  @"0",          @"level_10_stars",
                                  @"0",          @"level_11_stars",
+                                 @"0",          @"level_12_stars",
+                                 @"0",          @"level_13_stars",
+                                 @"0",          @"level_14_stars",
+                                 @"0",          @"level_15_stars",
+                                 @"0",          @"level_16_stars",
+                                 @"0",          @"level_17_stars",
+                                 @"0",          @"level_18_stars",
+                                 @"0",          @"level_19_stars",
+                                 @"0",          @"level_20_stars",
+                                 @"0",          @"level_21_stars",
+                                 @"0",          @"level_22_stars",
+                                 @"0",          @"level_23_stars",
+                                 @"0",          @"level_24_stars",
+
                                  nil]];
 }
 

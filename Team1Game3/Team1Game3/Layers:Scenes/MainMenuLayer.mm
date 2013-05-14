@@ -33,7 +33,13 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
 		
 		self.isTouchEnabled = YES;
-		
+        
+		// put picture as background
+        CCSprite *background;
+        background = [CCSprite spriteWithFile:@"MainMenu.png"];
+        background.position = ccp(size.width/2, size.height/2);
+        [self addChild: background z:-2];
+        
 		// Create menu buttons
 		[self createMenu];
         
