@@ -19,7 +19,7 @@
         [self loadGame];
         
         // Control the number of levels with these variables.
-        _numLevelSets = 2;
+        _numLevelSets = 1;
         _numLevelIndices = 12;
         
         
