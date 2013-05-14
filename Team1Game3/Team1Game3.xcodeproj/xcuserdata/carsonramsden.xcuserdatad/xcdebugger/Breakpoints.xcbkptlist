@@ -78,7 +78,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "59"
          endingLineNumber = "59"
-         landmarkName = "-createMenu"
+         landmarkName = "-getSelectedObject"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
