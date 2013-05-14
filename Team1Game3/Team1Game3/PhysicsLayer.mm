@@ -808,7 +808,8 @@
             for (int i = 0; i < count; i++) {
                 
                 // Get the location of the vertex
-                b2Vec2 vertexPoint = polygonShape->GetVertex(i) + body->GetPosition();
+                b2Vec2 vertexPoint = polygonShape->GetVertex(i);
+                vertexPoint = body->GetWorldPoint(vertexPoint);
                 CGPoint boundPoint = ccpMult(ccp(vertexPoint.x, vertexPoint.y), PTM_RATIO);
                 boundPoint = ccpAdd(boundPoint, self.boundingBox.origin);
                 
