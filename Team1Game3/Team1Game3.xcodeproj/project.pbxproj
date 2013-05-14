@@ -51,8 +51,6 @@
 		D843EFDE16FFBA16006732D5 /* Team1Game3Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = D843EFDD16FFBA16006732D5 /* Team1Game3Tests.mm */; };
 		D86F7146170749B50007ED1D /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F7144170749B50007ED1D /* CCScrollLayer.mm */; };
 		D86F7147170749B50007ED1D /* CCScrollLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F7144170749B50007ED1D /* CCScrollLayer.mm */; };
-		D86F7148170749B50007ED1D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D86F7145170749B50007ED1D /* README.md */; };
-		D86F7149170749B50007ED1D /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D86F7145170749B50007ED1D /* README.md */; };
 		D86F714C17088D960007ED1D /* LevelGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F714B17088D960007ED1D /* LevelGenerator.mm */; };
 		D86F714D17088D960007ED1D /* LevelGenerator.mm in Sources */ = {isa = PBXBuildFile; fileRef = D86F714B17088D960007ED1D /* LevelGenerator.mm */; };
 		D86F71571708A0770007ED1D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = D86F71561708A0770007ED1D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -312,7 +310,7 @@
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HamsterCoasterIcon.png; path = ../HamsterCoasterIcon.png; sourceTree = "<group>"; };
-		CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
+		CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = HamsterCoasterIcon.png; path = ../HamsterCoasterIcon.png; sourceTree = "<group>"; };
 		CEF445E8172647B7004B3745 /* SeesawObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SeesawObject.h; sourceTree = "<group>"; };
 		CEF445E9172647B7004B3745 /* SeesawObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SeesawObject.mm; sourceTree = "<group>"; };
 		D8299F73171D5DFB00C6E8C5 /* MagnetObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MagnetObject.png; sourceTree = "<group>"; };
@@ -320,7 +318,7 @@
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
 		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
 		D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObjectIcon.png; sourceTree = "<group>"; };
-		D8299F801721467B00C6E8C5 /* Delete.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Delete.PNG; path = Team1Game3/Delete.PNG; sourceTree = "<group>"; };
+		D8299F801721467B00C6E8C5 /* Delete.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.PNG; sourceTree = "<group>"; };
 		D8299F82172146F300C6E8C5 /* Delete2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete2.PNG; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -331,7 +329,6 @@
 		D843EFDF16FFBA16006732D5 /* Team1Game3Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Team1Game3Tests-Prefix.pch"; sourceTree = "<group>"; };
 		D86F7143170749B50007ED1D /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
 		D86F7144170749B50007ED1D /* CCScrollLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CCScrollLayer.mm; sourceTree = "<group>"; };
-		D86F7145170749B50007ED1D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		D86F714A17088D960007ED1D /* LevelGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LevelGenerator.h; sourceTree = "<group>"; };
 		D86F714B17088D960007ED1D /* LevelGenerator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = LevelGenerator.mm; sourceTree = "<group>"; };
 		D86F71551708A0770007ED1D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
@@ -785,7 +782,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AD7731AD172618BD00709F80 /* Music icons */ = {
+		AD7731AD172618BD00709F80 /* Music Icons */ = {
 			isa = PBXGroup;
 			children = (
 				AD7731B617261A9D00709F80 /* Music off.png */,
@@ -793,7 +790,7 @@
 				AD7731B817261A9D00709F80 /* Sound off.png */,
 				AD7731B917261A9D00709F80 /* Sound on.png */,
 			);
-			name = "Music icons";
+			path = "Music Icons";
 			sourceTree = "<group>";
 		};
 		AD7731BE1726415800709F80 /* Sound */ = {
@@ -805,7 +802,7 @@
 				AD7731BF1726416900709F80 /* StarObject.mp3 */,
 				AD7731A81724A96B00709F80 /* Background music.m4a */,
 			);
-			name = Sound;
+			path = Sound;
 			sourceTree = "<group>";
 		};
 		CE3B319B170E43CE00F70048 /* Objects */ = {
@@ -831,24 +828,6 @@
 				9CE768D716F9B1FB00EE241F /* StarObject.mm */,
 			);
 			path = Objects;
-			sourceTree = "<group>";
-		};
-		CE3B319C170E43E800F70048 /* PhysicsSprite */ = {
-			isa = PBXGroup;
-			children = (
-				D8E83E9C16EA753F000284EA /* PhysicsSprite.h */,
-				D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */,
-			);
-			name = PhysicsSprite;
-			sourceTree = "<group>";
-		};
-		CE3B319D170E43F500F70048 /* Debug Draw */ = {
-			isa = PBXGroup;
-			children = (
-				D8E83E9916EA753F000284EA /* GLES-Render.h */,
-				D8E83E9A16EA753F000284EA /* GLES-Render.mm */,
-			);
-			name = "Debug Draw";
 			sourceTree = "<group>";
 		};
 		CE3B319E170E440000F70048 /* Layers/Scenes */ = {
@@ -899,16 +878,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D86F714E1708A0120007ED1D /* JSonKit */ = {
-			isa = PBXGroup;
-			children = (
-				D86F71551708A0770007ED1D /* JSONKit.h */,
-				D86F71561708A0770007ED1D /* JSONKit.m */,
-			);
-			name = JSonKit;
-			sourceTree = "<group>";
-		};
-		D895F556170743E200ED74C5 /* Level Icons */ = {
+		D895F556170743E200ED74C5 /* Level Selector Icons */ = {
 			isa = PBXGroup;
 			children = (
 				D88207771717D20100D74162 /* CheckMark.png */,
@@ -920,7 +890,7 @@
 				D895F54F170743CA00ED74C5 /* LevelIcon5.png */,
 				619EE6C81728F0440005D077 /* lock.png */,
 			);
-			name = "Level Icons";
+			path = "Level Selector Icons";
 			sourceTree = "<group>";
 		};
 		D895F557170743F700ED74C5 /* Objects */ = {
@@ -978,29 +948,21 @@
 		D895F5591707458900ED74C5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CE3B319D170E43F500F70048 /* Debug Draw */,
-				CE3B319C170E43E800F70048 /* PhysicsSprite */,
-				D86F714E1708A0120007ED1D /* JSonKit */,
-				D895F55F170745AB00ED74C5 /* CCScrollLayer */,
-			);
-			name = Extensions;
-			sourceTree = "<group>";
-		};
-		D895F55F170745AB00ED74C5 /* CCScrollLayer */ = {
-			isa = PBXGroup;
-			children = (
+				D86F71551708A0770007ED1D /* JSONKit.h */,
+				D86F71561708A0770007ED1D /* JSONKit.m */,
 				D86F7143170749B50007ED1D /* CCScrollLayer.h */,
 				D86F7144170749B50007ED1D /* CCScrollLayer.mm */,
-				D86F7145170749B50007ED1D /* README.md */,
+				D8E83E9C16EA753F000284EA /* PhysicsSprite.h */,
+				D8E83E9D16EA753F000284EA /* PhysicsSprite.mm */,
+				D8E83E9916EA753F000284EA /* GLES-Render.h */,
+				D8E83E9A16EA753F000284EA /* GLES-Render.mm */,
 			);
-			name = CCScrollLayer;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D8E83C6716EA753B000284EA = {
 			isa = PBXGroup;
 			children = (
-				D8299F801721467B00C6E8C5 /* Delete.PNG */,
-				CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */,
 				D8E83C8516EA753B000284EA /* Team1Game3 */,
 				D843EFD616FFBA16006732D5 /* Team1Game3Tests */,
 				D8E83C7216EA753B000284EA /* Frameworks */,
@@ -1072,9 +1034,12 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D8299F801721467B00C6E8C5 /* Delete.PNG */,
+				CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */,
 				D88BB91617273DC800FC28DC /* levelbackground.png */,
+				D895F556170743E200ED74C5 /* Level Selector Icons */,
+				AD7731AD172618BD00709F80 /* Music Icons */,
 				AD7731BE1726415800709F80 /* Sound */,
-				AD7731AD172618BD00709F80 /* Music icons */,
 				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
 				611171F7172B8A2C00CF2950 /* trash2.png */,
 				619EE6CF1729DD880005D077 /* trashCan.png */,
@@ -1082,11 +1047,10 @@
 				D8820915171BAD0000D74162 /* IntroLayer1.png */,
 				D8820913171BAC5100D74162 /* IntroLayer.png */,
 				D86F71591708A7100007ED1D /* InitialObjects.json */,
-				D895F556170743E200ED74C5 /* Level Icons */,
 				D895F557170743F700ED74C5 /* Objects */,
 				D895F5581707440700ED74C5 /* Given */,
 			);
-			name = Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D8E83CA016EA753B000284EA /* libs */ = {
@@ -1660,7 +1624,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D843EFDB16FFBA16006732D5 /* InfoPlist.strings in Resources */,
-				D86F7149170749B50007ED1D /* README.md in Resources */,
 				D86F715B1708A7100007ED1D /* InitialObjects.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1696,7 +1659,6 @@
 				D895F553170743CA00ED74C5 /* LevelIcon3.png in Resources */,
 				D895F554170743CA00ED74C5 /* LevelIcon4.png in Resources */,
 				D895F555170743CA00ED74C5 /* LevelIcon5.png in Resources */,
-				D86F7148170749B50007ED1D /* README.md in Resources */,
 				D86F715A1708A7100007ED1D /* InitialObjects.json in Resources */,
 				6177232E170D5559004F545F /* RampObjectIcon.png in Resources */,
 				61772331170D59D5004F545F /* RampObjectIconSelected.png in Resources */,
