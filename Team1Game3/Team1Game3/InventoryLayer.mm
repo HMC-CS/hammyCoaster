@@ -170,7 +170,7 @@
 /* ////////////////////////////// Touch Functions ////////////////////////////// */
 
 
-/* registerWithTouchDispacher:
+/* registerWithTouchDispacher
  * Initializes touches for InventoryLayer. Makes it "swallow"
  * touches so no layer below it in the scene will feel them.
  */

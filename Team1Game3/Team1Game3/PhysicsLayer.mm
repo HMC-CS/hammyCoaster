@@ -372,6 +372,7 @@
  */
 -(void) update: (ccTime) dt
 {
+    // TODO: make a decision about this
 	//It is recommended that a fixed time step is used with Box2D for stability
 	//of the simulation, however, we are using a variable time step here.
 	//You need to make an informed choice, the following URL is useful
@@ -384,31 +385,41 @@
 	// generally best to keep the time step and iterations fixed.
 	_world->Step(dt, velocityIterations, positionIterations);
     
+    // If ball intersects blue portal, you win the level!
     if (_contactListener->IsLevelWon()) {
         _contactListener->SetLevelWonStatus(false);
         [self gameWon];
     }
     
+    // If the ball hits a star, erase it.
     b2Body* contactStar = _contactListener->GetContactStar();
     if (contactStar) {
         [self hitStar:contactStar];
         _contactListener->EraseContactStar();
     }
     
+    // Update other things in the world
     [_worldManager update];
 }
 
 
 /* ////////////////////////////// Touch Functions ////////////////////////////// */
 
+/* registerWithTouchDispacher
+ * Initializes touches for PhysicsLayer.
+ */
 -(void)registerWithTouchDispatcher
 {
     [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:YES];
 }
 
+/* ccTouchBegan:
+ * Deals with touch-downs within PhysicsLayer.
+ */
 -(BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if (_firstTouch == NULL) {
+        
         _firstTouch = touch;
         
         // Get tap location and convert to cocos2d-box2d coordinates
@@ -431,6 +442,7 @@
         
         b2Body* body = [self getBodyAtLocation:_initialTouchPosition WithAABBSize:0.001f];
         
+        
         // If there's a body where the touch is, set up for dragging
         if (body) {
             AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(body->GetUserData());
@@ -444,7 +456,7 @@
                 _currentMoveableBody = body;
                 
                 // Unless the touch is in the inventory, turn the inventory into the trash can
-                if (![self pointInInventory:touchLocation]) {
+                if (![self isPointInInventory:touchLocation]) {
                     [self addTrash];
                 }
                 
@@ -469,6 +481,10 @@
     return YES;
 }
 
+
+/* ccTouchMoved:
+ * Deals with touches moved within PhysicsLayer.
+ */
 -(void) ccTouchMoved:(UITouch *)touch withEvent:(UIEvent *)event
 {
     if (_currentMoveableBody != NULL) {
@@ -515,6 +531,10 @@
     }
 }
 
+
+/* ccTouchCancelled:
+ * Deals with touches cancelled within PhysicsLayer.
+ */
 -(void)ccTouchCancelled:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touch == _firstTouch) {
         [self resetTouch];
@@ -523,6 +543,10 @@
     }
 }
 
+
+/* ccTouchEnded:
+ * Deals with touch-ups within PhysicsLayer.
+ */
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event {
     if (touch == _firstTouch) {
         
@@ -542,10 +566,14 @@
 }
 
 
-/* ////////////////////////////// Touch Functions ////////////////////////////// */
+/* ////////////////////////// Touch Helper Functions ////////////////////////// */
 
+/* getTouchLocation:
+ * Converts touch to physics layer coordinates
+ */
 -(CGPoint) getTouchLocation:(UITouch *) touch
 {
+    // Get touch and convert to Physics Layer coordinates
     CGPoint touchLocation = [touch locationInView:[touch view]];
     touchLocation = [[CCDirector sharedDirector] convertToGL:touchLocation];
     touchLocation = [self convertToNodeSpace:touchLocation];
@@ -553,6 +581,10 @@
     return touchLocation;
 }
 
+
+/* getBodyAtLocation:
+ * Uses QueryCallback to see if a body intersects with a given point
+ */
 -(b2Body*) getBodyAtLocation:(b2Vec2) location WithAABBSize:(float) boxSize
 {
     QueryCallback callback(location);
@@ -562,6 +594,10 @@
     return callback.getm_object();
 }
 
+
+/* addTrash
+ * Adds a trash can sprite to the scene
+ */
 -(void) addTrash
 {
     _trash = [CCSprite spriteWithFile:@"trash2.png"];
@@ -569,6 +605,11 @@
     [self addChild:_trash z:10000];
 }
 
+
+/* storeMoveableDynamicStatusForBodies
+ * Given a vector of bodies, keeps track of whether they're dynamic or static
+ *  before setting them static for dragging.
+ */
 -(void) storeMoveableDynamicStatusForBodies:(std::vector<b2Body*>) bodies
 {
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
@@ -581,18 +622,23 @@
             [_moveableDynamicStatus addObject:@"static"];
         }
         
+        // So the body doesn't intersect with other bodies.
         loopBody->SetActive(false);
     }
 }
 
+
+/* resetMoveableDynamicStatusForBodies
+ * Restores the dynamic or static state of dragged bodies as stored in
+ *  storeMoveableDynamicStatusForBodies
+ */
 -(void) resetMoveableDynamicStatusForBodies:(std::vector<b2Body*>) bodies
 {
     int statusCounter = 0;
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
     {
         b2Body* body = *i;
-        if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"])
-        {
+        if ([[_moveableDynamicStatus objectAtIndex:statusCounter] isEqualToString:@"dynamic"]) {
             body->SetType(b2_dynamicBody);
         }
         body->SetActive(true);
@@ -600,18 +646,31 @@
     }
 }
 
--(bool) pointInInventory:(CGPoint) point
+
+/* isPointInInventory:
+ * Returns whether or a not a point is in the inventory (as opposed to the
+ *  level screen)
+ */
+-(bool) isPointInInventory:(CGPoint) point
 {
     return point.x < 0;
 }
 
--(bool) pointInTrash: (CGPoint) point
+
+/* isPointInTrash:
+ * Returns whether or not a point is in the trash sprite (for deletion)
+ */
+-(bool) isPointInTrash: (CGPoint) point
 {
     return (point.x < self.boundingBox.origin.x &&
-            point.y > self.boundingBox.size.height/5 &&
-            point.y < self.boundingBox.size.height*4/5);
+        point.y > self.boundingBox.size.height/5 &&
+        point.y < self.boundingBox.size.height*4/5);
 }
 
+
+/* calculateTouchAngle
+ * Returns whether or not a point is in the trash sprite (for deletion)
+ */
 -(float) calculateTouchAngle
 {
     CGPoint point = ccpSub([_secondTouch locationInView:[_secondTouch view]], [_firstTouch locationInView:[_firstTouch view]]);
@@ -627,6 +686,10 @@
     return touchAngle;
 }
 
+
+/* resetTouch
+ * Removes touches and cleans them up
+ */
 -(void) resetTouch
 {
     _firstTouch = NULL;
@@ -636,6 +699,10 @@
     _currentMoveableBody = NULL;
 }
 
+
+/* finishedMovingObject:
+ * Deals with special cases for invalid placements of a body
+ */
 -(void) finishedMovingObject: (AbstractGameObject*) bodyObject
 {
     std::vector<b2Body*> bodies = bodyObject.bodies;
@@ -663,7 +730,7 @@
                 
                 // Check if the point is in the inventory
                 if ( !CGRectContainsPoint(self.boundingBox, vertexPoint)) {
-                    if ([self pointInTrash:vertexPoint]) {
+                    if ([self isPointInTrash:vertexPoint]) {
                         deleteObject = true;
                         break;
                     } else {
@@ -688,10 +755,12 @@
                 
             }
             
+            // Break if something has been processed
             if (deleteObject || bounceBackObject) {
                 break;
             }
         }
+        // Break if something has been processed
         if (deleteObject || bounceBackObject) {
             break;
         }
@@ -706,16 +775,21 @@
     [self resetMoveableDynamicStatusForBodies:bodies];
 }
 
+
+/* bounceBackObjectWithBody
+ * Bounces an object back to its initial position if needed
+ */
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
     if (_initialBodyPosition.x < 0) {
-        [self deleteObjectWithBody:body];
+        [self deleteObjectWithBody:body];       // Delete objects in inventory
     } else {
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
         for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
             b2Body* body = *i;
             b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
+            // Set each body to its original position, taking account of offsets
             body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
         }
     }

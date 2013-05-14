@@ -69,7 +69,6 @@
 -(void) setTarget:(id) sender AtAction:(SEL)action;
 
 
-
 /* addNewSpriteOfType:AtPosition:WithRotation:AsDefault
  * Adds sprite to physics layer (with parameters).
  */
