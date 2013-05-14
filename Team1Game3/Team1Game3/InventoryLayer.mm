@@ -7,6 +7,7 @@
 //
 
 #import "InventoryLayer.h"
+#import "SpriteResizingFunctions.h"
 
 @implementation InventoryLayer
 
@@ -129,6 +130,8 @@
         NSString* buttonSprite = [[NSString alloc] initWithFormat:@"%@Icon.png", type];
         CCSprite* normal = [CCSprite spriteWithFile:buttonSprite];
         CCSprite* selected = [CCSprite spriteWithFile:buttonSprite];
+        [SpriteResizingFunctions setSpriteSize:normal inLayer:self withSize:.7f];
+        [SpriteResizingFunctions setSpriteSize:selected inLayer:self withSize:.7f];
         selected.color = ccc3(255,255,0);
         
         // Set inventory button atrributes
