@@ -36,7 +36,8 @@
 /* ////////////////////////////// Private Functions ////////////////////////////// */
 
 /* loadItemsForLocation:ForLevelSet:AndIndex:
- * Loads items from file for either inventory or playing board given the level set and index
+ * Loads items from file for either inventory or playing board
+ * given the level set and index
  * Returns an array of the items
  */
 -(NSMutableArray*) loadItemsForLocation: (NSString*) location ForLevelSet: (int) set AndIndex: (int) index

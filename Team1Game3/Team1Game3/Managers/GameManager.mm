@@ -85,9 +85,13 @@
         int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
         NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
     
-        //ß[_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelComplete]];
+        if (levelComplete){
+            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:YES]];
+        }else{
+            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:NO]];
         //[_isLevelLocked replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelLocked]];
         //[_levelHighScores replaceObjectAtIndex: i withObject:[NSNumber numberWithInteger:levelStars ]];
+        }
 
     }
     
