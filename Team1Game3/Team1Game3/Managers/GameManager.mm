@@ -22,7 +22,6 @@
         _numLevelSets = 1;
         _numLevelIndices = 12;
         
-        
         // Load level and game information using NSUserDefaults
         
         _numLevelsCompleted = [_defaults integerForKey:@"levels_complete"];
@@ -62,40 +61,36 @@
 // TODO: Claire, make this pretty!
 -(void) resetUserData
 {
-    for (int i = 0; i < /*_numLevelSets **/ _numLevelIndices; ++i)
+    
+    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
     bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
     bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
     int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
     NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
+        
     }
     NSLog(@"resetUserData");//new
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [self loadGame];
-    
-    //[NSUserDefaults resetStandardUserDefaults];
-    //_defaults = [NSUserDefaults standardUserDefaults];
-    //[[NSUserDefaults standardUserDefaults] setObject:apikey forKey:@"apiKey"];
      
-    for (int i = 0; i < /*_numLevelSets **/ _numLevelIndices; ++i)
+    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
         bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
         bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
         int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
         NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
     
-        if (levelComplete){
-            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:YES]];
-        }else{
-            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:NO]];
+//        if (levelComplete){
+//            [_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:YES]];
+//        }else{
+            [_levelCompletionStatuses replaceObjectAtIndex: i-1 withObject:[NSNumber numberWithBool:NO]];
         //[_isLevelLocked replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelLocked]];
         //[_levelHighScores replaceObjectAtIndex: i withObject:[NSNumber numberWithInteger:levelStars ]];
-        }
+//        }
 
     }
-    
-    // end hax
 }
 
 

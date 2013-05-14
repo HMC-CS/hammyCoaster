@@ -94,6 +94,11 @@
         PhysicsSprite* sprite1 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Bottom.png", type]];
         PhysicsSprite* sprite2 = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@Top.png", type]];
         spriteArray = @[sprite1, sprite2];
+    }else if ([type isEqualToString:@"RedPortalObject"])
+    {
+        p = ccp(p.x, p.y+368);
+        PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
+        spriteArray = @[sprite];
     } else {
         PhysicsSprite* sprite = [PhysicsSprite spriteWithFile:[NSString stringWithFormat:@"%@.png",type]];
         spriteArray = @[sprite];
@@ -193,6 +198,8 @@
 
 /* addInitialObjects
  * Adds the objects to the level screen
+ * Note: RedPortalObject should always be created first
+ * (be first in jwon file) or it will look super weird
  */
 - (void) addInitialObjects
 {
