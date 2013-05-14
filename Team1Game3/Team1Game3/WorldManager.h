@@ -20,24 +20,18 @@
 
 @interface WorldManager : NSObject {
     
-    GLESDebugDraw* m_debugDraw;         // debug draw
+    GLESDebugDraw* m_debugDraw;         // DEBUG_DRAW: debug draw.
+                                        // Remove before publishing.
     
-    b2World* _world;
-    
-    ContactListener* _contactListener;
-    ObjectFactory* _objectFactory;
-    CGSize _parentSize;
+    b2World* _world;                    // The physics world
     
     std::vector<b2Body*> _bodiesToDestroy;
     
 }
 
 -(id) initWithWorld: (b2World*) world;
--(void) applyMagnets;
--(void) springSeesaw;
--(void) initPhysics;
 
--(void) setObjectFactory:(ObjectFactory *) objectFactory;
+-(void) setBoundariesForLayer: (CCLayer*) layer;
 
 -(void) destroyBody: (b2Body*) body;
 

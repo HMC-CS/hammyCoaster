@@ -24,6 +24,57 @@
     return self;
 }
 
+-(void) setBoundariesForLayer:(CCLayer *)layer
+{
+    CGSize size = [layer contentSize];
+    
+	// Create the ground body.
+	b2BodyDef groundBodyDef;
+	groundBodyDef.position.Set(0, 0); // bottom-left corner
+	b2Body* groundBody = _world->CreateBody(&groundBodyDef);
+	
+	// Create ground fixtures.
+	b2EdgeShape groundBox;
+	// bottom
+	groundBox.Set(b2Vec2(0,0), b2Vec2(size.width/PTM_RATIO,0));
+	groundBody->CreateFixture(&groundBox,0);
+	// top
+	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO));
+	groundBody->CreateFixture(&groundBox,0);
+	// left
+	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(0,0));
+	groundBody->CreateFixture(&groundBox,0);
+	// right
+	groundBox.Set(b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,0));
+	groundBody->CreateFixture(&groundBox,0);
+    
+    
+    // DEBUG_DRAW. Debug draw. Comment these lines out before publishing.
+	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
+	_world->SetDebugDraw(m_debugDraw);
+	uint32 flags = 0;
+	flags += b2Draw::e_shapeBit;
+	m_debugDraw->SetFlags(flags);
+    
+    
+    // TODO: Claire, fix this!
+    /* hacked default ramps
+     * ---------------------------------------------------------------------- */
+    
+    // Starting ramp
+    b2BodyDef rampBodyDef;
+    rampBodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
+    
+    b2Body *rampBody = _world->CreateBody(&rampBodyDef);
+    b2EdgeShape rampEdge;
+    b2FixtureDef rampShapeDef;
+    rampShapeDef.shape = &rampEdge;
+    
+    // ramp definitions
+    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(5*PTM_RATIO), 410/PTM_RATIO));
+    rampBody->CreateFixture(&rampShapeDef);
+}
+
 // TODO: did not change this method for multi-body because BallObject and MagnetObject are single-body objects.  Change if changed.
 /* applyMagnets:
  * helper function to apply magnet's forces to the ball
@@ -111,11 +162,6 @@
     }
 }
 
-
--(void) setObjectFactory:(ObjectFactory *) objectFactory 
-{
-    _objectFactory = objectFactory;
-}
 
 -(void) destroyBody:(b2Body *)body
 {

@@ -17,7 +17,11 @@
 
 @interface SpriteResizingFunctions : NSObject
 
-+ (void) setSpriteSize: (CCSprite*) sprite inLayer: (CCLayer*) layer withSize: (CGFloat) size;;
+/* setSpriteSize:InLayer:WithSize:
+ * Scales the sprite based on the layer and the fraction of the layer you want the size of
+ * the object to be, then sets the contentSize to the size of the new bounding box
+ */
++ (void) setSpriteSize: (CCSprite*) sprite InLayer: (CCLayer*) layer WithSize: (CGFloat) size;;
 
 @end
 

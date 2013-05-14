@@ -37,8 +37,8 @@
         [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
         [self setPosition:ccp(superSize.width*0.25, 0)];
         
-		// Initialize world and world manager
-		[self initPhysics];
+        // Create world manager and initialize world
+        [self initPhysics];
         
         // Create initial objects on level screen
 		_objectFactory = [ObjectFactory sharedObjectFactory];
@@ -173,72 +173,21 @@
  */
 -(void) initPhysics
 {
-	CGSize size = [self contentSize];
-	
-    // Set up the world
-	b2Vec2 gravity;
-	gravity.Set(0.0f, -10.0f);
-	_world = new b2World(gravity);
-	_world->SetAllowSleeping(true);
-	_world->SetContinuousPhysics(true);
+	// Set up the world
+    b2Vec2 gravity;
+    gravity.Set(0.0f, -10.0f);
+    _world = new b2World(gravity);
+    _world->SetAllowSleeping(true);
+    _world->SetContinuousPhysics(true);
     
     // For collision callbacks
     _contactListener = new ContactListener();
     _world->SetContactListener(_contactListener);
     
-    // Create world manager
     _worldManager = [[WorldManager alloc] initWithWorld:_world];
-    
-    // So the update loop is called
-    [self scheduleUpdate];
-    
-	// Create the ground body.
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position.Set(0, 0); // bottom-left corner
-	b2Body* groundBody = _world->CreateBody(&groundBodyDef);
-	
-	// Create ground fixtures.
-	b2EdgeShape groundBox;
-	// bottom
-	groundBox.Set(b2Vec2(0,0), b2Vec2(size.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
-	// top
-	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO));
-	groundBody->CreateFixture(&groundBox,0);
-	// left
-	groundBox.Set(b2Vec2(0,size.height/PTM_RATIO), b2Vec2(0,0));
-	groundBody->CreateFixture(&groundBox,0);
-	// right
-	groundBox.Set(b2Vec2(size.width/PTM_RATIO,size.height/PTM_RATIO), b2Vec2(size.width/PTM_RATIO,0));
-	groundBody->CreateFixture(&groundBox,0);
-    
-    
-    // DEBUG_DRAW. Debug draw. Comment these lines out before publishing.
-	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
-	_world->SetDebugDraw(m_debugDraw);
-	uint32 flags = 0;
-	flags += b2Draw::e_shapeBit;
-	m_debugDraw->SetFlags(flags);
-    
-    
-    // TODO: Claire, fix this!
-    /* hacked default ramps
-     * ---------------------------------------------------------------------- */
-    
-    // Starting ramp
-    b2BodyDef rampBodyDef;
-    rampBodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
-    
-    b2Body *rampBody = _world->CreateBody(&rampBodyDef);
-    b2EdgeShape rampEdge;
-    b2FixtureDef rampShapeDef;
-    rampShapeDef.shape = &rampEdge;
-    
-    // ramp definitions
-    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(5*PTM_RATIO), 410/PTM_RATIO));
-    rampBody->CreateFixture(&rampShapeDef);
+    [_worldManager setBoundariesForLayer:self];
+    [self scheduleUpdate];      // So update is called
 }
-
 
 
 /* addInitialObjects

@@ -130,13 +130,13 @@
         NSString* buttonSprite = [[NSString alloc] initWithFormat:@"%@.png", type];
         CCSprite* normal = [CCSprite spriteWithFile:buttonSprite];
         CCSprite* selected = [CCSprite spriteWithFile:buttonSprite];
-        [SpriteResizingFunctions setSpriteSize:normal inLayer:self withSize:.7f];
-        [SpriteResizingFunctions setSpriteSize:selected inLayer:self withSize:.7f];
+        [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.7f];
+        [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.7f];
         selected.color = ccc3(255,255,0);
         if ([type isEqualToString:@"MagnetObject"])
         {
-            [SpriteResizingFunctions setSpriteSize:normal inLayer:self withSize:.5f];
-            [SpriteResizingFunctions setSpriteSize:selected inLayer:self withSize:.5f];
+            [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.5f];
+            [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.5f];
             normal.contentSize = normal.boundingBox.size;
             
         }
