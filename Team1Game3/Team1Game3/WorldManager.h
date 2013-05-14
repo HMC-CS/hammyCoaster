@@ -25,16 +25,32 @@
     
     b2World* _world;                    // The physics world
     
-    std::vector<b2Body*> _bodiesToDestroy;
+    std::vector<b2Body*> _bodiesToDestroy;  // Buffer of bodies to destroy in update
     
 }
 
+/* initWithWorld:
+ * Initializes WorldManager with a physics world
+ */
 -(id) initWithWorld: (b2World*) world;
 
+
+/* setBoundariesForLayer
+ * Sets ground and wall bodies for a given CCLayer
+ */
 -(void) setBoundariesForLayer: (CCLayer*) layer;
 
+
+/* destroyBody:
+ * Adds a body to a buffer for destruction in update
+ */
 -(void) destroyBody: (b2Body*) body;
 
+
+/* update
+ * Updates physics.
+ * Must be called from another class' update function.
+ */
 -(void) update;
 
 @end
