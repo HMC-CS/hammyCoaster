@@ -33,13 +33,17 @@
         CGSize size = [[CCDirector sharedDirector] winSize];
         self.isTouchEnabled = YES;
         
+        // put picture as background
+        CCSprite *background;
+        background = [CCSprite spriteWithFile:@"WinScreen.png"];
+        background.position = ccp(size.width/2, size.height/2);
+        [self addChild: background z:-2];
+        
         // Label declaring "YOU WIN!"
         [CCMenuItemFont setFontSize:22];
-        CCLabelTTF* _winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOU WIN!"] fontName:@"Marker Felt" fontSize:24];
-        _winLabel.position = CGPointMake(size.width/2, 2*size.height/3);
+        CCLabelTTF* _winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOU WIN!"] fontName:@"Marker Felt" fontSize:34];
+        _winLabel.position = CGPointMake(size.width*3/4, size.height*2/3);
         [self addChild:_winLabel];
-        
-        
         
         // Main menu and level selector menu buttons
         [CCMenuItemFont setFontSize:30];
@@ -52,8 +56,8 @@
         
         // Format main menu/level selector menu and add it to the layer
         CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, nil];
-        [menu alignItemsVerticallyWithPadding:30.0f];
-        [menu setPosition:ccp( size.width/2, size.height/2)];
+        [menu alignItemsHorizontallyWithPadding:20.0f];
+        [menu setPosition:ccp( size.width*3/4, size.height*5/9)];
         [self addChild: menu z:-1];
         
         

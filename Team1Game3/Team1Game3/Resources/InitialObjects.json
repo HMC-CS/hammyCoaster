@@ -107,12 +107,12 @@
         "level": "0107",
         "objects": 
         [
-            ["RedPortalObject", "30.0", "600.0", "0"],
+            ["RedPortalObject", "30.0", "610.0", "0"],
             ["BluePortalObject", "735.0", "450.0", "0"],
             ["StarObject", "335.0", "380.0", "0"],
             ["StarObject", "485.0", "450.0", "0"],
             ["StarObject", "635.0", "380.0", "0"],
-            ["InitialRampObject","105.0","504.0", "0.18"]
+            ["InitialRampObject","105.0","514.0", "0"]
         ],
         "inventory":
         [
@@ -144,7 +144,7 @@
             ["StarObject", "130.0", "440.0", "0"],
             ["StarObject", "330.0", "100.0", "0"],
             ["StarObject", "130.0", "390.0", "0"],
-            ["InitialRampObject","105.0","504.0", "0.18"]
+            ["InitialRampObject","105.0","514.0", "0.18"]
         ],
         "inventory":
         [
@@ -183,7 +183,6 @@
         ],
         "inventory":
         [
-            ["SeesawObject", "1"],
             ["MagnetObject", "1"],
             ["TrampolineObject", "1"]
         ]

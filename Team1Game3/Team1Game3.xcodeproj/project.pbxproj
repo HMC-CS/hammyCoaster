@@ -73,7 +73,7 @@
 		D88207701713B8EB00D74162 /* CurvedRampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = D882076E1713B8EB00D74162 /* CurvedRampObjectIconSelected.png */; };
 		D88207721714E8BF00D74162 /* TrampolineObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D88207711714E8BF00D74162 /* TrampolineObject.png */; };
 		D88207781717D20200D74162 /* CheckMark.png in Resources */ = {isa = PBXBuildFile; fileRef = D88207771717D20100D74162 /* CheckMark.png */; };
-		D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D882077A1717D3D200D74162 /* OverallWinLayer.m */; };
+		D882077B1717D3D200D74162 /* OverallWinLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = D882077A1717D3D200D74162 /* OverallWinLayer.mm */; };
 		D882077E1717F1F800D74162 /* GameManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = D882077D1717F1F700D74162 /* GameManager.mm */; };
 		D8820914171BAC5100D74162 /* IntroLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = D8820913171BAC5100D74162 /* IntroLayer.png */; };
 		D8820916171BAD0000D74162 /* IntroLayer1.png in Resources */ = {isa = PBXBuildFile; fileRef = D8820915171BAD0000D74162 /* IntroLayer1.png */; };
@@ -360,7 +360,7 @@
 		D88207711714E8BF00D74162 /* TrampolineObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObject.png; sourceTree = "<group>"; };
 		D88207771717D20100D74162 /* CheckMark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CheckMark.png; sourceTree = "<group>"; };
 		D88207791717D3D200D74162 /* OverallWinLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverallWinLayer.h; sourceTree = "<group>"; };
-		D882077A1717D3D200D74162 /* OverallWinLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverallWinLayer.m; sourceTree = "<group>"; };
+		D882077A1717D3D200D74162 /* OverallWinLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = OverallWinLayer.mm; sourceTree = "<group>"; };
 		D882077C1717F1F600D74162 /* GameManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameManager.h; sourceTree = "<group>"; };
 		D882077D1717F1F700D74162 /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
 		D8820913171BAC5100D74162 /* IntroLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroLayer.png; sourceTree = "<group>"; };
@@ -859,7 +859,7 @@
 				D8E83EAF16EA75F4000284EA /* MainMenuLayer.h */,
 				D8E83EB016EA75F4000284EA /* MainMenuLayer.mm */,
 				D88207791717D3D200D74162 /* OverallWinLayer.h */,
-				D882077A1717D3D200D74162 /* OverallWinLayer.m */,
+				D882077A1717D3D200D74162 /* OverallWinLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
@@ -1955,7 +1955,7 @@
 				AD57A95A17129CFA007B471F /* RedPortalObject.mm in Sources */,
 				D882076C1713A49600D74162 /* GameplayLayer.mm in Sources */,
 				AD57A95F17142818007B471F /* WinLayer.mm in Sources */,
-				D882077B1717D3D200D74162 /* OverallWinLayer.m in Sources */,
+				D882077B1717D3D200D74162 /* OverallWinLayer.mm in Sources */,
 				D882077E1717F1F800D74162 /* GameManager.mm in Sources */,
 				AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */,
 				D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */,

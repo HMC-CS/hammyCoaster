@@ -43,7 +43,7 @@
         _gameManager = [(AppController*)[[UIApplication sharedApplication] delegate] gameManager];
         
         /////////////
-        
+          
         [self createMenu];
         [self drawStars];
         

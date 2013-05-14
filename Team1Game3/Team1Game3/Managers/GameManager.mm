@@ -134,7 +134,7 @@
         ++_numLevelsCompleted;
         
         // If you've completed all the levels, you win.
-        if (_numLevelsCompleted == _numLevelSets * _numLevelIndices) {
+        if (_numLevelsCompleted == /*_numLevelSets * _numLevelIndices*/ 1) {
             ++_numLevelsCompleted; // So you only get the win screen once.
             [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
         }
