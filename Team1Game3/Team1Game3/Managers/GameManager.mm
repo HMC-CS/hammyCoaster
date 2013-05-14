@@ -62,7 +62,7 @@
 // TODO: Claire, make this pretty!
 -(void) resetUserData
 {
-    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
+    for (int i = 0; i < /*_numLevelSets **/ _numLevelIndices; ++i)
     {
     bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
     bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
@@ -77,8 +77,8 @@
     //[NSUserDefaults resetStandardUserDefaults];
     //_defaults = [NSUserDefaults standardUserDefaults];
     //[[NSUserDefaults standardUserDefaults] setObject:apikey forKey:@"apiKey"];
-    
-    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
+     
+    for (int i = 0; i < /*_numLevelSets **/ _numLevelIndices; ++i)
     {
         bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
         bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
@@ -118,6 +118,8 @@
     NSAssert1(index > 0 && index <= _numLevelIndices, @"Invalid level index %d given in AppController.", index);
     
     int arrayIndex = [self arrayIndexForLevelSet:set AndIndex:index];
+    //claire take this out later
+    NSLog(@"arrayIndex: %d", arrayIndex);
     
     // Update high scores
     if (stars > [[_levelHighScores objectAtIndex:arrayIndex] intValue]) {

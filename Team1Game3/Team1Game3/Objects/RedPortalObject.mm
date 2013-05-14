@@ -22,12 +22,16 @@
     
     
     // Create fixture
-    b2Vec2 vertices[4];
-    int num = 4;
-    vertices[0].Set(-26.1f / PTM_RATIO, 27.0f / PTM_RATIO);
-    vertices[1].Set(-25.9f / PTM_RATIO, -24.9f / PTM_RATIO);
-    vertices[2].Set(26.2f / PTM_RATIO, -24.9f / PTM_RATIO);
-    vertices[3].Set(26.2f / PTM_RATIO, 27.1f / PTM_RATIO);
+    b2Vec2 vertices[8];
+    int num = 8;
+    vertices[0].Set(30.2f / PTM_RATIO, -368.5f / PTM_RATIO);
+    vertices[1].Set(21.3f / PTM_RATIO, -361.4f / PTM_RATIO);
+    vertices[2].Set(0.9f / PTM_RATIO, -358.4f / PTM_RATIO);
+    vertices[3].Set(-23.0f / PTM_RATIO, -361.4f / PTM_RATIO);
+    vertices[4].Set(-32.0f / PTM_RATIO, -368.0f / PTM_RATIO);
+    vertices[5].Set(-22.8f / PTM_RATIO, -378.2f / PTM_RATIO);
+    vertices[6].Set(0.0f / PTM_RATIO, -381.1f / PTM_RATIO);
+    vertices[7].Set(23.0f / PTM_RATIO, -377.4f / PTM_RATIO);
     
     b2PolygonShape redPortalShape;
     redPortalShape.Set(vertices, num);
