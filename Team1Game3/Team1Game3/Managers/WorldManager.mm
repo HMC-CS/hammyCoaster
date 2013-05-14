@@ -50,30 +50,12 @@
 	groundBody->CreateFixture(&groundBox,0);
     
     
-    // DEBUG_DRAW. Debug draw. Comment these lines out before publishing.
+    // DEBUG_DRAW. Debug draw. Remove these lines out before publishing.
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
-	_world->SetDebugDraw(m_debugDraw);
+	//_world->SetDebugDraw(m_debugDraw);
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
 	m_debugDraw->SetFlags(flags);
-    
-    
-    // TODO: Claire, fix this!
-    /* hacked default ramps
-     * ---------------------------------------------------------------------- */
-    
-    // Starting ramp
-    b2BodyDef rampBodyDef;
-    rampBodyDef.position.Set(0/PTM_RATIO,100/PTM_RATIO);
-    
-    b2Body *rampBody = _world->CreateBody(&rampBodyDef);
-    b2EdgeShape rampEdge;
-    b2FixtureDef rampShapeDef;
-    rampShapeDef.shape = &rampEdge;
-    
-    // ramp definitions
-    rampEdge.Set(b2Vec2(0/PTM_RATIO,450/PTM_RATIO), b2Vec2(size.width/(5*PTM_RATIO), 410/PTM_RATIO));
-    rampBody->CreateFixture(&rampShapeDef);
 }
 
 

@@ -8,7 +8,8 @@
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
-            ["RampObject", "578.0", "160.0", "0.7"]
+            ["RampObject", "578.0", "160.0", "0.7"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -24,7 +25,8 @@
             ["BluePortalObject", "300.0", "100.0", "0"],
             ["StarObject", "200.0", "530.0", "0"],
             ["StarObject", "260.0", "400.0", "0"],
-            ["StarObject", "250.0", "200.0", "0"]
+            ["StarObject", "250.0", "200.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory": 
         [
@@ -40,7 +42,8 @@
             ["BluePortalObject", "723.0", "217.0", "0"],
             ["StarObject", "335.0", "235.0", "0"],
             ["StarObject", "435.0", "165.0", "0"],
-            ["StarObject", "535.0", "235.0", "0"]
+            ["StarObject", "535.0", "235.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -57,7 +60,8 @@
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"],
-            ["TrampolineObject", "300,0", "100.0", "0"]
+            ["TrampolineObject", "300,0", "100.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -73,7 +77,8 @@
             ["StarObject", "350.0", "350.0", "0"],
             ["StarObject", "550.0", "400.0", "0"],
             ["StarObject", "525.0", "300.0", "0"],
-            ["RampObject", "550.0", "160.0", "0.7"]
+            ["RampObject", "550.0", "160.0", "0.7"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -90,7 +95,8 @@
             ["StarObject", "400.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
-            ["RampObject", "578.0", "160.0", "0.7"]
+            ["RampObject", "578.0", "160.0", "0.7"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -105,7 +111,8 @@
             ["BluePortalObject", "735.0", "450.0", "0"],
             ["StarObject", "335.0", "380.0", "0"],
             ["StarObject", "485.0", "450.0", "0"],
-            ["StarObject", "635.0", "380.0", "0"]
+            ["StarObject", "635.0", "380.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -120,7 +127,8 @@
             ["BluePortalObject", "723.0", "300.0", "0"],
             ["StarObject", "300.0", "250.0", "0"],
             ["StarObject", "420.0", "170.0", "0"],
-            ["StarObject", "600.0", "430.0", "0"]
+            ["StarObject", "600.0", "430.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -135,7 +143,8 @@
             ["BluePortalObject", "400", "100.0", "0"],
             ["StarObject", "130.0", "440.0", "0"],
             ["StarObject", "330.0", "100.0", "0"],
-            ["StarObject", "130.0", "390.0", "0"]
+            ["StarObject", "130.0", "390.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -152,7 +161,8 @@
             ["StarObject", "200.0", "500.0", "0"],
             ["StarObject", "350.0", "350.0", "0"],
             ["StarObject", "350.0", "200.0", "0"],
-            ["RampObject", "400.0", "130.0", "0.785"]
+            ["RampObject", "400.0", "130.0", "0.785"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
@@ -168,7 +178,8 @@
             ["BluePortalObject", "700.0", "400.0", "0"],
             ["StarObject", "300.0", "400.0", "0"],
             ["StarObject", "500.0", "400.0", "0"],
-            ["StarObject", "200.0", "500.0", "0"]
+            ["StarObject", "200.0", "500.0", "0"],
+            ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
