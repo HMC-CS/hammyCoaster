@@ -372,8 +372,8 @@
 		D895F54F170743CA00ED74C5 /* LevelIcon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon5.png; sourceTree = "<group>"; };
 		D8A47F69173CBADF00CF1B87 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
 		D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MathHelper.mm; path = ../MathHelper.mm; sourceTree = "<group>"; };
-		D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldManager.h; sourceTree = "<group>"; };
-		D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorldManager.mm; sourceTree = "<group>"; };
+		D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldManager.h; path = "Layers:Scenes/WorldManager.h"; sourceTree = "<group>"; };
+		D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorldManager.mm; path = "Layers:Scenes/WorldManager.mm"; sourceTree = "<group>"; };
 		D8E83C7016EA753B000284EA /* Team1Game3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Game3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E83C7316EA753B000284EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8E83C7516EA753B000284EA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -830,7 +830,7 @@
 				9CE768D616F9B1FB00EE241F /* StarObject.h */,
 				9CE768D716F9B1FB00EE241F /* StarObject.mm */,
 			);
-			name = Objects;
+			path = Objects;
 			sourceTree = "<group>";
 		};
 		CE3B319C170E43E800F70048 /* PhysicsSprite */ = {
@@ -874,10 +874,9 @@
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
 				AD57A95E17142818007B471F /* WinLayer.mm */,
-				D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */,
-				D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */,
 			);
 			name = Layers/Scenes;
+			path = "Layers:Scenes";
 			sourceTree = "<group>";
 		};
 		D843EFD616FFBA16006732D5 /* Team1Game3Tests */ = {
@@ -1058,6 +1057,8 @@
 				61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */,
 				D8A47F69173CBADF00CF1B87 /* MathHelper.h */,
 				D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */,
+				D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */,
+				D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */,
 				CE3B319E170E440000F70048 /* Layers/Scenes */,
 				CE3B319B170E43CE00F70048 /* Objects */,
 				D895F5591707458900ED74C5 /* Extensions */,
