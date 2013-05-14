@@ -202,7 +202,7 @@
         ],
         "inventory":
         [
-            ["TrampolineObject", "1"],
+            ["SeesawObject", "1"],
             ["MagnetObject", "1"]
         ]
     }
