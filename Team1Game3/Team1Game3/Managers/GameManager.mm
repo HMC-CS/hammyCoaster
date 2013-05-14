@@ -19,7 +19,7 @@
         [self loadGame];
         
         // Control the number of levels with these variables.
-        _numLevelSets = 1;
+        _numLevelSets = 2;
         _numLevelIndices = 12;
         
         
@@ -62,6 +62,13 @@
 // TODO: Claire, make this pretty!
 -(void) resetUserData
 {
+    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
+    {
+    bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
+    bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
+    int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+    NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
+    }
     NSLog(@"resetUserData");//new
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
@@ -73,14 +80,15 @@
     
     for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
-        // NSLog(@"index: %d", i);
-        //        bool levelComplete = [_defaults boolForKey:@"level_4_complete"];//[_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
-        //        NSLog(@"got past levelComplete");
-        //        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
-        //        int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
-        
-        
-        //  [self highScoreAtLevelSet:levelStars AndIndex:i];
+        bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
+        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
+        int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+        NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
+    
+        //ß[_levelCompletionStatuses replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelComplete]];
+        //[_isLevelLocked replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelLocked]];
+        //[_levelHighScores replaceObjectAtIndex: i withObject:[NSNumber numberWithInteger:levelStars ]];
+
     }
     
     // end hax
