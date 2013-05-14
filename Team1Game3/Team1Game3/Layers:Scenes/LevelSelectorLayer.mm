@@ -117,7 +117,7 @@
                 int levelIndex = (j*row) + i + 1;
                 
                 // Normal icon for each level
-                CCSprite *levelIcon = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];
+                CCSprite *levelIcon = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", (levelSet-1)*2 + (levelIndex%2)]];
                 [iconSet addObject:levelIcon];
                 
                 CCLabelTTF *label = [CCLabelTTF labelWithString: [NSString stringWithFormat:@"%d-%d", k+1, 4*j+i+1] fontName:@"Marker Felt" fontSize:levelIcon.contentSize.width*0.4];
@@ -127,7 +127,7 @@
                 
                 
                 // Selected icon for each level
-                CCSprite *levelIconSelected = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", i]];
+                CCSprite *levelIconSelected = [CCSprite spriteWithFile:[NSString stringWithFormat: @"LevelIcon%i.png", (levelSet-1)*2 + (levelIndex%2)]];
                 [selectedIconSet addObject:levelIconSelected];
                 levelIconSelected.scale = 1.2;
                 [levelIconSelected setPosition:ccp(-levelIconSelected.contentSize.width/10, -levelIconSelected.contentSize.height/10)];
