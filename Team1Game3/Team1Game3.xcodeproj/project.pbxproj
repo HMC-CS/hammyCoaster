@@ -59,6 +59,7 @@
 		D86F715B1708A7100007ED1D /* InitialObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F71591708A7100007ED1D /* InitialObjects.json */; };
 		D878F9591742384300F7BD46 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F9581742384300F7BD46 /* Icon-72.png */; };
 		D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F95C17423CDF00F7BD46 /* WinScreen.png */; };
+		D878F96E1742439A00F7BD46 /* SeesawObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F96D1742439A00F7BD46 /* SeesawObject.png */; };
 		D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BE516F2848000A82C0F /* BluePortalObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D87B6BE816F2849700A82C0F /* BluePortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D87B6BE716F2849700A82C0F /* BluePortalObject.png */; };
 		D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BEA16F28AD700A82C0F /* ContactListener.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -337,6 +338,7 @@
 		D86F71591708A7100007ED1D /* InitialObjects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialObjects.json; sourceTree = "<group>"; };
 		D878F9581742384300F7BD46 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		D878F95C17423CDF00F7BD46 /* WinScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WinScreen.png; path = "Backgrounds and Screens/WinScreen.png"; sourceTree = "<group>"; };
+		D878F96D1742439A00F7BD46 /* SeesawObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeesawObject.png; sourceTree = "<group>"; };
 		D87B6BE416F2848000A82C0F /* BluePortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluePortalObject.h; sourceTree = "<group>"; };
 		D87B6BE516F2848000A82C0F /* BluePortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BluePortalObject.mm; sourceTree = "<group>"; };
 		D87B6BE716F2849700A82C0F /* BluePortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePortalObject.png; sourceTree = "<group>"; };
@@ -942,6 +944,7 @@
 		D895F557170743F700ED74C5 /* Object Pictures */ = {
 			isa = PBXGroup;
 			children = (
+				D878F96D1742439A00F7BD46 /* SeesawObject.png */,
 				D88BB92417279E1C00FC28DC /* SeesawObjectIcon.png */,
 				D88BB92017279B0800FC28DC /* SeesawObjectBottom.png */,
 				D88BB92217279B2800FC28DC /* SeesawObjectTop.png */,
@@ -1734,6 +1737,7 @@
 				611171F8172B8A2C00CF2950 /* trash2.png in Resources */,
 				D878F9591742384300F7BD46 /* Icon-72.png in Resources */,
 				D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */,
+				D878F96E1742439A00F7BD46 /* SeesawObject.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
