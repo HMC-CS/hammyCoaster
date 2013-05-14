@@ -155,6 +155,7 @@
     
     // Update data in game manager
     [_gameManager registerCompletedLevelWithLevelSet:_levelSet AndIndex:_levelIndex AndStarCount:_gameplayLayer.starCount];
+        [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 

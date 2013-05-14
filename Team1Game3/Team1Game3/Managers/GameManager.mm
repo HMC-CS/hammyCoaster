@@ -15,7 +15,6 @@
 -(id) init
 {
     if (self = [super init]) {
-        
         [self loadGame];
         
         // Control the number of levels with these variables.
@@ -113,28 +112,26 @@
     NSAssert1(index > 0 && index <= _numLevelIndices, @"Invalid level index %d given in AppController.", index);
     
     int arrayIndex = [self arrayIndexForLevelSet:set AndIndex:index];
-    //claire take this out later
-    NSLog(@"arrayIndex: %d", arrayIndex);
     
     // Update high scores
     if (stars > [[_levelHighScores objectAtIndex:arrayIndex] intValue]) {
         [_levelHighScores setObject:[NSNumber numberWithInt:stars] atIndexedSubscript:arrayIndex];
-        [_defaults setInteger:stars forKey:[NSString stringWithFormat:@"level_%d_stars", index]];
+        [_defaults setInteger:stars forKey:[NSString stringWithFormat:@"level_%d_stars", arrayIndex]];
     }
     
     
     // Update level completion data
     
-    [_defaults setBool:YES forKey:[NSString stringWithFormat:@"level_%d_complete", index]];
-    
     if ([[_levelCompletionStatuses objectAtIndex:arrayIndex] isEqualToString:@"false"]) {
         
         // Update level status if level wasn't previously completed.
         [_levelCompletionStatuses setObject:@"true" atIndexedSubscript:arrayIndex];
+        [_defaults setBool:YES forKey:[NSString stringWithFormat:@"level_%d_complete", arrayIndex]];
         ++_numLevelsCompleted;
+        [_defaults setInteger:_numLevelsCompleted forKey:@"levels_completed"];
         
         // If you've completed all the levels, you win.
-        if (_numLevelsCompleted == /*_numLevelSets * _numLevelIndices*/ 1) {
+        if (_numLevelsCompleted % _numLevelIndices == 0) {
             ++_numLevelsCompleted; // So you only get the win screen once.
             [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
         }
