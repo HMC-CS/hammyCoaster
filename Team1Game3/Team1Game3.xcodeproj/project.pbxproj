@@ -61,7 +61,7 @@
 		D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F95C17423CDF00F7BD46 /* WinScreen.png */; };
 		D878F96E1742439A00F7BD46 /* SeesawObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F96D1742439A00F7BD46 /* SeesawObject.png */; };
 		D878F970174245B100F7BD46 /* InitialRampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F96F174245B100F7BD46 /* InitialRampObject.png */; };
-		D878F973174245D500F7BD46 /* InitialRampObject.m in Sources */ = {isa = PBXBuildFile; fileRef = D878F972174245D500F7BD46 /* InitialRampObject.m */; };
+		D878F976174248B800F7BD46 /* InitialRampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D878F975174248B800F7BD46 /* InitialRampObject.mm */; };
 		D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BE516F2848000A82C0F /* BluePortalObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D87B6BE816F2849700A82C0F /* BluePortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D87B6BE716F2849700A82C0F /* BluePortalObject.png */; };
 		D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BEA16F28AD700A82C0F /* ContactListener.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -342,8 +342,8 @@
 		D878F95C17423CDF00F7BD46 /* WinScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WinScreen.png; path = "Backgrounds and Screens/WinScreen.png"; sourceTree = "<group>"; };
 		D878F96D1742439A00F7BD46 /* SeesawObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeesawObject.png; sourceTree = "<group>"; };
 		D878F96F174245B100F7BD46 /* InitialRampObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = InitialRampObject.png; sourceTree = "<group>"; };
-		D878F971174245D500F7BD46 /* InitialRampObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRampObject.h; sourceTree = "<group>"; };
-		D878F972174245D500F7BD46 /* InitialRampObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InitialRampObject.m; sourceTree = "<group>"; };
+		D878F974174248B800F7BD46 /* InitialRampObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InitialRampObject.h; sourceTree = "<group>"; };
+		D878F975174248B800F7BD46 /* InitialRampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InitialRampObject.mm; sourceTree = "<group>"; };
 		D87B6BE416F2848000A82C0F /* BluePortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluePortalObject.h; sourceTree = "<group>"; };
 		D87B6BE516F2848000A82C0F /* BluePortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BluePortalObject.mm; sourceTree = "<group>"; };
 		D87B6BE716F2849700A82C0F /* BluePortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePortalObject.png; sourceTree = "<group>"; };
@@ -823,10 +823,10 @@
 				D87B6BE516F2848000A82C0F /* BluePortalObject.mm */,
 				D8820763170EBBD700D74162 /* CurvedRampObject.h */,
 				D8820764170EBBD700D74162 /* CurvedRampObject.mm */,
-				D878F971174245D500F7BD46 /* InitialRampObject.h */,
-				D878F972174245D500F7BD46 /* InitialRampObject.m */,
 				D8299F77171D5E4400C6E8C5 /* MagnetObject.h */,
 				D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */,
+				D878F974174248B800F7BD46 /* InitialRampObject.h */,
+				D878F975174248B800F7BD46 /* InitialRampObject.mm */,
 				D8E83EC216EBC42A000284EA /* RampObject.h */,
 				D8E83EC316EBC42A000284EA /* RampObject.mm */,
 				AD57A95817129CEC007B471F /* RedPortalObject.h */,
@@ -1964,7 +1964,7 @@
 				D8A47F6B173CBB5B00CF1B87 /* MathHelper.mm in Sources */,
 				D8A47F6E173CC1EB00CF1B87 /* WorldManager.mm in Sources */,
 				61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */,
-				D878F973174245D500F7BD46 /* InitialRampObject.m in Sources */,
+				D878F976174248B800F7BD46 /* InitialRampObject.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
