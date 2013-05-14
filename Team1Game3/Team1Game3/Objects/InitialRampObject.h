@@ -6,13 +6,8 @@
 //
 //
 
-#ifndef RAMP_OBJECT_INCLUDED
-#define RAMP_OBJECT_INCLUDED 1
-
 #import "AbstractGameObject.h"
 
 @interface InitialRampObject : AbstractGameObject
 
 @end
-
-#endif  // RAMP_OBJECT_INCLUDED
