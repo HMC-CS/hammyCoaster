@@ -39,19 +39,20 @@
             
             // Store level information
             
-            if (levelComplete) {
-                [_levelCompletionStatuses addObject:@"true"];
-            } else {
-                [_levelCompletionStatuses addObject:@"false"];
-            }
+            //if (levelComplete) {
+            [_levelCompletionStatuses replaceObjectAtIndex:i withObject:[NSNumber numberWithBool: levelComplete]];
+            [_isLevelLocked replaceObjectAtIndex: i withObject:[NSNumber numberWithBool:levelLocked]];
+            //} else {
+                //[_levelCompletionStatuses addObject:@"false"];
+            //}
             
-            [_levelHighScores addObject:[NSNumber numberWithInt:levelStars]];
-            
+            //[_levelHighScores addObject:[NSNumber numberWithInt:levelStars]];
+            /*
             if (levelLocked) {
                 [_isLevelLocked addObject:@"false"];
             } else{
                 [_isLevelLocked addObject:@"false"];
-            }
+            }*/
         }
     }
     
@@ -73,10 +74,16 @@
     
     for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i)
     {
-        // NSLog(@"index: %d", i);
-        //        bool levelComplete = [_defaults boolForKey:@"level_4_complete"];//[_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
+        bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
+        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
+        int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
+        NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
+        
+        
+        
+        //[_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
         //        NSLog(@"got past levelComplete");
-        //        bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
+        //        
         //        int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
         
         
