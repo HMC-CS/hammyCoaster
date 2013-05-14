@@ -24,6 +24,7 @@
     return self;
 }
 
+
 -(void) setBoundariesForLayer:(CCLayer *)layer
 {
     CGSize size = [layer contentSize];
@@ -75,24 +76,51 @@
     rampBody->CreateFixture(&rampShapeDef);
 }
 
-// TODO: did not change this method for multi-body because BallObject and MagnetObject are single-body objects.  Change if changed.
-/* applyMagnets:
- * helper function to apply magnet's forces to the ball
+
+
+-(void) destroyBody:(b2Body *)body
+{
+    _bodiesToDestroy.push_back(body);
+}
+
+
+
+-(void) update
+{
+    // Attract the ball to magnets and rotate the seesaw if needed.
+    [self applyMagnets];
+    [self springSeesaw];
+    
+    // Destroy bodies
+    for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i) {
+        b2Body* body = *i;
+        _world->DestroyBody(body);
+    }
+    _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
+}
+
+
+/* ////////////////////////////// Private Functions ////////////////////////////// */
+
+/* applyMagnets
+ * Affects the ball based on magnets.
+ * MULTI: Change this function if the ball or the magnet is changed to a
+ *  multi-bodied object
  */
 -(void) applyMagnets
 {
     int magnetConstant = 400000000;
-    //find all the magnets
-    for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()){
-        if ([((__bridge AbstractGameObject*)(magnet->GetUserData())).type isEqualToString:@"MagnetObject"])
-        {
-            //get the ball's body
-            for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()){
-                if ([((__bridge AbstractGameObject*)(ball->GetUserData())).type isEqualToString:@"BallObject"])
-                {
+    
+    // Find all the magnets
+    for (b2Body* magnet = _world->GetBodyList(); magnet; magnet = magnet->GetNext()) {
+        if ([((__bridge AbstractGameObject*)(magnet->GetUserData())).type isEqualToString:@"MagnetObject"]) {
+            
+            // Get the ball's body
+            for (b2Body* ball = _world->GetBodyList(); ball; ball = ball->GetNext()) {
+                if ([((__bridge AbstractGameObject*)(ball->GetUserData())).type isEqualToString:@"BallObject"]) {
                     
-                    // TODO: after making magnet into two fixtures (one north, one south), simulate point force for each one.  So it'll be like a dipole.
-                    
+                    // Get the distance of the ball from one fixture and create a magnetic force vector on
+                    // the ball based on this distance
                     b2Fixture* fixture1 = magnet->GetFixtureList();
                     b2PolygonShape* shape1 = static_cast<b2PolygonShape*>(fixture1->GetShape());
                     b2Vec2 shape1Position = shape1->m_centroid;
@@ -106,6 +134,7 @@
                     b2Vec2 direction1 = b2Vec2((magnetConstant*xComponent1*-1)/(distance1*distance1), (magnetConstant*yComponent1*-1)/(distance1*distance1));
                     
                     
+                    // Do the same for the other fixture
                     b2Fixture* fixture2 = fixture1->GetNext();
                     b2PolygonShape* shape2 = static_cast<b2PolygonShape*>(fixture2->GetShape());
                     b2Vec2 shape2Position = shape2->m_centroid;
@@ -118,15 +147,13 @@
                     float xComponent2 = cosf(angleRadians2);
                     b2Vec2 direction2 = b2Vec2((magnetConstant*xComponent2*-1)/(distance2*distance2), (magnetConstant*yComponent2*-1)/(distance2*distance2));
                     
+                    
+                    // Attract the magnet to north and repel it from south
                     b2Vec2 force;
-                    if ([(__bridge NSString*)(fixture1->GetUserData()) isEqualToString:@"NORTH"])
-                    {
+                    if ([(__bridge NSString*)(fixture1->GetUserData()) isEqualToString:@"NORTH"]) {
                         force = direction2 - direction1;
-                        
                     } else {
-                        
                         force = direction1 - direction2;
-                        
                     }
                     ball->ApplyForce(force, ball->GetPosition());
                     
@@ -138,47 +165,35 @@
     }
 }
 
+
+/* springSeesaw
+ * Adjusts the seesaw gradually back to equilibrium
+ */
 -(void) springSeesaw
 {
-    for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext())
-    {
+    // Find joints in the world
+    for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext()) {
+        
+        // Get joint object (seesaw?)
         AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
         CFBridgingRetain(object);
         NSString* type = object.type;
+        
+        // Apply torque to body back towards equilibrium
         if ([type isEqualToString:@"SeesawObject"]) {
             const float springTorqForce = 1.0f;
             float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
             if ( jointAngle != 0 ) {
                 float torque = fabs(jointAngle * springTorqForce * 50);
-                if (jointAngle > 0.0)
-                {
+                if (jointAngle > 0.0) {
                     joint->GetBodyA()->ApplyTorque(-torque);
                 } else {
                     joint->GetBodyA()->ApplyTorque(torque);
                 }
             }
-            
         }
     }
 }
 
-
--(void) destroyBody:(b2Body *)body
-{
-    _bodiesToDestroy.push_back(body);
-}
-
--(void) update
-{
-    [self applyMagnets];
-    [self springSeesaw];
-    
-    for (std::vector<b2Body*>::iterator i = _bodiesToDestroy.begin(); i != _bodiesToDestroy.end(); ++i)
-    {
-        b2Body* body = *i;
-        _world->DestroyBody(body);
-    }
-    _bodiesToDestroy.erase(_bodiesToDestroy.begin(), _bodiesToDestroy.end());
-}
 
 @end

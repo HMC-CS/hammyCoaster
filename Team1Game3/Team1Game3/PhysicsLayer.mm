@@ -168,6 +168,7 @@
 
 /* ////////////////////////////// Private Functions ////////////////////////////// */
 
+
 /* initPhysics
  * Sets up the world, contact listener, and world manager
  */
@@ -209,7 +210,6 @@
         }
     }
 }
-
 
 
 /* hitStar:
