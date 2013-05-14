@@ -1,0 +1,55 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf370
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 In addInitialObjects, PhysicsLayer"\
+\
+\pard\tx529\pardeftab529\pardirnatural
+
+\f1\fs22 \cf0 \CocoaLigature0     \cf2 //		// Code kept around for later\cf0 \
+    \cf2 //        #if 1\cf0 \
+    \cf2 //        		// Use batch node. Faster\cf0 \
+    \cf2 //        		CCSpriteBatchNode *parent = [CCSpriteBatchNode batchNodeWithFile:@"blocks.png" capacity:100];\cf0 \
+    \cf2 //        		spriteTexture_ = [parent texture];\cf0 \
+    \cf2 //        #else\cf0 \
+    \cf2 //        		// doesn't use batch node. Slower\cf0 \
+    \cf2 //        		spriteTexture_ = [[CCTextureCache sharedTextureCache] addImage:@"blocks.png"];\cf0 \
+    \cf2 //        		CCNode *parent = [CCNode node];\cf0 \
+    \cf2 //        #endif\cf0 \
+    \cf2 //        		[self addChild:parent z:0 tag:kTagParentNode];\cf0 \
+    \cf2 //\cf0 \
+    \cf2 //		[self addNewSpriteOfType:@"BallObject" AtPosition:ccp(size.width/2, size.height/2)];\cf0 \
+    \cf2 //\cf0 \
+    \cf2 //		CCLabelTTF *label = [CCLabelTTF labelWithString:@"Tap screen" fontName:@"Marker Felt" fontSize:32];\cf0 \
+    \cf2 //		[self addChild:label z:0];\cf0 \
+    \cf2 //		[label setColor:ccc3(0,0,255)];\cf0 \
+    \cf2 //		label.position = ccp( size.width/2, size.height-50);\
+\
+\
+In addNewSpriteOfType, Physics Layer\
+\
+\cf0         \cf2 //        TODO: for when we have multiple bodies for a single object\cf0 \
+        \cf2 //        b2JointEdge* jointEdge = body->GetJointList();\cf0 \
+        \cf2 //        b2Joint* joint = jointEdge->joint;\cf0 \
+        \cf2 //        b2Body* jointBodyA = joint->GetBodyA();\cf0 \
+        \cf2 //        b2Body* jointBodyB = joint->GetBodyB();\
+\
+\
+\
+In applyMagnets\
+\
+//                    CGPoint point = ccpSub([_secondTouch locationInView:[touch view]], [_firstTouch locationInView:[touch view]]);\cf0 \
+\cf2 //                    CGPoint xaxis = CGPointMake(-1, 0);\cf0 \
+\cf2 //                    if (point.y >= 0) \{\cf0 \
+\cf2 //                        _initialTouchAngle = ccpAngle(point, xaxis);\cf0 \
+\cf2 //                    \} else \{\cf0 \
+\cf2 //                        point = CGPointMake(point.x, -point.y);\cf0 \
+\cf2 //                        _initialTouchAngle = -ccpAngle(point, xaxis);\cf0 \
+\cf2 //                    \}\
+\
+\
+// Get angle\
+\
+}
