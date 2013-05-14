@@ -58,6 +58,7 @@
 		D86F715A1708A7100007ED1D /* InitialObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F71591708A7100007ED1D /* InitialObjects.json */; };
 		D86F715B1708A7100007ED1D /* InitialObjects.json in Resources */ = {isa = PBXBuildFile; fileRef = D86F71591708A7100007ED1D /* InitialObjects.json */; };
 		D878F9591742384300F7BD46 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F9581742384300F7BD46 /* Icon-72.png */; };
+		D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = D878F95C17423CDF00F7BD46 /* WinScreen.png */; };
 		D87B6BE616F2848100A82C0F /* BluePortalObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BE516F2848000A82C0F /* BluePortalObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D87B6BE816F2849700A82C0F /* BluePortalObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D87B6BE716F2849700A82C0F /* BluePortalObject.png */; };
 		D87B6BEB16F28AD700A82C0F /* ContactListener.mm in Sources */ = {isa = PBXBuildFile; fileRef = D87B6BEA16F28AD700A82C0F /* ContactListener.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -335,6 +336,7 @@
 		D86F71561708A0770007ED1D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
 		D86F71591708A7100007ED1D /* InitialObjects.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = InitialObjects.json; sourceTree = "<group>"; };
 		D878F9581742384300F7BD46 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		D878F95C17423CDF00F7BD46 /* WinScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = WinScreen.png; path = "Backgrounds and Screens/WinScreen.png"; sourceTree = "<group>"; };
 		D87B6BE416F2848000A82C0F /* BluePortalObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluePortalObject.h; sourceTree = "<group>"; };
 		D87B6BE516F2848000A82C0F /* BluePortalObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BluePortalObject.mm; sourceTree = "<group>"; };
 		D87B6BE716F2849700A82C0F /* BluePortalObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BluePortalObject.png; sourceTree = "<group>"; };
@@ -356,7 +358,7 @@
 		D882077D1717F1F700D74162 /* GameManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameManager.mm; sourceTree = "<group>"; };
 		D8820913171BAC5100D74162 /* IntroLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroLayer.png; sourceTree = "<group>"; };
 		D8820915171BAD0000D74162 /* IntroLayer1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IntroLayer1.png; sourceTree = "<group>"; };
-		D88BB91617273DC800FC28DC /* levelbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = levelbackground.png; sourceTree = "<group>"; };
+		D88BB91617273DC800FC28DC /* levelbackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = levelbackground.png; path = "Backgrounds and Screens/levelbackground.png"; sourceTree = "<group>"; };
 		D88BB92017279B0800FC28DC /* SeesawObjectBottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeesawObjectBottom.png; sourceTree = "<group>"; };
 		D88BB92217279B2800FC28DC /* SeesawObjectTop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeesawObjectTop.png; sourceTree = "<group>"; };
 		D88BB92417279E1C00FC28DC /* SeesawObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SeesawObjectIcon.png; sourceTree = "<group>"; };
@@ -370,8 +372,8 @@
 		D895F54F170743CA00ED74C5 /* LevelIcon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon5.png; sourceTree = "<group>"; };
 		D8A47F69173CBADF00CF1B87 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
 		D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MathHelper.mm; path = ../MathHelper.mm; sourceTree = "<group>"; };
-		D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorldManager.h; path = "Layers:Scenes/WorldManager.h"; sourceTree = "<group>"; };
-		D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = WorldManager.mm; path = "Layers:Scenes/WorldManager.mm"; sourceTree = "<group>"; };
+		D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldManager.h; sourceTree = "<group>"; };
+		D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorldManager.mm; sourceTree = "<group>"; };
 		D8E83C7016EA753B000284EA /* Team1Game3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Game3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E83C7316EA753B000284EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8E83C7516EA753B000284EA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -892,9 +894,23 @@
 		D878F95B17423C5C00F7BD46 /* Backgrounds and Screens */ = {
 			isa = PBXGroup;
 			children = (
+				D878F95C17423CDF00F7BD46 /* WinScreen.png */,
 				D88BB91617273DC800FC28DC /* levelbackground.png */,
 			);
 			name = "Backgrounds and Screens";
+			sourceTree = "<group>";
+		};
+		D878F96217423D6A00F7BD46 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D882077C1717F1F600D74162 /* GameManager.h */,
+				D882077D1717F1F700D74162 /* GameManager.mm */,
+				AD7731AA1725F84500709F80 /* SoundManager.h */,
+				AD7731AB1725F84D00709F80 /* SoundManager.mm */,
+				D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */,
+				D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		D895F556170743E200ED74C5 /* Level Selector Icons */ = {
@@ -1024,8 +1040,6 @@
 			children = (
 				D8E83E9016EA753F000284EA /* AppController.h */,
 				D8E83E9116EA753F000284EA /* AppController.mm */,
-				D882077C1717F1F600D74162 /* GameManager.h */,
-				D882077D1717F1F700D74162 /* GameManager.mm */,
 				D86F714A17088D960007ED1D /* LevelGenerator.h */,
 				D86F714B17088D960007ED1D /* LevelGenerator.mm */,
 				AD539FCD1700119000A47022 /* QueryCallback.h */,
@@ -1036,14 +1050,11 @@
 				D8E83EAD16EA75D0000284EA /* ObjectFactory.mm */,
 				D8E83EA916EA75A8000284EA /* AbstractGameObject.h */,
 				D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */,
-				AD7731AA1725F84500709F80 /* SoundManager.h */,
-				AD7731AB1725F84D00709F80 /* SoundManager.mm */,
 				61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */,
 				61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */,
 				D8A47F69173CBADF00CF1B87 /* MathHelper.h */,
 				D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */,
-				D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */,
-				D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */,
+				D878F96217423D6A00F7BD46 /* Managers */,
 				CE3B319E170E440000F70048 /* Layers/Scenes */,
 				CE3B319B170E43CE00F70048 /* Objects */,
 				D895F5591707458900ED74C5 /* Extensions */,
@@ -1057,13 +1068,13 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D86F71591708A7100007ED1D /* InitialObjects.json */,
+				D8E83C9D16EA753B000284EA /* Info.plist */,
 				D878F95B17423C5C00F7BD46 /* Backgrounds and Screens */,
 				D878F95A17423AE900F7BD46 /* Inventory Pictures */,
 				D895F556170743E200ED74C5 /* Level Selector Icons */,
 				AD7731AD172618BD00709F80 /* Music Icons */,
 				AD7731BE1726415800709F80 /* Sound */,
-				D86F71591708A7100007ED1D /* InitialObjects.json */,
-				D8E83C9D16EA753B000284EA /* Info.plist */,
 				D895F557170743F700ED74C5 /* Object Pictures */,
 				D895F5581707440700ED74C5 /* Given/App Icons */,
 			);
@@ -1714,6 +1725,7 @@
 				619EE6D01729DD880005D077 /* trashCan.png in Resources */,
 				611171F8172B8A2C00CF2950 /* trash2.png in Resources */,
 				D878F9591742384300F7BD46 /* Icon-72.png in Resources */,
+				D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
