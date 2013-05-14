@@ -56,16 +56,16 @@
         [
             ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "300.0", "230.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
-            ["RampObject", "578.0", "160.0", "0.7"],
-            ["TrampolineObject", "300,0", "100.0", "0"],
+            ["RampObject", "550.0", "160.0", "0.7"],
             ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
-            ["RampObject", "1"]
+            ["RampObject", "1"],
+            ["TrampolineObject","1"]
         ]
     },
     {
@@ -74,16 +74,16 @@
         [
             ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "350.0", "350.0", "0"],
+            ["StarObject", "530.0", "350.0", "0"],
             ["StarObject", "550.0", "400.0", "0"],
             ["StarObject", "525.0", "300.0", "0"],
-            ["RampObject", "550.0", "160.0", "0.7"],
+            ["RampObject", "280.0", "454.0", "0.7"],
             ["InitialRampObject","105.0","504.0", "0.18"]
         ],
         "inventory":
         [
-            ["RampObject", "1"],
-            ["CurvedRampObject", "1"]
+            ["TrampolineObject", "1"],
+            ["RampObject", "1"]
         ]
     },
     {
@@ -92,7 +92,7 @@
         [
             ["RedPortalObject", "30.0", "600.0", "0"],
             ["BluePortalObject", "723.0", "217.0", "0"],
-            ["StarObject", "400.0", "250.0", "0"],
+            ["StarObject", "340.0", "250.0", "0"],
             ["StarObject", "500.0", "240.0", "0"],
             ["StarObject", "600.0", "230.0", "0"],
             ["RampObject", "578.0", "160.0", "0.7"],
@@ -100,6 +100,7 @@
         ],
         "inventory":
         [
+            ["MagnetObject", "1"],
             ["RampObject", "1"]
         ]
     },
@@ -117,7 +118,7 @@
         "inventory":
         [
             ["CurvedRampObject", "1"],
-            ["trampolineObject", "1"]
+            ["TrampolineObject", "1"]
         ]
     },
     {
