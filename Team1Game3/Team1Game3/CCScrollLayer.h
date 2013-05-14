@@ -222,5 +222,5 @@
 
 @end
 
-#endif  // CC_SCROLL_LAYER
+#endif  // CC_SCROLL_LAYER_INCLUDED
 

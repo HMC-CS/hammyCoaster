@@ -536,7 +536,7 @@ static CVReturn MyDisplayLinkCallback(CVDisplayLinkRef displayLink, const CVTime
 	[notificationNode_ visit];
 
 	if( displayStats_ )
-		[self showStats];
+		//[self showStats];
 
 	kmGLPopMatrix();
 

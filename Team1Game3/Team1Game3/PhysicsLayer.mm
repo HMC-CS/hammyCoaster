@@ -280,27 +280,21 @@
 }
 
 
-
 /* deleteObjectWithBody:
- * deletes a physics body from the physics layer
+ * Deletes a physics body from the physics layer
  */
-
 -(void) deleteObjectWithBody: (b2Body*) body
-{    
+{
+    // Get object and all its bodies
     AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-    
     CFBridgingRetain(object);
-    
-    
     NSString* objectType = object.type;
     [self objectDeletedOfType:objectType];
     std::vector<b2Body*> bodies = object.bodies;
-    
     NSMutableArray* objectSprites = object.sprites;
     
-    int j=0;
-    for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b)
-    {
+    int j = 0;
+    for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b) {
         PhysicsSprite* s = [objectSprites objectAtIndex:j];
         b2Body* body = *b;
         [self removeChild:s cleanup:NO]; //cleanup removed
@@ -346,6 +340,14 @@
     [_target performSelector:_selector4 withObject:type];
 }
 
+/* togglePlayMode
+ * Signals when level is in play vs. edit mode
+ */
+-(void) togglePlayMode
+{
+    [_target performSelector:_selector5];
+}
+
 
 /* ///////////////////////// Box2D Functions ///////////////////////// */
 
@@ -358,15 +360,12 @@
 	// It is recommended to disable it
 	//
 	[super draw];
-	
 	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
-	
 	kmGLPushMatrix();
-	
 	_world->DrawDebugData();
-	
 	kmGLPopMatrix();
 }
+
 
 /* update:
  * simulates a time step in the physics world
@@ -455,7 +454,7 @@
                 // Clicking on the ball resets the ball
             } else if ([bodyObject.type isEqualToString:@"BallObject"]) {
                 [self resetBall];
-                [_target performSelector:_selector5];
+                [self togglePlayMode];
             }
         }
         
@@ -715,8 +714,6 @@
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
         for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
-            // TODO: THIS IS WRONG RIGHT NOW
-            //NSLog(@"Body number %d", ++j);
             b2Body* body = *i;
             b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
             body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());

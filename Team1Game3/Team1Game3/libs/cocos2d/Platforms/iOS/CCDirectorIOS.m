@@ -162,7 +162,7 @@ CGFloat	__ccContentScaleFactor = 1;
 	[notificationNode_ visit];
 
 	if( displayStats_ )
-		[self showStats];
+		//[self showStats];
 
 	kmGLPopMatrix();
 
