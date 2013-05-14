@@ -140,7 +140,7 @@
                 //////////////////////////////////////////////////////////////////////////
                 
                 // Lock on level, or display stars if level is completed
-                if([_gameManager isLevelLockedAtLevelSet:1 AndIndex:levelIndex])
+                if([_gameManager isLevelLockedAtLevelSet:levelSet AndIndex:levelIndex])
                 {
                     // Set icon as locked, and display a lock
                     levelIcon.userData = (__bridge void*) @"Locked";
