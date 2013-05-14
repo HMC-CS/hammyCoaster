@@ -1,17 +1,17 @@
 //
-//  RampObject.m
+//  InitialRampObject.m
 //  Team1Game3
 //
-//  Created by Carson Ramsden on 3/9/13.
+//  Created by jarthur on 5/14/13.
 //
 //
 
-#import "RampObject.h"
+#import "InitialRampObject.h"
 
-@implementation RampObject
+@implementation InitialRampObject
 
 - (std::vector<b2Body*>)createBodyAtLocation:(CGPoint)location
-{    
+{
     // Create the body
     b2BodyDef bodyDef;
     bodyDef.type = b2_staticBody;
