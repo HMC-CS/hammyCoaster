@@ -279,8 +279,8 @@
 		61772330170D59D5004F545F /* RampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObjectIconSelected.png; sourceTree = "<group>"; };
 		619EE6C81728F0440005D077 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
 		619EE6CF1729DD880005D077 /* trashCan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashCan.png; sourceTree = "<group>"; };
-		61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpriteResizingFunctions.h; path = ../SpriteResizingFunctions.h; sourceTree = "<group>"; };
-		61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = SpriteResizingFunctions.mm; path = ../SpriteResizingFunctions.mm; sourceTree = "<group>"; };
+		61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteResizingFunctions.h; sourceTree = "<group>"; };
+		61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpriteResizingFunctions.mm; sourceTree = "<group>"; };
 		61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIcon.png; sourceTree = "<group>"; };
 		61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIconSelected.png; sourceTree = "<group>"; };
 		9CE768D516F9B1FB00EE241F /* StarObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-hd.png"; sourceTree = "<group>"; };
@@ -371,7 +371,7 @@
 		D895F54E170743CA00ED74C5 /* LevelIcon4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon4.png; sourceTree = "<group>"; };
 		D895F54F170743CA00ED74C5 /* LevelIcon5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LevelIcon5.png; sourceTree = "<group>"; };
 		D8A47F69173CBADF00CF1B87 /* MathHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathHelper.h; sourceTree = "<group>"; };
-		D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MathHelper.mm; path = ../MathHelper.mm; sourceTree = "<group>"; };
+		D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MathHelper.mm; sourceTree = "<group>"; };
 		D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldManager.h; sourceTree = "<group>"; };
 		D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorldManager.mm; sourceTree = "<group>"; };
 		D8E83C7016EA753B000284EA /* Team1Game3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Game3.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -913,6 +913,17 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
+		D878F96317423E2300F7BD46 /* Helper Functions */ = {
+			isa = PBXGroup;
+			children = (
+				61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */,
+				61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */,
+				D8A47F69173CBADF00CF1B87 /* MathHelper.h */,
+				D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */,
+			);
+			path = "Helper Functions";
+			sourceTree = "<group>";
+		};
 		D895F556170743E200ED74C5 /* Level Selector Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -1050,10 +1061,7 @@
 				D8E83EAD16EA75D0000284EA /* ObjectFactory.mm */,
 				D8E83EA916EA75A8000284EA /* AbstractGameObject.h */,
 				D8E83EAA16EA75A8000284EA /* AbstractGameObject.mm */,
-				61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */,
-				61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */,
-				D8A47F69173CBADF00CF1B87 /* MathHelper.h */,
-				D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */,
+				D878F96317423E2300F7BD46 /* Helper Functions */,
 				D878F96217423D6A00F7BD46 /* Managers */,
 				CE3B319E170E440000F70048 /* Layers/Scenes */,
 				CE3B319B170E43CE00F70048 /* Objects */,
