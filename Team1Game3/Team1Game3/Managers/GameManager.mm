@@ -56,37 +56,35 @@
 }
 
 
-// TODO: Claire, make this pretty!
 -(void) resetUserData
 {
-    
-    for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i) {
-        NSString *levelComplete =[_levelCompletionStatuses objectAtIndex:i];
-        NSString *levelLocked = [_isLevelLocked objectAtIndex: i];
-        NSNumber *levelStars = [_levelHighScores objectAtIndex: i];
-        NSLog(@"level %d, Complete: %@ Locked: %@, Stars: %@", i, levelComplete, levelLocked, levelStars);
-    }
-    NSLog(@"resetUserData");//new
+    // Load NSUserDefaults
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [self loadGame];
     
+    // Read data from NSUserDefaults and put it in local storage
     for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i) {
+        
         bool levelComplete = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_complete", i]];
         bool levelLocked = [_defaults boolForKey:[NSString stringWithFormat:@"level_%d_locked", i]];
         int levelStars = [_defaults integerForKey:[NSString stringWithFormat:@"level_%d_stars", i]];
-        NSLog(@"level %d, Complete: %d Locked: %d, Stars: %d", i, levelComplete, levelLocked, levelStars);
         
+        // Has the user won the level before?
         if (levelComplete) {
             [_levelCompletionStatuses replaceObjectAtIndex: i withObject:@"true"];
-        }else{
+        } else {
             [_levelCompletionStatuses replaceObjectAtIndex: i withObject:@"false"];
         }
+        
+        // Is the user allowed to play the level?
         if(levelLocked) {
             [_isLevelLocked replaceObjectAtIndex: i withObject:@"true"];
-        }else{
+        } else {
             [_isLevelLocked replaceObjectAtIndex: i withObject:@"false"];
         }
+        
+        // Highest number of stars obtained?
         [_levelHighScores setObject:[NSNumber numberWithInt:levelStars] atIndexedSubscript:i];
     }
 }
@@ -130,7 +128,7 @@
         [_defaults setInteger:_numLevelsCompleted forKey:@"levels_completed"];
         
         // If you've completed all the levels, you win.
-        if (_numLevelsCompleted % _numLevelIndices == 0) {
+        if (_numLevelsCompleted == _numLevelSets * _numLevelIndices) {
             ++_numLevelsCompleted; // So you only get the win screen once.
             [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
         }
