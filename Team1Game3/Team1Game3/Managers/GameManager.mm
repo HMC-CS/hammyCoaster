@@ -63,6 +63,8 @@
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     [self loadGame];
     
+    _numLevelsCompleted = [_defaults integerForKey:@"levels_complete"];
+    
     // Read data from NSUserDefaults and put it in local storage
     for (int i = 0; i < _numLevelSets * _numLevelIndices; ++i) {
         
@@ -125,7 +127,7 @@
         [_levelCompletionStatuses setObject:@"true" atIndexedSubscript:arrayIndex];
         [_defaults setBool:YES forKey:[NSString stringWithFormat:@"level_%d_complete", arrayIndex]];
         ++_numLevelsCompleted;
-        [_defaults setInteger:_numLevelsCompleted forKey:@"levels_completed"];
+        [_defaults setInteger:_numLevelsCompleted forKey:@"levels_complete"];
         
         // If you've completed all the levels, you win.
         if (_numLevelsCompleted == _numLevelSets * _numLevelIndices) {
