@@ -275,6 +275,10 @@
 		D8E83EC416EBC42A000284EA /* RampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EC316EBC42A000284EA /* RampObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83ECA16EBCB1E000284EA /* RampObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EC916EBCB1D000284EA /* RampObject-hd.png */; };
 		D8E83ECC16EBCB44000284EA /* RampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83ECB16EBCB43000284EA /* RampObject.png */; };
+		FD27487017669ECC00C948F5 /* pawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD27486C17669ECC00C948F5 /* pawsAnim-ipadhd.plist */; };
+		FD27487117669ECC00C948F5 /* pawsAnim-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = FD27486D17669ECC00C948F5 /* pawsAnim-ipadhd.png */; };
+		FD27487217669ECC00C948F5 /* pawsAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = FD27486E17669ECC00C948F5 /* pawsAnim.plist */; };
+		FD27487317669ECC00C948F5 /* pawsAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = FD27486F17669ECC00C948F5 /* pawsAnim.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -758,6 +762,10 @@
 		D8E83EC316EBC42A000284EA /* RampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RampObject.mm; sourceTree = "<group>"; };
 		D8E83EC916EBCB1D000284EA /* RampObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RampObject-hd.png"; sourceTree = "<group>"; };
 		D8E83ECB16EBCB43000284EA /* RampObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObject.png; sourceTree = "<group>"; };
+		FD27486C17669ECC00C948F5 /* pawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "pawsAnim-ipadhd.plist"; path = "../Managers/pawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
+		FD27486D17669ECC00C948F5 /* pawsAnim-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pawsAnim-ipadhd.png"; path = "../Managers/pawsAnim-ipadhd.png"; sourceTree = "<group>"; };
+		FD27486E17669ECC00C948F5 /* pawsAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = pawsAnim.plist; path = ../Managers/pawsAnim.plist; sourceTree = "<group>"; };
+		FD27486F17669ECC00C948F5 /* pawsAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pawsAnim.png; path = ../Managers/pawsAnim.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1068,6 +1076,10 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FD27486C17669ECC00C948F5 /* pawsAnim-ipadhd.plist */,
+				FD27486D17669ECC00C948F5 /* pawsAnim-ipadhd.png */,
+				FD27486E17669ECC00C948F5 /* pawsAnim.plist */,
+				FD27486F17669ECC00C948F5 /* pawsAnim.png */,
 				D86F71591708A7100007ED1D /* InitialObjects.json */,
 				D8E83C9D16EA753B000284EA /* Info.plist */,
 				D878F95B17423C5C00F7BD46 /* Backgrounds and Screens */,
@@ -1730,6 +1742,10 @@
 				CECEFAB01742709B00C0F604 /* GoalLayer.png in Resources */,
 				CECEFAB11742709B00C0F604 /* MainMenu.png in Resources */,
 				CECEFABB17427A3E00C0F604 /* LevelSelectorLayer.png in Resources */,
+				FD27487017669ECC00C948F5 /* pawsAnim-ipadhd.plist in Resources */,
+				FD27487117669ECC00C948F5 /* pawsAnim-ipadhd.png in Resources */,
+				FD27487217669ECC00C948F5 /* pawsAnim.plist in Resources */,
+				FD27487317669ECC00C948F5 /* pawsAnim.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
