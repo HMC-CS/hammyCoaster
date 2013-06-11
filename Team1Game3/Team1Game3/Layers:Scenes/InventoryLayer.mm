@@ -135,6 +135,10 @@
         [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.7f];
         [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.7f];
         selected.color = ccc3(255,255,0);
+        if ([activeObject isEqualToString:@"false"])
+        {
+            normal.color = ccc3(84,84,84);
+        }
         if ([type isEqualToString:@"MagnetObject"])
         {
             [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.5f];
