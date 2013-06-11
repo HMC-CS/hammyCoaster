@@ -346,7 +346,7 @@
         _contactListener->SetLevelWonStatus(false);
         [self gameWon];
     }
-    
+
     // If the ball hits a star, erase it.
     b2Body* contactStar = _contactListener->GetContactStar();
     if (contactStar) {
