@@ -31,7 +31,7 @@
     
     int _levelSet;                         // Level set (level notation is set-index)
     int _levelIndex;                       // Level index (level notation is set-index)
-    //bool _catPawsMoving;
+    bool _catPawsMoving;
     
     LevelGenerator* _levelGenerator;       // Generates items for the given level
     
@@ -42,8 +42,13 @@
     GameManager* _gameManager;             // Holds game data
 }
 
-//@property (nonatomic, strong) CCSprite *bear;
-//@property (nonatomic, strong) CCAction *walkAction;
+@property (nonatomic, strong) CCSprite *catPaws1;
+@property (nonatomic, strong) CCSprite *catPaws2;
+@property (nonatomic, strong) CCSprite *catPaws3;
+@property (nonatomic, strong) CCSprite *catPaws4;
+@property (nonatomic, strong) CCSprite *catPaws5;
+
+@property (nonatomic, strong) CCAction *catAction;
 //@property (nonatomic, strong) CCAction *moveAction;
 
 /* sceneWithLevelSet:AndIndex:
