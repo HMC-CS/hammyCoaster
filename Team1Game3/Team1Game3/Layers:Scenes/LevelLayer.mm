@@ -64,6 +64,30 @@
         _levelLabel.position = CGPointMake(2.9*size.width/5, 5*size.height/6);
         [self addChild:_levelLabel];
         
+        //Cat paws animation
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"catPawsAnim.plist"];
+        CCSpriteBatchNode* spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"catPawsAnim.png"];
+        [self addChild:spriteSheet];
+        NSMutableArray* catAnimFrames = [NSMutableArray array];
+        for (int i =1; i <= 2; i++)
+        {
+            [catAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"catpaws%d.png",i]]];
+        }
+        CCAnimation* catAnim = [CCAnimation animationWithSpriteFrames:catAnimFrames delay:0.7f];
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        
+
+        for (int i= 0; i <= 7; i++)
+        {
+             self.catPaws1 = [CCSprite spriteWithSpriteFrameName:@"catpaws1.png"];
+            self.catPaws1.position = CGPointMake(winSize.width/3+self.catPaws1.boundingBox.size.width*i,self.catPaws1.boundingBox.size.height/2);
+            self.catAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:catAnim]];
+            [self.catPaws1 runAction:self.catAction];
+            [spriteSheet addChild:self.catPaws1];
+        }
+
+        
+        
 	}
 	return self;
 }

@@ -125,6 +125,8 @@
         // Get type and number of each inventory item
         NSString* type = [item objectAtIndex:0];
         NSNumber* numItems = [item objectAtIndex:1];
+        // 0 indicates active object and 1 indicates inactive object
+        NSString* activeObject =[item objectAtIndex:2];
         
         // Get picture for inventory button
         NSString* buttonSprite = [[NSString alloc] initWithFormat:@"%@.png", type];
