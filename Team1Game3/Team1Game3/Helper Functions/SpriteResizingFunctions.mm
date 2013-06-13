@@ -19,7 +19,7 @@
 + (void) setSpriteSize: (CCSprite*) sprite InLayer: (CCLayer*) layer WithSize: (CGFloat) size;
 {
     CGFloat newWidth = size * layer.boundingBox.size.width;
-    CGFloat newHeight = size * (layer.boundingBox.size.height/3);
+    CGFloat newHeight = size * (layer.boundingBox.size.height/5);
     [sprite setScaleX: (newWidth/sprite.contentSize.width)];
     [sprite setScaleY: (newHeight/sprite.contentSize.height)];
     sprite.contentSize = sprite.boundingBox.size;

@@ -34,8 +34,8 @@
         
         // The layer is the right-hand 3/4 of the screen
 		CGSize superSize = [CCDirector sharedDirector].winSize;
-        [self setContentSize:CGSizeMake(superSize.width*0.75, superSize.height)];
-        [self setPosition:ccp(superSize.width*0.25, 0)];
+        [self setContentSize:CGSizeMake(superSize.width*(.85), superSize.height)];
+        [self setPosition:ccp(superSize.width*(.15), 0)];
         
         // Create world manager and initialize world
         [self initPhysics];
@@ -346,7 +346,7 @@
         _contactListener->SetLevelWonStatus(false);
         [self gameWon];
     }
-
+    
     // If the ball hits a star, erase it.
     b2Body* contactStar = _contactListener->GetContactStar();
     if (contactStar) {
