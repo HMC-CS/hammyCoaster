@@ -42,11 +42,10 @@
     GameManager* _gameManager;             // Holds game data
 }
 
-@property (nonatomic, strong) CCSprite *catPaws1;
-@property (nonatomic, strong) CCSprite *catPaws2;
-@property (nonatomic, strong) CCSprite *catPaws3;
-@property (nonatomic, strong) CCSprite *catPaws4;
-@property (nonatomic, strong) CCSprite *catPaws5;
+@property (nonatomic, strong) CCSprite *catPaws;
+
+@property (nonatomic, strong) NSMutableArray* catArray;
+
 
 @property (nonatomic, strong) CCAction *catAction;
 //@property (nonatomic, strong) CCAction *moveAction;
