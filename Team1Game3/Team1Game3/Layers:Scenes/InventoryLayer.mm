@@ -22,12 +22,16 @@
 		
 		self.isTouchEnabled = YES;
         
+        //Check the total number of items in a level
+        _numIcons = items.count;
+        
         // By default, no inventory object is selected.
         _selectedObject = @"None";
 		
         // Inventory is in the first fourth of the screen
-        [self setContentSize:CGSizeMake(size.width*0.25, size.height)];
+        [self setContentSize:CGSizeMake(size.width*(.15), size.height)];
         [self setPosition:ccp(0,0)];
+        
         
         _items = items;
         
@@ -119,8 +123,13 @@
 
     _inventoryMenu = [CCMenu node];
     buttonArray = [[NSMutableArray alloc] init];
-    
+    //NSMutableArray* inventoryScrollerArray = [[NSMutableArray alloc] init];
+    //Attempts at implementing a scroller
+
+
     for (NSArray* item in _items) {
+        // Array of Inventory Items
+    
         
         // Get type and number of each inventory item
         NSString* type = [item objectAtIndex:0];
@@ -132,8 +141,8 @@
         NSString* buttonSprite = [[NSString alloc] initWithFormat:@"%@.png", type];
         CCSprite* normal = [CCSprite spriteWithFile:buttonSprite];
         CCSprite* selected = [CCSprite spriteWithFile:buttonSprite];
-        [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.7f];
-        [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.7f];
+        [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.6f];
+        [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.6f];
         selected.color = ccc3(255,255,0);
         if ([activeObject isEqualToString:@"false"])
         {
@@ -141,9 +150,8 @@
         }
         if ([type isEqualToString:@"MagnetObject"])
         {
-            [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.5f];
-            [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.5f];
-            normal.contentSize = normal.boundingBox.size;
+            [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.4f];
+            [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.4f];
             
         }
         
@@ -161,13 +169,13 @@
         
         // Add button to menu
         [_inventoryMenu addChild:inventoryButton];
-        
+
     }
-    
-    // Format the inventory menu
-    [_inventoryMenu alignItemsVerticallyWithPadding:10.0f];
-    [_inventoryMenu setPosition:ccp(size.width/8, size.height/2)];
+    [_inventoryMenu alignItemsVerticallyWithPadding:0.0f];
+    [_inventoryMenu setPosition:ccp(size.width*(.075), size.height/2)];
     _inventoryMenu.isTouchEnabled = false;
+    
+
     [self addChild: _inventoryMenu z:2];
     
 }
