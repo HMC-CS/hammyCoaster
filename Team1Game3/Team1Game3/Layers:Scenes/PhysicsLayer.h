@@ -75,6 +75,8 @@
 -(void) addNewSpriteOfType: (NSString*) type AtPosition:(CGPoint)p WithRotation: (CGFloat) rotation  AsDefault:(bool)isDefault;
 
 
+
+
 /* playLevel
  * Places a BallObject at ballStartingPoint
  */

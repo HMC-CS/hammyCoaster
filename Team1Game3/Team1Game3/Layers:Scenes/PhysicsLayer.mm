@@ -235,6 +235,43 @@
     }
 }
 
+/* catPaw Interaction:
+ * 
+ */
+
+-(BOOL) catPawCollision
+{
+    
+
+   if (!_editMode)
+   {
+    for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext()){
+    AbstractGameObject* object = (__bridge AbstractGameObject*)(b->GetUserData());
+ 
+    if ([object.type isEqualToString:@"BallObject"])
+    {
+
+       NSMutableArray* objectSprites = object.sprites;
+       for(CCSprite* sp in objectSprites)
+       {
+           CGRect ballBox = sp.boundingBox;
+           int catPawsYVal = 2*self.contentSize.height/32;
+           if (ballBox.origin.y*3 < catPawsYVal)
+           {
+               [self resetBall];
+               return true;
+           }
+       }
+        
+       }
+        
+       
+   }
+   }
+
+    return false;
+}
+
 
 /* deleteObjectWithBody:
  * Deletes a physics body from the physics layer
@@ -341,10 +378,16 @@
 	// generally best to keep the time step and iterations fixed.
 	_world->Step(dt, velocityIterations, positionIterations);
     
+
+    
     // If ball intersects blue portal, you win the level!
     if (_contactListener->IsLevelWon()) {
         _contactListener->SetLevelWonStatus(false);
         [self gameWon];
+    }
+    if ([self catPawCollision])
+    {
+        NSLog(@"In the update");
     }
     
     // If the ball hits a star, erase it.
@@ -352,7 +395,9 @@
     if (contactStar) {
         [self hitStar:contactStar];
         _contactListener->EraseContactStar();
+        
     }
+    
     
     // Update other things in the world
     [_worldManager update];
