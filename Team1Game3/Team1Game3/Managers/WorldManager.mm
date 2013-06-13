@@ -52,7 +52,7 @@
     
     // DEBUG_DRAW. Debug draw. Remove these lines out before publishing.
 	m_debugDraw = new GLESDebugDraw( PTM_RATIO );
-	//_world->SetDebugDraw(m_debugDraw);
+	_world->SetDebugDraw(m_debugDraw);
 	uint32 flags = 0;
 	flags += b2Draw::e_shapeBit;
 	m_debugDraw->SetFlags(flags);
