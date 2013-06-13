@@ -13,7 +13,10 @@
         ],
         "inventory":
         [
-            ["RampObject", "1", "true"]
+            ["RampObject", "1", "true"],
+            ["CurvedRampObject", "0", "false"],
+            ["TrampolineObject","0", "false"],
+            ["MagnetObject", "0", "false"]
         ]
     },
     {

@@ -11,8 +11,11 @@
 
 #import "CCLayer.h"
 #import "Cocos2d.h"
+#import "CCScrollLayer.h"
 
 @interface InventoryLayer : CCLayer {
+    
+    int _numIcons;
     
     NSString* _selectedObject;      // Object selected for addition into physics layer
     NSMutableArray* buttonArray;    // Array of objects available
