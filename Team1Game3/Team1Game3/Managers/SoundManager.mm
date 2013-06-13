@@ -38,7 +38,8 @@
     if ([self isBackgroundMusicPlaying])
         [self pauseBackgroundMusic];
     else
-        [self playBackgroundMusic:@"Background music.m4a"];
+        return;
+        //[self playBackgroundMusic:@"Background music.m4a"];
 }
 
 
@@ -94,7 +95,7 @@
     // Combine background and sound effects buttons into a menu
     CCMenu* menu = [CCMenu menuWithItems: musicToggle, soundToggle, nil];
     [menu alignItemsHorizontally];
-    menu.position=ccp([[CCDirector sharedDirector] winSize].width - 75, 40);
+    menu.position=ccp([[CCDirector sharedDirector] winSize].width - 75, 730);
     
     
     return menu;

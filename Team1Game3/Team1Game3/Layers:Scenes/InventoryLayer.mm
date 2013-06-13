@@ -148,12 +148,12 @@
         {
             normal.color = ccc3(84,84,84);
         }
-        if ([type isEqualToString:@"MagnetObject"])
-        {
-            [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.4f];
-            [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.4f];
+        //if ([type isEqualToString:@"MagnetObject"])
+        //{
+          //  [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.4f];
+           // [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.4f];
             
-        }
+        //}
         
         // Set inventory button atrributes
         CCMenuItemSprite* inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected];
@@ -172,7 +172,7 @@
 
     }
     [_inventoryMenu alignItemsVerticallyWithPadding:0.0f];
-    [_inventoryMenu setPosition:ccp(size.width*(.075), size.height/2)];
+    [_inventoryMenu setPosition:ccp(size.width*(.075), size.height/2+25.0)];
     _inventoryMenu.isTouchEnabled = false;
     
 
