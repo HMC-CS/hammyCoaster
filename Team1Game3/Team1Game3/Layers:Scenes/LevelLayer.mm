@@ -50,7 +50,7 @@
         
         // Create background image
         CCSprite *background;
-        background = [CCSprite spriteWithFile:@"levelbackground.png"];
+        background = [CCSprite spriteWithFile:@"newBackground.png"];
         background.position = ccp(size.width/2, size.height/2);
         [self addChild: background];
     
@@ -77,10 +77,10 @@
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
 
-        for (int i= 0; i <= 7; i++)
+        for (int i= 0; i <= 9; i++)
         {
              self.catPaws1 = [CCSprite spriteWithSpriteFrameName:@"catpaws1.png"];
-            self.catPaws1.position = CGPointMake(winSize.width/3+self.catPaws1.boundingBox.size.width*i,self.catPaws1.boundingBox.size.height/2);
+            self.catPaws1.position = CGPointMake(winSize.width*(.19)+self.catPaws1.boundingBox.size.width*i,self.catPaws1.boundingBox.size.height/2);
             self.catAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:catAnim]];
             [self.catPaws1 runAction:self.catAction];
             [spriteSheet addChild:self.catPaws1];
