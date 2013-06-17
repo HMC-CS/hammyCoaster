@@ -719,6 +719,7 @@
         
         // Iterate through all the fixtures in each body
         for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+            
             b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
             int count = polygonShape->GetVertexCount();
             
