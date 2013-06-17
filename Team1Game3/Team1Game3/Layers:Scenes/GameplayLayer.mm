@@ -96,17 +96,18 @@
     [CCMenuItemFont setFontSize:20];
     
     // Play and reset ball buttons, which are toggle-able.
-    CCMenuItem* playButton = [CCMenuItemFont itemWithString:@"Start!" block:^(id sender) {
-        [self playButtonPressed];
-    }];
-    CCMenuItem* resetBallButton = [CCMenuItemFont itemWithString:@"Reset\nBall" block:^(id sender) {
+    CCMenuItemImage *playButton = [CCMenuItemImage itemWithNormalImage:@"playButton.png" selectedImage:@"playButton.png"];
+
+    CCMenuItemImage *resetBallButton = [CCMenuItemImage itemWithNormalImage:@"stopButton.png" selectedImage: @"stopButton.png" block:^(id sender) {
         [self resetBallButtonPressed];
     }];
+
     _playResetToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: playButton, resetBallButton, nil] block:^(id sender) {
         [self playResetButtonPressed];
     }];
     // Create toggle menu for play and reset ball buttons
-    _startButtonLocation.x += (size.width/7.5);
+    _startButtonLocation.x += (size.width/7.5-5);
+    _startButtonLocation.y +=(size.height/5-92);
     CCMenu* playResetMenu = [CCMenu menuWithItems: _playResetToggle, nil];
     [playResetMenu setPosition:_startButtonLocation];
     [self addChild: playResetMenu z:-1];

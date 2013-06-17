@@ -283,6 +283,8 @@
 		D8E83EC416EBC42A000284EA /* RampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EC316EBC42A000284EA /* RampObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83ECA16EBCB1E000284EA /* RampObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EC916EBCB1D000284EA /* RampObject-hd.png */; };
 		D8E83ECC16EBCB44000284EA /* RampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83ECB16EBCB43000284EA /* RampObject.png */; };
+		FD115BBF176FD2150057D59F /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FD115BBD176FD2150057D59F /* playButton.png */; };
+		FD115BC0176FD2150057D59F /* stopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FD115BBE176FD2150057D59F /* stopButton.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -774,6 +776,8 @@
 		D8E83EC316EBC42A000284EA /* RampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RampObject.mm; sourceTree = "<group>"; };
 		D8E83EC916EBCB1D000284EA /* RampObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RampObject-hd.png"; sourceTree = "<group>"; };
 		D8E83ECB16EBCB43000284EA /* RampObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObject.png; sourceTree = "<group>"; };
+		FD115BBD176FD2150057D59F /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
+		FD115BBE176FD2150057D59F /* stopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopButton.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1091,6 +1095,8 @@
 		D8E83C8616EA753B000284EA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FD115BBD176FD2150057D59F /* playButton.png */,
+				FD115BBE176FD2150057D59F /* stopButton.png */,
 				D86F71591708A7100007ED1D /* InitialObjects.json */,
 				6818126C176BE1F200018E76 /* restart.png */,
 				D8E83C9D16EA753B000284EA /* Info.plist */,
@@ -1762,6 +1768,8 @@
 				68FF017117690233007ED154 /* catPawsAnim.png in Resources */,
 				68FF0173176A5AED007ED154 /* newBackground.png in Resources */,
 				6818126D176BE1F200018E76 /* restart.png in Resources */,
+				FD115BBF176FD2150057D59F /* playButton.png in Resources */,
+				FD115BC0176FD2150057D59F /* stopButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
