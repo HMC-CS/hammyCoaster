@@ -28,6 +28,8 @@
     CGPoint _startButtonLocation;   // Location for start portal (and ball starting point)
     
     CCMenuItemToggle* _playResetToggle;     // Toggle for button on start portal
+    
+    NSMutableArray* _starArray;
 }
 
 

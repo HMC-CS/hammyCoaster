@@ -104,6 +104,10 @@
             // Add new number label in front of button.
             CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.3];
             [numLabel setColor:ccWHITE];
+            if (button.tag > 0)
+            {
+                button.color = ccc3(255,255,255);
+            }
             [numLabel setPosition:ccp(6*button.contentSize.width/7, 6*button.contentSize.height/7)];
             [button addChild:numLabel z:1 tag:NSIntegerMin];
             

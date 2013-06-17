@@ -28,6 +28,8 @@
         _bestStars = stars;
         _startButtonLocation = startButtonPoint;
         
+        _starArray = [[NSMutableArray alloc] init];
+        
 		// Create menu buttons
 		[self createMenu];
         
@@ -67,10 +69,12 @@
             _stars = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
+            //[_starArray addObject:_stars];
         } else {
             _stars = [CCSprite spriteWithFile:@"StarObject.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
+            [_starArray addObject:_stars];
         }
         starLocation.x += _stars.boundingBox.size.width+10;
     }
@@ -148,10 +152,12 @@
             _stars = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
+            //[_starArray addObject:_stars];
         } else {
             _stars = [CCSprite spriteWithFile:@"StarObject.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
+            //[_starArray addObject:_stars];
         }
         starLocation.x += _stars.boundingBox.size.width +10;
     }
@@ -187,7 +193,15 @@
 -(void) resetStarCount
 {
     _starCount = 0;
-    [_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
+   for(CCSprite* star in _starArray)
+   {
+        NSLog(@"remove stars");
+        [self removeChild:star cleanup:YES];
+    }
+    //[self createLabels];
+ 
+    
+    //[_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
 }
 
 
