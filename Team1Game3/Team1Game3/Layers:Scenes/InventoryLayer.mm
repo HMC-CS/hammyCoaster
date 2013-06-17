@@ -29,7 +29,7 @@
         _selectedObject = @"None";
 		
         // Inventory is in the first fourth of the screen
-        [self setContentSize:CGSizeMake(size.width*(.15), size.height)];
+        [self setContentSize:CGSizeMake(size.width*(.13), size.height)];
         [self setPosition:ccp(0,0)];
         
         
@@ -162,17 +162,17 @@
         [buttonArray addObject:inventoryButton];
         
         // Put a label displaying the number of items left on the button
-        CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", inventoryButton.tag] fontName:@"Marker Felt" fontSize:inventoryButton.contentSize.width*.4];
+        CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", inventoryButton.tag] fontName:@"Marker Felt" fontSize:inventoryButton.contentSize.width*.3];
         [numLabel setColor:ccWHITE];
-        [numLabel setPosition:ccp(inventoryButton.contentSize.width/2, inventoryButton.contentSize.height/2)];
+        [numLabel setPosition:ccp(6*inventoryButton.contentSize.width/7, 6*inventoryButton.contentSize.height/7)];
         [inventoryButton addChild:numLabel z:1 tag:NSIntegerMin];
         
         // Add button to menu
         [_inventoryMenu addChild:inventoryButton];
 
     }
-    [_inventoryMenu alignItemsVerticallyWithPadding:0.0f];
-    [_inventoryMenu setPosition:ccp(size.width*(.075), size.height/2+25.0)];
+    [_inventoryMenu alignItemsVerticallyWithPadding:8.0f];
+    [_inventoryMenu setPosition:ccp(size.width*(.065), size.height/2)];//+25.0)];
     _inventoryMenu.isTouchEnabled = false;
     
 
