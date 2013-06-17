@@ -64,9 +64,13 @@
                 [button removeChildByTag:NSIntegerMin cleanup:NO]; 
                 
                 // Add new number label in fromt of button
-                CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
+                CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.3];
                 [numLabel setColor:ccWHITE];
-                [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
+                [numLabel setPosition:ccp(6*button.contentSize.width/7, 6*button.contentSize.height/7)];
+                if (button.tag == 0)
+                {
+                    button.color = ccc3(84,84,84);
+                }
                 [button addChild:numLabel z:0 tag:NSIntegerMin];
                 
                 // Let user know which object is selected
@@ -98,9 +102,9 @@
             [button removeChildByTag:NSIntegerMin cleanup:NO];
             
             // Add new number label in front of button.
-            CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.4];
+            CCLabelTTF *numLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%d", button.tag] fontName:@"Marker Felt" fontSize:button.contentSize.width*.3];
             [numLabel setColor:ccWHITE];
-            [numLabel setPosition:ccp(button.contentSize.width/2, button.contentSize.height/2)];
+            [numLabel setPosition:ccp(6*button.contentSize.width/7, 6*button.contentSize.height/7)];
             [button addChild:numLabel z:1 tag:NSIntegerMin];
             
             break;
