@@ -19,6 +19,7 @@
     SEL _selector2; // Reset ball
     SEL _selector3; // Reset level
     
+    CCSprite* _stars;
     CCLabelTTF* _starLabel;         // Displays number of stars user has gotten in level
     CCLabelTTF* _bestStarLabel;     // Displays high score
     int _starCount;                 // Number of stars user has gotten

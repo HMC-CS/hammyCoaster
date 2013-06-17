@@ -61,7 +61,20 @@
 -(void) updateStarCount
 {
     ++_starCount;
-    [_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
+    CGPoint starLocation = CGPointMake(self.contentSize.width/1.9, 9*self.contentSize.height/10);
+    for (int i = 1; i <= 3; ++i) {
+        if (_starCount < i) {
+            _stars = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
+            [_stars setPosition:starLocation];
+            [self addChild:_stars];
+        } else {
+            _stars = [CCSprite spriteWithFile:@"StarObject.png"];
+            [_stars setPosition:starLocation];
+            [self addChild:_stars];
+        }
+        starLocation.x += _stars.boundingBox.size.width+10;
+    }
+    //[_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
 }
 
 
@@ -129,8 +142,23 @@
     
     // Label for number of stars obtained
     _starCount = 0;
-    _starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:20];
-    _starLabel.position = CGPointMake(size.width*(.075), 4*size.height/32);
+    CGPoint starLocation = CGPointMake(self.contentSize.width/1.9, 9*self.contentSize.height/10);
+    for (int i = 1; i <= 3; ++i) {
+        if (_starCount < i) {
+            _stars = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
+            [_stars setPosition:starLocation];
+            [self addChild:_stars];
+        } else {
+            _stars = [CCSprite spriteWithFile:@"StarObject.png"];
+            [_stars setPosition:starLocation];
+            [self addChild:_stars];
+        }
+        starLocation.x += _stars.boundingBox.size.width +10;
+    }
+    
+    //_starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:20];
+    //_starLabel.position = CGPointMake(size.width*(.075), 4*size.height/32);
+
     //[self addChild:_starLabel];
     
     // Label for level high score
