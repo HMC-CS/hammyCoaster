@@ -96,7 +96,7 @@
     
     
     // Reset Button: Gets rid of all non-default items in level
-    CCMenuItemLabel *resetButton = [CCMenuItemFont itemWithString:@"Restart Level" block:^(id sender){
+    CCMenuItemLabel *resetButton = [CCMenuItemImage itemWithNormalImage:@"restart.png" selectedImage:@"restart.png" block:^(id sender){
         // reset level; currently just redraw everything
         [self resetButtonPressed];
     }];
