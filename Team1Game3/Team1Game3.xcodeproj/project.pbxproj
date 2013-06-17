@@ -15,6 +15,7 @@
 		61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */; };
 		61DF4BEB170E2FD2002187F6 /* StarObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */; };
 		61DF4BEC170E2FD2002187F6 /* StarObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */; };
+		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016617690230007ED154 /* catPawsAnim-hd.plist */; };
 		68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016717690231007ED154 /* catPawsAnim-hd.png */; };
 		68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */; };
@@ -294,6 +295,7 @@
 		61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpriteResizingFunctions.mm; sourceTree = "<group>"; };
 		61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIcon.png; sourceTree = "<group>"; };
 		61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIconSelected.png; sourceTree = "<group>"; };
+		6818126C176BE1F200018E76 /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
 		68FF016617690230007ED154 /* catPawsAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-hd.plist"; path = "Team1Game3/Resources/catPawsAnim-hd.plist"; sourceTree = "<group>"; };
 		68FF016717690231007ED154 /* catPawsAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-hd.png"; path = "Team1Game3/Resources/catPawsAnim-hd.png"; sourceTree = "<group>"; };
 		68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
@@ -1090,6 +1092,7 @@
 			isa = PBXGroup;
 			children = (
 				D86F71591708A7100007ED1D /* InitialObjects.json */,
+				6818126C176BE1F200018E76 /* restart.png */,
 				D8E83C9D16EA753B000284EA /* Info.plist */,
 				D878F95B17423C5C00F7BD46 /* Backgrounds and Screens */,
 				D878F95A17423AE900F7BD46 /* Inventory Pictures */,
@@ -1758,6 +1761,7 @@
 				68FF017017690233007ED154 /* catPawsAnim.plist in Resources */,
 				68FF017117690233007ED154 /* catPawsAnim.png in Resources */,
 				68FF0173176A5AED007ED154 /* newBackground.png in Resources */,
+				6818126D176BE1F200018E76 /* restart.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
