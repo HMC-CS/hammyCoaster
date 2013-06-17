@@ -34,8 +34,8 @@
         
         // The layer is the right-hand 3/4 of the screen
 		CGSize superSize = [CCDirector sharedDirector].winSize;
-        [self setContentSize:CGSizeMake(superSize.width*(.85), superSize.height)];
-        [self setPosition:ccp(superSize.width*(.15), 0)];
+        [self setContentSize:CGSizeMake(superSize.width*(.87), superSize.height)];
+        [self setPosition:ccp(superSize.width*(.13), 0)];
         
         // Create world manager and initialize world
         [self initPhysics];
@@ -259,6 +259,8 @@
            if (ballBox.origin.y*3 < catPawsYVal)
            {
                [self resetBall];
+               [self togglePlayMode];
+
                return true;
            }
        }

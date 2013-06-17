@@ -89,7 +89,7 @@
         [self playResetButtonPressed];
     }];
     // Create toggle menu for play and reset ball buttons
-    _startButtonLocation.x += (size.width/6.5);
+    _startButtonLocation.x += (size.width/7.5);
     CCMenu* playResetMenu = [CCMenu menuWithItems: _playResetToggle, nil];
     [playResetMenu setPosition:_startButtonLocation];
     [self addChild: playResetMenu z:-1];
@@ -103,17 +103,17 @@
     // Menu for reset button (at top of inventory panel)
     CCMenu *gameMenu0 = [CCMenu menuWithItems: resetButton, nil];
     [gameMenu0 alignItemsVerticallyWithPadding:10];
-    [gameMenu0 setPosition:ccp(size.width*(.075), size.height*18/20)];
+    [gameMenu0 setPosition:ccp(size.width*(.065), size.height*18/20)];
     [self addChild: gameMenu0 z:-1];
     
     
     // Back Button: goes back to level selector menu
-    CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Level Select" block:^(id sender){
+    CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Menu" block:^(id sender){
         [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
     }];
     // Menu for back button (at bottom of inventory panel)
     CCMenu *gameMenu1 = [CCMenu menuWithItems: backButton, nil];
-    [gameMenu1 setPosition:ccp(size.width*(.075), 3*size.height/16)];
+    [gameMenu1 setPosition:ccp(size.width*(.065), 2*size.height/16)];
     [self addChild: gameMenu1 z:-1];
 }
 
@@ -131,12 +131,12 @@
     _starCount = 0;
     _starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:20];
     _starLabel.position = CGPointMake(size.width*(.075), 4*size.height/32);
-    [self addChild:_starLabel];
+    //[self addChild:_starLabel];
     
     // Label for level high score
     _bestStarLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Best Stars: %d", _bestStars] fontName:@"Marker Felt" fontSize:20];
     _bestStarLabel.position = CGPointMake(size.width*(.075), 2*size.height/32);
-    [self addChild:_bestStarLabel];
+    //[self addChild:_bestStarLabel];
 }
 
 
