@@ -125,6 +125,7 @@
     [_physicsLayer setTarget:self AtAction:@selector(updateStarCount)]; // physics selector 3
     [_physicsLayer setTarget:self AtAction:@selector(objectDeletedOfType:)]; // physics selector 4
     [_physicsLayer setTarget:self AtAction:@selector(togglePlayResetButton)]; // physics selector 5
+    [_physicsLayer setTarget:self AtAction:@selector(resetStarCount)];
     [self addChild:_physicsLayer];
 }
 
@@ -224,6 +225,12 @@
         NSLog(@"forbid toggle");
         return;
     }
+}
+
+// selector 6
+-(void) resetStarCount
+{
+    [_gameplayLayer resetStarCount];
 }
 
 /* playPhysicsLayer

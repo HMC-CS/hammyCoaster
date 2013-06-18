@@ -70,8 +70,11 @@
         _selector3 = action;
     } else if (!_selector4) {
         _selector4 = action;
-    } else {
+    } else if (!_selector5){
         _selector5 = action;
+    }else
+    {
+        _selector6 = action;
     }
 }
 
@@ -271,6 +274,7 @@
            int catPawsYVal = 2*self.contentSize.height/32;
            if (ballBox.origin.y*3 < catPawsYVal)
            {
+               [self resetStarCount];
                [self resetBall];
                [self togglePlayMode];
 
@@ -356,6 +360,10 @@
     [_target performSelector:_selector5];
 }
 
+-(void) resetStarCount
+{
+    [_target performSelector:_selector6];
+}
 
 /* ///////////////////////// Box2D Functions ///////////////////////// */
 
@@ -732,7 +740,6 @@
         
         // Iterate through all the fixtures in each body
         for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-            
             b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
             int count = polygonShape->GetVertexCount();
             
