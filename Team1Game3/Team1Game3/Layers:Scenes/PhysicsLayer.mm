@@ -843,7 +843,7 @@ for (AbstractGameObject *obj in _createdObjects){
             NSMutableArray* objectSprites = object.sprites;
             for(CCSprite* sp in objectSprites)
             {
-                sp.color = ccc3(255,255, 255);
+                sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
             }
         }
     }
@@ -857,15 +857,43 @@ for (AbstractGameObject *obj in _createdObjects){
  */
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
-    NSLog(@"%f", body->GetPosition().x);
-    NSLog(@"%f", self.contentSize.width);
+    NSLog(@"body's x coordinate is %f", body->GetPosition().x);
+    NSLog(@"window width is %f", self.contentSize.width);
+    NSLog(@"window height is %f", self.contentSize.height);
+    float max_x = 0.0;
+    float max_y = 0.0;
+    float min_y = 0.0;
+    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+        
+        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+        int count = polygonShape->GetVertexCount();
+        
+        // Iterate through all the vertices in each fixture
+        for (int i = 0; i < count; i++) {
+            
+            // Get the location of the vertex
+            b2Vec2 vertex = polygonShape->GetVertex(i);
+            vertex = body->GetWorldPoint(vertex);
+            
+            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
+            if (vertexPoint.x > max_x) {
+                max_x = vertexPoint.x;
+            }
+            if (vertexPoint.y > max_y) {
+                max_y = vertexPoint.y;
+            }
+            if (vertexPoint.y < min_y) {
+                min_y = vertexPoint.y;
+            }
+        }
+    }
     if (_initialBodyPosition.x < 0) {
         [self deleteObjectWithBody:body];       // Delete objects in inventory
     }
     // when you are trying to place objects off screen
     // it will bounce back to its original position
     
-    else if (body->GetPosition().x > self.contentSize.width/PTM_RATIO || body->GetPosition().y > self.contentSize.height/PTM_RATIO || body->GetPosition().y < 0)
+    else if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
     {
         
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
@@ -890,7 +918,7 @@ for (AbstractGameObject *obj in _createdObjects){
             NSMutableArray* objectSprites = object.sprites;
             for(CCSprite* sp in objectSprites)
             {
-                sp.color = ccc3(84,84,84);
+                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84) 
             }
             }
         }
