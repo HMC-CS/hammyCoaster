@@ -54,7 +54,7 @@
         _selector1 = action;
     } else if (!_selector2){
         _selector2 = action;
-    } else {
+    } else{
         _selector3 = action;
     }
 }
@@ -213,6 +213,7 @@
  */
 -(void) playButtonPressed
 {
+
     [_target performSelector:_selector1];
 }
 
@@ -235,6 +236,8 @@
     [_target performSelector:_selector3];
     [self resetStarCount];
 }
+
+
 
 
 @end

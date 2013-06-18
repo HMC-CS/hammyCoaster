@@ -33,6 +33,8 @@
         
 		self.isTouchEnabled = YES;
         
+        _safe_to_play = true;
+        
         // The layer is the right-hand 3/4 of the screen
 		CGSize superSize = [CCDirector sharedDirector].winSize;
         [self setContentSize:CGSizeMake(superSize.width*(.87), superSize.height)];
@@ -143,11 +145,17 @@
         }
     }
     // You can only create one ball before resetting
-    if (_editMode && _safe_to_play) {
+    if (!_safe_to_play)
+    {
+        NSLog(@"overlapped item");
+        [self togglePlayMode];
+    }
+    else if (_editMode && _safe_to_play) {
         _editMode = NO;
         [self addNewSpriteOfType:@"BallObject" AtPosition:_ballStartingPoint WithRotation:0 AsDefault:NO];
-    }
 }
+}
+
 
 
 -(void) resetBall
