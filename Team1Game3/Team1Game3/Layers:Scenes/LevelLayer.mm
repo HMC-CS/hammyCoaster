@@ -216,15 +216,16 @@
  */
 -(void) togglePlayResetButton
 {
-    if (_physicsLayer.safe_to_play == true) {
-        [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
-        NSLog(@"should allow toggle");
-    }
-    
-    else {
-        NSLog(@"forbid toggle");
-        return;
-    }
+     [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
+//    if (_physicsLayer.safe_to_play == true) {
+//        [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
+//        NSLog(@"should allow toggle");
+//    }
+//    
+//    else {
+//        NSLog(@"forbid toggle");
+//        return;
+//    }
 }
 
 // selector 6
@@ -273,6 +274,7 @@
     [self removeChild:_gameplayLayer cleanup:YES];
     [self createGameplayLayer];
 }
+
 
 
 
