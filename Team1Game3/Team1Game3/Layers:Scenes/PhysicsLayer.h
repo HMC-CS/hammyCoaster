@@ -39,6 +39,8 @@
     SEL _selector3; // updateStarCount
     SEL _selector4; // objectDeletedOfType
     SEL _selector5; // togglePlayResetButton
+    SEL _selector6;
+
     
     CGPoint _ballStartingPoint;         // Where the ball (and red portal) start
     bool _editMode;                     // Whether or not level is editable by player

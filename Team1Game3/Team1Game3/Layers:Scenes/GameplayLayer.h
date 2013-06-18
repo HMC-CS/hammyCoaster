@@ -54,6 +54,8 @@
  */
 -(void) updateStarCount;
 
+-(void) resetStarCount;
+
 
 
 @end
