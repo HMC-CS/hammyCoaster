@@ -137,7 +137,8 @@
     for (AbstractGameObject *obj in _createdObjects){
         NSMutableArray* objectSprites = obj.sprites;
         for (CCSprite *sp in objectSprites) {
-            if (sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84) {
+            if ((sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84) ||
+                (sp.color.r == 255 && sp.color.g == 0 && sp.color.b == 0)) {
                 NSLog(@"This cannot happen");
                 _safe_to_play = false;
                 break;
@@ -149,10 +150,38 @@
     {
         NSLog(@"overlapped item");
         [self togglePlayMode];
-    }
+        id action1 = [CCCallFunc actionWithTarget:self selector:@selector(flashColor)];
+        id delay = [CCDelayTime actionWithDuration:0.2];
+        id action2 = [CCCallFunc actionWithTarget:self selector:@selector(resetColor)];
+        id sequence = [CCSequence actions:action1,delay,action2, nil];
+        [self runAction:sequence];
+        }
     else if (_editMode && _safe_to_play) {
         _editMode = NO;
         [self addNewSpriteOfType:@"BallObject" AtPosition:_ballStartingPoint WithRotation:0 AsDefault:NO];
+}
+}
+
+-(void) resetColor
+{
+for (AbstractGameObject *obj in _createdObjects){
+    NSMutableArray* objectSprites = obj.sprites;
+    for (CCSprite *sp in objectSprites) {
+        if (sp.color.r == 255 && sp.color.g == 0 && sp.color.b == 0) {
+            sp.color =ccc3(84,84,84);
+        }
+    }
+}
+}
+-(void) flashColor
+{
+    for (AbstractGameObject *obj in _createdObjects){
+    NSMutableArray* objectSprites = obj.sprites;
+    for (CCSprite *sp in objectSprites) {
+        if (sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84) {
+            sp.color =ccc3(255,0,0);
+        }
+    }
 }
 }
 
