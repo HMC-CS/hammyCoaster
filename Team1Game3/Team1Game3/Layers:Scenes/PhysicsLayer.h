@@ -94,6 +94,8 @@
  */
 -(void) resetBall;
 
+-(bool) isOverlapped;
+
 
 @end
 
