@@ -21,6 +21,7 @@
 @implementation PhysicsLayer
 
 @synthesize ballStartingPoint = _ballStartingPoint;
+@synthesize safe_to_play = _safe_to_play;
 
 -(id) initWithObjects:(NSArray *)objects
 {
@@ -126,8 +127,20 @@
 
 -(void)playLevel
 {
+    _safe_to_play = true;
+    
+    for (AbstractGameObject *obj in _createdObjects){
+        NSMutableArray* objectSprites = obj.sprites;
+        for (CCSprite *sp in objectSprites) {
+            if (sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84) {
+                NSLog(@"This cannot happen");
+                _safe_to_play = false;
+                break;
+            }
+        }
+    }
     // You can only create one ball before resetting
-    if (_editMode) {
+    if (_editMode && _safe_to_play) {
         _editMode = NO;
         [self addNewSpriteOfType:@"BallObject" AtPosition:_ballStartingPoint WithRotation:0 AsDefault:NO];
     }
@@ -770,10 +783,25 @@
         }
     }
     
+    
+    
     if (deleteObject) {
         [self deleteObjectWithBody:_currentMoveableBody];
     } else if (bounceBackObject) {
         [self bounceBackObjectWithBody:_currentMoveableBody];
+    }
+    else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
+        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+        {
+            b2Body* body = *i;
+            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+            NSMutableArray* objectSprites = object.sprites;
+            for(CCSprite* sp in objectSprites)
+            {
+                sp.color = ccc3(255,255, 255);
+            }
+        }
     }
     
     [self resetMoveableDynamicStatusForBodies:bodies];
@@ -785,18 +813,44 @@
  */
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
+    NSLog(@"%f", body->GetPosition().x);
+    NSLog(@"%f", self.contentSize.width);
     if (_initialBodyPosition.x < 0) {
         [self deleteObjectWithBody:body];       // Delete objects in inventory
-    } else {
+    }
+    // when you are trying to place objects off screen
+    // it will bounce back to its original position
+    
+    else if (body->GetPosition().x > self.contentSize.width/PTM_RATIO || body->GetPosition().y > self.contentSize.height/PTM_RATIO || body->GetPosition().y < 0)
+    {
+        
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) 
+            {
             b2Body* body = *i;
             b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
             // Set each body to its original position, taking account of offsets
             body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
-        }
+            }
+         
     }
+    // when 2 or more objects intersect
+    // one of them becomes grey
+    else {
+        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
+        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+        {
+            b2Body* body = *i;
+            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+            NSMutableArray* objectSprites = object.sprites;
+            for(CCSprite* sp in objectSprites)
+            {
+                sp.color = ccc3(84,84,84);
+            }
+            }
+        }
+        
 }
 
 

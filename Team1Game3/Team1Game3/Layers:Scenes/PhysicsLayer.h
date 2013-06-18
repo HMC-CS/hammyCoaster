@@ -53,9 +53,12 @@
     NSMutableArray* _moveableDynamicStatus;     // Whether bodies in object being
                                                 // moved are dynamic or static
     CCSprite* _trash;                   // Sprite that covers trash during dragging
+    
+    bool _safe_to_play;                  // a boolean that needs to be true in order for the game to begin
 }
 
 @property (readonly) CGPoint ballStartingPoint;
+@property bool safe_to_play;
 
 /* initWithObjects:
  * Initializes a physics layer of level Set-Index

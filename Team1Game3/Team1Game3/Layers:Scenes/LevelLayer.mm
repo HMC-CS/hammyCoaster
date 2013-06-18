@@ -215,9 +215,16 @@
  */
 -(void) togglePlayResetButton
 {
-    [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
+    if (_physicsLayer.safe_to_play == true) {
+        [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
+        NSLog(@"should allow toggle");
+    }
+    
+    else {
+        NSLog(@"forbid toggle");
+        return;
+    }
 }
-
 
 /* playPhysicsLayer
  * Called by: GameplayLayer (selector 1)
