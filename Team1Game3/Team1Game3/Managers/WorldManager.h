@@ -53,6 +53,12 @@
  */
 -(void) update;
 
+
+/* resetSeesaw
+ * resets the seesaw to position 0 when the ball is reset
+ */
+-(void) resetSeesaw;
+
 @end
 
 #endif  // WORLD_MANAGER_INCLUDED

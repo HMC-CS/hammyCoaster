@@ -226,7 +226,10 @@ for (AbstractGameObject *obj in _createdObjects){
             NSLog(@"adding star");
             [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
         }
-    }    
+    }
+    
+    NSLog(@"resetseeSaw called");
+    [_worldManager resetSeesaw];
 }
 
 
