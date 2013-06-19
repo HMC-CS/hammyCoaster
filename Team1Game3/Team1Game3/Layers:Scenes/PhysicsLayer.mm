@@ -195,6 +195,9 @@ for (AbstractGameObject *obj in _createdObjects){
 
 -(void) resetBall
 {
+    
+
+    
     // Delete Ball and Stars
     for (b2Body* b = _world->GetBodyList(); b; b = b->GetNext()){
         if ([((__bridge AbstractGameObject*)(b->GetUserData())).type isEqualToString:@"BallObject"]) {
@@ -226,7 +229,8 @@ for (AbstractGameObject *obj in _createdObjects){
             NSLog(@"adding star");
             [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
         }
-    }    
+    }
+    
 }
 
 
@@ -453,7 +457,7 @@ for (AbstractGameObject *obj in _createdObjects){
     }
     if ([self catPawCollision])
     {
-        NSLog(@"In the update");
+        //NSLog(@"In the update");
     }
     
     // If the ball hits a star, erase it.
@@ -465,8 +469,13 @@ for (AbstractGameObject *obj in _createdObjects){
     }
     
     
-    // Update other things in the world
+    // Update other things in the world & reset Seesaw offset
+    if (_editMode) {
+        [_worldManager resetSeesaw];
+    }
+
     [_worldManager update];
+    
 }
 
 
