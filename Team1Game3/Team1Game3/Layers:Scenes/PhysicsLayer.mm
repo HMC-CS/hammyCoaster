@@ -677,7 +677,7 @@ for (AbstractGameObject *obj in _createdObjects){
 -(void) addTrash
 {
     _trash = [CCSprite spriteWithFile:@"trash2.png"];
-    _trash.position = ccp(-self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
+    _trash.position = ccp(self.boundingBox.size.width/5.9, self.boundingBox.size.height/2);
     //[self addChild:_trash z:10000];
 }
 
@@ -738,9 +738,9 @@ for (AbstractGameObject *obj in _createdObjects){
  */
 -(bool) isPointInTrash: (CGPoint) point
 {
-    return (point.x < self.boundingBox.origin.x &&
-        point.y > self.boundingBox.size.height/5 &&
-        point.y < self.boundingBox.size.height*4/5);
+    return (point.x < self.boundingBox.origin.x); //&&
+        //point.y > self.boundingBox.size.height/5 &&
+        //point.y < self.boundingBox.size.height*4/5);
 }
 
 
