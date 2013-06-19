@@ -57,12 +57,13 @@
     CCSprite* _trash;                   // Sprite that covers trash during dragging
     
     bool _safe_to_play;                  // a boolean that needs to be true in order for the game to begin
-    b2Body* _overlapBody;
+    NSMutableArray* _bodyArray;
+    bool _movedOverlap;
 }
 
 @property (readonly) CGPoint ballStartingPoint;
 @property bool safe_to_play;
-
+@property (retain,readwrite) NSMutableArray* bodyArray;
 
 /* initWithObjects:
  * Initializes a physics layer of level Set-Index
