@@ -162,19 +162,12 @@
         CFBridgingRetain(object);
         NSString* type = object.type;
         
+        
         // Apply torque to body back towards equilibrium
+    
         if ([type isEqualToString:@"SeesawObject"]) {
             const float springTorqForce = 1.0f;
             float jointAngle = joint->GetBodyA()->GetAngle(); // teeter body
-            
-            b2Body *jointpoint2 = joint->GetBodyA();
-            
-            if (jointAngle == 0.0) {
-                jointpoint2 ->IsFixedRotation();
-                jointpoint2->SetAngularVelocity(0);
-                NSLog(@"things set to 0");
-                return;
-            }
             if ( jointAngle != 0.0 ) {
                 float torque = fabs(jointAngle * springTorqForce * 50);
                 if (jointAngle > 0.0) {
@@ -193,7 +186,6 @@
  */
 -(void) resetSeesaw
 {
-    NSLog(@"resetSeesaw inside the method");
     // Find joints in the world
     for (b2Joint* joint = _world->GetJointList(); joint; joint = joint->GetNext()) {
         
@@ -201,19 +193,18 @@
         AbstractGameObject* object = (__bridge AbstractGameObject*)(joint->GetUserData());
         CFBridgingRetain(object);
         NSString* type = object.type;
-        
-        // Apply torque to body back towards equilibrium
-        if ([type isEqualToString:@"SeesawObject"]) {
-            
-            b2Body *jointpoint = joint->GetBodyA();
-            float jointAngle = joint->GetBodyA()->GetAngle();
-            jointAngle = 0.0;
-            NSLog(@"joint angle set to zero");
 
-            NSLog(@"%f", jointAngle);
+        // stop seesaw and reset to 0 offset
+        if ([type isEqualToString:@"SeesawObject"]) {
+            b2Body *jointpoint = joint->GetBodyA();
+            jointpoint->SetTransform(jointpoint->GetPosition(), CC_DEGREES_TO_RADIANS(0));
+            jointpoint ->IsFixedRotation();
+            jointpoint->SetAngularVelocity(0);
+            }
+
 
         }
-    }
+    
 
 }
 
