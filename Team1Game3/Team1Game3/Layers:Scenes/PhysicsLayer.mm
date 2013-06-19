@@ -22,6 +22,7 @@
 
 @synthesize ballStartingPoint = _ballStartingPoint;
 @synthesize safe_to_play = _safe_to_play;
+@synthesize bodyArray = _bodyArray;
 
 
 -(id) initWithObjects:(NSArray *)objects
@@ -32,7 +33,11 @@
 		
         _createdObjects = [NSMutableArray array];
         
+           _bodyArray = [[NSMutableArray alloc] init];
+        
 		self.isTouchEnabled = YES;
+        
+        _movedOverlap = true;
         
         _safe_to_play = true;
         
@@ -767,11 +772,14 @@ for (AbstractGameObject *obj in _createdObjects){
  */
 -(void) finishedMovingObject: (AbstractGameObject*) bodyObject
 {
+   
     std::vector<b2Body*> bodies = bodyObject.bodies;
     b2Body *second_body; // added this -June 18. Kanak
     
     bool deleteObject = false;
     bool bounceBackObject = false;
+    
+
     
     // Iterate through all the bodies in the object
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
@@ -812,10 +820,16 @@ for (AbstractGameObject *obj in _createdObjects){
                     // Allow overlap with stars
                     if (![bodyType isEqualToString:@"StarObject"]) {
                         bounceBackObject = true;
-                        second_body = b; // added this June 18 - Kanak
-                        break;
+                        second_body = b;
+                        for (CCSprite* sp in bodyObject.sprites)
+                        {
+                            [_bodyArray addObject:sp];
+                        }
+                        NSLog(@"body array length: %d", _bodyArray.count);
+                        //break;
                     }
                 }
+                //break;
                 
             }
             
@@ -836,7 +850,7 @@ for (AbstractGameObject *obj in _createdObjects){
         [self deleteObjectWithBody:_currentMoveableBody];
     } else if (bounceBackObject) {
         [self bounceBackObjectWithBody:_currentMoveableBody];
-        //[self bounceBackObjectWithBody:second_body];
+        [self bounceBackObjectWithBody:second_body];
     }
     else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
@@ -850,17 +864,18 @@ for (AbstractGameObject *obj in _createdObjects){
                 sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
             }
         }
-        /*std::vector<b2Body*> second_bodies = ((__bridge AbstractGameObject*)(second_body->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = second_bodies.begin(); i != second_bodies.end(); ++i)
-        {
-            b2Body* body = *i;
-            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-            NSMutableArray* objectSprites = object.sprites;
-            for(CCSprite* sp in objectSprites)
+        
+           NSLog(@"bodyAray 2: %d", _bodyArray.count);
+            for(CCSprite* sp in _bodyArray)
             {
+                NSLog(@"actually in here");
                 sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
+
             }
-        }*/
+
+
+
+    
     }
     
     [self resetMoveableDynamicStatusForBodies:bodies];
@@ -933,7 +948,7 @@ for (AbstractGameObject *obj in _createdObjects){
             NSMutableArray* objectSprites = object.sprites;
             for(CCSprite* sp in objectSprites)
             {
-                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84) 
+                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
             }
             }
         }
