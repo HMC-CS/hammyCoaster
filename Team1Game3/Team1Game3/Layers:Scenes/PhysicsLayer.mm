@@ -768,6 +768,7 @@ for (AbstractGameObject *obj in _createdObjects){
 -(void) finishedMovingObject: (AbstractGameObject*) bodyObject
 {
     std::vector<b2Body*> bodies = bodyObject.bodies;
+    b2Body *second_body; // added this -June 18. Kanak
     
     bool deleteObject = false;
     bool bounceBackObject = false;
@@ -811,6 +812,7 @@ for (AbstractGameObject *obj in _createdObjects){
                     // Allow overlap with stars
                     if (![bodyType isEqualToString:@"StarObject"]) {
                         bounceBackObject = true;
+                        second_body = b; // added this June 18 - Kanak
                         break;
                     }
                 }
@@ -834,6 +836,7 @@ for (AbstractGameObject *obj in _createdObjects){
         [self deleteObjectWithBody:_currentMoveableBody];
     } else if (bounceBackObject) {
         [self bounceBackObjectWithBody:_currentMoveableBody];
+        //[self bounceBackObjectWithBody:second_body];
     }
     else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
@@ -847,6 +850,17 @@ for (AbstractGameObject *obj in _createdObjects){
                 sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
             }
         }
+        /*std::vector<b2Body*> second_bodies = ((__bridge AbstractGameObject*)(second_body->GetUserData())).bodies;
+        for (std::vector<b2Body*>::iterator i = second_bodies.begin(); i != second_bodies.end(); ++i)
+        {
+            b2Body* body = *i;
+            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+            NSMutableArray* objectSprites = object.sprites;
+            for(CCSprite* sp in objectSprites)
+            {
+                sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
+            }
+        }*/
     }
     
     [self resetMoveableDynamicStatusForBodies:bodies];
