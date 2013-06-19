@@ -859,6 +859,14 @@ for (AbstractGameObject *obj in _createdObjects){
         [self deleteObjectWithBody:_currentMoveableBody];
     } else if (bounceBackObject) {
         [self bounceBackObjectWithBody:_currentMoveableBody];
+        /*
+        AbstractGameObject* object = (__bridge AbstractGameObject*)(second_body->GetUserData());
+        NSMutableArray* objectSprites = object.sprites;
+        for(CCSprite* sp in objectSprites)
+        {
+            sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+        }
+        */
         [self bounceBackObjectWithBody:second_body];
     }
     else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
@@ -926,13 +934,14 @@ for (AbstractGameObject *obj in _createdObjects){
             }
         }
     }
+    /*
     if (_initialBodyPosition.x < 0) {
         [self deleteObjectWithBody:body];       // Delete objects in inventory
-    }
+    }*/
     // when you are trying to place objects off screen
     // it will bounce back to its original position
     
-    else if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
+     if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
     {
         
         b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
