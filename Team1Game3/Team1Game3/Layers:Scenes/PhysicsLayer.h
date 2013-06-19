@@ -62,7 +62,7 @@
 
 @property (readonly) CGPoint ballStartingPoint;
 @property bool safe_to_play;
-@property (retain) b2Body* overlapBody;
+
 
 /* initWithObjects:
  * Initializes a physics layer of level Set-Index

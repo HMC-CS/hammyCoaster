@@ -22,7 +22,7 @@
 
 @synthesize ballStartingPoint = _ballStartingPoint;
 @synthesize safe_to_play = _safe_to_play;
-@synthesize overlapBody = _overlapBody;
+
 
 -(id) initWithObjects:(NSArray *)objects
 {
