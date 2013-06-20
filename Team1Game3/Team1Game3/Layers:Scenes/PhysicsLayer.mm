@@ -783,7 +783,7 @@ for (AbstractGameObject *obj in _createdObjects){
 {
    
     std::vector<b2Body*> bodies = bodyObject.bodies;
-    b2Body *second_body; // added this -June 18. Kanak
+    b2Body *second_body = NULL; // added this -June 18. Kanak
     
     bool deleteObject = false;
     bool bounceBackObject = false;
@@ -812,6 +812,11 @@ for (AbstractGameObject *obj in _createdObjects){
                 if ( !CGRectContainsPoint(self.boundingBox, vertexPoint)) {
                     if ([self isPointInTrash:vertexPoint]) {
                         deleteObject = true;
+                        for(CCSprite* sp in _bodyArray)
+                            {
+                                NSLog(@"actually in here");
+                                sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
+                        }
                         break;
                     } else {
                         bounceBackObject = true;
@@ -867,13 +872,18 @@ for (AbstractGameObject *obj in _createdObjects){
             sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
         }
         */
+        if (second_body)
+        {
         [self bounceBackObjectWithBody:second_body];
+        }
+
     }
     else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
         for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
         {
             b2Body* body = *i;
+    
             AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
             NSMutableArray* objectSprites = object.sprites;
             for(CCSprite* sp in objectSprites)
@@ -968,6 +978,7 @@ for (AbstractGameObject *obj in _createdObjects){
             {
                 sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
             }
+        
             }
         }
         
