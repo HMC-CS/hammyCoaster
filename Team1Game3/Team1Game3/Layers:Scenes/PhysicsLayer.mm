@@ -18,7 +18,7 @@
 
 #import "MathHelper.h"
 
-@implementation PhysicsLayer
+@implementation PhysicsLayer 
 
 @synthesize ballStartingPoint = _ballStartingPoint;
 @synthesize safe_to_play = _safe_to_play;
@@ -776,9 +776,39 @@ for (AbstractGameObject *obj in _createdObjects){
 }
 
 
-/* finishedMovingObject:
- * Deals with special cases for invalid placements of a body
+/* finishedMovingObject
+ * deals with special cases where object is placed in invalid location
+ * 1) object moved to inventory- delete
+ * 2) object moved elsewhere offscreen (call bounceBackObjectWithBody)
+ * 3) object moved to location of other body - grey both out
  */
+-(void) finishedMovingObject: (AbstractGameObject*) moveableObject {
+    std::vector<b2Body*> bodies = moveableObject.bodies;
+    
+    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
+        b2Body* body = *i;
+        
+        if (_initialBodyPosition.x < 0) {
+            NSLog(@"inventory");
+            
+        }
+        /* case to delete object from screen if dragged to inventory
+         if (_initialBodyPosition.x < 0) {
+         [self deleteObjectWithBody:body];       // Delete objects in inventory
+         }*/
+
+    
+    }
+    [self resetMoveableDynamicStatusForBodies:bodies];
+}
+
+//old version of finishedMovingObject- rewritten above
+
+/* finishedMovingObject:
+ * Deals with special cases for invalid placements of a body.
+ */
+
+/*
 -(void) finishedMovingObject: (AbstractGameObject*) bodyObject
 {
    
@@ -871,14 +901,16 @@ for (AbstractGameObject *obj in _createdObjects){
         [self deleteObjectWithBody:_currentMoveableBody];
     } else if (bounceBackObject ) {
         [self bounceBackObjectWithBody:_currentMoveableBody];
-        /*
-        AbstractGameObject* object = (__bridge AbstractGameObject*)(second_body->GetUserData());
-        NSMutableArray* objectSprites = object.sprites;
-        for(CCSprite* sp in objectSprites)
-        {
-            sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-        }
-        */
+ 
+ 
+        //AbstractGameObject* object = (__bridge AbstractGameObject*)(second_body->GetUserData());
+        //NSMutableArray* objectSprites = object.sprites;
+        //for(CCSprite* sp in objectSprites)
+        //{
+          //  sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+        //}
+        
+
     if (second_body)
         {
         [self bounceBackObjectWithBody:second_body];
@@ -916,15 +948,20 @@ for (AbstractGameObject *obj in _createdObjects){
     [self resetMoveableDynamicStatusForBodies:bodies];
 }
 
+*/
+
 
 /* bounceBackObjectWithBody
- * Bounces an object back to its initial position if needed
+ * Bounces an object that is out of the bounds of gameplay 
+ * (outside of the screen) back to its last legal position.
  */
+    
 -(void) bounceBackObjectWithBody: (b2Body*) body
 {
-    NSLog(@"body's x coordinate is %f", body->GetPosition().x);
-    NSLog(@"window width is %f", self.contentSize.width);
-    NSLog(@"window height is %f", self.contentSize.height);
+    //NSLog(@"body's x coordinate is %f", body->GetPosition().x);
+    //NSLog(@"window width is %f", self.contentSize.width);
+    //NSLog(@"window height is %f", self.contentSize.height);
+    
     float max_x = 0.0;
     float max_y = 0.0;
     float min_y = 0.0;
@@ -952,13 +989,18 @@ for (AbstractGameObject *obj in _createdObjects){
             }
         }
     }
-    /*
+    
+    
+    // delete object from inventory case handled in finishedMovingObject
+    
+    /* case to delete object from screen if dragged to inventory
     if (_initialBodyPosition.x < 0) {
         [self deleteObjectWithBody:body];       // Delete objects in inventory
     }*/
+    
+    
     // when you are trying to place objects off screen
     // it will bounce back to its original position
-    
      if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
     {
         
@@ -973,7 +1015,12 @@ for (AbstractGameObject *obj in _createdObjects){
             }
          
     }
-    // when 2 or more objects intersect
+}
+
+    // 2 objects intersect, both turn grey; now handled in finishedMovingObject
+
+    /*
+     // when 2 or more objects intersect
     // one of them becomes grey
     else {
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
@@ -989,9 +1036,8 @@ for (AbstractGameObject *obj in _createdObjects){
         
             }
         }
-        
-}
-
+    }
+     */
 
 
 /* //////////////////////////////// Deallocate ///////////////////////////////// */
