@@ -787,6 +787,7 @@ for (AbstractGameObject *obj in _createdObjects){
     
     bool deleteObject = false;
     bool bounceBackObject = false;
+    bool bounceBackSecondObject = false;
     
 
     
@@ -836,10 +837,6 @@ for (AbstractGameObject *obj in _createdObjects){
                     if (![bodyType isEqualToString:@"StarObject"]) {
                         bounceBackObject = true;
                         second_body = b;
-                        if([self bounceBackObjectWithBody1:second_body andBody2:body])
-                        {
-                            bounceBackObject = true;
-                        }
                         //[self grayingOutforBody1:body andBody2:second_body];
                         
                         for (CCSprite* sp in bodyObject2.sprites)
@@ -872,7 +869,7 @@ for (AbstractGameObject *obj in _createdObjects){
     
     if (deleteObject) {
         [self deleteObjectWithBody:_currentMoveableBody];
-    } else if (bounceBackObject) {
+    } else if (bounceBackObject ) {
         [self bounceBackObjectWithBody:_currentMoveableBody];
         /*
         AbstractGameObject* object = (__bridge AbstractGameObject*)(second_body->GetUserData());
@@ -882,14 +879,13 @@ for (AbstractGameObject *obj in _createdObjects){
             sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
         }
         */
-        if (second_body)
+    if (second_body)
         {
-            [self grayingOutforBody1:_currentMoveableBody andBody2:second_body];
-        //[self bounceBackObjectWithBody:second_body];
+        [self bounceBackObjectWithBody:second_body];
             //[self bounceBackObjectWithBody1:_currentMoveableBody andBody2:second_body];
         }
-
     }
+
     else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
         std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
         for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
@@ -996,108 +992,6 @@ for (AbstractGameObject *obj in _createdObjects){
         
 }
 
-
--(bool) bounceBackObjectWithBody1: (b2Body*) body1 andBody2: (b2Body*) body2
-{
-    for (b2Fixture* f = body1->GetFixtureList(); f != NULL; f = f->GetNext()) {
-        
-        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-        int count = polygonShape->GetVertexCount();
-        
-        // Iterate through all the vertices in each fixture
-        for (int i = 0; i < count; i++) {
-            
-            // Get the location of the vertex
-            b2Vec2 vertex = polygonShape->GetVertex(i);
-            vertex = body1->GetWorldPoint(vertex);
-            
-            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
-            
-            std::vector<b2Body*> bodies2 = ((__bridge AbstractGameObject*)(body2->GetUserData())).bodies;
-            for (std::vector<b2Body*>::iterator i = bodies2.begin(); i != bodies2.end(); ++i)
-            {
-                b2Body* body = *i;
-                AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-                NSMutableArray* objectSprites = object.sprites;
-                for(CCSprite* sp in objectSprites)
-                {
-                if (CGRectContainsPoint(sp.boundingBox, vertexPoint))
-                {
-                    NSLog(@"body2 is in body1");
-                    return true;
-                    //sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-                }
-                }
-    }
-    }
-    }
-        for (b2Fixture* f = body2->GetFixtureList(); f != NULL; f = f->GetNext()) {
-            
-            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-            int count = polygonShape->GetVertexCount();
-            
-            // Iterate through all the vertices in each fixture
-            for (int i = 0; i < count; i++) {
-                
-                // Get the location of the vertex
-                b2Vec2 vertex = polygonShape->GetVertex(i);
-                vertex = body2->GetWorldPoint(vertex);
-                
-                CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
-                std::vector<b2Body*> bodies1 = ((__bridge AbstractGameObject*)(body1->GetUserData())).bodies;
-                for (std::vector<b2Body*>::iterator i = bodies1.begin(); i != bodies1.end(); ++i)
-                {
-                    b2Body* body = *i;
-                    AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-                    NSMutableArray* objectSprites = object.sprites;
-                    for(CCSprite* sp in objectSprites)
-                    {
-                        if (CGRectContainsPoint(sp.boundingBox, vertexPoint))
-                        {
-                            NSLog(@"body2 is in body1");
-                            return true;
-                            //sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-                        }
-                    }
-                }
-
-            }
-}
-    return false;
-}
-
--(void)grayingOutforBody1:(b2Body*) body1 andBody2: (b2Body*) body2
-{
-    if ([self bounceBackObjectWithBody1:body1 andBody2:body2] || [self bounceBackObjectWithBody1:body2 andBody2:body1])
-    {
-        std::vector<b2Body*> bodies1 = ((__bridge AbstractGameObject*)(body1->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = bodies1.begin(); i != bodies1.end(); ++i)
-        {
-            b2Body* body = *i;
-            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-            NSMutableArray* objectSprites = object.sprites;
-            for(CCSprite* sp in objectSprites)
-            {
-                NSLog(@"body2 is in body1");
-                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-            }
-            
-        }
-        std::vector<b2Body*> bodies2 = ((__bridge AbstractGameObject*)(body2->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = bodies2.begin(); i != bodies2.end(); ++i)
-        {
-            b2Body* body = *i;
-            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-            NSMutableArray* objectSprites = object.sprites;
-            for(CCSprite* sp in objectSprites)
-            {
-                NSLog(@"body1 is in body2");
-                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-            }
-            
-        }
-    }
-    }
 
 
 /* //////////////////////////////// Deallocate ///////////////////////////////// */
