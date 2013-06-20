@@ -794,6 +794,8 @@ for (AbstractGameObject *obj in _createdObjects){
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
         b2Body* body = *i;
         
+        
+        
         // Iterate through all the fixtures in each body
         for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
             b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
@@ -823,26 +825,34 @@ for (AbstractGameObject *obj in _createdObjects){
                         break;
                     }
                 }
-                
+            
                 // Check if the vertex is in another body
                 b2Body* b = [self getBodyAtLocation:vertex WithAABBSize:10.0f];
                 if (b && (b != body)) {
-                    
-                    AbstractGameObject* bodyObject = (__bridge AbstractGameObject*)(b->GetUserData());
+                    AbstractGameObject* bodyObject2 = (__bridge AbstractGameObject*)(b->GetUserData());
                     NSString* bodyType = bodyObject.type;
                     
                     // Allow overlap with stars
                     if (![bodyType isEqualToString:@"StarObject"]) {
                         bounceBackObject = true;
                         second_body = b;
-                        for (CCSprite* sp in bodyObject.sprites)
+                        if([self bounceBackObjectWithBody1:second_body andBody2:body])
+                        {
+                            bounceBackObject = true;
+                        }
+                        //[self grayingOutforBody1:body andBody2:second_body];
+                        
+                        for (CCSprite* sp in bodyObject2.sprites)
                         {
                             [_bodyArray addObject:sp];
                         }
                         NSLog(@"body array length: %d", _bodyArray.count);
                         //break;
+                         
                     }
                 }
+             
+
                 //break;
                 
             }
@@ -874,7 +884,9 @@ for (AbstractGameObject *obj in _createdObjects){
         */
         if (second_body)
         {
-        [self bounceBackObjectWithBody:second_body];
+            [self grayingOutforBody1:_currentMoveableBody andBody2:second_body];
+        //[self bounceBackObjectWithBody:second_body];
+            //[self bounceBackObjectWithBody1:_currentMoveableBody andBody2:second_body];
         }
 
     }
@@ -983,6 +995,109 @@ for (AbstractGameObject *obj in _createdObjects){
         }
         
 }
+
+
+-(bool) bounceBackObjectWithBody1: (b2Body*) body1 andBody2: (b2Body*) body2
+{
+    for (b2Fixture* f = body1->GetFixtureList(); f != NULL; f = f->GetNext()) {
+        
+        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+        int count = polygonShape->GetVertexCount();
+        
+        // Iterate through all the vertices in each fixture
+        for (int i = 0; i < count; i++) {
+            
+            // Get the location of the vertex
+            b2Vec2 vertex = polygonShape->GetVertex(i);
+            vertex = body1->GetWorldPoint(vertex);
+            
+            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
+            
+            std::vector<b2Body*> bodies2 = ((__bridge AbstractGameObject*)(body2->GetUserData())).bodies;
+            for (std::vector<b2Body*>::iterator i = bodies2.begin(); i != bodies2.end(); ++i)
+            {
+                b2Body* body = *i;
+                AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+                NSMutableArray* objectSprites = object.sprites;
+                for(CCSprite* sp in objectSprites)
+                {
+                if (CGRectContainsPoint(sp.boundingBox, vertexPoint))
+                {
+                    NSLog(@"body2 is in body1");
+                    return true;
+                    //sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+                }
+                }
+    }
+    }
+    }
+        for (b2Fixture* f = body2->GetFixtureList(); f != NULL; f = f->GetNext()) {
+            
+            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+            int count = polygonShape->GetVertexCount();
+            
+            // Iterate through all the vertices in each fixture
+            for (int i = 0; i < count; i++) {
+                
+                // Get the location of the vertex
+                b2Vec2 vertex = polygonShape->GetVertex(i);
+                vertex = body2->GetWorldPoint(vertex);
+                
+                CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
+                std::vector<b2Body*> bodies1 = ((__bridge AbstractGameObject*)(body1->GetUserData())).bodies;
+                for (std::vector<b2Body*>::iterator i = bodies1.begin(); i != bodies1.end(); ++i)
+                {
+                    b2Body* body = *i;
+                    AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+                    NSMutableArray* objectSprites = object.sprites;
+                    for(CCSprite* sp in objectSprites)
+                    {
+                        if (CGRectContainsPoint(sp.boundingBox, vertexPoint))
+                        {
+                            NSLog(@"body2 is in body1");
+                            return true;
+                            //sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+                        }
+                    }
+                }
+
+            }
+}
+    return false;
+}
+
+-(void)grayingOutforBody1:(b2Body*) body1 andBody2: (b2Body*) body2
+{
+    if ([self bounceBackObjectWithBody1:body1 andBody2:body2] || [self bounceBackObjectWithBody1:body2 andBody2:body1])
+    {
+        std::vector<b2Body*> bodies1 = ((__bridge AbstractGameObject*)(body1->GetUserData())).bodies;
+        for (std::vector<b2Body*>::iterator i = bodies1.begin(); i != bodies1.end(); ++i)
+        {
+            b2Body* body = *i;
+            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+            NSMutableArray* objectSprites = object.sprites;
+            for(CCSprite* sp in objectSprites)
+            {
+                NSLog(@"body2 is in body1");
+                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+            }
+            
+        }
+        std::vector<b2Body*> bodies2 = ((__bridge AbstractGameObject*)(body2->GetUserData())).bodies;
+        for (std::vector<b2Body*>::iterator i = bodies2.begin(); i != bodies2.end(); ++i)
+        {
+            b2Body* body = *i;
+            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+            NSMutableArray* objectSprites = object.sprites;
+            for(CCSprite* sp in objectSprites)
+            {
+                NSLog(@"body1 is in body2");
+                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+            }
+            
+        }
+    }
+    }
 
 
 /* //////////////////////////////// Deallocate ///////////////////////////////// */
