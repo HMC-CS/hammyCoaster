@@ -783,12 +783,20 @@ for (AbstractGameObject *obj in _createdObjects){
  * 3) object moved to location of other body - grey both out
  */
 -(void) finishedMovingObject: (AbstractGameObject*) moveableObject {
+    
+    bool isDeleteObject = false;
+    bool isBounceBackObject = false;
+    NSMutableArray *moveableObjectVectors = [[NSMutableArray alloc] init];
+    
     std::vector<b2Body*> bodies = moveableObject.bodies;
+    
     
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
         b2Body* body = *i;
-        
+        NSLog(@"%f x position: ", _initialBodyPosition.x);
+
         if (_initialBodyPosition.x < 0) {
+            //[self deleteObjectWithBody:body];
             NSLog(@"inventory");
             
         }
@@ -796,9 +804,53 @@ for (AbstractGameObject *obj in _createdObjects){
          if (_initialBodyPosition.x < 0) {
          [self deleteObjectWithBody:body];       // Delete objects in inventory
          }*/
+        
+        
+        // Iterate through all the fixtures in each body
+        for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+            int count = polygonShape->GetVertexCount();
+            
+            //create a vector between every vertex in the body, add it to the array
+            for (int i = 0; i < count; i++) {
+                b2Vec2 v_i = polygonShape->GetVertex(i);
+                v_i = body->GetWorldPoint(v_i);
+                
+                for (int j = i; j < count; j++) {
+                    b2Vec2 v_j = polygonShape->GetVertex(j);
+                    v_j = body->GetWorldPoint(v_j);
+                    b2Vec2* vectorij;
+                    vectorij->Set(v_j.x-v_i.x, v_j.y-v_i.y);
+                    [moveableObjectVectors addObject:(__bridge id)vectorij];
+                    NSLog(@"inside the adding of vectors");
 
-    
-    }
+                }
+            }
+        }
+        
+        // check intersection of vector with body
+        
+        /*
+        for vector in vectors
+            if vector intersects a body
+                save the body
+                grey out the passed in moveableBody + overlap body
+            else
+                reset to normal
+         
+          */
+
+        
+        for(int i = 0; i < [moveableObjectVectors count]; i++) {
+            b2Vec2* vector = (__bridge b2Vec2*)[moveableObjectVectors objectAtIndex:i];
+            NSLog(@"about to compare body to vector");
+            //loop through all the bodies in the game play and see if vector + body intersect
+            // for bodies in world.
+        }
+        
+
+}
+
     [self resetMoveableDynamicStatusForBodies:bodies];
 }
 
