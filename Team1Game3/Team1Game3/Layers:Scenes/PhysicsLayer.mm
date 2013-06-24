@@ -17,6 +17,7 @@
 #import "QueryCallback.h"
 
 #import "MathHelper.h"
+//#import "RayCastCallBack.h"
 
 @implementation PhysicsLayer 
 
@@ -786,73 +787,151 @@ for (AbstractGameObject *obj in _createdObjects){
     
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
-    NSMutableArray *moveableObjectVectors = [[NSMutableArray alloc] init];
+    //CCArray *moveableObjectVectors = [[CCArray alloc] init];
+    //NSMutableArray *moveableObjectVectors = [[NSMutableArray alloc] init];
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
-    
     
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
         b2Body* body = *i;
         NSLog(@"%f x position: ", _initialBodyPosition.x);
 
         if (_initialBodyPosition.x < 0) {
-            //[self deleteObjectWithBody:body];
-            NSLog(@"inventory");
-            
+            //isDeleteObject = true;
+            NSLog(@"isDeleteObject: true");
+            break;
         }
-        /* case to delete object from screen if dragged to inventory
-         if (_initialBodyPosition.x < 0) {
-         [self deleteObjectWithBody:body];       // Delete objects in inventory
-         }*/
         
+        else if ([self checkEdge:body]) {
+            isBounceBackObject = true;
+            NSLog(@"isBounceBackObject: true");
+            break;
+        }
         
-        // Iterate through all the fixtures in each body
-        for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-            int count = polygonShape->GetVertexCount();
-            
-            //create a vector between every vertex in the body, add it to the array
-            for (int i = 0; i < count; i++) {
-                b2Vec2 v_i = polygonShape->GetVertex(i);
-                v_i = body->GetWorldPoint(v_i);
+        else {
+            // Iterate through all the fixtures in each body
+            for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+                b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+                int count = polygonShape->GetVertexCount();
                 
-                for (int j = i; j < count; j++) {
-                    b2Vec2 v_j = polygonShape->GetVertex(j);
-                    v_j = body->GetWorldPoint(v_j);
-                    b2Vec2* vectorij;
-                    vectorij->Set(v_j.x-v_i.x, v_j.y-v_i.y);
-                    [moveableObjectVectors addObject:(__bridge id)vectorij];
-                    NSLog(@"inside the adding of vectors");
-
+                //create a raycast between every vertex in the body, add it to the array
+                for (int i = 0; i < count; i++) {
+                    b2Vec2 v_i = polygonShape->GetVertex(i);
+                    v_i = body->GetWorldPoint(v_i);
+                    
+                    for (int j = i; j < count; j++) {
+                        b2Vec2 v_j = polygonShape->GetVertex(j);
+                        v_j = body->GetWorldPoint(v_j);
+                        
+                        
+                        b2RayCastInput inputRay;
+                        inputRay.p1 = v_i;
+                        inputRay.p2 = v_j;
+                        inputRay.maxFraction = 1.0;
+                        
+                        //raycast call back functionality... ew
+                        NSLog(@"raycast callback happens here");
+                        break;
+                        
+                        
+                    }
+                NSLog(@"break to here? 1");
                 }
+        
+            NSLog(@"break to here? 2");
+        
+            }
+    
+        NSLog(@"break to here? 3");
+        }
+        
+        //deal with edge cases
+        if (isDeleteObject) {
+            [self deleteObjectWithBody:body];
+        }
+        
+        else if (isBounceBackObject) {
+            [self bounceBackObjectWithBody:body];
+        }
+        
+        else {
+            NSLog(@"return color to normal...");
+            //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
+        }
+    }
+    
+
+    
+    //reset dynamic capabilities
+    [self resetMoveableDynamicStatusForBodies:bodies];
+    
+}
+
+
+/* checkEdges
+ * Returns true if the body is out of bounds of
+ * gameplay.
+ */
+
+-(bool) checkEdge: (b2Body*) body {
+    float max_x = 0.0;
+    float max_y = 0.0;
+    float min_y = 0.0;
+    
+    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+        
+        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+        int count = polygonShape->GetVertexCount();
+        
+        // Iterate through all the vertices in each fixture
+        for (int i = 0; i < count; i++) {
+            
+            // Get the location of the vertex
+            b2Vec2 vertex = polygonShape->GetVertex(i);
+            vertex = body->GetWorldPoint(vertex);
+            
+            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
+            if (vertexPoint.x > max_x) {
+                max_x = vertexPoint.x;
+            }
+            if (vertexPoint.y > max_y) {
+                max_y = vertexPoint.y;
+            }
+            if (vertexPoint.y < min_y) {
+                min_y = vertexPoint.y;
             }
         }
         
-        // check intersection of vector with body
-        
-        /*
-        for vector in vectors
-            if vector intersects a body
-                save the body
-                grey out the passed in moveableBody + overlap body
-            else
-                reset to normal
-         
-          */
+    }
+    
+    // if body is out of bounds
+    if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0) {
+        return true;
+    }
+    
+    else {
+        return false;
+    }
+    
+}
+/* bounceBackObjectWithBody
+ * Bounces an object that is out of the bounds of gameplay
+ * (outside of the screen) back to its last legal position.
+ */
 
-        
-        for(int i = 0; i < [moveableObjectVectors count]; i++) {
-            b2Vec2* vector = (__bridge b2Vec2*)[moveableObjectVectors objectAtIndex:i];
-            NSLog(@"about to compare body to vector");
-            //loop through all the bodies in the game play and see if vector + body intersect
-            // for bodies in world.
-        }
-        
-
+-(void) bounceBackObjectWithBody:(b2Body *)body {
+    b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
+    std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
+    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+    {
+        b2Body* body = *i;
+        b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
+        // Set each body to its original position, taking account of offsets
+        body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
+    }
+    
 }
 
-    [self resetMoveableDynamicStatusForBodies:bodies];
-}
 
 //old version of finishedMovingObject- rewritten above
 
@@ -1003,94 +1082,91 @@ for (AbstractGameObject *obj in _createdObjects){
 */
 
 
-/* bounceBackObjectWithBody
- * Bounces an object that is out of the bounds of gameplay 
- * (outside of the screen) back to its last legal position.
- */
-    
--(void) bounceBackObjectWithBody: (b2Body*) body
-{
-    //NSLog(@"body's x coordinate is %f", body->GetPosition().x);
-    //NSLog(@"window width is %f", self.contentSize.width);
-    //NSLog(@"window height is %f", self.contentSize.height);
-    
-    float max_x = 0.0;
-    float max_y = 0.0;
-    float min_y = 0.0;
-    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-        
-        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-        int count = polygonShape->GetVertexCount();
-        
-        // Iterate through all the vertices in each fixture
-        for (int i = 0; i < count; i++) {
-            
-            // Get the location of the vertex
-            b2Vec2 vertex = polygonShape->GetVertex(i);
-            vertex = body->GetWorldPoint(vertex);
-            
-            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
-            if (vertexPoint.x > max_x) {
-                max_x = vertexPoint.x;
-            }
-            if (vertexPoint.y > max_y) {
-                max_y = vertexPoint.y;
-            }
-            if (vertexPoint.y < min_y) {
-                min_y = vertexPoint.y;
-            }
-        }
-    }
-    
-    
-    // delete object from inventory case handled in finishedMovingObject
-    
-    /* case to delete object from screen if dragged to inventory
-    if (_initialBodyPosition.x < 0) {
-        [self deleteObjectWithBody:body];       // Delete objects in inventory
-    }*/
-    
-    
-    // when you are trying to place objects off screen
-    // it will bounce back to its original position
-     if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
-    {
-        
-        b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
-        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) 
-            {
-            b2Body* body = *i;
-            b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
-            // Set each body to its original position, taking account of offsets
-            body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
-            }
-         
-    }
-}
+// reimplemented so that the checking + bounceBack functionality are split into 2 methods
 
-    // 2 objects intersect, both turn grey; now handled in finishedMovingObject
-
-    /*
-     // when 2 or more objects intersect
-    // one of them becomes grey
-    else {
-        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-        {
-            b2Body* body = *i;
-            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-            NSMutableArray* objectSprites = object.sprites;
-            for(CCSprite* sp in objectSprites)
-            {
-                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-            }
-        
-            }
-        }
-    }
-     */
-
+//-(void) bounceBackObjectWithBody: (b2Body*) body
+//{
+//    //NSLog(@"body's x coordinate is %f", body->GetPosition().x);
+//    //NSLog(@"window width is %f", self.contentSize.width);
+//    //NSLog(@"window height is %f", self.contentSize.height);
+//    
+//    float max_x = 0.0;
+//    float max_y = 0.0;
+//    float min_y = 0.0;
+//    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+//        
+//        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+//        int count = polygonShape->GetVertexCount();
+//        
+//        // Iterate through all the vertices in each fixture
+//        for (int i = 0; i < count; i++) {
+//            
+//            // Get the location of the vertex
+//            b2Vec2 vertex = polygonShape->GetVertex(i);
+//            vertex = body->GetWorldPoint(vertex);
+//            
+//            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
+//            if (vertexPoint.x > max_x) {
+//                max_x = vertexPoint.x;
+//            }
+//            if (vertexPoint.y > max_y) {
+//                max_y = vertexPoint.y;
+//            }
+//            if (vertexPoint.y < min_y) {
+//                min_y = vertexPoint.y;
+//            }
+//        }
+//    }
+//    
+//    
+//    // delete object from inventory case handled in finishedMovingObject
+//    
+//    /* case to delete object from screen if dragged to inventory
+//    if (_initialBodyPosition.x < 0) {
+//        [self deleteObjectWithBody:body];       // Delete objects in inventory
+//    }*/
+//    
+//    
+//    // when you are trying to place objects off screen
+//    // it will bounce back to its original position
+//     if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
+//    {
+//        
+//        b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
+//        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
+//        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) 
+//            {
+//            b2Body* body = *i;
+//            b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
+//            // Set each body to its original position, taking account of offsets
+//            body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
+//            }
+//         
+//    }
+//}
+//
+//    // 2 objects intersect, both turn grey; now handled in finishedMovingObject
+//
+//    /*
+//     // when 2 or more objects intersect
+//    // one of them becomes grey
+//    else {
+//        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
+//        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
+//        {
+//            b2Body* body = *i;
+//            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+//            NSMutableArray* objectSprites = object.sprites;
+//            for(CCSprite* sp in objectSprites)
+//            {
+//                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+//            }
+//        
+//            }
+//        }
+//    }
+//     */
+//
 
 /* //////////////////////////////// Deallocate ///////////////////////////////// */
 

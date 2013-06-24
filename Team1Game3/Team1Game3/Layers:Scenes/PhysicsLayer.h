@@ -98,6 +98,7 @@
 -(void) resetBall;
 
 -(bool) isOverlapped;
+-(bool) checkEdge: (b2Body*) body;
 -(void) bounceBackObjectWithBody: (b2Body*) body;
 -(void) finishedMovingObject: (AbstractGameObject*) moveableObject;
 
