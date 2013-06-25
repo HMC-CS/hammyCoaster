@@ -6,14 +6,15 @@
 //
 //
 
-#import "RayCastCallBack.h"
-#import "PhysicsLayer.h"
-#import "Box2D.h"
-
-//@implementation RayCastCallBack
+//#import "RayCastCallBack2.h"
+//#import "PhysicsLayer.h"
+//#import "Box2D.h"
 //
-//-(void) RayCastCallBack {
+//@implementation RayCastCallBack2
+//
+//-(void) RayCastCallBack2 {
 //    m_fixture = NULL;
+//    return;
 //}
 //-(double) ReportFixture:(b2Fixture *)fixture WithPoint:(const b2Vec2 &)point AndNormal:(const b2Vec2 &)normal AndFraction:(double)fraction {
 //    m_fixture = fixture;
