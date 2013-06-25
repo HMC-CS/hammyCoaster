@@ -797,48 +797,68 @@ for (AbstractGameObject *obj in _createdObjects){
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
         b2Body* body = *i;
         //double xpos = _initialBodyPosition.x;
-        NSLog(@"finishedMovingObject x: %f ", _initialBodyPosition.x);
-
-        if (_initialBodyPosition.x < 0) {
-            //isDeleteObject = true;
-            //NSLog(@"isDeleteObject: true");
+        NSLog(@"finishedMovingObject x: %f ", body->GetPosition().x);
+    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+        
+        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+        int count = polygonShape->GetVertexCount();
+        
+        // Iterate through all the vertices in each fixture
+        for (int i = 0; i < count; i++) {
+            
+            // Get the location of the vertex
+            b2Vec2 vertex = polygonShape->GetVertex(i);
+            vertex = body->GetWorldPoint(vertex);
+            CGPoint vertexPoint = ccpMult(ccp(vertex.x, vertex.y), PTM_RATIO);
+            vertexPoint = ccpAdd(vertexPoint, self.boundingBox.origin);
+            
+            // Check if the point is in the inventory
+            if ( !CGRectContainsPoint(self.boundingBox, vertexPoint)) {
+                if ([self isPointInTrash:vertexPoint]) {
+                    NSLog(@"setting delete");
+                    isDeleteObject = true;
+                }
+            }
             break;
         }
+        break;
+        }
+
         
-        else if ([self checkEdge:body]) {
+        if ([self checkEdge:body]) {
             isBounceBackObject = true;
             //NSLog(@"isBounceBackObject: true");
             break;
         }
         
-        else if (false) {
+        else {
             // Iterate through all the fixtures in each body
             for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
                 //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
                 //b2Manifold* manifold = new b2Manifold();
                 //int count = polygonShape->GetVertexCount();
+//                
+//                f->SetSensor(true);
+//                
+//                //check against all other bodies in the game play 
+//                std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
+//                for (std::vector<b2Body*>::iterator j = otherbodies.begin(); j != otherbodies.end(); ++j) {
+//                    b2Body* otherBody = *j;
+//                    
+//                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
+//                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
+//                        
+//                        f2->SetSensor(true);
+//                        
+//                        b2Contact *_b;
+//                        _b->SetEnabled(true);
+//                        
+//                        if (_b->IsTouching()) {
+//                            //NSLog(@"f and f2 are touching");
+//                        }
+//                        
+//                        
                 
-                f->SetSensor(true);
-                
-                //check against all other bodies in the game play 
-                std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
-                for (std::vector<b2Body*>::iterator j = otherbodies.begin(); j != otherbodies.end(); ++j) {
-                    b2Body* otherBody = *j;
-                    
-                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
-                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
-                        
-                        f2->SetSensor(true);
-                        
-                        b2Contact *_b;
-                        _b->SetEnabled(true);
-                        
-                        if (_b->IsTouching()) {
-                            //NSLog(@"f and f2 are touching");
-                        }
-                        
-                        
-                        
                         //b2ContactListener for f and f2
                         
                         //if (_b->GetFixtureA() != NULL && _b->GetFixtureB() != NULL) {
@@ -861,27 +881,28 @@ for (AbstractGameObject *obj in _createdObjects){
                         //}
                     }
                 }
-                
+            
+        
+        
                 //manifold->pointCount = 0;
                 
                 //deal with edge cases
                 if (isDeleteObject) {
-                    NSLog(@"");
-                    //[self deleteObjectWithBody:body];
+                    NSLog(@"deleting body");
+                    [self deleteObjectWithBody:body];
                 }
                 
                 else if (isBounceBackObject) {
                     NSLog(@"");
-                    //[self bounceBackObjectWithBody:body];
+                    [self bounceBackObjectWithBody:body];
                 }
                 
                 else {
                     NSLog(@"return color to normal...");
                     //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
                     
-                }
-            }
         }
+        
     }
     
     //reset dynamic capabilities
