@@ -18,6 +18,7 @@
 
 #import "MathHelper.h"
 #import "b2Collision.h"
+#import "b2Contact.h"
 //#import "RayCastCallBack.h"
 
 @implementation PhysicsLayer 
@@ -788,33 +789,36 @@ for (AbstractGameObject *obj in _createdObjects){
     
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
-    CCArray *moveableObjectVectors = [[CCArray alloc] init];
+    //CCArray *moveableObjectVectors = [[CCArray alloc] init];
     //NSMutableArray *moveableObjectVectors = [[NSMutableArray alloc] init];
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
     
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
         b2Body* body = *i;
-        NSLog(@"%f x position: ", _initialBodyPosition.x);
+        //double xpos = _initialBodyPosition.x;
+        NSLog(@"finishedMovingObject x: %f ", _initialBodyPosition.x);
 
         if (_initialBodyPosition.x < 0) {
             //isDeleteObject = true;
-            NSLog(@"isDeleteObject: true");
+            //NSLog(@"isDeleteObject: true");
             break;
         }
         
         else if ([self checkEdge:body]) {
             isBounceBackObject = true;
-            NSLog(@"isBounceBackObject: true");
+            //NSLog(@"isBounceBackObject: true");
             break;
         }
         
-        else {
+        else if (false) {
             // Iterate through all the fixtures in each body
             for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-                b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-                b2Manifold* manifold = new b2Manifold();
+                //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+                //b2Manifold* manifold = new b2Manifold();
                 //int count = polygonShape->GetVertexCount();
+                
+                f->SetSensor(true);
                 
                 //check against all other bodies in the game play 
                 std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
@@ -824,7 +828,25 @@ for (AbstractGameObject *obj in _createdObjects){
                     for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
                         //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
                         
-                        // code for sensor shit?
+                        f2->SetSensor(true);
+                        
+                        b2Contact *_b;
+                        _b->SetEnabled(true);
+                        
+                        if (_b->IsTouching()) {
+                            //NSLog(@"f and f2 are touching");
+                        }
+                        
+                        
+                        
+                        //b2ContactListener for f and f2
+                        
+                        //if (_b->GetFixtureA() != NULL && _b->GetFixtureB() != NULL) {
+                       //     NSLog(@"there is something in there");
+                        //}
+                        //else {
+                          //  NSLog(@"nothing here :( ");
+                        //}
                         
                         //b2CollidePolygons(manifold, polygonShape, body->GetTransform(), polygonShape2, otherBody->GetTransform());
                        
@@ -844,11 +866,13 @@ for (AbstractGameObject *obj in _createdObjects){
                 
                 //deal with edge cases
                 if (isDeleteObject) {
-                    [self deleteObjectWithBody:body];
+                    NSLog(@"");
+                    //[self deleteObjectWithBody:body];
                 }
                 
                 else if (isBounceBackObject) {
-                    [self bounceBackObjectWithBody:body];
+                    NSLog(@"");
+                    //[self bounceBackObjectWithBody:body];
                 }
                 
                 else {
