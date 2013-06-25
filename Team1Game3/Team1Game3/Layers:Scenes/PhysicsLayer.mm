@@ -17,6 +17,7 @@
 #import "QueryCallback.h"
 
 #import "MathHelper.h"
+#import "b2Collision.h"
 //#import "RayCastCallBack.h"
 
 @implementation PhysicsLayer 
@@ -787,7 +788,7 @@ for (AbstractGameObject *obj in _createdObjects){
     
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
-    //CCArray *moveableObjectVectors = [[CCArray alloc] init];
+    CCArray *moveableObjectVectors = [[CCArray alloc] init];
     //NSMutableArray *moveableObjectVectors = [[NSMutableArray alloc] init];
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
@@ -812,60 +813,121 @@ for (AbstractGameObject *obj in _createdObjects){
             // Iterate through all the fixtures in each body
             for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
                 b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-                int count = polygonShape->GetVertexCount();
+                b2Manifold* manifold = new b2Manifold();
+                //int count = polygonShape->GetVertexCount();
                 
-                //create a raycast between every vertex in the body, add it to the array
-                for (int i = 0; i < count; i++) {
-                    b2Vec2 v_i = polygonShape->GetVertex(i);
-                    v_i = body->GetWorldPoint(v_i);
+                //check against all other bodies in the game play 
+                std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
+                for (std::vector<b2Body*>::iterator j = otherbodies.begin(); j != otherbodies.end(); ++j) {
+                    b2Body* otherBody = *j;
                     
-                    for (int j = i; j < count; j++) {
-                        b2Vec2 v_j = polygonShape->GetVertex(j);
-                        v_j = body->GetWorldPoint(v_j);
+                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
+                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
                         
+                        // code for sensor shit?
                         
-                        b2RayCastInput inputRay;
-                        inputRay.p1 = v_i;
-                        inputRay.p2 = v_j;
-                        inputRay.maxFraction = 1.0;
-                        
-                        //raycast call back functionality... ew
-                        NSLog(@"raycast callback happens here");
-                        break;
-                        
-                        
+                        //b2CollidePolygons(manifold, polygonShape, body->GetTransform(), polygonShape2, otherBody->GetTransform());
+                       
+                        //NSLog(@"OUTSIDE: point count %d", manifold->pointCount);
+
+                       // if (manifold->pointCount > 0 && otherBody->GetUserData() != body->GetUserData()) {
+                            //NSLog(@"INSIDE: point count %d", manifold->pointCount);
+                            
+                            //NSLog("@%d, point count: ", manifold->pointCount);
+                            //NSLog(@"collision occured");
+                            //break;
+                        //}
                     }
-                NSLog(@"break to here? 1");
                 }
-        
-            NSLog(@"break to here? 2");
-        
+                
+                //manifold->pointCount = 0;
+                
+                //deal with edge cases
+                if (isDeleteObject) {
+                    [self deleteObjectWithBody:body];
+                }
+                
+                else if (isBounceBackObject) {
+                    [self bounceBackObjectWithBody:body];
+                }
+                
+                else {
+                    NSLog(@"return color to normal...");
+                    //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
+                    
+                }
             }
-    
-        NSLog(@"break to here? 3");
-        }
-        
-        //deal with edge cases
-        if (isDeleteObject) {
-            [self deleteObjectWithBody:body];
-        }
-        
-        else if (isBounceBackObject) {
-            [self bounceBackObjectWithBody:body];
-        }
-        
-        else {
-            NSLog(@"return color to normal...");
-            //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
         }
     }
-    
-
     
     //reset dynamic capabilities
     [self resetMoveableDynamicStatusForBodies:bodies];
     
 }
+
+                
+                //raycast parts not working. using vectors instead.. .
+                
+//                //create a raycast between every vertex in the body, add it to the array
+//                for (int i = 0; i < count; i++) {
+//                    b2Vec2 v_i = polygonShape->GetVertex(i);
+//                    v_i = body->GetWorldPoint(v_i);
+//                    
+//                    for (int j = i; j < count; j++) {
+//                        b2Vec2 v_j = polygonShape->GetVertex(j);
+//                        v_j = body->GetWorldPoint(v_j);
+//                        
+//                        
+//                        b2RayCastInput inputRay;
+//                        inputRay.p1 = v_i;
+//                        inputRay.p2 = v_j;
+//                        inputRay.maxFraction = 1.0;
+//                        
+//                        NSLog(@"raycast callback happens here");
+//                        
+//                        
+//                        
+//                    }
+//                }
+                
+//                //create and add vectors to an array
+//               for (int i = 0; i < count; i++) {
+//                        b2Vec2 v_i = polygonShape->GetVertex(i);
+//                        v_i = body->GetWorldPoint(v_i);
+//                        NSLog(@"vertex i");  
+//        
+//                      for (int j = i; j < count; j++) {
+//                                b2Vec2 v_j = polygonShape->GetVertex(j);
+//                                v_j = body->GetWorldPoint(v_j);
+//                                NSLog(@"vertex j");   
+//                          
+//                                b2Vec2* vector_ij;
+//                                vector_ij->;
+//                                NSLog(@"vector from i to j created");
+//                          
+//                                [moveableObjectVectors addObject:(__bridge id) vector_ij];
+//                                NSLog(@"vectorij added to array");
+//                      }
+//               }
+//                
+//                //loop through the array of vector
+//                for (int i = 0; i< [moveableObjectVectors count]; i++) {
+//                    b2Vec2* currentVector = (__bridge b2Vec2*)[moveableObjectVectors objectAtIndex:i];
+//                    
+//                    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
+//                        b2Body* otherbody = *i;
+//                        
+//                        if (true) {
+//                            //recolor otherbody + body
+//                            //isIntersected = true
+//                            //break
+//                        }
+//                    
+//                    }
+//                }
+
+        
+
 
 
 /* checkEdges
