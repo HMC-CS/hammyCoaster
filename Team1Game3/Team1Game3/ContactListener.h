@@ -41,6 +41,8 @@ public:
      */
     bool IsLevelWon();
     
+
+    
     /*
      * SetGameWonStatus
      * Gives user the ability to set level win status to true or false.
@@ -53,6 +55,8 @@ public:
      */
     b2Body* GetContactStar();
     
+    
+    bool doObjectsIntersect();
     /*
      * EraseContactStar
      * Sets body of contact star to null.
@@ -63,6 +67,7 @@ private:
     
     bool _levelWon;                  // Keeps track of if level is won.
     b2Body* _contactStar;            // Body of star that has been hit.
+    bool _objectsIntersect;
     
 };
 
