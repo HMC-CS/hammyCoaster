@@ -16,6 +16,7 @@ ContactListener::ContactListener()
 {
     _levelWon = false;
     _contactStar = NULL;
+    _objectsIntersect = false; 
 }
 
 ContactListener::~ContactListener()
@@ -66,8 +67,16 @@ void ContactListener::BeginContact(b2Contact* contact)
         if ([body2Type isEqualToString:@"BallObject"] && [body1Type isEqualToString:@"StarObject"]) {
             _contactStar = body1;
         }
+        
+        // If two bodies collide with eachother and they are not a ball or a star
+        if (![body1Type isEqualToString:@"BallObject"] && ![body1Type isEqualToString:@"StarObject"] && ![body2Type isEqualToString:@"BallObject"] && ![body2Type isEqualToString:@"StarObject"])
+        {
+            _objectsIntersect = true;
+            
+        }
     }
 }
+
 
 void ContactListener::EndContact(b2Contact* contact)
 {
@@ -87,6 +96,10 @@ void ContactListener::PostSolve(b2Contact* contact, const b2ContactImpulse* impu
 bool ContactListener::IsLevelWon()
 {
     return _levelWon;
+}
+bool ContactListener:: doObjectsIntersect()
+{
+    return _objectsIntersect;
 }
 
 void ContactListener::SetLevelWonStatus(bool levelWon)

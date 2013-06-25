@@ -130,6 +130,9 @@
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b) {
         PhysicsSprite* s = [spriteArray objectAtIndex:j];
         b2Body* body = *b;
+       for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+           f->SetSensor(true);
+       }
         [self addChild:s];
         [s setPhysicsBody:body];
         [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
@@ -821,8 +824,8 @@ for (AbstractGameObject *obj in _createdObjects){
             }
             break;
         }
-        break;
-        }
+
+        
 
         
         if ([self checkEdge:body]) {
@@ -830,34 +833,31 @@ for (AbstractGameObject *obj in _createdObjects){
             //NSLog(@"isBounceBackObject: true");
             break;
         }
-        
-        else {
-            // Iterate through all the fixtures in each body
-            for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-                //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-                //b2Manifold* manifold = new b2Manifold();
-                //int count = polygonShape->GetVertexCount();
+        else{
+
+//            // Iterate through all the fixtures in each body
+//            //for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+//                //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+//                //b2Manifold* manifold = new b2Manifold();
+//                //int count = polygonShape->GetVertexCount();
 //                
 //                f->SetSensor(true);
 //                
-//                //check against all other bodies in the game play 
-//                std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
-//                for (std::vector<b2Body*>::iterator j = otherbodies.begin(); j != otherbodies.end(); ++j) {
-//                    b2Body* otherBody = *j;
-//                    
+//                //check against all other bodies in the game play
+//               //std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
+//              for ( AbstractGameObject* otherObject in _initialObjects) {
+//                    std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(otherObject>GetUserData())).bodies;
+//                  for (std::vector<b2Body*>::iterator i = otherbodies.begin(); i != otherbodies.end(); ++i) {
+//                      b2Body* otherBody = *i;
 //                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
 //                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
 //                        
 //                        f2->SetSensor(true);
-//                        
-//                        b2Contact *_b;
-//                        _b->SetEnabled(true);
-//                        
-//                        if (_b->IsTouching()) {
-//                            //NSLog(@"f and f2 are touching");
-//                        }
-//                        
-//                        
+            
+                        if (_contactListener->doObjectsIntersect()) {
+                            NSLog(@"f and f2 are touching");
+                        }
+                        
                 
                         //b2ContactListener for f and f2
                         
@@ -879,9 +879,6 @@ for (AbstractGameObject *obj in _createdObjects){
                             //NSLog(@"collision occured");
                             //break;
                         //}
-                    }
-                }
-            
         
         
                 //manifold->pointCount = 0;
@@ -898,15 +895,30 @@ for (AbstractGameObject *obj in _createdObjects){
                 }
                 
                 else {
-                    NSLog(@"return color to normal...");
+                    //NSLog(@"return color to normal...");
                     //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
                     
         }
+            
         
+    }
+    }
     }
     
     //reset dynamic capabilities
     [self resetMoveableDynamicStatusForBodies:bodies];
+    
+}
+
+-(void) collisonContact: (b2Contact*) contact
+{
+    b2Fixture* fixtureA = contact->GetFixtureA();
+    b2Fixture* fixtureB = contact->GetFixtureB();
+    b2Body* bodyA = fixtureA->GetBody();
+    b2Body* bodyB = fixtureB->GetBody();
+    NSString *typeA = ((__bridge AbstractGameObject*)(bodyA->GetUserData())).type;
+    NSString *typeB = ((__bridge AbstractGameObject*)(bodyB->GetUserData())).type;
+    
     
 }
 
@@ -1021,6 +1033,7 @@ for (AbstractGameObject *obj in _createdObjects){
     }
     
 }
+        
 /* bounceBackObjectWithBody
  * Bounces an object that is out of the bounds of gameplay
  * (outside of the screen) back to its last legal position.
