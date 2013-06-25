@@ -286,6 +286,7 @@
 		FD034D1F1778BE640004C275 /* RayCastCallBack2.mm in Sources */ = {isa = PBXBuildFile; fileRef = FD034D1E1778BE640004C275 /* RayCastCallBack2.mm */; };
 		FD115BBF176FD2150057D59F /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FD115BBD176FD2150057D59F /* playButton.png */; };
 		FD115BC0176FD2150057D59F /* stopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FD115BBE176FD2150057D59F /* stopButton.png */; };
+		FD816F6E177A521C000B53B7 /* MyRayCastCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -781,6 +782,8 @@
 		FD034D1E1778BE640004C275 /* RayCastCallBack2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RayCastCallBack2.mm; path = "Team1Game3/Layers:Scenes/RayCastCallBack2.mm"; sourceTree = "<group>"; };
 		FD115BBD176FD2150057D59F /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
 		FD115BBE176FD2150057D59F /* stopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopButton.png; sourceTree = "<group>"; };
+		FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyRayCastCallback.mm; sourceTree = "<group>"; };
+		FD816F6D177A521C000B53B7 /* MyRayCastCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRayCastCallback.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -884,6 +887,8 @@
 				D882077A1717D3D200D74162 /* OverallWinLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
+				FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */,
+				FD816F6D177A521C000B53B7 /* MyRayCastCallback.h */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
 				AD57A95E17142818007B471F /* WinLayer.mm */,
 			);
@@ -1993,6 +1998,7 @@
 				61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */,
 				D878F976174248B800F7BD46 /* InitialRampObject.mm in Sources */,
 				FD034D1F1778BE640004C275 /* RayCastCallBack2.mm in Sources */,
+				FD816F6E177A521C000B53B7 /* MyRayCastCallback.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

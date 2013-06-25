@@ -784,7 +784,7 @@ for (AbstractGameObject *obj in _createdObjects){
 
 /* finishedMovingObject
  * deals with special cases where object is placed in invalid location
- * 1) object moved to inventory- delete
+ * 1) object moved to inventory (call deleteObjectWithBody)
  * 2) object moved elsewhere offscreen (call bounceBackObjectWithBody)
  * 3) object moved to location of other body - grey both out
  */
@@ -792,123 +792,108 @@ for (AbstractGameObject *obj in _createdObjects){
     
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
-    //CCArray *moveableObjectVectors = [[CCArray alloc] init];
-    //NSMutableArray *moveableObjectVectors = [[NSMutableArray alloc] init];
+
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
     
+    //Iterate through the bodies of moveableObject
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
         b2Body* body = *i;
-        //double xpos = _initialBodyPosition.x;
-        NSLog(@"finishedMovingObject x: %f ", body->GetPosition().x);
-    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
         
-        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-        int count = polygonShape->GetVertexCount();
-        
-        // Iterate through all the vertices in each fixture
-        for (int i = 0; i < count; i++) {
+        //Iterate through the fixtures of each body
+        for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+            int count = polygonShape->GetVertexCount();
             
-            // Get the location of the vertex
-            b2Vec2 vertex = polygonShape->GetVertex(i);
-            vertex = body->GetWorldPoint(vertex);
-            CGPoint vertexPoint = ccpMult(ccp(vertex.x, vertex.y), PTM_RATIO);
-            vertexPoint = ccpAdd(vertexPoint, self.boundingBox.origin);
-            
-            // Check if the point is in the inventory
-            if ( !CGRectContainsPoint(self.boundingBox, vertexPoint)) {
-                if ([self isPointInTrash:vertexPoint]) {
-                    NSLog(@"setting delete");
+            // Iterate through all the vertices in each fixture
+            for (int i = 0; i < count; i++) {
+                
+                // Get the location of the vertex
+                b2Vec2 vertex = polygonShape->GetVertex(i);
+                vertex = body->GetWorldPoint(vertex);
+                CGPoint vertexPoint = ccpMult(ccp(vertex.x, vertex.y), PTM_RATIO);
+                vertexPoint = ccpAdd(vertexPoint, self.boundingBox.origin);
+                
+                // Check if the point is in the inventory
+                if ( !CGRectContainsPoint(self.boundingBox, vertexPoint) && [self isPointInTrash:vertexPoint]) {
                     isDeleteObject = true;
+                    break;
+                }
+                
+                //vertex between very vertice in each fixture
+                b2Vec2 v_i = polygonShape->GetVertex(i);
+                v_i = body->GetWorldPoint(v_i);
+                
+                for (int j = i; j < count; j++) {
+                    b2Vec2 v_j = polygonShape->GetVertex(j);
+                    v_j = body->GetWorldPoint(v_j);
+
+                    //prepare for raycasting
+                    b2RayCastOutput output;
+                    b2RayCastInput inputRay;
+                    inputRay.p1 = v_i;
+                    inputRay.p2 = v_j;
+                    inputRay.maxFraction = 1.0;
+
+                    //loop through every other abstract game object in play
+                    for (AbstractGameObject* object in _createdObjects) {
+                        std::vector<b2Body*> otherBodies = object.bodies;
+                        
+                        //Iterate through each body
+                        for (std::vector<b2Body*>::iterator k = otherBodies.begin(); k != otherBodies.end(); ++k) {
+                            b2Body* otherBody = *k;
+                            
+                            //Iterate through each fixture in each body
+                            for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
+                                
+                                //add if conditions to exclude the cat paws, blue portal, red portal and stars.
+                                if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
+                                    // replace with grey out code
+                                    NSLog(@"things collided");
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            break;
         }
-
         
-
+        //the last thing in the outer most for loop (dealing with edge cases)
         
-        if ([self checkEdge:body]) {
+        
+        //edge checking 
+        if([self checkEdge:body]) {
             isBounceBackObject = true;
-            //NSLog(@"isBounceBackObject: true");
-            break;
-        }
-        else{
-
-//            // Iterate through all the fixtures in each body
-//            //for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-//                //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-//                //b2Manifold* manifold = new b2Manifold();
-//                //int count = polygonShape->GetVertexCount();
-//                
-//                f->SetSensor(true);
-//                
-//                //check against all other bodies in the game play
-//               //std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
-//              for ( AbstractGameObject* otherObject in _initialObjects) {
-//                    std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(otherObject>GetUserData())).bodies;
-//                  for (std::vector<b2Body*>::iterator i = otherbodies.begin(); i != otherbodies.end(); ++i) {
-//                      b2Body* otherBody = *i;
-//                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
-//                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
-//                        
-//                        f2->SetSensor(true);
             
-                        if (_contactListener->doObjectsIntersect()) {
-                            NSLog(@"f and f2 are touching");
-                        }
-                        
-                
-                        //b2ContactListener for f and f2
-                        
-                        //if (_b->GetFixtureA() != NULL && _b->GetFixtureB() != NULL) {
-                       //     NSLog(@"there is something in there");
-                        //}
-                        //else {
-                          //  NSLog(@"nothing here :( ");
-                        //}
-                        
-                        //b2CollidePolygons(manifold, polygonShape, body->GetTransform(), polygonShape2, otherBody->GetTransform());
-                       
-                        //NSLog(@"OUTSIDE: point count %d", manifold->pointCount);
-
-                       // if (manifold->pointCount > 0 && otherBody->GetUserData() != body->GetUserData()) {
-                            //NSLog(@"INSIDE: point count %d", manifold->pointCount);
-                            
-                            //NSLog("@%d, point count: ", manifold->pointCount);
-                            //NSLog(@"collision occured");
-                            //break;
-                        //}
-        
-        
-                //manifold->pointCount = 0;
-                
-                //deal with edge cases
-                if (isDeleteObject) {
-                    NSLog(@"deleting body");
-                    [self deleteObjectWithBody:body];
-                }
-                
-                else if (isBounceBackObject) {
-                    NSLog(@"");
-                    [self bounceBackObjectWithBody:body];
-                }
-                
-                else {
-                    //NSLog(@"return color to normal...");
-                    //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
-                    
         }
-            
         
-    }
-    }
+        //deal with edge cases
+        if (isDeleteObject) {
+            NSLog(@"deleting body");
+            [self deleteObjectWithBody:body];
+        }
+        
+        else if (isBounceBackObject) {
+            [self bounceBackObjectWithBody:body];
+        }
+        
+        else { //return color to normal. 
+            //NSLog(@"return color to normal...");
+            //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
+            
+        }
+
     }
     
     //reset dynamic capabilities
     [self resetMoveableDynamicStatusForBodies:bodies];
     
+    
 }
+
+
+
 
 -(void) collisonContact: (b2Contact*) contact
 {
@@ -922,31 +907,102 @@ for (AbstractGameObject *obj in _createdObjects){
     
 }
 
-                
+
+// more shit code
+/*
+ else{
+ 
+ f->SetSensor(true);
+ std::vector<b2Body*> otherBodies = moveableObject.bodies;
+ 
+ for (std::vector<b2Body*>::iterator i = otherBodies.begin(); i != bodies.end(); ++i) {
+ b2Body* otherBody = *i;
+ for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
+ b2Shape* s2 = f2->GetShape();
+ b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
+ 
+ //b2Contact(s, s2);
+ //_b->b2Contact(s, s2);
+ 
+ 
+ }
+ }
+ 
+ //            // Iterate through all the fixtures in each body
+ //            //for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
+ //                //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
+ //                //b2Manifold* manifold = new b2Manifold();
+ //                //int count = polygonShape->GetVertexCount();
+ //
+ //                f->SetSensor(true);
+ //
+ //                //check against all other bodies in the game play
+ //               //std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
+ //              for ( AbstractGameObject* otherObject in _initialObjects) {
+ //                    std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(otherObject>GetUserData())).bodies;
+ //                  for (std::vector<b2Body*>::iterator i = otherbodies.begin(); i != otherbodies.end(); ++i) {
+ //                      b2Body* otherBody = *i;
+ //                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
+ //                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
+ //
+ //                        f2->SetSensor(true);
+ 
+ //if (_contactListener->doObjectsIntersect()) {
+ //  NSLog(@"f and f2 are touching");
+ //}
+ 
+ 
+ //b2ContactListener for f and f2
+ 
+ //if (_b->GetFixtureA() != NULL && _b->GetFixtureB() != NULL) {
+ //     NSLog(@"there is something in there");
+ //}
+ //else {
+ //  NSLog(@"nothing here :( ");
+ //}
+ 
+ //b2CollidePolygons(manifold, polygonShape, body->GetTransform(), polygonShape2, otherBody->GetTransform());
+ 
+ //NSLog(@"OUTSIDE: point count %d", manifold->pointCount);
+ 
+ // if (manifold->pointCount > 0 && otherBody->GetUserData() != body->GetUserData()) {
+ //NSLog(@"INSIDE: point count %d", manifold->pointCount);
+ 
+ //NSLog("@%d, point count: ", manifold->pointCount);
+ //NSLog(@"collision occured");
+ //break;
+ //}
+ 
+ 
+ //manifold->pointCount = 0;
+ 
+
+ */
+
                 //raycast parts not working. using vectors instead.. .
-                
+
 //                //create a raycast between every vertex in the body, add it to the array
 //                for (int i = 0; i < count; i++) {
 //                    b2Vec2 v_i = polygonShape->GetVertex(i);
 //                    v_i = body->GetWorldPoint(v_i);
-//                    
+//
 //                    for (int j = i; j < count; j++) {
 //                        b2Vec2 v_j = polygonShape->GetVertex(j);
 //                        v_j = body->GetWorldPoint(v_j);
-//                        
-//                        
+//
+//
 //                        b2RayCastInput inputRay;
 //                        inputRay.p1 = v_i;
 //                        inputRay.p2 = v_j;
 //                        inputRay.maxFraction = 1.0;
-//                        
+//
 //                        NSLog(@"raycast callback happens here");
-//                        
-//                        
-//                        
+//
+//
+//
 //                    }
 //                }
-                
+
 //                //create and add vectors to an array
 //               for (int i = 0; i < count; i++) {
 //                        b2Vec2 v_i = polygonShape->GetVertex(i);
