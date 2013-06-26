@@ -859,11 +859,10 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     //add if conditions to exclude the cat paws, blue portal, red portal and stars.
                                     
-                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2 && ![object.type isEqualToString:@"StarObject"] && ![object.type isEqualToString:@"BluePortalObject"] && ![object.type isEqualToString:@"RedPortalObject"]) {
+                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2 && ![object.type isEqualToString:@"StarObject"] && ![object.type isEqualToString:@"BluePortalObject"] && ![object.type isEqualToString:@"RedPortalObject"] && body != otherBody) {
                                         isIntersected = true;
                                         NSLog(@"setting second body");
                                         secondBody = otherBody;
-                                        [self changeColorToGrayForBody1:body andBody2:secondBody];
                                         break;
                                     }else{
                                         [bodyLapArray addObject:object];
@@ -871,7 +870,9 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     
                                 }
+                                break;
                             }
+                            //break;
                         }
                     }
                 }
@@ -880,7 +881,7 @@ for (AbstractGameObject *obj in _createdObjects){
         if (isIntersected || secondBody)
         {
             [self changeColorToGrayForBody1:body andBody2:secondBody];
-        }else{
+        }else if (!isIntersected){
             for (AbstractGameObject* object in bodyLapArray)
             {
                 NSMutableArray* objectSprites = object.sprites;
