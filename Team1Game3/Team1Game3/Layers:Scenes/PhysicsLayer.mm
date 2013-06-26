@@ -791,6 +791,7 @@ for (AbstractGameObject *obj in _createdObjects){
     bool isBounceBackObject = false;
     bool isIntersected = false;
     b2Body* secondBody = NULL;
+    NSMutableArray* bodyLapArray = [[NSMutableArray alloc] init];
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
     
@@ -844,7 +845,7 @@ for (AbstractGameObject *obj in _createdObjects){
                         inputRay.p1 = v_i;
                         inputRay.p2 = v_j;
                         inputRay.maxFraction = 1.0;
-
+                        
                         //loop through every other abstract game object in play
                         for (AbstractGameObject* object in _createdObjects) {
                             std::vector<b2Body*> otherBodies = object.bodies;
@@ -858,31 +859,44 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     //add if conditions to exclude the cat paws, blue portal, red portal and stars.
                                     
-                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
+                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2 && ![object.type isEqualToString:@"StarObject"] && ![object.type isEqualToString:@"BluePortalObject"] && ![object.type isEqualToString:@"RedPortalObject"]) {
                                         isIntersected = true;
                                         NSLog(@"setting second body");
                                         secondBody = otherBody;
                                         [self changeColorToGrayForBody1:body andBody2:secondBody];
                                         break;
+                                    }else{
+                                        [bodyLapArray addObject:object];
                                     }
-                                
-
+                                    
+                                    
+                                }
                             }
                         }
                     }
                 }
             }
-            }
         }
-            if (secondBody)
+        if (isIntersected || secondBody)
+        {
+            [self changeColorToGrayForBody1:body andBody2:secondBody];
+        }else{
+            for (AbstractGameObject* object in bodyLapArray)
             {
-            if (isIntersected)
-            {
-                [self changeColorToGrayForBody1:body andBody2:secondBody];
-            }else{
-                        [self changeColorBackForBody1:body andBody2:secondBody];
+                NSMutableArray* objectSprites = object.sprites;
+                for(CCSprite* sp in objectSprites)
+                {
+                    if ((sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84))
+                    {
+                        std::vector<b2Body*> otherBodies = object.bodies;
+                        for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
+                            b2Body* otherBody = *j;
+                            [self changeColorBackForBody1:body andBody2:otherBody];
+                        }
                     }
                 }
+            }
+        }
     }
     
 //        if (isDeleteObject || isBounceBackObject ||isIntersected) {
