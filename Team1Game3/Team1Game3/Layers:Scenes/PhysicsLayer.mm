@@ -130,9 +130,6 @@
     for (std::vector<b2Body*>::iterator b = bodies.begin(); b != bodies.end(); ++b) {
         PhysicsSprite* s = [spriteArray objectAtIndex:j];
         b2Body* body = *b;
-       for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-           f->SetSensor(true);
-       }
         [self addChild:s];
         [s setPhysicsBody:body];
         [s setPosition: ccp(body->GetPosition().x, body->GetPosition().y)];
@@ -793,7 +790,7 @@ for (AbstractGameObject *obj in _createdObjects){
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
     bool isIntersected = false;
-    b2Body* secondBody;
+    b2Body* secondBody = NULL;
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
     
@@ -863,57 +860,36 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
                                         isIntersected = true;
+                                        NSLog(@"setting second body");
                                         secondBody = otherBody;
+                                        [self changeColorToGrayForBody1:body andBody2:secondBody];
                                         break;
                                     }
-                                }
-                                
-//                                if (isDeleteObject || isBounceBackObject) {
-//                                    break;
-//                                }
-//                                
-//                                else if (!isIntersected) {
-//                                    [self changeColorBackForBody1:body andBody2:otherBody];
-//                                }
                                 
 
                             }
-                            
-                            //break;
-                            
-//                            if (isDeleteObject || isBounceBackObject ||isIntersected) {
-//                                break;
-//                            }
-                            
                         }
-                        
-                        break;
-                        
-//                        if (isDeleteObject || isBounceBackObject || isIntersected) {
-//                            break;
-//                        }
                     }
                 }
-                
-                
-                break;
-//                if (isDeleteObject || isBounceBackObject || isIntersected) {
-//                    break;
-//                }
             }
-            
-            break;
-//            if (isDeleteObject || isBounceBackObject || isIntersected) {
-//                break;
-//            }
+            }
         }
-        
-        break;
+            if (secondBody)
+            {
+            if (isIntersected)
+            {
+                [self changeColorToGrayForBody1:body andBody2:secondBody];
+            }else{
+                        [self changeColorBackForBody1:body andBody2:secondBody];
+                    }
+                }
+    }
+    
 //        if (isDeleteObject || isBounceBackObject ||isIntersected) {
 //            break;
 //        }
         
-    }
+
     
 
     //reset dynamic capabilities
