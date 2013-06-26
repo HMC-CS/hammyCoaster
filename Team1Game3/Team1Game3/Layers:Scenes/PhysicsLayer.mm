@@ -792,7 +792,7 @@ for (AbstractGameObject *obj in _createdObjects){
     
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
-
+    bool isIntersected = false;
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
     
@@ -814,82 +814,135 @@ for (AbstractGameObject *obj in _createdObjects){
                 CGPoint vertexPoint = ccpMult(ccp(vertex.x, vertex.y), PTM_RATIO);
                 vertexPoint = ccpAdd(vertexPoint, self.boundingBox.origin);
                 
+                //base case 1: delete object
                 // Check if the point is in the inventory
                 if ( !CGRectContainsPoint(self.boundingBox, vertexPoint) && [self isPointInTrash:vertexPoint]) {
+                    [self deleteObjectWithBody:body];
                     isDeleteObject = true;
                     break;
                 }
                 
-                //vertex between very vertice in each fixture
-                b2Vec2 v_i = polygonShape->GetVertex(i);
-                v_i = body->GetWorldPoint(v_i);
+                //base case 2: bounce back object
+                else if ([self checkEdge:body]) {
+                    [self bounceBackObjectWithBody:body];
+                    isBounceBackObject = true;
+                    break;
+                }
                 
-                for (int j = i; j < count; j++) {
-                    b2Vec2 v_j = polygonShape->GetVertex(j);
-                    v_j = body->GetWorldPoint(v_j);
-
-                    //prepare for raycasting
-                    b2RayCastOutput output;
-                    b2RayCastInput inputRay;
-                    inputRay.p1 = v_i;
-                    inputRay.p2 = v_j;
-                    inputRay.maxFraction = 1.0;
-
-                    //loop through every other abstract game object in play
-                    for (AbstractGameObject* object in _createdObjects) {
-                        std::vector<b2Body*> otherBodies = object.bodies;
+                //else check for object overlap, recolor as approrpiate
+                else {
+                    //vertex between very vertice in each fixture
+                    b2Vec2 v_i = polygonShape->GetVertex(i);
+                    v_i = body->GetWorldPoint(v_i);
+                    
+                    for (int j = i; j < count; j++) {
+                        b2Vec2 v_j = polygonShape->GetVertex(j);
+                        v_j = body->GetWorldPoint(v_j);
                         
-                        //Iterate through each body
-                        for (std::vector<b2Body*>::iterator k = otherBodies.begin(); k != otherBodies.end(); ++k) {
-                            b2Body* otherBody = *k;
+                        //raycasting
+                        b2RayCastOutput output;
+                        
+                        b2RayCastInput inputRay;
+                        inputRay.p1 = v_i;
+                        inputRay.p2 = v_j;
+                        inputRay.maxFraction = 1.0;
+
+                        //loop through every other abstract game object in play
+                        for (AbstractGameObject* object in _createdObjects) {
+                            std::vector<b2Body*> otherBodies = object.bodies;
                             
-                            //Iterate through each fixture in each body
-                            for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
+                            //Iterate through each body
+                            for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
+                                b2Body* otherBody = *j;
                                 
-                                //add if conditions to exclude the cat paws, blue portal, red portal and stars.
-                                if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
-                                    NSLog(@" in there");
+                                //Iterate through each fixture in each body
+                                for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
+                                    
+                                    //add if conditions to exclude the cat paws, blue portal, red portal and stars.
+                                    
+                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
+                                        isIntersected = true;
+                                        [self changeColorToGrayForBody1:body andBody2:otherBody];
+                                        break;
+                                    }
+                                }
+                                
+                                if (isDeleteObject || isBounceBackObject) {
                                     break;
                                 }
+                                
+                                else if (!isIntersected) {
+                                    [self changeColorBackForBody1:body andBody2:otherBody];
+                                }
                             }
+                            
+                            if (isDeleteObject || isBounceBackObject ||isIntersected) {
+                                break;
+                            }
+                        }
+                        
+                        if (isDeleteObject || isBounceBackObject || isIntersected) {
+                            break;
                         }
                     }
                 }
+                
+                if (isDeleteObject || isBounceBackObject || isIntersected) {
+                    break;
+                }
+            }
+            
+            if (isDeleteObject || isBounceBackObject || isIntersected) {
+                break;
             }
         }
         
-        //the last thing in the outer most for loop (dealing with edge cases)
-        
-        
-        //edge checking 
-        if([self checkEdge:body]) {
-            isBounceBackObject = true;
-            
+        if (isDeleteObject || isBounceBackObject ||isIntersected) {
+            break;
         }
         
-        //deal with edge cases
-        if (isDeleteObject) {
-            NSLog(@"deleting body");
-            [self deleteObjectWithBody:body];
-        }
-        
-        else if (isBounceBackObject) {
-            [self bounceBackObjectWithBody:body];
-        }
-        
-        else { //return color to normal. 
-            //NSLog(@"return color to normal...");
-            //sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
-            
-        }
-
     }
     
+
     //reset dynamic capabilities
     [self resetMoveableDynamicStatusForBodies:bodies];
-    
-    
 }
+
+/*
+//loop through every other abstract game object in play
+for (AbstractGameObject* object in _createdObjects) {
+    std::vector<b2Body*> otherBodies = object.bodies;
+    
+    //Iterate through each body
+    for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
+        b2Body* otherBody = *j;
+        
+        //Iterate through each fixture in each body
+        for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
+            
+            //add if conditions to exclude the cat paws, blue portal, red portal and stars.
+            b2RayCastOutput output;
+            if (f2->RayCast(&output, raycastInput,i)&& f!=f2) {
+                isIntersected = true;
+                NSLog(@"isIntersected: true");
+                break;
+            }
+        }
+        
+        // if isIntersected color grey out both bodies, else restore color
+        if (isIntersected) {
+            NSLog(@"grey out");
+            [self changeColorToGrayForBody1:body andBody2:otherBody];
+            return;
+        }
+        
+        else {
+            [self changeColorBackForBody1:body andBody2:otherBody];
+        }
+    }
+}
+ 
+ */
 
 
 - (void) changeColorToGrayForBody1: (b2Body*) body1 andBody2: (b2Body*) body2
@@ -955,142 +1008,6 @@ for (AbstractGameObject *obj in _createdObjects){
 }
 
 
-
-
-
-
-// more shit code
-/*
- else{
- 
- f->SetSensor(true);
- std::vector<b2Body*> otherBodies = moveableObject.bodies;
- 
- for (std::vector<b2Body*>::iterator i = otherBodies.begin(); i != bodies.end(); ++i) {
- b2Body* otherBody = *i;
- for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
- b2Shape* s2 = f2->GetShape();
- b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
- 
- //b2Contact(s, s2);
- //_b->b2Contact(s, s2);
- 
- 
- }
- }
- 
- //            // Iterate through all the fixtures in each body
- //            //for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
- //                //b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
- //                //b2Manifold* manifold = new b2Manifold();
- //                //int count = polygonShape->GetVertexCount();
- //
- //                f->SetSensor(true);
- //
- //                //check against all other bodies in the game play
- //               //std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
- //              for ( AbstractGameObject* otherObject in _initialObjects) {
- //                    std::vector<b2Body*> otherbodies = ((__bridge AbstractGameObject*)(otherObject>GetUserData())).bodies;
- //                  for (std::vector<b2Body*>::iterator i = otherbodies.begin(); i != otherbodies.end(); ++i) {
- //                      b2Body* otherBody = *i;
- //                    for (b2Fixture* f2 = otherBody->GetFixtureList(); f2!= NULL; f2 = f2->GetNext()) {
- //                        //b2PolygonShape* polygonShape2 = (b2PolygonShape*)f2->GetShape();
- //
- //                        f2->SetSensor(true);
- 
- //if (_contactListener->doObjectsIntersect()) {
- //  NSLog(@"f and f2 are touching");
- //}
- 
- 
- //b2ContactListener for f and f2
- 
- //if (_b->GetFixtureA() != NULL && _b->GetFixtureB() != NULL) {
- //     NSLog(@"there is something in there");
- //}
- //else {
- //  NSLog(@"nothing here :( ");
- //}
- 
- //b2CollidePolygons(manifold, polygonShape, body->GetTransform(), polygonShape2, otherBody->GetTransform());
- 
- //NSLog(@"OUTSIDE: point count %d", manifold->pointCount);
- 
- // if (manifold->pointCount > 0 && otherBody->GetUserData() != body->GetUserData()) {
- //NSLog(@"INSIDE: point count %d", manifold->pointCount);
- 
- //NSLog("@%d, point count: ", manifold->pointCount);
- //NSLog(@"collision occured");
- //break;
- //}
- 
- 
- //manifold->pointCount = 0;
- 
-
- */
-
-                //raycast parts not working. using vectors instead.. .
-
-//                //create a raycast between every vertex in the body, add it to the array
-//                for (int i = 0; i < count; i++) {
-//                    b2Vec2 v_i = polygonShape->GetVertex(i);
-//                    v_i = body->GetWorldPoint(v_i);
-//
-//                    for (int j = i; j < count; j++) {
-//                        b2Vec2 v_j = polygonShape->GetVertex(j);
-//                        v_j = body->GetWorldPoint(v_j);
-//
-//
-//                        b2RayCastInput inputRay;
-//                        inputRay.p1 = v_i;
-//                        inputRay.p2 = v_j;
-//                        inputRay.maxFraction = 1.0;
-//
-//                        NSLog(@"raycast callback happens here");
-//
-//
-//
-//                    }
-//                }
-
-//                //create and add vectors to an array
-//               for (int i = 0; i < count; i++) {
-//                        b2Vec2 v_i = polygonShape->GetVertex(i);
-//                        v_i = body->GetWorldPoint(v_i);
-//                        NSLog(@"vertex i");  
-//        
-//                      for (int j = i; j < count; j++) {
-//                                b2Vec2 v_j = polygonShape->GetVertex(j);
-//                                v_j = body->GetWorldPoint(v_j);
-//                                NSLog(@"vertex j");   
-//                          
-//                                b2Vec2* vector_ij;
-//                                vector_ij->;
-//                                NSLog(@"vector from i to j created");
-//                          
-//                                [moveableObjectVectors addObject:(__bridge id) vector_ij];
-//                                NSLog(@"vectorij added to array");
-//                      }
-//               }
-//                
-//                //loop through the array of vector
-//                for (int i = 0; i< [moveableObjectVectors count]; i++) {
-//                    b2Vec2* currentVector = (__bridge b2Vec2*)[moveableObjectVectors objectAtIndex:i];
-//                    
-//                    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
-//                        b2Body* otherbody = *i;
-//                        
-//                        if (true) {
-//                            //recolor otherbody + body
-//                            //isIntersected = true
-//                            //break
-//                        }
-//                    
-//                    }
-//                }
-
-        
 
 
 

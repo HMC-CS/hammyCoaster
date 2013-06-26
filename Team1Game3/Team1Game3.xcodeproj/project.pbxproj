@@ -283,7 +283,6 @@
 		D8E83EC416EBC42A000284EA /* RampObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8E83EC316EBC42A000284EA /* RampObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83ECA16EBCB1E000284EA /* RampObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83EC916EBCB1D000284EA /* RampObject-hd.png */; };
 		D8E83ECC16EBCB44000284EA /* RampObject.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83ECB16EBCB43000284EA /* RampObject.png */; };
-		FD034D1F1778BE640004C275 /* RayCastCallBack2.mm in Sources */ = {isa = PBXBuildFile; fileRef = FD034D1E1778BE640004C275 /* RayCastCallBack2.mm */; };
 		FD115BBF176FD2150057D59F /* playButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FD115BBD176FD2150057D59F /* playButton.png */; };
 		FD115BC0176FD2150057D59F /* stopButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FD115BBE176FD2150057D59F /* stopButton.png */; };
 		FD816F6E177A521C000B53B7 /* MyRayCastCallback.mm in Sources */ = {isa = PBXBuildFile; fileRef = FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */; };
@@ -778,12 +777,10 @@
 		D8E83EC316EBC42A000284EA /* RampObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RampObject.mm; sourceTree = "<group>"; };
 		D8E83EC916EBCB1D000284EA /* RampObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RampObject-hd.png"; sourceTree = "<group>"; };
 		D8E83ECB16EBCB43000284EA /* RampObject.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObject.png; sourceTree = "<group>"; };
-		FD034D1D1778BE640004C275 /* RayCastCallBack2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RayCastCallBack2.h; path = "Team1Game3/Layers:Scenes/RayCastCallBack2.h"; sourceTree = "<group>"; };
-		FD034D1E1778BE640004C275 /* RayCastCallBack2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = RayCastCallBack2.mm; path = "Team1Game3/Layers:Scenes/RayCastCallBack2.mm"; sourceTree = "<group>"; };
 		FD115BBD176FD2150057D59F /* playButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = playButton.png; sourceTree = "<group>"; };
 		FD115BBE176FD2150057D59F /* stopButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stopButton.png; sourceTree = "<group>"; };
-		FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyRayCastCallback.mm; sourceTree = "<group>"; };
-		FD816F6D177A521C000B53B7 /* MyRayCastCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRayCastCallback.h; sourceTree = "<group>"; };
+		FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = MyRayCastCallback.mm; path = "../Layers:Scenes/MyRayCastCallback.mm"; sourceTree = "<group>"; };
+		FD816F6D177A521C000B53B7 /* MyRayCastCallback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyRayCastCallback.h; path = "../Layers:Scenes/MyRayCastCallback.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -887,8 +884,6 @@
 				D882077A1717D3D200D74162 /* OverallWinLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
 				D8E83EBD16EAC1E5000284EA /* PhysicsLayer.mm */,
-				FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */,
-				FD816F6D177A521C000B53B7 /* MyRayCastCallback.h */,
 				AD57A95D17142808007B471F /* WinLayer.h */,
 				AD57A95E17142818007B471F /* WinLayer.mm */,
 			);
@@ -936,6 +931,8 @@
 		D878F96317423E2300F7BD46 /* Helper Functions */ = {
 			isa = PBXGroup;
 			children = (
+				FD816F6C177A521C000B53B7 /* MyRayCastCallback.mm */,
+				FD816F6D177A521C000B53B7 /* MyRayCastCallback.h */,
 				61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */,
 				61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */,
 				D8A47F69173CBADF00CF1B87 /* MathHelper.h */,
@@ -1035,8 +1032,6 @@
 		D8E83C6716EA753B000284EA = {
 			isa = PBXGroup;
 			children = (
-				FD034D1D1778BE640004C275 /* RayCastCallBack2.h */,
-				FD034D1E1778BE640004C275 /* RayCastCallBack2.mm */,
 				68FF016617690230007ED154 /* catPawsAnim-hd.plist */,
 				68FF016717690231007ED154 /* catPawsAnim-hd.png */,
 				68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */,
@@ -1997,7 +1992,6 @@
 				D8A47F6E173CC1EB00CF1B87 /* WorldManager.mm in Sources */,
 				61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */,
 				D878F976174248B800F7BD46 /* InitialRampObject.mm in Sources */,
-				FD034D1F1778BE640004C275 /* RayCastCallBack2.mm in Sources */,
 				FD816F6E177A521C000B53B7 /* MyRayCastCallback.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
