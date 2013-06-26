@@ -97,10 +97,12 @@
  */
 -(void) resetBall;
 
--(bool) isOverlapped;
+
 -(bool) checkEdge: (b2Body*) body;
 -(void) bounceBackObjectWithBody: (b2Body*) body;
 -(void) finishedMovingObject: (AbstractGameObject*) moveableObject;
+-(void) changeColorToGrayForBody1: (b2Body*) body1 andBody2: (b2Body*) body2;
+-(void) changeColorBackForBody1: (b2Body*) body1 andBody2: (b2Body*) body2;
 
 
 @end
