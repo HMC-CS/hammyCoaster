@@ -793,6 +793,7 @@ for (AbstractGameObject *obj in _createdObjects){
     bool isDeleteObject = false;
     bool isBounceBackObject = false;
     bool isIntersected = false;
+    b2Body* secondBody;
     
     std::vector<b2Body*> bodies = moveableObject.bodies;
     
@@ -862,44 +863,55 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
                                         isIntersected = true;
-                                        [self changeColorToGrayForBody1:body andBody2:otherBody];
+                                        secondBody = otherBody;
                                         break;
                                     }
                                 }
                                 
-                                if (isDeleteObject || isBounceBackObject) {
-                                    break;
-                                }
+//                                if (isDeleteObject || isBounceBackObject) {
+//                                    break;
+//                                }
+//                                
+//                                else if (!isIntersected) {
+//                                    [self changeColorBackForBody1:body andBody2:otherBody];
+//                                }
                                 
-                                else if (!isIntersected) {
-                                    [self changeColorBackForBody1:body andBody2:otherBody];
-                                }
+
                             }
                             
-                            if (isDeleteObject || isBounceBackObject ||isIntersected) {
-                                break;
-                            }
+                            //break;
+                            
+//                            if (isDeleteObject || isBounceBackObject ||isIntersected) {
+//                                break;
+//                            }
+                            
                         }
                         
-                        if (isDeleteObject || isBounceBackObject || isIntersected) {
-                            break;
-                        }
+                        break;
+                        
+//                        if (isDeleteObject || isBounceBackObject || isIntersected) {
+//                            break;
+//                        }
                     }
                 }
                 
-                if (isDeleteObject || isBounceBackObject || isIntersected) {
-                    break;
-                }
+                
+                break;
+//                if (isDeleteObject || isBounceBackObject || isIntersected) {
+//                    break;
+//                }
             }
             
-            if (isDeleteObject || isBounceBackObject || isIntersected) {
-                break;
-            }
+            break;
+//            if (isDeleteObject || isBounceBackObject || isIntersected) {
+//                break;
+//            }
         }
         
-        if (isDeleteObject || isBounceBackObject ||isIntersected) {
-            break;
-        }
+        break;
+//        if (isDeleteObject || isBounceBackObject ||isIntersected) {
+//            break;
+//        }
         
     }
     
