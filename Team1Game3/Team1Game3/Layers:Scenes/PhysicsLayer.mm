@@ -848,8 +848,7 @@ for (AbstractGameObject *obj in _createdObjects){
                                 
                                 //add if conditions to exclude the cat paws, blue portal, red portal and stars.
                                 if (f2->RayCast(&output, inputRay,i)&& f!=f2) {
-                                    // replace with grey out code
-                                    NSLog(@"things collided");
+                                    NSLog(@" in there");
                                     break;
                                 }
                             }
@@ -893,19 +892,71 @@ for (AbstractGameObject *obj in _createdObjects){
 }
 
 
-
-
--(void) collisonContact: (b2Contact*) contact
+- (void) changeColorToGrayForBody1: (b2Body*) body1 andBody2: (b2Body*) body2
 {
-    b2Fixture* fixtureA = contact->GetFixtureA();
-    b2Fixture* fixtureB = contact->GetFixtureB();
-    b2Body* bodyA = fixtureA->GetBody();
-    b2Body* bodyB = fixtureB->GetBody();
-    NSString *typeA = ((__bridge AbstractGameObject*)(bodyA->GetUserData())).type;
-    NSString *typeB = ((__bridge AbstractGameObject*)(bodyB->GetUserData())).type;
+    std::vector<b2Body*> bodies1 = ((__bridge AbstractGameObject*)(body1->GetUserData())).bodies;
+            for (std::vector<b2Body*>::iterator i = bodies1.begin(); i != bodies1.end(); ++i)
+            {
+                b2Body* body = *i;
+                AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+                NSMutableArray* objectSprites = object.sprites;
+                for(CCSprite* sp in objectSprites)
+                {
+                    sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+            }
+            
+                }
     
+    std::vector<b2Body*> bodies2 = ((__bridge AbstractGameObject*)(body2->GetUserData())).bodies;
+    for (std::vector<b2Body*>::iterator i = bodies2.begin(); i != bodies2.end(); ++i)
+    {
+        b2Body* body = *i;
+        AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+        NSMutableArray* objectSprites = object.sprites;
+        for(CCSprite* sp in objectSprites)
+        {
+            sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
+        }
+        
+    }
+
+}
+
+-(void) changeColorBackForBody1: (b2Body*) body1 andBody2: (b2Body*) body2
+{
+    
+    std::vector<b2Body*> bodies1 = ((__bridge AbstractGameObject*)(body1->GetUserData())).bodies;
+    for (std::vector<b2Body*>::iterator i = bodies1.begin(); i != bodies1.end(); ++i)
+    {
+        b2Body* body = *i;
+        AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+        NSMutableArray* objectSprites = object.sprites;
+        for(CCSprite* sp in objectSprites)
+        {
+            sp.color = ccc3(255,255,255);  // this is the hardcoded value of the greyish color (84,84,84)
+        }
+        
+    }
+    
+    std::vector<b2Body*> bodies2 = ((__bridge AbstractGameObject*)(body2->GetUserData())).bodies;
+    for (std::vector<b2Body*>::iterator i = bodies2.begin(); i != bodies2.end(); ++i)
+    {
+        b2Body* body = *i;
+        AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
+        NSMutableArray* objectSprites = object.sprites;
+        for(CCSprite* sp in objectSprites)
+        {
+            sp.color = ccc3(255,255,255);  // this is the hardcoded value of the greyish color (84,84,84)
+        }
+        
+    }
+
     
 }
+
+
+
+
 
 
 // more shit code
