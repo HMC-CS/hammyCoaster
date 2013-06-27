@@ -103,7 +103,8 @@
 -(void) finishedMovingObject: (AbstractGameObject*) moveableObject;
 -(void) changeColorToGrayForBody1: (b2Body*) body1 andBody2: (b2Body*) body2;
 -(void) changeColorBackForBody1: (b2Body*) body1 andBody2: (b2Body*) body2;
-
+-(void) changeColorBackforCurrentBody: (b2Body*) currentBody;
+-(void) checkAllObjectsForOverlap;
 
 @end
 
