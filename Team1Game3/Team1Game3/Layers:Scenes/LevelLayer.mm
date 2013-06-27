@@ -58,6 +58,7 @@
         [self createInventoryLayer];
         [self createPhysicsLayer];
         [self createGameplayLayer];
+        [self createTutorialLevel];
         
         // Display the puzzle level at the top of the screen
         CCLabelTTF* _levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d-%d", _levelSet, _levelIndex] fontName:@"Marker Felt" fontSize:30];
@@ -93,6 +94,30 @@
         
 	}
 	return self;
+}
+
+
+-(void) createTutorialLevel
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    if (_levelSet == 1 && _levelIndex == 1)
+    {
+        _draggingPopup = [CCSprite spriteWithFile:@"draggingPopup.png"];
+        [_draggingPopup setPosition:CGPointMake(size.width/1.7, size.height/2)];
+        NSMutableArray* popUpArray = [[NSMutableArray alloc] init];
+        CCAnimation* spriteAnimation = [CCAnimation animationWithSpriteFrames:popUpArray];
+        id popupAnimateAction = [CCAnimate actionWithAnimation:spriteAnimation];
+        id callSpriteAnim = [CCCallFunc actionWithTarget:self selector:@selector(removePopUp)];
+        id delay  = [CCDelayTime actionWithDuration:3];
+        id animateSequence = [CCSequence actions: popupAnimateAction, delay,callSpriteAnim, nil];
+        [self runAction:animateSequence];
+        [self addChild:_draggingPopup z:4];
+    }
+}
+
+-(void) removePopUp
+{
+    [self removeChild:_draggingPopup cleanup:YES];
 }
 
 /* ////////////////////////////// Private Functions ////////////////////////////// */

@@ -33,6 +33,8 @@
     int _levelIndex;                       // Level index (level notation is set-index)
     bool _catPawsMoving;
     
+    CCSprite* _draggingPopup;
+    
     LevelGenerator* _levelGenerator;       // Generates items for the given level
     
     InventoryLayer* _inventoryLayer;       // Layer containing inventory items
