@@ -34,6 +34,7 @@
 #include <Box2D/Common/b2Timer.h>
 #include <new>
 
+
 b2World::b2World(const b2Vec2& gravity)
 {
 	m_destructionListener = NULL;
@@ -130,6 +131,7 @@ b2Body* b2World::CreateBody(const b2BodyDef* def)
 
 void b2World::DestroyBody(b2Body* b)
 {
+    
 	b2Assert(m_bodyCount > 0);
 	b2Assert(IsLocked() == false);
 	if (IsLocked())
