@@ -816,14 +816,14 @@ for (AbstractGameObject *obj in _createdObjects){
                 //base case 1: delete object
                 // Check if the point is in the inventory
                 if ( !CGRectContainsPoint(self.boundingBox, vertexPoint) && [self isPointInTrash:vertexPoint]) {
-                    [self deleteObjectWithBody:body];
+                    //[self deleteObjectWithBody:body];
                     isDeleteObject = true;
                     break;
                 }
                 
                 //base case 2: bounce back object
                 else if ([self checkEdge:body]) {
-                    [self bounceBackObjectWithBody:body];
+                    //[self bounceBackObjectWithBody:body];
                     isBounceBackObject = true;
                     break;
                 }
@@ -912,8 +912,11 @@ for (AbstractGameObject *obj in _createdObjects){
             }
         }
         
-        if (isDeleteObject || isBounceBackObject || isIntersected) {
-            break;
+         if (isDeleteObject) {
+            [self deleteObjectWithBody:body];
+        }
+        if (isBounceBackObject){
+            [self bounceBackObjectWithBody:body];
         }
     }
     
