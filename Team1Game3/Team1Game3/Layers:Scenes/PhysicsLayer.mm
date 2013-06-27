@@ -864,9 +864,12 @@ for (AbstractGameObject *obj in _createdObjects){
                                         NSLog(@"setting second body");
                                         secondBody = otherBody;
                                         break;
-                                    }else{
+                                    }
+                                    /*
+                                    else{
                                         [bodyLapArray addObject:object];
                                     }
+                                     */
                                     
                                     
                                 }
@@ -895,6 +898,21 @@ for (AbstractGameObject *obj in _createdObjects){
         {
             [self changeColorToGrayForBody1:body andBody2:secondBody];
         }else if (!isIntersected){
+            for (AbstractGameObject* object in _createdObjects)
+            {
+                NSMutableArray* objectSprites = object.sprites;
+                for(CCSprite* sp in objectSprites)
+                {
+                    if ((sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84))
+                    {
+                        std::vector<b2Body*> otherBodies = object.bodies;
+                        for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
+                            b2Body* otherBody = *j;
+                            [self changeColorBackForBody1:body andBody2:otherBody];
+                        }
+                    }
+            }
+            /*
             for (AbstractGameObject* object in bodyLapArray)
             {
                 NSMutableArray* objectSprites = object.sprites;
@@ -909,6 +927,7 @@ for (AbstractGameObject *obj in _createdObjects){
                         }
                     }
                 }
+             */
             }
         }
         
