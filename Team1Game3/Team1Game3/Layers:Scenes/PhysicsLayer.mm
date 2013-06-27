@@ -912,11 +912,11 @@ for (AbstractGameObject *obj in _createdObjects){
             }
         }
         
-         if (isDeleteObject) {
-            [self deleteObjectWithBody:body];
+         if (isDeleteObject && body != secondBody) {
+            [self deleteObjectWithBody:_currentMoveableBody];
         }
         if (isBounceBackObject){
-            [self bounceBackObjectWithBody:body];
+            [self bounceBackObjectWithBody:_currentMoveableBody];
         }
     }
     
