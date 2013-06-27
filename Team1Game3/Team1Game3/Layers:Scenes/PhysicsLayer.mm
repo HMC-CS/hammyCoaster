@@ -859,7 +859,7 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     //add if conditions to exclude the cat paws, blue portal, red portal and stars.
                                     
-                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2 && ![object.type isEqualToString:@"StarObject"] && ![object.type isEqualToString:@"BluePortalObject"] && ![object.type isEqualToString:@"RedPortalObject"] && body != otherBody) {
+                                    if (f2->RayCast(&output, inputRay,i)&& f!=f2 && ![object.type isEqualToString:@"StarObject"] && ![object.type isEqualToString:@"BluePortalObject"] && ![object.type isEqualToString:@"RedPortalObject"] && body != otherBody && moveableObject != object) {
                                         isIntersected = true;
                                         NSLog(@"setting second body");
                                         secondBody = otherBody;
