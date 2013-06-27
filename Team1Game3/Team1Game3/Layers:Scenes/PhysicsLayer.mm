@@ -870,11 +870,24 @@ for (AbstractGameObject *obj in _createdObjects){
                                     
                                     
                                 }
+                                if (isDeleteObject || isBounceBackObject || isIntersected) {
+                                    break;
+                                }
+                            }
+                            if (isDeleteObject || isBounceBackObject || isIntersected) {
                                 break;
                             }
-                            //break;
+                        }
+                        
+                        if (isDeleteObject || isBounceBackObject || isIntersected) {
+                            break;
                         }
                     }
+                
+                }
+                
+                if (isDeleteObject || isBounceBackObject || isIntersected) {
+                    break;
                 }
             }
         }
@@ -898,14 +911,13 @@ for (AbstractGameObject *obj in _createdObjects){
                 }
             }
         }
+        
+        if (isDeleteObject || isBounceBackObject || isIntersected) {
+            break;
+        }
     }
     
-//        if (isDeleteObject || isBounceBackObject ||isIntersected) {
-//            break;
-//        }
-        
-
-    
+      
 
     //reset dynamic capabilities
     [self resetMoveableDynamicStatusForBodies:bodies];
