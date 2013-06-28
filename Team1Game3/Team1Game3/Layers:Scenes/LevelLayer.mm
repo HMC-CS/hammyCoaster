@@ -58,7 +58,7 @@
         [self createInventoryLayer];
         [self createPhysicsLayer];
         [self createGameplayLayer];
-        [self createTutorialLevel];
+        [self createHintMenu];
         
         // Display the puzzle level at the top of the screen
         CCLabelTTF* _levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Level %d-%d", _levelSet, _levelIndex] fontName:@"Marker Felt" fontSize:30];
@@ -97,6 +97,31 @@
 }
 
 
+-(void) createHintMenu
+{
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    CCMenuItemImage* hintButton = [CCMenuItemImage itemWithNormalImage:@"lightbulb.png" selectedImage:@"lightbulb.png" block:^(id sender) {
+
+        if (_levelSet == 1 && _levelIndex == 1)
+        {
+            _draggingPopup = [CCSprite spriteWithFile:@"draggingPopup.png"];
+            [_draggingPopup setPosition:CGPointMake(size.width/1.7, size.height/2)];
+            NSMutableArray* popUpArray = [[NSMutableArray alloc] init];
+            CCAnimation* spriteAnimation = [CCAnimation animationWithSpriteFrames:popUpArray];
+            id popupAnimateAction = [CCAnimate actionWithAnimation:spriteAnimation];
+            id callSpriteAnim = [CCCallFunc actionWithTarget:self selector:@selector(removePopUp)];
+            id delay  = [CCDelayTime actionWithDuration:3];
+            id animateSequence = [CCSequence actions: popupAnimateAction, delay,callSpriteAnim, nil];
+            [self runAction:animateSequence];
+            [self addChild:_draggingPopup z:4];
+        }
+    }];
+    CCMenu *hintGameMenu = [CCMenu menuWithItems:hintButton, nil];
+    [hintGameMenu setPosition:ccp(17*size.width/20, 19*size.height/20)];
+    [self addChild: hintGameMenu z:4];
+}
+
+/*
 -(void) createTutorialLevel
 {
     CGSize size = [[CCDirector sharedDirector] winSize];
@@ -114,7 +139,7 @@
         [self addChild:_draggingPopup z:4];
     }
 }
-
+*/
 -(void) removePopUp
 {
     [self removeChild:_draggingPopup cleanup:YES];
