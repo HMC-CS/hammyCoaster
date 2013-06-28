@@ -18,6 +18,7 @@
 		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A0B177CD89B00648208 /* TutorialLayer.mm */; };
 		68987A12177D003E00648208 /* draggingPopup.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A11177D003E00648208 /* draggingPopup.png */; };
+		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
 		68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016617690230007ED154 /* catPawsAnim-hd.plist */; };
 		68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016717690231007ED154 /* catPawsAnim-hd.png */; };
 		68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */; };
@@ -304,6 +305,7 @@
 		68987A0A177CD89A00648208 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
 		68987A0B177CD89B00648208 /* TutorialLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TutorialLayer.mm; sourceTree = "<group>"; };
 		68987A11177D003E00648208 /* draggingPopup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = draggingPopup.png; sourceTree = "<group>"; };
+		68987A15177E151A00648208 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
 		68FF016617690230007ED154 /* catPawsAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-hd.plist"; path = "Team1Game3/Resources/catPawsAnim-hd.plist"; sourceTree = "<group>"; };
 		68FF016717690231007ED154 /* catPawsAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-hd.png"; path = "Team1Game3/Resources/catPawsAnim-hd.png"; sourceTree = "<group>"; };
 		68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
@@ -823,6 +825,7 @@
 			children = (
 				AD7731B617261A9D00709F80 /* Music off.png */,
 				AD7731B717261A9D00709F80 /* Music on.png */,
+				68987A15177E151A00648208 /* lightbulb.png */,
 				AD7731B817261A9D00709F80 /* Sound off.png */,
 				AD7731B917261A9D00709F80 /* Sound on.png */,
 			);
@@ -1784,6 +1787,7 @@
 				FD115BBF176FD2150057D59F /* playButton.png in Resources */,
 				FD115BC0176FD2150057D59F /* stopButton.png in Resources */,
 				68987A12177D003E00648208 /* draggingPopup.png in Resources */,
+				68987A16177E151A00648208 /* lightbulb.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
