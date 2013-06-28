@@ -1065,8 +1065,13 @@ for (AbstractGameObject* object in _createdObjects) {
                                         break;
                                     }
                                     
+                                    
+
+                                    bool fromSameAbstractGameObject = ((std::find (bodiesA.begin(), bodiesA.end(), bodyA)!= bodiesA.end()) && (std::find (bodiesA.begin(), bodiesA.end(), bodyB)!= bodiesA.end())) || ((std::find (bodiesB.begin(), bodiesB.end(), bodyA)!= bodiesB.end()) && (std::find (bodiesB.begin(), bodiesB.end(), bodyB)!= bodiesB.end()));
+                                    
+
                                     //bodyA != bodyB
-                                    if (bodyA != bodyB) {
+                                    if (bodyA != bodyB && !fromSameAbstractGameObject) {
                                         
                                         //Iterate through the fixtures of each body
                                         for (b2Fixture* fixtureB = bodyB->GetFixtureList(); fixtureB != NULL; fixtureB = fixtureB->GetNext()) {
@@ -1074,6 +1079,9 @@ for (AbstractGameObject* object in _createdObjects) {
                                             if (isOverlap){
                                                 break;
                                             }
+                                            
+                                            //add a check to make sure that 2 fixtures are not of the same fixture list 
+                                           // bool fromSameBody =
 
                                             if (fixtureA !=fixtureB) {
                                             
@@ -1090,7 +1098,6 @@ for (AbstractGameObject* object in _createdObjects) {
                                                     break;
                                                 }
                                             }
-                                            
                                         }
                                     }
                                     
