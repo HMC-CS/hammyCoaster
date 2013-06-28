@@ -997,7 +997,6 @@ for (AbstractGameObject* object in _createdObjects) {
  */
 
 -(void) checkAllObjectsForOverlap {
-    
     //loop through every abstract game object in play
     for (AbstractGameObject* objectA in _createdObjects) {
         bool isOverlap = false;
@@ -1094,6 +1093,7 @@ for (AbstractGameObject* object in _createdObjects) {
                                             
                                                 if (!isStar && !isRedPortal && !isBluePortal && intersected) {
                                                     isOverlap = true;
+                                                    NSLog(@"Changing the color of both bodies");
                                                     [self changeColorToGrayForBody1:bodyA andBody2:bodyB];
                                                     break;
                                                 }
@@ -1103,6 +1103,7 @@ for (AbstractGameObject* object in _createdObjects) {
                                     
                                     //if objectA has NO intersections with any of objectB's bodiesB, recolor objectA
                                     if (j == bodiesB.end()-1 && !isOverlap) {
+                                        NSLog(@"Changing color back");
                                         [self changeColorBackforCurrentBody:bodyA];
                                         break;
                                     }
@@ -1126,6 +1127,7 @@ for (AbstractGameObject* object in _createdObjects) {
                 NSMutableArray* objectSprites = object.sprites;
                 for(CCSprite* sp in objectSprites)
                 {
+                    NSLog(@"Changing bodyA gray");
                     sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
             }
             
@@ -1139,6 +1141,7 @@ for (AbstractGameObject* object in _createdObjects) {
         NSMutableArray* objectSprites = object.sprites;
         for(CCSprite* sp in objectSprites)
         {
+            NSLog(@"Changing bodyB gray");
             sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
         }
         
