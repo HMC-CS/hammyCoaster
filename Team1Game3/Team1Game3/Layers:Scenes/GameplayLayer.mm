@@ -137,6 +137,7 @@
 
 
 
+
 /* createLabels
  * Creates star/score display labels
  */
