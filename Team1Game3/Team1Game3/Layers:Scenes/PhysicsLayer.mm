@@ -998,6 +998,7 @@ for (AbstractGameObject* object in _createdObjects) {
 
 -(void) checkAllObjectsForOverlap {
     
+    bool intersected = false;
     //loop through every abstract game object in play
     for (AbstractGameObject* objectA in _createdObjects) {
         bool isOverlap = false;
@@ -1029,11 +1030,13 @@ for (AbstractGameObject* object in _createdObjects) {
                     }
                     b2Vec2 v_i = shapeA->GetVertex(i);
                     v_i = bodyA->GetWorldPoint(v_i);
-                    for (int j = i; j < count; j++) {
+                    for (int j = 0; j < count; j++) {
                         
                         if (isOverlap){
                             break;
                         }
+                        if ( i != j)
+                        {
                         
                         b2Vec2 v_j = shapeA->GetVertex(j);
                         v_j = bodyA->GetWorldPoint(v_j);
@@ -1089,11 +1092,12 @@ for (AbstractGameObject* object in _createdObjects) {
                                                 bool isRedPortal = [objectA.type isEqualToString:@"RedPortalObject"] || [objectB.type isEqualToString:@"RedPortalObject"];
                                                 bool isBluePortal = [objectA.type isEqualToString:@"BluePortalObject"] ||[objectB.type isEqualToString:@"BluePortalObject"];
                                                 
-                                                bool intersected = fixtureB->RayCast(&output, inputRay, i);
+                                                intersected = fixtureB->RayCast(&output, inputRay, i);
                                                   
                                             
                                                 if (!isStar && !isRedPortal && !isBluePortal && intersected) {
                                                     isOverlap = true;
+                                                    NSLog(@"turning bodies gray");
                                                     [self changeColorToGrayForBody1:bodyA andBody2:bodyB];
                                                     break;
                                                 }
@@ -1102,15 +1106,33 @@ for (AbstractGameObject* object in _createdObjects) {
                                     }
                                     
                                     //if objectA has NO intersections with any of objectB's bodiesB, recolor objectA
-                                    if (j == bodiesB.end()-1 && !isOverlap) {
+                                   /*
+                                    if (!isOverlap && !intersected)
+                                    {
+                                        //j == bodiesB.end()-1 && !isOverlap && !intersected ) {
                                         [self changeColorBackforCurrentBody:bodyA];
                                         break;
                                     }
+                                    */
                                 }
                             }
                         }
                     }
                 }
+                }
+            }
+            /*
+            if (i==bodiesA.end()-1 && isOverlap)
+            {
+                break;
+            }
+             */
+            if (!isOverlap)
+            {
+                NSLog(@"turning body back");
+                //j == bodiesB.end()-1 && !isOverlap && !intersected ) {
+                [self changeColorBackforCurrentBody:bodyA];
+                break;
             }
         }
     }
