@@ -835,6 +835,7 @@ for (AbstractGameObject *obj in _createdObjects){
                 }
             }
         }
+    }
 
          if (isDeleteObject ) {
             [self deleteObjectWithBody:_currentMoveableBody];
@@ -842,7 +843,7 @@ for (AbstractGameObject *obj in _createdObjects){
         if (isBounceBackObject){
             [self bounceBackObjectWithBody:_currentMoveableBody];
         }
-    }
+    
 
     [self checkAllObjectsForOverlap];
     [self resetMoveableDynamicStatusForBodies:bodies];
