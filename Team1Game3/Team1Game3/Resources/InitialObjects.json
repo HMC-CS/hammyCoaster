@@ -67,21 +67,17 @@
         "level": "0104",
         "objects": 
         [
-            ["RedPortalObject", "30.0", "600.0", "0"],
-            ["BluePortalObject", "835.0", "217.0", "0"],
-            ["StarObject", "300.0", "230.0", "0"],
-            ["StarObject", "500.0", "240.0", "0"],
-            ["StarObject", "600.0", "230.0", "0"],
-            ["SeesawObject", "350.0", "160.0", "-0.4"],
-            ["InitialRampObject","105.0","504.0", "0.18"]
+            ["RedPortalObject", "200.0", "600.0", "0"]
         ],
         "inventory":
         [
-         ["RampObject", "0", "false"],
-         ["CurvedRampObject", "0", "false"],
-         ["TrampolineObject","1", "true"],
-         ["MagnetObject", "1", "true"],
-         ["SeesawObject", "0","false"]
+         ["RampObject", "5", "false"],
+         ["CurvedRampObject", "5", "false"],
+         ["TrampolineObject","5", "true"],
+         ["MagnetObject", "5", "true"],
+         ["SeesawObject", "5","false"],
+         ["StarObject", "5", "false"],
+         ["BluePortalObject","5", "false"]
         ]
     },
     {
@@ -246,5 +242,245 @@
          ["MagnetObject", "1", "true"],
          ["SeesawObject", "1","true"]
         ]
-    }
+    },
+ {
+ "level": "0201",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "5", "true"],
+  ["CurvedRampObject", "5", "true"],
+  ["TrampolineObject","5", "true"],
+  ["MagnetObject", "5", "true"],
+  ["SeesawObject", "5","true"]
+  ]
+ },
+ {
+ "level": "0202",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0203",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0204",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0205",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0206",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0207",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0208",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0209",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0210",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0211",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ },
+ {
+ "level": "0212",
+ "objects":
+ [
+  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["BluePortalObject", "75.0", "225.0", "0"],
+  ["StarObject", "200.0", "400.0", "0"],
+  ["StarObject", "500.0", "275.0", "0"],
+  ["StarObject", "125.0", "350.0", "0"]
+  
+  ],
+ "inventory":
+ [
+  ["RampObject", "1", "true"],
+  ["CurvedRampObject", "1", "true"],
+  ["TrampolineObject","1", "true"],
+  ["MagnetObject", "1", "true"],
+  ["SeesawObject", "1","true"]
+  ]
+ }
 ]
