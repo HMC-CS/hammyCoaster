@@ -147,8 +147,7 @@
 
 /* ////////////////////////////// Private Functions ////////////////////////////// */
 
-/* createInventoryLayer:
- * Creates the InventoryLayer
+/* createInventoryLayer:.json * Creates the InventoryLayer
  */
 -(void) createInventoryLayer
 {
