@@ -197,7 +197,7 @@
     _starCount = 0;
    for(CCSprite* star in _starArray)
    {
-        NSLog(@"remove stars");
+        //NSLog(@"remove stars");
         [self removeChild:star cleanup:YES];
     }
     //[self createLabels];
