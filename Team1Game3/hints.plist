@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>levelSet1</key>
+	<array>
+		<string>hint_1_1.png</string>
+		<string>hint_1_2.png</string>
+		<string>hint_1_3.png</string>
+		<string>hint_1_4.png</string>
+		<string>hint_1_5.png</string>
+		<string>hint_1_6.png</string>
+		<string>hint_1_7.png</string>
+		<string>hint_1_8.png</string>
+		<string>hint_1_9.png</string>
+		<string>hint_1_10.png</string>
+		<string>hint_1_11.png</string>
+		<string>hint_1_12.png</string>
+	</array>
+	<key>levelSet2</key>
+	<array>
+		<string>hint_2_1.png</string>
+		<string>hint_2_2.png</string>
+		<string>hint_2_3.png</string>
+		<string>hint_2_4.png</string>
+		<string>hint_2_5.png</string>
+		<string>hint_2_6.png</string>
+		<string>hint_2_7.png</string>
+		<string>hint_2_8.png</string>
+		<string>hint_2_9.png</string>
+		<string>hint_2_10.png</string>
+		<string>hint_2_11.png</string>
+		<string>hint_2_12.png</string>
+	</array>
+	<key>levelSet3</key>
+	<array>
+		<string>hint_3_1.png</string>
+		<string>hint_3_2.png</string>
+		<string>hint_3_3.png</string>
+		<string>hint_3_4.png</string>
+		<string>hint_3_5.png</string>
+		<string>hint_3_6.png</string>
+		<string>hint_3_7.png</string>
+		<string>hint_3_8.png</string>
+		<string>hint_3_9.png</string>
+		<string>hint_3_10.png</string>
+		<string>hint_3_11.png</string>
+		<string>hint_3_12.png</string>
+	</array>
+</dict>
+</plist>
