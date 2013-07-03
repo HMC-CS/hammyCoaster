@@ -229,7 +229,7 @@ for (AbstractGameObject *obj in _createdObjects){
             CGFloat px = [[item objectAtIndex:1] floatValue];
             CGFloat py = [[item objectAtIndex:2] floatValue];
             CGFloat rotation = [[item objectAtIndex:3] floatValue];
-            NSLog(@"adding star");
+            //NSLog(@"adding star");
             [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
         }
     }
@@ -1100,7 +1100,7 @@ for (AbstractGameObject* object in _createdObjects) {
                                                 if (!isStar && !isRedPortal && !isBluePortal && intersected) {
                                                     isOverlap = true;
                                                     
-                                                    NSLog(@"turning bodies gray");
+                                                    //NSLog(@"turning bodies gray");
 
                                                     [self changeColorToGrayForBody1:bodyA andBody2:bodyB];
                                                     break;
@@ -1138,7 +1138,7 @@ for (AbstractGameObject* object in _createdObjects) {
              */
             if (!isOverlap)
             {
-                NSLog(@"turning body back");
+                //NSLog(@"turning body back");
                 //j == bodiesB.end()-1 && !isOverlap && !intersected ) {
                 [self changeColorBackforCurrentBody:bodyA];
                 break;
@@ -1157,7 +1157,7 @@ for (AbstractGameObject* object in _createdObjects) {
                 NSMutableArray* objectSprites = object.sprites;
                 for(CCSprite* sp in objectSprites)
                 {
-                    NSLog(@"Changing bodyA gray");
+                    //NSLog(@"Changing bodyA gray");
                     sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
             }
             
