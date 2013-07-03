@@ -44,6 +44,7 @@
     GameManager* _gameManager;             // Holds game data
 }
 
+@property bool hint_displayed;
 @property (nonatomic, strong) CCSprite *catPaws;
 
 @property (nonatomic, strong) NSMutableArray* catArray;
@@ -63,6 +64,7 @@
  */
 -(id) initWithLevelSet:(int) set AndIndex:(int) index;
 
+-(id) toggle_hint_property;
 
 @end
 
