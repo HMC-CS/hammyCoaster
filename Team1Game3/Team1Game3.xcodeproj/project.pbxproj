@@ -18,13 +18,15 @@
 		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A0B177CD89B00648208 /* TutorialLayer.mm */; };
 		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
+		68987A181784B2CD00648208 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A171784B2CD00648208 /* background.png */; };
+		68987A2C1784CE1F00648208 /* newBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A2B1784CE1E00648208 /* newBackground.png */; };
+		68987A301784E99000648208 /* backgroundscene2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A2F1784E99000648208 /* backgroundscene2.png */; };
 		68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016617690230007ED154 /* catPawsAnim-hd.plist */; };
 		68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016717690231007ED154 /* catPawsAnim-hd.png */; };
 		68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */; };
 		68FF016F17690233007ED154 /* catPawsAnim-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */; };
 		68FF017017690233007ED154 /* catPawsAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016A17690232007ED154 /* catPawsAnim.plist */; };
 		68FF017117690233007ED154 /* catPawsAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016B17690232007ED154 /* catPawsAnim.png */; };
-		68FF0173176A5AED007ED154 /* newBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF0172176A5AED007ED154 /* newBackground.png */; };
 		9CE768D916F9B1FB00EE241F /* StarObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D516F9B1FB00EE241F /* StarObject-hd.png */; };
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
@@ -317,13 +319,15 @@
 		68987A0A177CD89A00648208 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
 		68987A0B177CD89B00648208 /* TutorialLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TutorialLayer.mm; sourceTree = "<group>"; };
 		68987A15177E151A00648208 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
+		68987A171784B2CD00648208 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		68987A2B1784CE1E00648208 /* newBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newBackground.png; sourceTree = "<group>"; };
+		68987A2F1784E99000648208 /* backgroundscene2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundscene2.png; sourceTree = "<group>"; };
 		68FF016617690230007ED154 /* catPawsAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-hd.plist"; path = "Team1Game3/Resources/catPawsAnim-hd.plist"; sourceTree = "<group>"; };
 		68FF016717690231007ED154 /* catPawsAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-hd.png"; path = "Team1Game3/Resources/catPawsAnim-hd.png"; sourceTree = "<group>"; };
 		68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
 		68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-ipadhd.png"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.png"; sourceTree = "<group>"; };
 		68FF016A17690232007ED154 /* catPawsAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = catPawsAnim.plist; path = Team1Game3/Resources/catPawsAnim.plist; sourceTree = "<group>"; };
 		68FF016B17690232007ED154 /* catPawsAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catPawsAnim.png; path = Team1Game3/Resources/catPawsAnim.png; sourceTree = "<group>"; };
-		68FF0172176A5AED007ED154 /* newBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newBackground.png; sourceTree = "<group>"; };
 		9CE768D516F9B1FB00EE241F /* StarObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-hd.png"; sourceTree = "<group>"; };
 		9CE768D616F9B1FB00EE241F /* StarObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarObject.h; sourceTree = "<group>"; };
 		9CE768D716F9B1FB00EE241F /* StarObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarObject.mm; sourceTree = "<group>"; };
@@ -940,10 +944,12 @@
 			isa = PBXGroup;
 			children = (
 				CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */,
+				68987A2B1784CE1E00648208 /* newBackground.png */,
+				68987A2F1784E99000648208 /* backgroundscene2.png */,
 				D878F95C17423CDF00F7BD46 /* WinScreen.png */,
+				68987A171784B2CD00648208 /* background.png */,
 				CECEFAAE1742709B00C0F604 /* GoalLayer.png */,
 				CECEFAAF1742709B00C0F604 /* MainMenu.png */,
-				68FF0172176A5AED007ED154 /* newBackground.png */,
 				D88BB91617273DC800FC28DC /* levelbackground.png */,
 			);
 			name = "Backgrounds and Screens";
@@ -1818,7 +1824,6 @@
 				68FF016F17690233007ED154 /* catPawsAnim-ipadhd.png in Resources */,
 				68FF017017690233007ED154 /* catPawsAnim.plist in Resources */,
 				68FF017117690233007ED154 /* catPawsAnim.png in Resources */,
-				68FF0173176A5AED007ED154 /* newBackground.png in Resources */,
 				6818126D176BE1F200018E76 /* restart.png in Resources */,
 				FD115BBF176FD2150057D59F /* playButton.png in Resources */,
 				FD115BC0176FD2150057D59F /* stopButton.png in Resources */,
@@ -1836,6 +1841,9 @@
 				9EA0CBD91784986500C21594 /* hint_1_10.png in Resources */,
 				9EA0CBDA1784986500C21594 /* hint_1_11.png in Resources */,
 				9EA0CBDB1784986500C21594 /* hint_1_12.png in Resources */,
+				68987A181784B2CD00648208 /* background.png in Resources */,
+				68987A2C1784CE1F00648208 /* newBackground.png in Resources */,
+				68987A301784E99000648208 /* backgroundscene2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
