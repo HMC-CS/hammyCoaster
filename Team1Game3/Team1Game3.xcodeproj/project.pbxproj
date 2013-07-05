@@ -20,7 +20,7 @@
 		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
 		68987A181784B2CD00648208 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A171784B2CD00648208 /* background.png */; };
 		68987A2C1784CE1F00648208 /* newBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A2B1784CE1E00648208 /* newBackground.png */; };
-		68987A301784E99000648208 /* backgroundscene2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A2F1784E99000648208 /* backgroundscene2.png */; };
+		68987A3217874C8800648208 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A3117874C8700648208 /* background2.png */; };
 		68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016617690230007ED154 /* catPawsAnim-hd.plist */; };
 		68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016717690231007ED154 /* catPawsAnim-hd.png */; };
 		68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */; };
@@ -321,7 +321,7 @@
 		68987A15177E151A00648208 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
 		68987A171784B2CD00648208 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		68987A2B1784CE1E00648208 /* newBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newBackground.png; sourceTree = "<group>"; };
-		68987A2F1784E99000648208 /* backgroundscene2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundscene2.png; sourceTree = "<group>"; };
+		68987A3117874C8700648208 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		68FF016617690230007ED154 /* catPawsAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-hd.plist"; path = "Team1Game3/Resources/catPawsAnim-hd.plist"; sourceTree = "<group>"; };
 		68FF016717690231007ED154 /* catPawsAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-hd.png"; path = "Team1Game3/Resources/catPawsAnim-hd.png"; sourceTree = "<group>"; };
 		68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
@@ -944,8 +944,8 @@
 			isa = PBXGroup;
 			children = (
 				CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */,
+				68987A3117874C8700648208 /* background2.png */,
 				68987A2B1784CE1E00648208 /* newBackground.png */,
-				68987A2F1784E99000648208 /* backgroundscene2.png */,
 				D878F95C17423CDF00F7BD46 /* WinScreen.png */,
 				68987A171784B2CD00648208 /* background.png */,
 				CECEFAAE1742709B00C0F604 /* GoalLayer.png */,
@@ -1843,7 +1843,7 @@
 				9EA0CBDB1784986500C21594 /* hint_1_12.png in Resources */,
 				68987A181784B2CD00648208 /* background.png in Resources */,
 				68987A2C1784CE1F00648208 /* newBackground.png in Resources */,
-				68987A301784E99000648208 /* backgroundscene2.png in Resources */,
+				68987A3217874C8800648208 /* background2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
