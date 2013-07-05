@@ -60,7 +60,7 @@
         background = [CCSprite spriteWithFile:@"newBackground.png"];
         } else if (set ==2 )
         {
-            background = [CCSprite spriteWithFile:@"backgroundscene2.png"];
+            background = [CCSprite spriteWithFile:@"background2.png"];
         }
         background.position = ccp(size.width/2, size.height/2);
         [self addChild: background];
