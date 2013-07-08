@@ -433,7 +433,7 @@ for (AbstractGameObject *obj in _createdObjects){
 	[super draw];
 	ccGLEnableVertexAttribs( kCCVertexAttribFlag_Position );
 	kmGLPushMatrix();
-	_world->DrawDebugData();
+	//_world->DrawDebugData();
 	kmGLPopMatrix();
 }
 

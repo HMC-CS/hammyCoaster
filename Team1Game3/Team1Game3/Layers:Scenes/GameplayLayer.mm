@@ -69,7 +69,7 @@
             _stars = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
-            //[_starArray addObject:_stars];
+            [_starArray addObject:_stars];
         } else {
             _stars = [CCSprite spriteWithFile:@"StarObject.png"];
             [_stars setPosition:starLocation];
@@ -93,7 +93,7 @@
     
     CGSize size = [CCDirector sharedDirector].winSize;
 
-    [CCMenuItemFont setFontSize:20];
+    [CCMenuItemFont setFontSize:31];
     
     // Play and reset ball buttons, which are toggle-able.
     CCMenuItemImage *playButton = [CCMenuItemImage itemWithNormalImage:@"playButton.png" selectedImage:@"playButton.png"];
@@ -126,7 +126,7 @@
     
     
     // Back Button: goes back to level selector menu
-    CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"Menu" block:^(id sender){
+    CCMenuItemLabel *backButton = [CCMenuItemFont itemWithString:@"MENU" block:^(id sender){
         [[CCDirector sharedDirector] replaceScene:[LevelSelectorLayer scene]];
     }];
     // Menu for back button (at bottom of inventory panel)
