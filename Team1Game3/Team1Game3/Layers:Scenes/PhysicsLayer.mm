@@ -1284,6 +1284,10 @@ for (AbstractGameObject* object in _createdObjects) {
 -(void) bounceBackObjectWithBody:(b2Body *)body {
     b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
     std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
+    if(_initialBodyPosition.x < 0)
+    {
+        [self deleteObjectWithBody:body];
+    }else{
     for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
     {
         b2Body* body = *i;
@@ -1291,7 +1295,7 @@ for (AbstractGameObject* object in _createdObjects) {
         // Set each body to its original position, taking account of offsets
         body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
     }
-    
+    }
 }
 
 
