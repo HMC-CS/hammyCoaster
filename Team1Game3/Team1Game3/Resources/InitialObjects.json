@@ -324,7 +324,7 @@
   ["RampObject", "1", "true"],
   ["CurvedRampObject", "1", "true"],
   ["TrampolineObject","1", "true"],
-  ["MagnetObject", "1", "true"],
+  ["MagnetObject", "0", "false"],
   ["SeesawObject", "1","true"]
   ]
  },
@@ -342,9 +342,9 @@
  "inventory":
  [
   ["RampObject", "1", "true"],
-  ["CurvedRampObject", "1", "true"],
+  ["CurvedRampObject", "0", "false"],
   ["TrampolineObject","1", "true"],
-  ["MagnetObject", "1", "true"],
+  ["MagnetObject", "0", "false"],
   ["SeesawObject", "1","true"]
   ]
  },
@@ -473,17 +473,19 @@
  "objects":
  [
   ["RedPortalObject", "710.0", "600.0", "0"],
-  ["BluePortalObject", "75.0", "225.0", "0"],
-  ["StarObject", "200.0", "400.0", "0"],
-  ["StarObject", "500.0", "275.0", "0"],
-  ["StarObject", "125.0", "350.0", "0"]
+  ["BluePortalObject", "710.0", "150.0", "0"],
+  ["StarObject", "30.0", "250.0", "0"],
+  ["StarObject", "30.0", "300.0", "0"],
+  ["StarObject", "30.0", "350.0", "0"]
+
+
   
   ],
  "inventory":
  [
   ["RampObject", "1", "true"],
-  ["CurvedRampObject", "1", "true"],
-  ["TrampolineObject","1", "true"],
+  ["CurvedRampObject", "0", "false"],
+  ["TrampolineObject","2", "true"],
   ["MagnetObject", "1", "true"],
   ["SeesawObject", "1","true"]
   ]
