@@ -364,7 +364,7 @@
   ["RampObject", "1", "true"],
   ["CurvedRampObject", "1", "true"],
   ["TrampolineObject","1", "true"],
-  ["MagnetObject", "1", "true"],
+  ["MagnetObject", "0", "false"],
   ["SeesawObject", "1","true"]
   ]
  },
@@ -462,7 +462,7 @@
  "inventory":
  [
   ["RampObject", "1", "true"],
-  ["CurvedRampObject", "1", "true"],
+  ["CurvedRampObject", "0", "false"],
   ["TrampolineObject","2", "true"],
   ["MagnetObject", "1", "true"],
   ["SeesawObject", "1","true"]
