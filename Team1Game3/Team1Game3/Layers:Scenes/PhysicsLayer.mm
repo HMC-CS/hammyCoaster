@@ -148,7 +148,6 @@
         for (CCSprite *sp in objectSprites) {
             if ((sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84) ||
                 (sp.color.r == 255 && sp.color.g == 0 && sp.color.b == 0)) {
-                NSLog(@"This cannot happen");
                 _safe_to_play = false;
                 break;
             }
@@ -157,7 +156,6 @@
     // You can only create one ball before resetting
     if (!_safe_to_play)
     {
-        NSLog(@"overlapped item");
         [self togglePlayMode];
         id action1 = [CCCallFunc actionWithTarget:self selector:@selector(flashColor)];
         id delay = [CCDelayTime actionWithDuration:0.2];
@@ -229,7 +227,6 @@ for (AbstractGameObject *obj in _createdObjects){
             CGFloat px = [[item objectAtIndex:1] floatValue];
             CGFloat py = [[item objectAtIndex:2] floatValue];
             CGFloat rotation = [[item objectAtIndex:3] floatValue];
-            //NSLog(@"adding star");
             [self addNewSpriteOfType:type AtPosition:ccp(px,py) WithRotation:rotation AsDefault:YES];
         }
     }
@@ -465,7 +462,6 @@ for (AbstractGameObject *obj in _createdObjects){
     }
     if ([self catPawCollision])
     {
-        //NSLog(@"In the update");
     }
     
     // If the ball hits a star, erase it.
@@ -849,153 +845,7 @@ for (AbstractGameObject *obj in _createdObjects){
     [self resetMoveableDynamicStatusForBodies:bodies];
 }
 
-//originally part of finishedMovingObject, delete this!
 
-//bool isIntersected = false;
-//b2Body* secondBody = NULL;
-//NSMutableArray* bodyLapArray = [[NSMutableArray alloc] init];
-
-/*
- //else check for object overlap, recolor as approrpiate
- else {
- //vertex between very vertice in each fixture
- b2Vec2 v_i = polygonShape->GetVertex(i);
- v_i = body->GetWorldPoint(v_i);
- 
- for (int j = i; j < count; j++) {
- b2Vec2 v_j = polygonShape->GetVertex(j);
- v_j = body->GetWorldPoint(v_j);
- 
- //raycasting
- b2RayCastOutput output;
- 
- b2RayCastInput inputRay;
- inputRay.p1 = v_i;
- inputRay.p2 = v_j;
- inputRay.maxFraction = 1.0;
- 
- //loop through every other abstract game object in play
- for (AbstractGameObject* object in _createdObjects) {
- std::vector<b2Body*> otherBodies = object.bodies;
- 
- //Iterate through each body
- for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
- b2Body* otherBody = *j;
- 
- //Iterate through each fixture in each body
- for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
- 
- //add if conditions to exclude the cat paws, blue portal, red portal and stars.
- 
- if (f2->RayCast(&output, inputRay,i)&& f!=f2 && ![object.type isEqualToString:@"StarObject"] && ![object.type isEqualToString:@"BluePortalObject"] && ![object.type isEqualToString:@"RedPortalObject"] && body != otherBody && moveableObject != object) {
- isIntersected = true;
- NSLog(@"setting second body");
- secondBody = otherBody;
- break;
- }
- 
- 
- else{
- [bodyLapArray addObject:object];
- }
- 
- 
- 
- }
- if (isDeleteObject || isBounceBackObject || isIntersected) {
- break;
- }
- }
- if (isDeleteObject || isBounceBackObject || isIntersected) {
- break;
- }
- }
- 
- if (isDeleteObject || isBounceBackObject || isIntersected) {
- break;
- }
- }
- 
- }
- 
- */
-
-
-/*
- if (isIntersected || secondBody)
- {
- [self changeColorToGrayForBody1:body andBody2:secondBody];
- }else if (!isIntersected){
- for (AbstractGameObject* object in _createdObjects)
- {
- NSMutableArray* objectSprites = object.sprites;
- for(CCSprite* sp in objectSprites)
- {
- if ((sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84))
- {
- std::vector<b2Body*> otherBodies = object.bodies;
- for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
- b2Body* otherBody = *j;
- [self changeColorBackForBody1:body andBody2:otherBody];
- }
- }
- }
- 
- for (AbstractGameObject* object in bodyLapArray)
- {
- NSMutableArray* objectSprites = object.sprites;
- for(CCSprite* sp in objectSprites)
- {
- if ((sp.color.r == 84 && sp.color.g == 84 && sp.color.b == 84))
- {
- std::vector<b2Body*> otherBodies = object.bodies;
- for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
- b2Body* otherBody = *j;
- [self changeColorBackForBody1:body andBody2:otherBody];
- }
- }
- }
- 
- }
- }
- 
- */
-
-/*
-//loop through every other abstract game object in play
-for (AbstractGameObject* object in _createdObjects) {
-    std::vector<b2Body*> otherBodies = object.bodies;
- 
-    //Iterate through each body
-    for (std::vector<b2Body*>::iterator j = otherBodies.begin(); j != otherBodies.end(); ++j) {
-        b2Body* otherBody = *j;
- 
-        //Iterate through each fixture in each body
-        for (b2Fixture* f2 = otherBody->GetFixtureList(); f2 != NULL; f2 = f2->GetNext()) {
- 
-            //add if conditions to exclude the cat paws, blue portal, red portal and stars.
-            b2RayCastOutput output;
-            if (f2->RayCast(&output, raycastInput,i)&& f!=f2) {
-                isIntersected = true;
-                NSLog(@"isIntersected: true");
-                break;
-            }
-        }
-        
-        // if isIntersected color grey out both bodies, else restore color
-        if (isIntersected) {
-            NSLog(@"grey out");
-            [self changeColorToGrayForBody1:body andBody2:otherBody];
-            return;
-        }
-        
-        else {
-            [self changeColorBackForBody1:body andBody2:otherBody];
-        }
-    }
-}
- 
- */
 
 -(void) checkAllObjectsForOverlap {
  
@@ -1100,7 +950,6 @@ for (AbstractGameObject* object in _createdObjects) {
                                                 if (!isStar && !isRedPortal && !isBluePortal && intersected) {
                                                     isOverlap = true;
                                                     
-                                                    //NSLog(@"turning bodies gray");
 
                                                     [self changeColorToGrayForBody1:bodyA andBody2:bodyB];
                                                     break;
@@ -1108,21 +957,7 @@ for (AbstractGameObject* object in _createdObjects) {
                                             }
                                         }
                                     }
-                                    
-                                    //if objectA has NO intersections with any of objectB's bodiesB, recolor objectA
-                                    
-                                   /*
-                                    if (!isOverlap && !intersected)
-                                    {
-                                        //j == bodiesB.end()-1 && !isOverlap && !intersected ) {
 
-                                    if (j == bodiesB.end()-1 && !isOverlap) {
-                                        NSLog(@"Changing color back");
-
-                                        [self changeColorBackforCurrentBody:bodyA];
-                                        break;
-                                    }
-                                    */
                                 }
                             }
                         }
@@ -1130,16 +965,9 @@ for (AbstractGameObject* object in _createdObjects) {
                 }
                 }
             }
-            /*
-            if (i==bodiesA.end()-1 && isOverlap)
-            {
-                break;
-            }
-             */
+
             if (!isOverlap)
             {
-                //NSLog(@"turning body back");
-                //j == bodiesB.end()-1 && !isOverlap && !intersected ) {
                 [self changeColorBackforCurrentBody:bodyA];
                 break;
             }
@@ -1157,7 +985,6 @@ for (AbstractGameObject* object in _createdObjects) {
                 NSMutableArray* objectSprites = object.sprites;
                 for(CCSprite* sp in objectSprites)
                 {
-                    //NSLog(@"Changing bodyA gray");
                     sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
             }
             
@@ -1171,7 +998,6 @@ for (AbstractGameObject* object in _createdObjects) {
         NSMutableArray* objectSprites = object.sprites;
         for(CCSprite* sp in objectSprites)
         {
-            NSLog(@"Changing bodyB gray");
             sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
         }
         
@@ -1297,242 +1123,6 @@ for (AbstractGameObject* object in _createdObjects) {
     }
     }
 }
-
-
-//old version of finishedMovingObject- rewritten above
-
-/* finishedMovingObject:
- * Deals with special cases for invalid placements of a body.
- */
-
-/*
--(void) finishedMovingObject: (AbstractGameObject*) bodyObject
-{
-   
-    std::vector<b2Body*> bodies = bodyObject.bodies;
-    b2Body *second_body = NULL; // added this -June 18. Kanak
-    
-    bool deleteObject = false;
-    bool bounceBackObject = false;
-    bool bounceBackSecondObject = false;
-    
-
-    
-    // Iterate through all the bodies in the object
-    for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) {
-        b2Body* body = *i;
-        
-        
-        
-        // Iterate through all the fixtures in each body
-        for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-            b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-            int count = polygonShape->GetVertexCount();
-            
-            // Iterate through all the vertices in each fixture
-            for (int i = 0; i < count; i++) {
-                
-                // Get the location of the vertex
-                b2Vec2 vertex = polygonShape->GetVertex(i);
-                vertex = body->GetWorldPoint(vertex);
-                CGPoint vertexPoint = ccpMult(ccp(vertex.x, vertex.y), PTM_RATIO);
-                vertexPoint = ccpAdd(vertexPoint, self.boundingBox.origin);
-                
-                // Check if the point is in the inventory
-                if ( !CGRectContainsPoint(self.boundingBox, vertexPoint)) {
-                    if ([self isPointInTrash:vertexPoint]) {
-                        deleteObject = true;
-                        for(CCSprite* sp in _bodyArray)
-                            {
-                                NSLog(@"actually in here");
-                                sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
-                        }
-                        break;
-                    } else {
-                        bounceBackObject = true;
-                        break;
-                    }
-                }
-            
-                // Check if the vertex is in another body
-                b2Body* b = [self getBodyAtLocation:vertex WithAABBSize:10.0f];
-                if (b && (b != body)) {
-                    AbstractGameObject* bodyObject2 = (__bridge AbstractGameObject*)(b->GetUserData());
-                    NSString* bodyType = bodyObject.type;
-                    
-                    // Allow overlap with stars
-                    if (![bodyType isEqualToString:@"StarObject"]) {
-                        bounceBackObject = true;
-                        second_body = b;
-                        //[self grayingOutforBody1:body andBody2:second_body];
-                        
-                        for (CCSprite* sp in bodyObject2.sprites)
-                        {
-                            [_bodyArray addObject:sp];
-                        }
-                        NSLog(@"body array length: %d", _bodyArray.count);
-                        //break;
-                         
-                    }
-                }
-             
-
-                //break;
-                
-            }
-            
-            // Break if something has been processed
-            if (deleteObject || bounceBackObject) {
-                break;
-            }
-        }
-        // Break if something has been processed
-        if (deleteObject || bounceBackObject) {
-            break;
-        }
-    }
-    
-    
-    
-    if (deleteObject) {
-        [self deleteObjectWithBody:_currentMoveableBody];
-    } else if (bounceBackObject ) {
-        [self bounceBackObjectWithBody:_currentMoveableBody];
- 
- 
-        //AbstractGameObject* object = (__bridge AbstractGameObject*)(second_body->GetUserData());
-        //NSMutableArray* objectSprites = object.sprites;
-        //for(CCSprite* sp in objectSprites)
-        //{
-          //  sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-        //}
-        
-
-    if (second_body)
-        {
-        [self bounceBackObjectWithBody:second_body];
-            //[self bounceBackObjectWithBody1:_currentMoveableBody andBody2:second_body];
-        }
-    }
-
-    else if (!bounceBackObject) {   // we need to check all objects that are not colliding. All of them should turn back to original colors
-        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(_currentMoveableBody->GetUserData())).bodies;
-        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-        {
-            b2Body* body = *i;
-    
-            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-            NSMutableArray* objectSprites = object.sprites;
-            for(CCSprite* sp in objectSprites)
-            {
-                sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
-            }
-        }
-        
-           NSLog(@"bodyAray 2: %d", _bodyArray.count);
-            for(CCSprite* sp in _bodyArray)
-            {
-                NSLog(@"actually in here");
-                sp.color = ccc3(255,255, 255);  // basically displays the original colors when objects are not in contact
-
-            }
-
-
-
-    
-    }
-    
-    [self resetMoveableDynamicStatusForBodies:bodies];
-}
-
-*/
-
-
-// reimplemented so that the checking + bounceBack functionality are split into 2 methods
-
-//-(void) bounceBackObjectWithBody: (b2Body*) body
-//{
-//    //NSLog(@"body's x coordinate is %f", body->GetPosition().x);
-//    //NSLog(@"window width is %f", self.contentSize.width);
-//    //NSLog(@"window height is %f", self.contentSize.height);
-//    
-//    float max_x = 0.0;
-//    float max_y = 0.0;
-//    float min_y = 0.0;
-//    for (b2Fixture* f = body->GetFixtureList(); f != NULL; f = f->GetNext()) {
-//        
-//        b2PolygonShape* polygonShape = (b2PolygonShape*)f->GetShape();
-//        int count = polygonShape->GetVertexCount();
-//        
-//        // Iterate through all the vertices in each fixture
-//        for (int i = 0; i < count; i++) {
-//            
-//            // Get the location of the vertex
-//            b2Vec2 vertex = polygonShape->GetVertex(i);
-//            vertex = body->GetWorldPoint(vertex);
-//            
-//            CGPoint vertexPoint = CGPointMake(vertex.x, vertex.y);
-//            if (vertexPoint.x > max_x) {
-//                max_x = vertexPoint.x;
-//            }
-//            if (vertexPoint.y > max_y) {
-//                max_y = vertexPoint.y;
-//            }
-//            if (vertexPoint.y < min_y) {
-//                min_y = vertexPoint.y;
-//            }
-//        }
-//    }
-//    
-//    
-//    // delete object from inventory case handled in finishedMovingObject
-//    
-//    /* case to delete object from screen if dragged to inventory
-//    if (_initialBodyPosition.x < 0) {
-//        [self deleteObjectWithBody:body];       // Delete objects in inventory
-//    }*/
-//    
-//    
-//    // when you are trying to place objects off screen
-//    // it will bounce back to its original position
-//     if (max_x > self.contentSize.width/PTM_RATIO || max_y > self.contentSize.height/PTM_RATIO || min_y < 0)
-//    {
-//        
-//        b2Vec2 cmbPosition = _currentMoveableBody->GetPosition();
-//        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
-//        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i) 
-//            {
-//            b2Body* body = *i;
-//            b2Vec2 bodyOffset = body->GetPosition() - cmbPosition;
-//            // Set each body to its original position, taking account of offsets
-//            body->SetTransform(_initialBodyPosition + bodyOffset, body->GetAngle());
-//            }
-//         
-//    }
-//}
-//
-//    // 2 objects intersect, both turn grey; now handled in finishedMovingObject
-//
-//    /*
-//     // when 2 or more objects intersect
-//    // one of them becomes grey
-//    else {
-//        std::vector<b2Body*> bodies = ((__bridge AbstractGameObject*)(body->GetUserData())).bodies;
-//        for (std::vector<b2Body*>::iterator i = bodies.begin(); i != bodies.end(); ++i)
-//        {
-//            b2Body* body = *i;
-//            AbstractGameObject* object = (__bridge AbstractGameObject*)(body->GetUserData());
-//            NSMutableArray* objectSprites = object.sprites;
-//            for(CCSprite* sp in objectSprites)
-//            {
-//                sp.color = ccc3(84,84,84);  // this is the hardcoded value of the greyish color (84,84,84)
-//            }
-//        
-//            }
-//        }
-//    }
-//     */
-//
 
 /* //////////////////////////////// Deallocate ///////////////////////////////// */
 
