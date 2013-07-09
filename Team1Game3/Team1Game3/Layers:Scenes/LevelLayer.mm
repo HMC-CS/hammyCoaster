@@ -127,12 +127,9 @@
     // This loads the value of the string at index = _levelIndex-1
     NSString* level_1_pic = [[NSString alloc] initWithFormat:levelSet[_levelIndex-1]];
     
-    NSLog(@"Level set is %d", _levelSet);
-    NSLog(@"Level number is %d", _levelIndex);
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     CCMenuItemImage* hintButton = [CCMenuItemImage itemWithNormalImage:@"lightbulb.png" selectedImage:@"lightbulb.png" block:^(id sender) {
-        NSLog(@"SSUP");
         if (_levelSet == 1 && _hint_displayed == false) 
         {
             _hint_displayed = true;
@@ -303,11 +300,9 @@
      [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
 //    if (_physicsLayer.safe_to_play == true) {
 //        [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
-//        NSLog(@"should allow toggle");
 //    }
 //    
 //    else {
-//        NSLog(@"forbid toggle");
 //        return;
 //    }
 }

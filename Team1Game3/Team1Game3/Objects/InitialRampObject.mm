@@ -40,7 +40,6 @@
     ramp_Body->CreateFixture(&fixtureDef);
     
     // Set user data to self and add body to list of bodies
-    NSLog(@"object type is %@", self.type);
     ramp_Body->SetUserData((__bridge void*)self);
     _bodies.push_back(ramp_Body);
     
