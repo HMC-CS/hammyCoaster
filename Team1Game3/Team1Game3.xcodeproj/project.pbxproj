@@ -22,6 +22,7 @@
 		68987A34178B60CE00648208 /* backgroundscene2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A33178B60CE00648208 /* backgroundscene2.png */; };
 		68987A3A178B626600648208 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A39178B626600648208 /* background2.png */; };
 		68987A40178B6BAB00648208 /* newBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A3F178B6BAB00648208 /* newBackground.png */; };
+		68987A43178CA4D100648208 /* CreditsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A42178CA4CF00648208 /* CreditsLayer.mm */; };
 		68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016617690230007ED154 /* catPawsAnim-hd.plist */; };
 		68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016717690231007ED154 /* catPawsAnim-hd.png */; };
 		68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */; };
@@ -324,6 +325,8 @@
 		68987A33178B60CE00648208 /* backgroundscene2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundscene2.png; sourceTree = "<group>"; };
 		68987A39178B626600648208 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		68987A3F178B6BAB00648208 /* newBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newBackground.png; sourceTree = "<group>"; };
+		68987A41178CA4CE00648208 /* CreditsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsLayer.h; sourceTree = "<group>"; };
+		68987A42178CA4CF00648208 /* CreditsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CreditsLayer.mm; sourceTree = "<group>"; };
 		68FF016617690230007ED154 /* catPawsAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-hd.plist"; path = "Team1Game3/Resources/catPawsAnim-hd.plist"; sourceTree = "<group>"; };
 		68FF016717690231007ED154 /* catPawsAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-hd.png"; path = "Team1Game3/Resources/catPawsAnim-hd.png"; sourceTree = "<group>"; };
 		68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
@@ -918,6 +921,8 @@
 				D895F54817073CCA00ED74C5 /* LevelSelectorLayer.mm */,
 				D8E83EAF16EA75F4000284EA /* MainMenuLayer.h */,
 				D8E83EB016EA75F4000284EA /* MainMenuLayer.mm */,
+				68987A41178CA4CE00648208 /* CreditsLayer.h */,
+				68987A42178CA4CF00648208 /* CreditsLayer.mm */,
 				D88207791717D3D200D74162 /* OverallWinLayer.h */,
 				D882077A1717D3D200D74162 /* OverallWinLayer.mm */,
 				D8E83EBC16EAC1E5000284EA /* PhysicsLayer.h */,
@@ -2067,6 +2072,7 @@
 				D878F976174248B800F7BD46 /* InitialRampObject.mm in Sources */,
 				FD816F6E177A521C000B53B7 /* MyRayCastCallback.mm in Sources */,
 				68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */,
+				68987A43178CA4D100648208 /* CreditsLayer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
