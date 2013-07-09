@@ -111,6 +111,7 @@
     NSAssert1(index > 0 && index <= _numLevelIndices, @"Invalid level index %d given in AppController.", index);
     
     int arrayIndex = [self arrayIndexForLevelSet:set AndIndex:index];
+
     
     // Update high scores
     if (stars > [[_levelHighScores objectAtIndex:arrayIndex] intValue]) {

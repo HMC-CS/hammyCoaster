@@ -9,6 +9,7 @@
 #import "OverallWinLayer.h"
 
 #import "MainMenuLayer.h"
+#import "CreditsLayer.h"
 #import "LevelSelectorLayer.h"
 #import "SoundManager.h"
 
@@ -53,9 +54,11 @@
         CCMenuItemLabel *levelMenu = [CCMenuItemFont itemWithString:@"Level Selector" block:^(id sender){
             [[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
         }];
-        
+        CCMenuItemLabel *creditsMenu = [CCMenuItemFont itemWithString:@"Credits" block:^(id sender) {
+            [[CCDirector sharedDirector] pushScene: [CreditsLayer scene]];
+        }];
         // Format main menu/level selector menu and add it to the layer
-        CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, nil];
+        CCMenu *menu = [CCMenu menuWithItems:mainMenu, levelMenu, creditsMenu, nil];
         [menu alignItemsHorizontallyWithPadding:20.0f];
         [menu setPosition:ccp( size.width*3/4, size.height*5/9)];
         [self addChild: menu z:-1];
