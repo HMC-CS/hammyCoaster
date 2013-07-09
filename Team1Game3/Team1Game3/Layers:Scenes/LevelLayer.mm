@@ -130,7 +130,7 @@
     
     CGSize size = [[CCDirector sharedDirector] winSize];
     CCMenuItemImage* hintButton = [CCMenuItemImage itemWithNormalImage:@"lightbulb.png" selectedImage:@"lightbulb.png" block:^(id sender) {
-        if (_levelSet == 1 && _hint_displayed == false) 
+        if (_hint_displayed == false) 
         {
             _hint_displayed = true;
             _draggingPopup = [CCSprite spriteWithFile:level_1_pic];
