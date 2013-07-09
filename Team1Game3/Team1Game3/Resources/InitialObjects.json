@@ -292,8 +292,8 @@
  "level": "0203",
  "objects":
  [
-  ["RedPortalObject", "710.0", "600.0", "0"],
-  ["BluePortalObject", "700.0", "100.0", "0"],
+  ["RedPortalObject", "690.0", "600.0", "0"],
+  ["BluePortalObject", "685.0", "100.0", "0"],
   ["StarObject", "200.0", "400.0", "0"],
   ["StarObject", "200.0", "200.0", "0"],
   ["StarObject", "500.0", "200.0", "0"]
@@ -352,7 +352,7 @@
  "level": "0206",
  "objects":
  [
-  ["RedPortalObject", "710.0", "600.0", "0"],
+  ["RedPortalObject", "690.0", "600.0", "0"],
   ["BluePortalObject", "75.0", "225.0", "0"],
   ["StarObject", "200.0", "400.0", "0"],
   ["StarObject", "500.0", "275.0", "0"],
@@ -472,8 +472,8 @@
  "level": "0212",
  "objects":
  [
-  ["RedPortalObject", "710.0", "600.0", "0"],
-  ["BluePortalObject", "710.0", "150.0", "0"],
+  ["RedPortalObject", "690.0", "600.0", "0"],
+  ["BluePortalObject", "690.0", "150.0", "0"],
   ["StarObject", "30.0", "250.0", "0"],
   ["StarObject", "30.0", "300.0", "0"],
   ["StarObject", "30.0", "350.0", "0"]
