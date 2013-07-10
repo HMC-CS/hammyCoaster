@@ -11,15 +11,12 @@
 		6177232E170D5559004F545F /* RampObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6177232D170D5559004F545F /* RampObjectIcon.png */; };
 		61772331170D59D5004F545F /* RampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61772330170D59D5004F545F /* RampObjectIconSelected.png */; };
 		619EE6C91728F0440005D077 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 619EE6C81728F0440005D077 /* lock.png */; };
-		619EE6D01729DD880005D077 /* trashCan.png in Resources */ = {isa = PBXBuildFile; fileRef = 619EE6CF1729DD880005D077 /* trashCan.png */; };
 		61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */; };
 		61DF4BEB170E2FD2002187F6 /* StarObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */; };
 		61DF4BEC170E2FD2002187F6 /* StarObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */; };
 		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A0B177CD89B00648208 /* TutorialLayer.mm */; };
 		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
-		68987A181784B2CD00648208 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A171784B2CD00648208 /* background.png */; };
-		68987A34178B60CE00648208 /* backgroundscene2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A33178B60CE00648208 /* backgroundscene2.png */; };
 		68987A3A178B626600648208 /* background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A39178B626600648208 /* background2.png */; };
 		68987A40178B6BAB00648208 /* newBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A3F178B6BAB00648208 /* newBackground.png */; };
 		68987A43178CA4D100648208 /* CreditsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A42178CA4CF00648208 /* CreditsLayer.mm */; };
@@ -84,7 +81,6 @@
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
 		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */; };
-		D8299F811721467C00C6E8C5 /* Delete.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D8299F801721467B00C6E8C5 /* Delete.PNG */; };
 		D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D8299F82172146F300C6E8C5 /* Delete2.PNG */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
@@ -324,7 +320,6 @@
 		6177232D170D5559004F545F /* RampObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObjectIcon.png; sourceTree = "<group>"; };
 		61772330170D59D5004F545F /* RampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObjectIconSelected.png; sourceTree = "<group>"; };
 		619EE6C81728F0440005D077 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
-		619EE6CF1729DD880005D077 /* trashCan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trashCan.png; sourceTree = "<group>"; };
 		61AD211517405BBE00F34E39 /* SpriteResizingFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteResizingFunctions.h; sourceTree = "<group>"; };
 		61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpriteResizingFunctions.mm; sourceTree = "<group>"; };
 		61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIcon.png; sourceTree = "<group>"; };
@@ -333,8 +328,6 @@
 		68987A0A177CD89A00648208 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
 		68987A0B177CD89B00648208 /* TutorialLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TutorialLayer.mm; sourceTree = "<group>"; };
 		68987A15177E151A00648208 /* lightbulb.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lightbulb.png; sourceTree = "<group>"; };
-		68987A171784B2CD00648208 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
-		68987A33178B60CE00648208 /* backgroundscene2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backgroundscene2.png; sourceTree = "<group>"; };
 		68987A39178B626600648208 /* background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background2.png; sourceTree = "<group>"; };
 		68987A3F178B6BAB00648208 /* newBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newBackground.png; sourceTree = "<group>"; };
 		68987A41178CA4CE00648208 /* CreditsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsLayer.h; sourceTree = "<group>"; };
@@ -409,7 +402,6 @@
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
 		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
 		D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObjectIcon.png; sourceTree = "<group>"; };
-		D8299F801721467B00C6E8C5 /* Delete.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete.PNG; sourceTree = "<group>"; };
 		D8299F82172146F300C6E8C5 /* Delete2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete2.PNG; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -963,10 +955,8 @@
 		D878F95A17423AE900F7BD46 /* Inventory Pictures */ = {
 			isa = PBXGroup;
 			children = (
-				619EE6CF1729DD880005D077 /* trashCan.png */,
 				611171F7172B8A2C00CF2950 /* trash2.png */,
 				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
-				D8299F801721467B00C6E8C5 /* Delete.PNG */,
 			);
 			path = "Inventory Pictures";
 			sourceTree = "<group>";
@@ -975,11 +965,9 @@
 			isa = PBXGroup;
 			children = (
 				CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */,
-				68987A33178B60CE00648208 /* backgroundscene2.png */,
 				68987A3F178B6BAB00648208 /* newBackground.png */,
 				68987A39178B626600648208 /* background2.png */,
 				D878F95C17423CDF00F7BD46 /* WinScreen.png */,
-				68987A171784B2CD00648208 /* background.png */,
 				CECEFAAE1742709B00C0F604 /* GoalLayer.png */,
 				CECEFAAF1742709B00C0F604 /* MainMenu.png */,
 				D88BB91617273DC800FC28DC /* levelbackground.png */,
@@ -1837,7 +1825,6 @@
 				D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */,
 				CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */,
 				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
-				D8299F811721467C00C6E8C5 /* Delete.PNG in Resources */,
 				D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */,
 				AD7731A91724A96C00709F80 /* Background music.m4a in Resources */,
 				AD7731BA17261A9D00709F80 /* Music off.png in Resources */,
@@ -1853,7 +1840,6 @@
 				D88BB92317279B2800FC28DC /* SeesawObjectTop.png in Resources */,
 				D88BB92517279E1C00FC28DC /* SeesawObjectIcon.png in Resources */,
 				619EE6C91728F0440005D077 /* lock.png in Resources */,
-				619EE6D01729DD880005D077 /* trashCan.png in Resources */,
 				611171F8172B8A2C00CF2950 /* trash2.png in Resources */,
 				D878F9591742384300F7BD46 /* Icon-72.png in Resources */,
 				D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */,
@@ -1873,8 +1859,6 @@
 				FD115BC0176FD2150057D59F /* stopButton.png in Resources */,
 				68987A16177E151A00648208 /* lightbulb.png in Resources */,
 				9EA44B08177E23B500E42297 /* hints.plist in Resources */,
-				68987A181784B2CD00648208 /* background.png in Resources */,
-				68987A34178B60CE00648208 /* backgroundscene2.png in Resources */,
 				68987A3A178B626600648208 /* background2.png in Resources */,
 				68987A40178B6BAB00648208 /* newBackground.png in Resources */,
 				9E9CF082178C89390070F758 /* hint_2_7.png in Resources */,
