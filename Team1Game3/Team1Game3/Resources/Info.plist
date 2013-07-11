@@ -18,6 +18,7 @@
 		<string>Icon-Small-50.png</string>
 		<string>Icon-Small.png</string>
 		<string>Icon-Small@2x.png</string>
+		<string>HamsterCoasterIcon-ipadhd.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -31,6 +32,7 @@
 				<string>Icon-Small-50.png</string>
 				<string>Icon-Small.png</string>
 				<string>Icon-Small@2x.png</string>
+				<string>HamsterCoasterIcon-ipadhd.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -48,7 +50,11 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
+	<key>LSMultipleInstancesProhibited</key>
+	<true/>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>UIPrerenderedIcon</key>
 	<true/>
@@ -60,10 +66,6 @@
 		<true/>
 	</dict>
 	<key>UIStatusBarHidden</key>
-	<true/>
-	<key>LSMultipleInstancesProhibited</key>
-	<true/>
-	<key>UIApplicationExitsOnSuspend</key>
 	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
