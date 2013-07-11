@@ -41,6 +41,7 @@
 		61AD211717405BBE00F34E39 /* SpriteResizingFunctions.mm in Sources */ = {isa = PBXBuildFile; fileRef = 61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */; };
 		61DF4BEB170E2FD2002187F6 /* StarObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */; };
 		61DF4BEC170E2FD2002187F6 /* StarObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */; };
+		68132E09178F1A6E00013E58 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E08178F1A6E00013E58 /* Default-Landscape@2x~ipad.png */; };
 		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A0B177CD89B00648208 /* TutorialLayer.mm */; };
 		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
@@ -91,7 +92,6 @@
 		7572FBC6178E66EA00677856 /* StarObjectOutline-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBC2178E66E900677856 /* StarObjectOutline-ipadhd.png */; };
 		7572FBC8178E678600677856 /* restart-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBC7178E678400677856 /* restart-ipadhd.png */; };
 		7572FBCA178E680700677856 /* HamsterCoasterIcon-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBC9178E680600677856 /* HamsterCoasterIcon-ipadhd.png */; };
-		7572FBCC178E681400677856 /* Default-Landscape@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBCB178E681200677856 /* Default-Landscape@2x~ipad.png */; };
 		7572FBD0178E6D7100677856 /* lock-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBCF178E6D7100677856 /* lock-ipadhd.png */; };
 		7572FBD2178E6FAD00677856 /* credits-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBD1178E6FAC00677856 /* credits-ipadhd.png */; };
 		7572FBD4178E790100677856 /* hint_2_6-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBD3178E790100677856 /* hint_2_6-ipadhd.png */; };
@@ -415,6 +415,7 @@
 		61AD211617405BBE00F34E39 /* SpriteResizingFunctions.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpriteResizingFunctions.mm; sourceTree = "<group>"; };
 		61DF4BE9170E2FD2002187F6 /* StarObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIcon.png; sourceTree = "<group>"; };
 		61DF4BEA170E2FD2002187F6 /* StarObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectIconSelected.png; sourceTree = "<group>"; };
+		68132E08178F1A6E00013E58 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		6818126C176BE1F200018E76 /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
 		68987A0A177CD89A00648208 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
 		68987A0B177CD89B00648208 /* TutorialLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TutorialLayer.mm; sourceTree = "<group>"; };
@@ -467,7 +468,6 @@
 		7572FBC2178E66E900677856 /* StarObjectOutline-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObjectOutline-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBC7178E678400677856 /* restart-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "restart-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBC9178E680600677856 /* HamsterCoasterIcon-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HamsterCoasterIcon-ipadhd.png"; sourceTree = "<group>"; };
-		7572FBCB178E681200677856 /* Default-Landscape@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x~ipad.png"; sourceTree = "<group>"; };
 		7572FBCF178E6D7100677856 /* lock-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBD1178E6FAC00677856 /* credits-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBD3178E790100677856 /* hint_2_6-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_2_6-ipadhd.png"; sourceTree = "<group>"; };
@@ -1308,10 +1308,10 @@
 		D8E83C6716EA753B000284EA = {
 			isa = PBXGroup;
 			children = (
+				68132E08178F1A6E00013E58 /* Default-Landscape@2x~ipad.png */,
 				9EA44B07177E23B500E42297 /* hints.plist */,
 				68FF016617690230007ED154 /* catPawsAnim-hd.plist */,
 				D8E83C7116EA753B000284EA /* Products */,
-				7572FBCB178E681200677856 /* Default-Landscape@2x~ipad.png */,
 				7572FBC9178E680600677856 /* HamsterCoasterIcon-ipadhd.png */,
 				68FF016717690231007ED154 /* catPawsAnim-hd.png */,
 				68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */,
@@ -2145,10 +2145,10 @@
 				7572FBC6178E66EA00677856 /* StarObjectOutline-ipadhd.png in Resources */,
 				7572FBC8178E678600677856 /* restart-ipadhd.png in Resources */,
 				7572FBCA178E680700677856 /* HamsterCoasterIcon-ipadhd.png in Resources */,
-				7572FBCC178E681400677856 /* Default-Landscape@2x~ipad.png in Resources */,
 				7572FBD0178E6D7100677856 /* lock-ipadhd.png in Resources */,
 				7572FBD2178E6FAD00677856 /* credits-ipadhd.png in Resources */,
 				7572FBD4178E790100677856 /* hint_2_6-ipadhd.png in Resources */,
+				68132E09178F1A6E00013E58 /* Default-Landscape@2x~ipad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
