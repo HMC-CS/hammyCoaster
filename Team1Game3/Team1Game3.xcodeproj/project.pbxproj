@@ -74,6 +74,13 @@
 		68FF016F17690233007ED154 /* catPawsAnim-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */; };
 		68FF017017690233007ED154 /* catPawsAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016A17690232007ED154 /* catPawsAnim.plist */; };
 		68FF017117690233007ED154 /* catPawsAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016B17690232007ED154 /* catPawsAnim.png */; };
+		7572FBA6178E4B4F00677856 /* Background music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA1178E4B4F00677856 /* Background music.mp3 */; };
+		7572FBA7178E4B4F00677856 /* CurvedRampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA2178E4B4F00677856 /* CurvedRampObject.mp3 */; };
+		7572FBA8178E4B4F00677856 /* RampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA3178E4B4F00677856 /* RampObject.mp3 */; };
+		7572FBA9178E4B4F00677856 /* StarObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA4178E4B4F00677856 /* StarObject.mp3 */; };
+		7572FBAA178E4B4F00677856 /* TrampolineObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA5178E4B4F00677856 /* TrampolineObject.mp3 */; };
+		7572FBB0178E514E00677856 /* credits.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBAF178E514E00677856 /* credits.png */; };
+		7572FBB2178E524900677856 /* credits-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBB1178E524900677856 /* credits-ipadhd.png */; };
 		9CE768D916F9B1FB00EE241F /* StarObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D516F9B1FB00EE241F /* StarObject-hd.png */; };
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
@@ -108,16 +115,11 @@
 		AD57A95F17142818007B471F /* WinLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A95E17142818007B471F /* WinLayer.mm */; };
 		AD57A961171CAE5E007B471F /* StarObjectOutline.png in Resources */ = {isa = PBXBuildFile; fileRef = AD57A960171CAE59007B471F /* StarObjectOutline.png */; };
 		AD57A96F171CC476007B471F /* InstructionsLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD57A96E171CC476007B471F /* InstructionsLayer.mm */; };
-		AD7731A91724A96C00709F80 /* Background music.m4a in Resources */ = {isa = PBXBuildFile; fileRef = AD7731A81724A96B00709F80 /* Background music.m4a */; };
 		AD7731AC1725F84D00709F80 /* SoundManager.mm in Sources */ = {isa = PBXBuildFile; fileRef = AD7731AB1725F84D00709F80 /* SoundManager.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		AD7731BA17261A9D00709F80 /* Music off.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B617261A9D00709F80 /* Music off.png */; };
 		AD7731BB17261A9D00709F80 /* Music on.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B717261A9D00709F80 /* Music on.png */; };
 		AD7731BC17261A9D00709F80 /* Sound off.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B817261A9D00709F80 /* Sound off.png */; };
 		AD7731BD17261A9D00709F80 /* Sound on.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B917261A9D00709F80 /* Sound on.png */; };
-		AD7731C01726416900709F80 /* StarObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731BF1726416900709F80 /* StarObject.mp3 */; };
-		AD7731C417265ACE00709F80 /* RampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C217265ACD00709F80 /* RampObject.mp3 */; };
-		AD7731C617265B4C00709F80 /* CurvedRampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C517265B4C00709F80 /* CurvedRampObject.mp3 */; };
-		AD7731C8172660EF00709F80 /* TrampolineObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AD7731C7172660EF00709F80 /* TrampolineObject.mp3 */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
 		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
@@ -434,6 +436,13 @@
 		68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-ipadhd.png"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.png"; sourceTree = "<group>"; };
 		68FF016A17690232007ED154 /* catPawsAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = catPawsAnim.plist; path = Team1Game3/Resources/catPawsAnim.plist; sourceTree = "<group>"; };
 		68FF016B17690232007ED154 /* catPawsAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catPawsAnim.png; path = Team1Game3/Resources/catPawsAnim.png; sourceTree = "<group>"; };
+		7572FBA1178E4B4F00677856 /* Background music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Background music.mp3"; sourceTree = "<group>"; };
+		7572FBA2178E4B4F00677856 /* CurvedRampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CurvedRampObject.mp3; sourceTree = "<group>"; };
+		7572FBA3178E4B4F00677856 /* RampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RampObject.mp3; sourceTree = "<group>"; };
+		7572FBA4178E4B4F00677856 /* StarObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = StarObject.mp3; sourceTree = "<group>"; };
+		7572FBA5178E4B4F00677856 /* TrampolineObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrampolineObject.mp3; sourceTree = "<group>"; };
+		7572FBAF178E514E00677856 /* credits.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = credits.png; sourceTree = "<group>"; };
+		7572FBB1178E524900677856 /* credits-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits-ipadhd.png"; sourceTree = "<group>"; };
 		9CE768D516F9B1FB00EE241F /* StarObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-hd.png"; sourceTree = "<group>"; };
 		9CE768D616F9B1FB00EE241F /* StarObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarObject.h; sourceTree = "<group>"; };
 		9CE768D716F9B1FB00EE241F /* StarObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarObject.mm; sourceTree = "<group>"; };
@@ -473,17 +482,12 @@
 		AD57A960171CAE59007B471F /* StarObjectOutline.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StarObjectOutline.png; sourceTree = "<group>"; };
 		AD57A96D171CC476007B471F /* InstructionsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsLayer.h; sourceTree = "<group>"; };
 		AD57A96E171CC476007B471F /* InstructionsLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = InstructionsLayer.mm; sourceTree = "<group>"; };
-		AD7731A81724A96B00709F80 /* Background music.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Background music.m4a"; sourceTree = "<group>"; };
 		AD7731AA1725F84500709F80 /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
 		AD7731AB1725F84D00709F80 /* SoundManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SoundManager.mm; sourceTree = "<group>"; };
 		AD7731B617261A9D00709F80 /* Music off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Music off.png"; sourceTree = "<group>"; };
 		AD7731B717261A9D00709F80 /* Music on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Music on.png"; sourceTree = "<group>"; };
 		AD7731B817261A9D00709F80 /* Sound off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound off.png"; sourceTree = "<group>"; };
 		AD7731B917261A9D00709F80 /* Sound on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound on.png"; sourceTree = "<group>"; };
-		AD7731BF1726416900709F80 /* StarObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = StarObject.mp3; sourceTree = "<group>"; };
-		AD7731C217265ACD00709F80 /* RampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RampObject.mp3; sourceTree = "<group>"; };
-		AD7731C517265B4C00709F80 /* CurvedRampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CurvedRampObject.mp3; sourceTree = "<group>"; };
-		AD7731C7172660EF00709F80 /* TrampolineObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TrampolineObject.mp3; sourceTree = "<group>"; };
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
@@ -1034,11 +1038,11 @@
 		AD7731BE1726415800709F80 /* Sound */ = {
 			isa = PBXGroup;
 			children = (
-				AD7731C7172660EF00709F80 /* TrampolineObject.mp3 */,
-				AD7731C517265B4C00709F80 /* CurvedRampObject.mp3 */,
-				AD7731C217265ACD00709F80 /* RampObject.mp3 */,
-				AD7731BF1726416900709F80 /* StarObject.mp3 */,
-				AD7731A81724A96B00709F80 /* Background music.m4a */,
+				7572FBA1178E4B4F00677856 /* Background music.mp3 */,
+				7572FBA2178E4B4F00677856 /* CurvedRampObject.mp3 */,
+				7572FBA3178E4B4F00677856 /* RampObject.mp3 */,
+				7572FBA4178E4B4F00677856 /* StarObject.mp3 */,
+				7572FBA5178E4B4F00677856 /* TrampolineObject.mp3 */,
 			);
 			path = Sound;
 			sourceTree = "<group>";
@@ -1118,8 +1122,10 @@
 				68987AFB178E31B800648208 /* LevelIcon0-ipadhd.png */,
 				68987AFC178E31BA00648208 /* LevelSelectorLayer-ipadhd.png */,
 				68987AFD178E31BB00648208 /* MainMenu-ipadhd.png */,
+				7572FBAF178E514E00677856 /* credits.png */,
 				68987AFE178E31BE00648208 /* WinScreen-ipadhd.png */,
 				CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */,
+				7572FBB1178E524900677856 /* credits-ipadhd.png */,
 				68987A3F178B6BAB00648208 /* newBackground.png */,
 				68987A39178B626600648208 /* background2.png */,
 				D878F95C17423CDF00F7BD46 /* WinScreen.png */,
@@ -1978,15 +1984,10 @@
 				CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */,
 				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
 				D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */,
-				AD7731A91724A96C00709F80 /* Background music.m4a in Resources */,
 				AD7731BA17261A9D00709F80 /* Music off.png in Resources */,
 				AD7731BB17261A9D00709F80 /* Music on.png in Resources */,
 				AD7731BC17261A9D00709F80 /* Sound off.png in Resources */,
 				AD7731BD17261A9D00709F80 /* Sound on.png in Resources */,
-				AD7731C01726416900709F80 /* StarObject.mp3 in Resources */,
-				AD7731C417265ACE00709F80 /* RampObject.mp3 in Resources */,
-				AD7731C617265B4C00709F80 /* CurvedRampObject.mp3 in Resources */,
-				AD7731C8172660EF00709F80 /* TrampolineObject.mp3 in Resources */,
 				D88BB91717273DC800FC28DC /* levelbackground.png in Resources */,
 				D88BB92117279B0800FC28DC /* SeesawObjectBottom.png in Resources */,
 				D88BB92317279B2800FC28DC /* SeesawObjectTop.png in Resources */,
@@ -2085,6 +2086,13 @@
 				68987B21178E3E0900648208 /* SeesawObject-ipadhd.png in Resources */,
 				68987B22178E3E0900648208 /* StarObject-ipadhd.png in Resources */,
 				68987B23178E3E0900648208 /* TrampolineObject-ipadhd.png in Resources */,
+				7572FBA6178E4B4F00677856 /* Background music.mp3 in Resources */,
+				7572FBA7178E4B4F00677856 /* CurvedRampObject.mp3 in Resources */,
+				7572FBA8178E4B4F00677856 /* RampObject.mp3 in Resources */,
+				7572FBA9178E4B4F00677856 /* StarObject.mp3 in Resources */,
+				7572FBAA178E4B4F00677856 /* TrampolineObject.mp3 in Resources */,
+				7572FBB0178E514E00677856 /* credits.png in Resources */,
+				7572FBB2178E524900677856 /* credits-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
