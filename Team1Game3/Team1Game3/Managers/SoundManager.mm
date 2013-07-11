@@ -38,8 +38,7 @@
     if ([self isBackgroundMusicPlaying])
         [self pauseBackgroundMusic];
     else
-        return;
-        //[self playBackgroundMusic:@"Background music.m4a"];
+        [self playBackgroundMusic:@"Background music.mp3"];
 }
 
 

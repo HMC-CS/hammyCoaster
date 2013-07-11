@@ -10,7 +10,7 @@
 #import "InstructionsLayer.h"
 #import "AppController.h"
 #import "LevelSelectorLayer.h"
-
+#import "CreditsLayer.h"
 #import "SoundManager.h"
 
 @implementation MainMenuLayer
@@ -74,10 +74,16 @@
     CCMenuItemLabel *instructions = [CCMenuItemFont itemWithString:@"Instructions" block:^(id sender){
 		[[CCDirector sharedDirector] pushScene: [InstructionsLayer scene]];
 	}];
+    
+    //Credits Button
+    CCMenuItemLabel *credits = [CCMenuItemFont itemWithString:@"Credits" block:^(id sender){
+		[[CCDirector sharedDirector] pushScene: [CreditsLayer scene]];
+	}];
+
 	
-    CCMenu *menu = [CCMenu menuWithItems:newGame, instructions, nil];
+    CCMenu *menu = [CCMenu menuWithItems:newGame, instructions, credits, nil];
 	
-	[menu alignItemsVerticallyWithPadding:40.0f];
+	[menu alignItemsVerticallyWithPadding:33.0f];
 	
 	CGSize size = [[CCDirector sharedDirector] winSize];
 	[menu setPosition:ccp( size.width/2, size.height/2)];
