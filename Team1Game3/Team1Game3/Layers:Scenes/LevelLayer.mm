@@ -107,9 +107,7 @@
 	return self;
 }
 
--(id) toggle_hint_property {
-    _hint_displayed = !_hint_displayed;
-}
+
 
 -(void) createHintMenu
 {
@@ -129,11 +127,31 @@
     
     
     CGSize size = [[CCDirector sharedDirector] winSize];
+    
+    CCMenuItemImage *hintButtonOn = [CCMenuItemImage itemWithNormalImage:@"question.png" selectedImage:@"question.png"];
+    
+    CCMenuItemImage *hintButtonOff = [CCMenuItemImage itemWithNormalImage:@"question.png" selectedImage: @"question.png" block:^(id sender) {
+        [self hintOffPressed];
+    }];
+    if (_levelIndex == 1 && _hint_displayed == false)
+    {
+        [self hintOnPressed];
+    }
+    
+    _hintToggle = [CCMenuItemToggle itemWithItems:[NSArray arrayWithObjects: hintButtonOn, hintButtonOff, nil] block:^(id sender) {
+       
+        [self hintOnOffPressed];
+    }];
+    
+    
+    
+    /*
     CCMenuItemImage* hintButton = [CCMenuItemImage itemWithNormalImage:@"lightbulb.png" selectedImage:@"lightbulb.png" block:^(id sender) {
         if (_hint_displayed == false) 
         {
             _hint_displayed = true;
             _draggingPopup = [CCSprite spriteWithFile:level_1_pic];
+            
             [_draggingPopup setPosition:CGPointMake(size.width/1.7, size.height/2)];
             NSMutableArray* popUpArray = [[NSMutableArray alloc] init];
             CCAnimation* spriteAnimation = [CCAnimation animationWithSpriteFrames:popUpArray];
@@ -142,39 +160,53 @@
             id delay  = [CCDelayTime actionWithDuration:3];
             id animateSequence = [CCSequence actions: popupAnimateAction, delay, callSpriteAnim, nil];
             [self runAction:animateSequence];
+             
             [self addChild:_draggingPopup z:4];
         }
     }];
-    CCMenu *hintGameMenu = [CCMenu menuWithItems:hintButton, nil];
+*/
+    CCMenu* hintGameMenu = [CCMenu menuWithItems: _hintToggle, nil];
     [hintGameMenu setPosition:ccp(17*size.width/20, 19*size.height/20)];
     [self addChild: hintGameMenu z:4];
     
     
 }
 
-/*
--(void) createTutorialLevel
+
+-(void) hintOnPressed
 {
+    
+    NSString* fileName = [NSString stringWithFormat:@"hints.plist"];
+    NSString* levelPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:fileName];
+    NSDictionary* root_dict = [NSDictionary dictionaryWithContentsOfFile:levelPath];
+    
+    // This loads the correct levelSet_# array into an array (levelSet)
+    NSString* levelSet_number = [[NSString alloc] initWithFormat:@"levelSet%i", _levelSet];
+    NSArray* levelSet = [[NSArray alloc] initWithArray:root_dict[levelSet_number]];
+    
+    // This loads the value of the string at index = _levelIndex-1
+    NSString* level_1_pic = [[NSString alloc] initWithFormat:levelSet[_levelIndex-1]];
+    
+    
     CGSize size = [[CCDirector sharedDirector] winSize];
-    if (_levelSet == 1 && _levelIndex == 1)
-    {
-        _draggingPopup = [CCSprite spriteWithFile:@"draggingPopup.png"];
-        [_draggingPopup setPosition:CGPointMake(size.width/1.7, size.height/2)];
-        NSMutableArray* popUpArray = [[NSMutableArray alloc] init];
-        CCAnimation* spriteAnimation = [CCAnimation animationWithSpriteFrames:popUpArray];
-        id popupAnimateAction = [CCAnimate actionWithAnimation:spriteAnimation];
-        id callSpriteAnim = [CCCallFunc actionWithTarget:self selector:@selector(removePopUp)];
-        id delay  = [CCDelayTime actionWithDuration:3];
-        id animateSequence = [CCSequence actions: popupAnimateAction, delay,callSpriteAnim, nil];
-        [self runAction:animateSequence];
-        [self addChild:_draggingPopup z:4];
-    }
+     _draggingPopup = [CCSprite spriteWithFile:level_1_pic];
+     [_draggingPopup setPosition:CGPointMake(size.width/1.7, size.height/2)];
+    _hint_displayed = true;
+    [self addChild:_draggingPopup];
 }
-*/
--(void) removePopUp
+-(void) hintOffPressed
 {
     [self removeChild:_draggingPopup cleanup:YES];
     _hint_displayed = false;
+}
+
+-(void) hintOnOffPressed
+{
+    if ([_hintToggle selectedIndex] == 1 && _hint_displayed == false) {
+        [self hintOnPressed];
+    } else {
+        [self hintOffPressed];
+    }
 }
 
 /* ////////////////////////////// Private Functions ////////////////////////////// */
