@@ -546,6 +546,7 @@ for (AbstractGameObject *obj in _createdObjects){
                 // Clicking on the ball resets the ball
             } else if ([bodyObject.type isEqualToString:@"BallObject"]) {
                 [self resetBall];
+                [self resetStarCount];
                 [self togglePlayMode];
             }
         }
