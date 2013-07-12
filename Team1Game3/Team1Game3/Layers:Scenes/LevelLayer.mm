@@ -133,7 +133,7 @@
     CCMenuItemImage *hintButtonOff = [CCMenuItemImage itemWithNormalImage:@"question.png" selectedImage: @"question.png" block:^(id sender) {
         [self hintOffPressed];
     }];
-    if (_levelIndex == 1 && _hint_displayed == false)
+    if (((_levelSet == 1 && (_levelIndex == 1 || _levelIndex == 4 || _levelIndex == 7)) || (_levelSet == 2 && (_levelIndex ==1 || _levelIndex ==7))) && _hint_displayed == false)
     {
         [self hintOnPressed];
     }
