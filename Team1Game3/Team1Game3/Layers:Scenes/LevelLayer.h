@@ -42,6 +42,8 @@
     GameplayLayer* _gameplayLayer;         // Layer containing control buttons
     
     GameManager* _gameManager;             // Holds game data
+    
+    CCMenuItemToggle* _hintToggle;
 }
 
 @property bool hint_displayed;
