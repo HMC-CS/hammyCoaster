@@ -12,6 +12,7 @@
 #import "LevelSelectorLayer.h"
 #import "CreditsLayer.h"
 #import "SoundManager.h"
+#import "BackstoryLayer.h"
 
 @implementation MainMenuLayer
 
@@ -67,7 +68,7 @@
 	
 	// Play Game Button
 	CCMenuItemLabel *newGame = [CCMenuItemFont itemWithString:@"Play Game" block:^(id sender){
-		[[CCDirector sharedDirector] pushScene: [LevelSelectorLayer scene]];
+		[[CCDirector sharedDirector] pushScene: [BackstoryLayer scene]];
 	}];
     
     // Instructions Button
