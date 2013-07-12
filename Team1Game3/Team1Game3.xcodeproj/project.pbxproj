@@ -38,6 +38,14 @@
 		68132E1A178FA6A100013E58 /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E19178FA6A100013E58 /* question.png */; };
 		68132E1D1790681900013E58 /* BackstoryLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68132E1C1790681900013E58 /* BackstoryLayer.mm */; };
 		68132E231790803D00013E58 /* backstory.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E221790803D00013E58 /* backstory.png */; };
+		68132E341790AA3800013E58 /* hint_1_1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E2C1790AA3700013E58 /* hint_1_1-ipadhd.png */; };
+		68132E351790AA3800013E58 /* hint_1_2-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E2D1790AA3700013E58 /* hint_1_2-ipadhd.png */; };
+		68132E361790AA3800013E58 /* hint_1_3-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E2E1790AA3700013E58 /* hint_1_3-ipadhd.png */; };
+		68132E371790AA3800013E58 /* hint_1_4-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E2F1790AA3700013E58 /* hint_1_4-ipadhd.png */; };
+		68132E381790AA3800013E58 /* hint_1_5-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E301790AA3700013E58 /* hint_1_5-ipadhd.png */; };
+		68132E391790AA3800013E58 /* hint_1_7-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E311790AA3800013E58 /* hint_1_7-ipadhd.png */; };
+		68132E3A1790AA3800013E58 /* hint_2_1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E321790AA3800013E58 /* hint_2_1-ipadhd.png */; };
+		68132E3B1790AA3800013E58 /* hint_2_7-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E331790AA3800013E58 /* hint_2_7-ipadhd.png */; };
 		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A0B177CD89B00648208 /* TutorialLayer.mm */; };
 		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
@@ -409,6 +417,14 @@
 		68132E1B1790681900013E58 /* BackstoryLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackstoryLayer.h; sourceTree = "<group>"; };
 		68132E1C1790681900013E58 /* BackstoryLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = BackstoryLayer.mm; sourceTree = "<group>"; };
 		68132E221790803D00013E58 /* backstory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backstory.png; sourceTree = "<group>"; };
+		68132E2C1790AA3700013E58 /* hint_1_1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_1_1-ipadhd.png"; sourceTree = "<group>"; };
+		68132E2D1790AA3700013E58 /* hint_1_2-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_1_2-ipadhd.png"; sourceTree = "<group>"; };
+		68132E2E1790AA3700013E58 /* hint_1_3-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_1_3-ipadhd.png"; sourceTree = "<group>"; };
+		68132E2F1790AA3700013E58 /* hint_1_4-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_1_4-ipadhd.png"; sourceTree = "<group>"; };
+		68132E301790AA3700013E58 /* hint_1_5-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_1_5-ipadhd.png"; sourceTree = "<group>"; };
+		68132E311790AA3800013E58 /* hint_1_7-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_1_7-ipadhd.png"; sourceTree = "<group>"; };
+		68132E321790AA3800013E58 /* hint_2_1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_2_1-ipadhd.png"; sourceTree = "<group>"; };
+		68132E331790AA3800013E58 /* hint_2_7-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_2_7-ipadhd.png"; sourceTree = "<group>"; };
 		6818126C176BE1F200018E76 /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = restart.png; sourceTree = "<group>"; };
 		68987A0A177CD89A00648208 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
 		68987A0B177CD89B00648208 /* TutorialLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TutorialLayer.mm; sourceTree = "<group>"; };
@@ -1001,6 +1017,14 @@
 				750F570017908B5C001E8DE2 /* hint_1_6.png */,
 				750F572B17908BE2001E8DE2 /* hint_1_7.png */,
 				750F572C17908BE2001E8DE2 /* hint_2_1.png */,
+				68132E2C1790AA3700013E58 /* hint_1_1-ipadhd.png */,
+				68132E2D1790AA3700013E58 /* hint_1_2-ipadhd.png */,
+				68132E2E1790AA3700013E58 /* hint_1_3-ipadhd.png */,
+				68132E2F1790AA3700013E58 /* hint_1_4-ipadhd.png */,
+				68132E301790AA3700013E58 /* hint_1_5-ipadhd.png */,
+				68132E311790AA3800013E58 /* hint_1_7-ipadhd.png */,
+				68132E321790AA3800013E58 /* hint_2_1-ipadhd.png */,
+				68132E331790AA3800013E58 /* hint_2_7-ipadhd.png */,
 				750F572D17908BE2001E8DE2 /* hint_2_7.png */,
 				750F570217908B5C001E8DE2 /* hint_1_8.png */,
 				750F570317908B5D001E8DE2 /* hint_1_9.png */,
@@ -2135,6 +2159,14 @@
 				750F573117908BE2001E8DE2 /* hint_1_7.png in Resources */,
 				750F573217908BE2001E8DE2 /* hint_2_1.png in Resources */,
 				750F573317908BE2001E8DE2 /* hint_2_7.png in Resources */,
+				68132E341790AA3800013E58 /* hint_1_1-ipadhd.png in Resources */,
+				68132E351790AA3800013E58 /* hint_1_2-ipadhd.png in Resources */,
+				68132E361790AA3800013E58 /* hint_1_3-ipadhd.png in Resources */,
+				68132E371790AA3800013E58 /* hint_1_4-ipadhd.png in Resources */,
+				68132E381790AA3800013E58 /* hint_1_5-ipadhd.png in Resources */,
+				68132E391790AA3800013E58 /* hint_1_7-ipadhd.png in Resources */,
+				68132E3A1790AA3800013E58 /* hint_2_1-ipadhd.png in Resources */,
+				68132E3B1790AA3800013E58 /* hint_2_7-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
