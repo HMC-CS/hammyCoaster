@@ -7,8 +7,7 @@
 //
 
 #import "CreditsLayer.h"
-
-
+#import "MainMenuLayer.h"
 #import "OverallWinLayer.h"
 #import "SoundManager.h"
 
@@ -39,18 +38,18 @@
         background.position = ccp(size.width/2, size.height/2);
         [self addChild: background z:-2];
         
-        // Label declaring "YOU WIN!"
-        [CCMenuItemFont setFontSize:22];
-        CCLabelTTF* _winLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"YOU WIN!"] fontName:@"Marker Felt" fontSize:34];
-        _winLabel.position = CGPointMake(size.width*3/4, size.height*2/3);
-        [self addChild:_winLabel];
+        CCSprite *creditText;
+        creditText = [CCSprite spriteWithFile:@"credits.png"];
+        creditText.position = ccp(size.width/2, size.height/2);
+        [self addChild: creditText z:-1];
+        
         
         CCMenuItemLabel *backMenu = [CCMenuItemFont itemWithString:@"Back" block:^(id sender){
-            [[CCDirector sharedDirector] pushScene: [OverallWinLayer scene]];
+            [[CCDirector sharedDirector] pushScene: [MainMenuLayer scene]];
         }];
         CCMenu *menu = [CCMenu menuWithItems:backMenu, nil];
-        [menu alignItemsHorizontallyWithPadding:20.0f];
-        [menu setPosition:ccp( size.width*3/4, size.height*5/9)];
+        [menu alignItemsHorizontallyWithPadding:50.0f];
+        [menu setPosition:ccp( size.width*1/10, size.height*10/11)];
         [self addChild: menu z:-1];
     }
     return self;
