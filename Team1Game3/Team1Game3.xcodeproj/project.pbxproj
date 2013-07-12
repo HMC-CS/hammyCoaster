@@ -596,7 +596,7 @@
 		D8A47F6A173CBB5B00CF1B87 /* MathHelper.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MathHelper.mm; sourceTree = "<group>"; };
 		D8A47F6C173CC1EB00CF1B87 /* WorldManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldManager.h; sourceTree = "<group>"; };
 		D8A47F6D173CC1EB00CF1B87 /* WorldManager.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorldManager.mm; sourceTree = "<group>"; };
-		D8E83C7016EA753B000284EA /* Team1Game3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Team1Game3.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8E83C7016EA753B000284EA /* HammyCoaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HammyCoaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E83C7316EA753B000284EA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		D8E83C7516EA753B000284EA /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		D8E83C7716EA753B000284EA /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
@@ -1347,7 +1347,7 @@
 		D8E83C7116EA753B000284EA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D8E83C7016EA753B000284EA /* Team1Game3.app */,
+				D8E83C7016EA753B000284EA /* HammyCoaster.app */,
 				D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */,
 			);
 			name = Products;
@@ -1958,7 +1958,7 @@
 			);
 			name = Team1Game3;
 			productName = Team1Game3;
-			productReference = D8E83C7016EA753B000284EA /* Team1Game3.app */;
+			productReference = D8E83C7016EA753B000284EA /* HammyCoaster.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2542,7 +2542,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HammyCoaster;
 				USER_HEADER_SEARCH_PATHS = "\"Team1Game3/libs\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2572,7 +2572,7 @@
 					"-lz",
 					"-ObjC",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HammyCoaster;
 				USER_HEADER_SEARCH_PATHS = "\"Team1Game3/libs\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
