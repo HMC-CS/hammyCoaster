@@ -507,7 +507,7 @@ for (AbstractGameObject *obj in _createdObjects){
         _initialTouchPosition = b2Vec2(touchLocation.x/PTM_RATIO, touchLocation.y/PTM_RATIO);
         
         // If the touch is in the inventory, add an object where the touch is
-        if (touchLocation.x < 0) {
+        if (touchLocation.x < 0 && _editMode) {
             NSString* type = [self getObjectType];
             CGPoint objectLocation = touchLocation;
             
