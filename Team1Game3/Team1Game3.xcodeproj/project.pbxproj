@@ -123,6 +123,7 @@
 		7572FBD0178E6D7100677856 /* lock-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBCF178E6D7100677856 /* lock-ipadhd.png */; };
 		7572FBD2178E6FAD00677856 /* credits-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBD1178E6FAC00677856 /* credits-ipadhd.png */; };
 		7572FBD4178E790100677856 /* hint_2_6-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBD3178E790100677856 /* hint_2_6-ipadhd.png */; };
+		75ACD53E17948364008F9587 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 75ACD53D17948364008F9587 /* iTunesArtwork */; };
 		9CE768D916F9B1FB00EE241F /* StarObject-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D516F9B1FB00EE241F /* StarObject-hd.png */; };
 		9CE768DA16F9B1FB00EE241F /* StarObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9CE768D716F9B1FB00EE241F /* StarObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		9CE768DB16F9B1FB00EE241F /* StarObject.png in Resources */ = {isa = PBXBuildFile; fileRef = 9CE768D816F9B1FB00EE241F /* StarObject.png */; };
@@ -215,7 +216,6 @@
 		D8E83C9816EA753B000284EA /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83C9716EA753B000284EA /* Icon-Small@2x.png */; };
 		D8E83C9A16EA753B000284EA /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83C9916EA753B000284EA /* Icon.png */; };
 		D8E83C9C16EA753B000284EA /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D8E83C9B16EA753B000284EA /* Icon@2x.png */; };
-		D8E83C9F16EA753B000284EA /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = D8E83C9E16EA753B000284EA /* iTunesArtwork */; };
 		D8E83CA416EA753B000284EA /* CCAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E83CA316EA753B000284EA /* CCAction.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83CA716EA753B000284EA /* CCActionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E83CA616EA753B000284EA /* CCActionCamera.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8E83CAA16EA753B000284EA /* CCActionCatmullRom.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E83CA916EA753B000284EA /* CCActionCatmullRom.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -506,6 +506,7 @@
 		7572FBCF178E6D7100677856 /* lock-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBD1178E6FAC00677856 /* credits-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "credits-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBD3178E790100677856 /* hint_2_6-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_2_6-ipadhd.png"; sourceTree = "<group>"; };
+		75ACD53D17948364008F9587 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		9CE768D516F9B1FB00EE241F /* StarObject-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-hd.png"; sourceTree = "<group>"; };
 		9CE768D616F9B1FB00EE241F /* StarObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarObject.h; sourceTree = "<group>"; };
 		9CE768D716F9B1FB00EE241F /* StarObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = StarObject.mm; sourceTree = "<group>"; };
@@ -617,7 +618,6 @@
 		D8E83C9916EA753B000284EA /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		D8E83C9B16EA753B000284EA /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		D8E83C9D16EA753B000284EA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D8E83C9E16EA753B000284EA /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 		D8E83CA216EA753B000284EA /* CCAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCAction.h; path = libs/cocos2d/CCAction.h; sourceTree = "<group>"; };
 		D8E83CA316EA753B000284EA /* CCAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CCAction.m; path = libs/cocos2d/CCAction.m; sourceTree = "<group>"; };
 		D8E83CA516EA753B000284EA /* CCActionCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCActionCamera.h; path = libs/cocos2d/CCActionCamera.h; sourceTree = "<group>"; };
@@ -1294,12 +1294,12 @@
 				D8820913171BAC5100D74162 /* IntroLayer.png */,
 				68132E13178F23F500013E58 /* IntroLayer-ipadhd.png */,
 				D878F9581742384300F7BD46 /* Icon-72.png */,
+				75ACD53D17948364008F9587 /* iTunesArtwork */,
 				D8E83C9316EA753B000284EA /* Icon-Small-50.png */,
 				D8E83C9516EA753B000284EA /* Icon-Small.png */,
 				D8E83C9716EA753B000284EA /* Icon-Small@2x.png */,
 				D8E83C9916EA753B000284EA /* Icon.png */,
 				D8E83C9B16EA753B000284EA /* Icon@2x.png */,
-				D8E83C9E16EA753B000284EA /* iTunesArtwork */,
 				D8E83E9F16EA753F000284EA /* blocks.png */,
 				D8E83C8716EA753B000284EA /* Default.png */,
 				D8E83C8916EA753B000284EA /* Default-Landscape~ipad.png */,
@@ -2010,7 +2010,6 @@
 				D8E83C9816EA753B000284EA /* Icon-Small@2x.png in Resources */,
 				D8E83C9A16EA753B000284EA /* Icon.png in Resources */,
 				D8E83C9C16EA753B000284EA /* Icon@2x.png in Resources */,
-				D8E83C9F16EA753B000284EA /* iTunesArtwork in Resources */,
 				D8E83DDD16EA753D000284EA /* ChangeLog in Resources */,
 				D8E83EA016EA753F000284EA /* blocks.png in Resources */,
 				D8E83EB416EA7625000284EA /* BallObject.png in Resources */,
@@ -2175,6 +2174,7 @@
 				68132E411790B94E00013E58 /* backstory.png in Resources */,
 				75009B171793C5EC00A55BD1 /* hint_1_1-ipadhd.png in Resources */,
 				75009B181793C5EC00A55BD1 /* hint_1_1.png in Resources */,
+				75ACD53E17948364008F9587 /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
