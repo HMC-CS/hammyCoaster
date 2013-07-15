@@ -4,31 +4,31 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>catpaws1.png</key>
+            <key>paws1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,55},{88,51}}</string>
+                <string>{{2,58},{84,53}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{88,51}}</string>
+                <string>{{0,0},{84,53}}</string>
                 <key>sourceSize</key>
-                <string>{88,51}</string>
+                <string>{84,53}</string>
             </dict>
-            <key>catpaws2.png</key>
+            <key>paws2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{88,51}}</string>
+                <string>{{2,2},{85,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{88,51}}</string>
+                <string>{{0,0},{85,54}}</string>
                 <key>sourceSize</key>
-                <string>{88,51}</string>
+                <string>{85,54}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -36,13 +36,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>catPawsAnim.png</string>
+            <string>pawsAnim-hd.png</string>
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:cd075cec501b990da5bfd2820e1924f7$</string>
+            <string>$TexturePacker:SmartUpdate:b4276dbb997b08ab181103b6582b7ae0$</string>
             <key>textureFileName</key>
-            <string>catPawsAnim.png</string>
+            <string>pawsAnim-hd.png</string>
         </dict>
     </dict>
 </plist>

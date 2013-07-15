@@ -79,11 +79,6 @@
 		68987B22178E3E0900648208 /* StarObject-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987B18178E3D3700648208 /* StarObject-ipadhd.png */; };
 		68987B23178E3E0900648208 /* TrampolineObject-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987B19178E3D9900648208 /* TrampolineObject-ipadhd.png */; };
 		68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016617690230007ED154 /* catPawsAnim-hd.plist */; };
-		68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016717690231007ED154 /* catPawsAnim-hd.png */; };
-		68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */; };
-		68FF016F17690233007ED154 /* catPawsAnim-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */; };
-		68FF017017690233007ED154 /* catPawsAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016A17690232007ED154 /* catPawsAnim.plist */; };
-		68FF017117690233007ED154 /* catPawsAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 68FF016B17690232007ED154 /* catPawsAnim.png */; };
 		750F571517908B5E001E8DE2 /* hint_1_6.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F570017908B5C001E8DE2 /* hint_1_6.png */; };
 		750F571717908B5E001E8DE2 /* hint_1_8.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F570217908B5C001E8DE2 /* hint_1_8.png */; };
 		750F571817908B5E001E8DE2 /* hint_1_9.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F570317908B5D001E8DE2 /* hint_1_9.png */; };
@@ -465,11 +460,6 @@
 		68987B18178E3D3700648208 /* StarObject-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "StarObject-ipadhd.png"; sourceTree = "<group>"; };
 		68987B19178E3D9900648208 /* TrampolineObject-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "TrampolineObject-ipadhd.png"; sourceTree = "<group>"; };
 		68FF016617690230007ED154 /* catPawsAnim-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-hd.plist"; path = "Team1Game3/Resources/catPawsAnim-hd.plist"; sourceTree = "<group>"; };
-		68FF016717690231007ED154 /* catPawsAnim-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-hd.png"; path = "Team1Game3/Resources/catPawsAnim-hd.png"; sourceTree = "<group>"; };
-		68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
-		68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-ipadhd.png"; path = "Team1Game3/Resources/catPawsAnim-ipadhd.png"; sourceTree = "<group>"; };
-		68FF016A17690232007ED154 /* catPawsAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = catPawsAnim.plist; path = Team1Game3/Resources/catPawsAnim.plist; sourceTree = "<group>"; };
-		68FF016B17690232007ED154 /* catPawsAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catPawsAnim.png; path = Team1Game3/Resources/catPawsAnim.png; sourceTree = "<group>"; };
 		750F570017908B5C001E8DE2 /* hint_1_6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hint_1_6.png; sourceTree = "<group>"; };
 		750F570217908B5C001E8DE2 /* hint_1_8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hint_1_8.png; sourceTree = "<group>"; };
 		750F570317908B5D001E8DE2 /* hint_1_9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hint_1_9.png; sourceTree = "<group>"; };
@@ -1340,11 +1330,6 @@
 				68FF016617690230007ED154 /* catPawsAnim-hd.plist */,
 				D8E83C7116EA753B000284EA /* Products */,
 				7572FBC9178E680600677856 /* HamsterCoasterIcon-ipadhd.png */,
-				68FF016717690231007ED154 /* catPawsAnim-hd.png */,
-				68FF016817690231007ED154 /* catPawsAnim-ipadhd.plist */,
-				68FF016917690231007ED154 /* catPawsAnim-ipadhd.png */,
-				68FF016A17690232007ED154 /* catPawsAnim.plist */,
-				68FF016B17690232007ED154 /* catPawsAnim.png */,
 				D8E83C8516EA753B000284EA /* Team1Game3 */,
 				D8E83C7216EA753B000284EA /* Frameworks */,
 			);
@@ -2074,11 +2059,6 @@
 				CECEFAB11742709B00C0F604 /* MainMenu.png in Resources */,
 				CECEFABB17427A3E00C0F604 /* LevelSelectorLayer.png in Resources */,
 				68FF016C17690233007ED154 /* catPawsAnim-hd.plist in Resources */,
-				68FF016D17690233007ED154 /* catPawsAnim-hd.png in Resources */,
-				68FF016E17690233007ED154 /* catPawsAnim-ipadhd.plist in Resources */,
-				68FF016F17690233007ED154 /* catPawsAnim-ipadhd.png in Resources */,
-				68FF017017690233007ED154 /* catPawsAnim.plist in Resources */,
-				68FF017117690233007ED154 /* catPawsAnim.png in Resources */,
 				6818126D176BE1F200018E76 /* restart.png in Resources */,
 				FD115BBF176FD2150057D59F /* playButton.png in Resources */,
 				FD115BC0176FD2150057D59F /* stopButton.png in Resources */,

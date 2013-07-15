@@ -4,31 +4,31 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>catpaws1.png</key>
+            <key>paws1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,206},{350,202}}</string>
+                <string>{{2,31},{42,26}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{350,202}}</string>
+                <string>{{0,0},{42,26}}</string>
                 <key>sourceSize</key>
-                <string>{350,202}</string>
+                <string>{42,26}</string>
             </dict>
-            <key>catpaws2.png</key>
+            <key>paws2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{350,202}}</string>
+                <string>{{2,2},{42,27}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{350,202}}</string>
+                <string>{{0,0},{42,27}}</string>
                 <key>sourceSize</key>
-                <string>{350,202}</string>
+                <string>{42,27}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -36,13 +36,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>catPawsAnim-ipadhd.png</string>
+            <string>pawsAnim.png</string>
             <key>size</key>
-            <string>{512,512}</string>
+            <string>{64,64}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:13a804a55f237aee8ab926241bb4099f$</string>
+            <string>$TexturePacker:SmartUpdate:df7344c4329c0c5d8cb84ea95b1357a8$</string>
             <key>textureFileName</key>
-            <string>catPawsAnim-ipadhd.png</string>
+            <string>pawsAnim.png</string>
         </dict>
     </dict>
 </plist>
