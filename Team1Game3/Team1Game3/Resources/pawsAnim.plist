@@ -7,28 +7,28 @@
             <key>paws1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,31},{42,26}}</string>
+                <string>{{2,2},{89,56}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,26}}</string>
+                <string>{{0,0},{89,56}}</string>
                 <key>sourceSize</key>
-                <string>{42,26}</string>
+                <string>{89,56}</string>
             </dict>
             <key>paws2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{42,27}}</string>
+                <string>{{2,60},{88,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,27}}</string>
+                <string>{{0,0},{88,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,27}</string>
+                <string>{88,59}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -38,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>pawsAnim.png</string>
             <key>size</key>
-            <string>{64,64}</string>
+            <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:df7344c4329c0c5d8cb84ea95b1357a8$</string>
+            <string>$TexturePacker:SmartUpdate:ae34f78e2b0de0ff7ab2934fc1852d33$</string>
             <key>textureFileName</key>
             <string>pawsAnim.png</string>
         </dict>

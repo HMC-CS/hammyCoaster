@@ -7,28 +7,28 @@
             <key>paws1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,112},{167,105}}</string>
+                <string>{{2,2},{354,225}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{167,105}}</string>
+                <string>{{0,0},{354,225}}</string>
                 <key>sourceSize</key>
-                <string>{167,105}</string>
+                <string>{354,225}</string>
             </dict>
             <key>paws2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{169,108}}</string>
+                <string>{{2,229},{353,234}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{169,108}}</string>
+                <string>{{0,0},{353,234}}</string>
                 <key>sourceSize</key>
-                <string>{169,108}</string>
+                <string>{353,234}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -38,9 +38,9 @@
             <key>realTextureFileName</key>
             <string>pawsAnim-ipadhd.png</string>
             <key>size</key>
-            <string>{256,256}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:94a5207ef32f43d83f187ef825641aee$</string>
+            <string>$TexturePacker:SmartUpdate:9219e98243d8d99d52d7eeb06dc49786$</string>
             <key>textureFileName</key>
             <string>pawsAnim-ipadhd.png</string>
         </dict>
