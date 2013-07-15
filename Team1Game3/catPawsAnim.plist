@@ -4,31 +4,31 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>paws1.png</key>
+            <key>catpaws1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{89,56}}</string>
+                <string>{{2,55},{88,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{89,56}}</string>
+                <string>{{0,0},{88,51}}</string>
                 <key>sourceSize</key>
-                <string>{89,56}</string>
+                <string>{88,51}</string>
             </dict>
-            <key>paws2.png</key>
+            <key>catpaws2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,60},{88,59}}</string>
+                <string>{{2,2},{88,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{88,59}}</string>
+                <string>{{0,0},{88,51}}</string>
                 <key>sourceSize</key>
-                <string>{88,59}</string>
+                <string>{88,51}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -36,13 +36,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>pawsAnim.png</string>
+            <string>catPawsAnim.png</string>
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ae34f78e2b0de0ff7ab2934fc1852d33$</string>
+            <string>$TexturePacker:SmartUpdate:cd075cec501b990da5bfd2820e1924f7$</string>
             <key>textureFileName</key>
-            <string>pawsAnim.png</string>
+            <string>catPawsAnim.png</string>
         </dict>
     </dict>
 </plist>

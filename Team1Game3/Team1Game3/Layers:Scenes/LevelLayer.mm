@@ -77,22 +77,22 @@
         [self addChild:_levelLabel];
         
         //Cat paws animation
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"pawsAnim-hd.plist"];
-        CCSpriteBatchNode* spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"pawsAnim-hd.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"catPawsAnim.plist"];
+        CCSpriteBatchNode* spriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"catPawsAnim.png"];
         [self addChild:spriteSheet];
         NSMutableArray* catAnimFrames = [NSMutableArray array];
         for (int i =1; i <= 2; i++)
         {
-            [catAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"paws%d.png",i]]];
+            [catAnimFrames addObject:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"catpaws%d.png",i]]];
         }
         CCAnimation* catAnim = [CCAnimation animationWithSpriteFrames:catAnimFrames delay:0.7f];
         CGSize winSize = [[CCDirector sharedDirector] winSize];
         
 
-        for (int i= 0; i <= 4; i++)
+        for (int i= 0; i <= 9; i++)
         {
-             self.catPaws = [CCSprite spriteWithSpriteFrameName:@"paws1.png"];
-            self.catPaws.position = CGPointMake(winSize.width*(.2)+self.catPaws.boundingBox.size.width*i,self.catPaws.boundingBox.size.height/3);
+             self.catPaws = [CCSprite spriteWithSpriteFrameName:@"catpaws1.png"];
+            self.catPaws.position = CGPointMake(winSize.width*(.19)+self.catPaws.boundingBox.size.width*i,self.catPaws.boundingBox.size.height/2);
             self.catAction = [CCRepeatForever actionWithAction:[CCAnimate actionWithAnimation:catAnim]];
             [self.catPaws runAction:self.catAction];
             [self.catArray addObject:self.catPaws];
