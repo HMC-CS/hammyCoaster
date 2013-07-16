@@ -53,7 +53,7 @@
 
 
 @property (nonatomic, strong) CCAction *catAction;
-//@property (nonatomic, strong) CCAction *moveAction;
+
 
 /* sceneWithLevelSet:AndIndex:
  * Returns a CCScene containing LevelLayer (with level set-index) as the only child

@@ -61,7 +61,7 @@
     bool _movedOverlap;
 }
 
-@property (readonly) CGPoint ballStartingPoint;
+@property (readonly) CGPoint ballStartingPoint; 
 @property bool safe_to_play;
 @property (retain,readwrite) NSMutableArray* bodyArray;
 

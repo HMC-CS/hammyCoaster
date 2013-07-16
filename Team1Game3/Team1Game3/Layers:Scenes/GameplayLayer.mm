@@ -78,7 +78,6 @@
         }
         starLocation.x += _stars.boundingBox.size.width+10;
     }
-    //[_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
 }
 
 
@@ -154,20 +153,14 @@
             _stars = [CCSprite spriteWithFile:@"StarObjectOutline.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
-            //[_starArray addObject:_stars];
         } else {
             _stars = [CCSprite spriteWithFile:@"StarObject.png"];
             [_stars setPosition:starLocation];
             [self addChild:_stars];
-            //[_starArray addObject:_stars];
         }
         starLocation.x += _stars.boundingBox.size.width +10;
     }
     
-    //_starLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Stars: %d", _starCount] fontName:@"Marker Felt" fontSize:20];
-    //_starLabel.position = CGPointMake(size.width*(.075), 4*size.height/32);
-
-    //[self addChild:_starLabel];
     
     // Label for level high score
     _bestStarLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Best Stars: %d", _bestStars] fontName:@"Marker Felt" fontSize:20];
@@ -199,10 +192,7 @@
    {
         [self removeChild:star cleanup:YES];
     }
-    //[self createLabels];
- 
-    
-    //[_starLabel setString:[NSString stringWithFormat:@"Stars: %d", _starCount]];
+
 }
 
 
