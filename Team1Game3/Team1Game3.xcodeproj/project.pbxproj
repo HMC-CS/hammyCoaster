@@ -27,7 +27,6 @@
 		197F4E20178E2AFB00FA43BB /* playButton-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 197F4E05178E2AFB00FA43BB /* playButton-ipadhd.png */; };
 		197F4E21178E2AFB00FA43BB /* stopButton-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 197F4E06178E2AFB00FA43BB /* stopButton-ipadhd.png */; };
 		19E30BC71795BBC200090843 /* HamsterCoasterIcon-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 19E30BC61795BBC200090843 /* HamsterCoasterIcon-ipadhd.png */; };
-		611171F8172B8A2C00CF2950 /* trash2.png in Resources */ = {isa = PBXBuildFile; fileRef = 611171F7172B8A2C00CF2950 /* trash2.png */; };
 		6177232E170D5559004F545F /* RampObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6177232D170D5559004F545F /* RampObjectIcon.png */; };
 		61772331170D59D5004F545F /* RampObjectIconSelected.png in Resources */ = {isa = PBXBuildFile; fileRef = 61772330170D59D5004F545F /* RampObjectIconSelected.png */; };
 		619EE6C91728F0440005D077 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = 619EE6C81728F0440005D077 /* lock.png */; };
@@ -55,6 +54,9 @@
 		68132E611794B29B00013E58 /* catPawsAnim-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E5B1794B29A00013E58 /* catPawsAnim-ipadhd.png */; };
 		68132E641794B29B00013E58 /* catPawsAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68132E5E1794B29A00013E58 /* catPawsAnim.plist */; };
 		68132E651794B29B00013E58 /* catPawsAnim.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E5F1794B29A00013E58 /* catPawsAnim.png */; };
+		68132E691795BCDA00013E58 /* instructions1-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E661795BCDA00013E58 /* instructions1-ipadhd.png */; };
+		68132E6A1795BCDA00013E58 /* instructions2-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E671795BCDA00013E58 /* instructions2-ipadhd.png */; };
+		68132E6B1795BCDA00013E58 /* instructions3-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E681795BCDA00013E58 /* instructions3-ipadhd.png */; };
 		6818126D176BE1F200018E76 /* restart.png in Resources */ = {isa = PBXBuildFile; fileRef = 6818126C176BE1F200018E76 /* restart.png */; };
 		68987A0C177CD89B00648208 /* TutorialLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 68987A0B177CD89B00648208 /* TutorialLayer.mm */; };
 		68987A16177E151A00648208 /* lightbulb.png in Resources */ = {isa = PBXBuildFile; fileRef = 68987A15177E151A00648208 /* lightbulb.png */; };
@@ -156,7 +158,6 @@
 		D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F74171D5DFB00C6E8C5 /* MagnetObjectIcon.png */; };
 		D8299F79171D5E4400C6E8C5 /* MagnetObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */; };
-		D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = D8299F82172146F300C6E8C5 /* Delete2.PNG */; };
 		D843EFD316FFBA16006732D5 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D843EFD216FFBA16006732D5 /* SenTestingKit.framework */; };
 		D843EFD416FFBA16006732D5 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7D16EA753B000284EA /* UIKit.framework */; };
 		D843EFD516FFBA16006732D5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E83C7F16EA753B000284EA /* Foundation.framework */; };
@@ -410,7 +411,6 @@
 		197F4E05178E2AFB00FA43BB /* playButton-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "playButton-ipadhd.png"; path = "../playButton-ipadhd.png"; sourceTree = "<group>"; };
 		197F4E06178E2AFB00FA43BB /* stopButton-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "stopButton-ipadhd.png"; path = "../stopButton-ipadhd.png"; sourceTree = "<group>"; };
 		19E30BC61795BBC200090843 /* HamsterCoasterIcon-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HamsterCoasterIcon-ipadhd.png"; sourceTree = "<group>"; };
-		611171F7172B8A2C00CF2950 /* trash2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trash2.png; sourceTree = "<group>"; };
 		6177232D170D5559004F545F /* RampObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObjectIcon.png; sourceTree = "<group>"; };
 		61772330170D59D5004F545F /* RampObjectIconSelected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RampObjectIconSelected.png; sourceTree = "<group>"; };
 		619EE6C81728F0440005D077 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
@@ -432,14 +432,17 @@
 		68132E331790AA3800013E58 /* hint_2_7-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hint_2_7-ipadhd.png"; sourceTree = "<group>"; };
 		68132E3C1790AD5B00013E58 /* backstory-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backstory-ipadhd.png"; sourceTree = "<group>"; };
 		68132E3D1790AD5B00013E58 /* question-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "question-ipadhd.png"; path = "../question-ipadhd.png"; sourceTree = "<group>"; };
-		68132E421790F77700013E58 /* instructions1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructions1.png; sourceTree = "<group>"; };
-		68132E441790F78500013E58 /* instructions2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructions2.png; sourceTree = "<group>"; };
-		68132E461790F79900013E58 /* instructions3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructions3.png; sourceTree = "<group>"; };
+		68132E421790F77700013E58 /* instructions1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instructions1.png; path = ../instructions1.png; sourceTree = "<group>"; };
+		68132E441790F78500013E58 /* instructions2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instructions2.png; path = ../instructions2.png; sourceTree = "<group>"; };
+		68132E461790F79900013E58 /* instructions3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instructions3.png; path = ../instructions3.png; sourceTree = "<group>"; };
 		68132E581794749F00013E58 /* backstory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backstory.png; sourceTree = "<group>"; };
 		68132E5A1794B29A00013E58 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "../../catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
 		68132E5B1794B29A00013E58 /* catPawsAnim-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-ipadhd.png"; path = "../../catPawsAnim-ipadhd.png"; sourceTree = "<group>"; };
 		68132E5E1794B29A00013E58 /* catPawsAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = catPawsAnim.plist; path = ../../catPawsAnim.plist; sourceTree = "<group>"; };
 		68132E5F1794B29A00013E58 /* catPawsAnim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = catPawsAnim.png; path = ../../catPawsAnim.png; sourceTree = "<group>"; };
+		68132E661795BCDA00013E58 /* instructions1-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "instructions1-ipadhd.png"; path = "../instructions1-ipadhd.png"; sourceTree = "<group>"; };
+		68132E671795BCDA00013E58 /* instructions2-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "instructions2-ipadhd.png"; path = "../instructions2-ipadhd.png"; sourceTree = "<group>"; };
+		68132E681795BCDA00013E58 /* instructions3-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "instructions3-ipadhd.png"; path = "../instructions3-ipadhd.png"; sourceTree = "<group>"; };
 		6818126C176BE1F200018E76 /* restart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = restart.png; path = ../restart.png; sourceTree = "<group>"; };
 		68987A0A177CD89A00648208 /* TutorialLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TutorialLayer.h; sourceTree = "<group>"; };
 		68987A0B177CD89B00648208 /* TutorialLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TutorialLayer.mm; sourceTree = "<group>"; };
@@ -552,7 +555,6 @@
 		D8299F77171D5E4400C6E8C5 /* MagnetObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagnetObject.h; sourceTree = "<group>"; };
 		D8299F78171D5E4400C6E8C5 /* MagnetObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MagnetObject.mm; sourceTree = "<group>"; };
 		D8299F7A171DF07300C6E8C5 /* TrampolineObjectIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TrampolineObjectIcon.png; sourceTree = "<group>"; };
-		D8299F82172146F300C6E8C5 /* Delete2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Delete2.PNG; sourceTree = "<group>"; };
 		D843EFD116FFBA16006732D5 /* Team1Game3Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Team1Game3Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D843EFD216FFBA16006732D5 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		D86F7143170749B50007ED1D /* CCScrollLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCScrollLayer.h; sourceTree = "<group>"; };
@@ -1186,12 +1188,17 @@
 			path = "Layers:Scenes";
 			sourceTree = "<group>";
 		};
-		D878F95A17423AE900F7BD46 /* Inventory Pictures */ = {
+		D878F95A17423AE900F7BD46 /* Instructions */ = {
 			isa = PBXGroup;
 			children = (
-				611171F7172B8A2C00CF2950 /* trash2.png */,
-				D8299F82172146F300C6E8C5 /* Delete2.PNG */,
+				68132E661795BCDA00013E58 /* instructions1-ipadhd.png */,
+				68132E671795BCDA00013E58 /* instructions2-ipadhd.png */,
+				68132E681795BCDA00013E58 /* instructions3-ipadhd.png */,
+				68132E461790F79900013E58 /* instructions3.png */,
+				68132E441790F78500013E58 /* instructions2.png */,
+				68132E421790F77700013E58 /* instructions1.png */,
 			);
+			name = Instructions;
 			path = "Inventory Pictures";
 			sourceTree = "<group>";
 		};
@@ -1425,14 +1432,11 @@
 			isa = PBXGroup;
 			children = (
 				68132E11178F1EBA00013E58 /* Default-Landscape@2x~ipad.png */,
-				68132E461790F79900013E58 /* instructions3.png */,
-				68132E441790F78500013E58 /* instructions2.png */,
-				68132E421790F77700013E58 /* instructions1.png */,
+				D878F95A17423AE900F7BD46 /* Instructions */,
 				75ACD5411794AE4F008F9587 /* Cat Paws */,
 				197F4E22178E2BBD00FA43BB /* Hints */,
 				D8E83C9D16EA753B000284EA /* Info.plist */,
 				D878F95B17423C5C00F7BD46 /* Backgrounds and Screens */,
-				D878F95A17423AE900F7BD46 /* Inventory Pictures */,
 				D895F556170743E200ED74C5 /* Level Selector Icons */,
 				AD7731AD172618BD00709F80 /* Gameplay Icons */,
 				AD7731BE1726415800709F80 /* Sound */,
@@ -2065,7 +2069,6 @@
 				D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */,
 				CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */,
 				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
-				D8299F83172146F400C6E8C5 /* Delete2.PNG in Resources */,
 				AD7731BA17261A9D00709F80 /* Music off.png in Resources */,
 				AD7731BB17261A9D00709F80 /* Music on.png in Resources */,
 				AD7731BC17261A9D00709F80 /* Sound off.png in Resources */,
@@ -2075,7 +2078,6 @@
 				D88BB92317279B2800FC28DC /* SeesawObjectTop.png in Resources */,
 				D88BB92517279E1C00FC28DC /* SeesawObjectIcon.png in Resources */,
 				619EE6C91728F0440005D077 /* lock.png in Resources */,
-				611171F8172B8A2C00CF2950 /* trash2.png in Resources */,
 				D878F9591742384300F7BD46 /* Icon-72.png in Resources */,
 				D878F95D17423CDF00F7BD46 /* WinScreen.png in Resources */,
 				D878F96E1742439A00F7BD46 /* SeesawObject.png in Resources */,
@@ -2199,6 +2201,9 @@
 				68132E651794B29B00013E58 /* catPawsAnim.png in Resources */,
 				756C0F1C1794B98800E3B861 /* HamsterCoasterIcon-ipadhd.png in Resources */,
 				19E30BC71795BBC200090843 /* HamsterCoasterIcon-ipadhd.png in Resources */,
+				68132E691795BCDA00013E58 /* instructions1-ipadhd.png in Resources */,
+				68132E6A1795BCDA00013E58 /* instructions2-ipadhd.png in Resources */,
+				68132E6B1795BCDA00013E58 /* instructions3-ipadhd.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
