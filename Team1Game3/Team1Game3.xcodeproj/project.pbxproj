@@ -49,7 +49,6 @@
 		68132E431790F77700013E58 /* instructions1.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E421790F77700013E58 /* instructions1.png */; };
 		68132E451790F78500013E58 /* instructions2.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E441790F78500013E58 /* instructions2.png */; };
 		68132E471790F79900013E58 /* instructions3.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E461790F79900013E58 /* instructions3.png */; };
-		68132E591794749F00013E58 /* backstory.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E581794749F00013E58 /* backstory.png */; };
 		68132E601794B29B00013E58 /* catPawsAnim-ipadhd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68132E5A1794B29A00013E58 /* catPawsAnim-ipadhd.plist */; };
 		68132E611794B29B00013E58 /* catPawsAnim-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 68132E5B1794B29A00013E58 /* catPawsAnim-ipadhd.png */; };
 		68132E641794B29B00013E58 /* catPawsAnim.plist in Resources */ = {isa = PBXBuildFile; fileRef = 68132E5E1794B29A00013E58 /* catPawsAnim.plist */; };
@@ -108,7 +107,6 @@
 		750F573117908BE2001E8DE2 /* hint_1_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F572B17908BE2001E8DE2 /* hint_1_7.png */; };
 		750F573217908BE2001E8DE2 /* hint_2_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F572C17908BE2001E8DE2 /* hint_2_1.png */; };
 		750F573317908BE2001E8DE2 /* hint_2_7.png in Resources */ = {isa = PBXBuildFile; fileRef = 750F572D17908BE2001E8DE2 /* hint_2_7.png */; };
-		756C0F1C1794B98800E3B861 /* HamsterCoasterIcon-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = 756C0F1B1794B98800E3B861 /* HamsterCoasterIcon-ipadhd.png */; };
 		7572FBA6178E4B4F00677856 /* Background music.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA1178E4B4F00677856 /* Background music.mp3 */; };
 		7572FBA7178E4B4F00677856 /* CurvedRampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA2178E4B4F00677856 /* CurvedRampObject.mp3 */; };
 		7572FBA8178E4B4F00677856 /* RampObject.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 7572FBA3178E4B4F00677856 /* RampObject.mp3 */; };
@@ -149,7 +147,6 @@
 		AD7731BD17261A9D00709F80 /* Sound on.png in Resources */ = {isa = PBXBuildFile; fileRef = AD7731B917261A9D00709F80 /* Sound on.png */; };
 		CE3B3199170E43C500F70048 /* TrampolineObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = CE3B3198170E43C500F70048 /* TrampolineObject.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */; };
-		CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */; };
 		CECEFAB01742709B00C0F604 /* GoalLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = CECEFAAE1742709B00C0F604 /* GoalLayer.png */; };
 		CECEFAB11742709B00C0F604 /* MainMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = CECEFAAF1742709B00C0F604 /* MainMenu.png */; };
 		CECEFABB17427A3E00C0F604 /* LevelSelectorLayer.png in Resources */ = {isa = PBXBuildFile; fileRef = CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */; };
@@ -435,7 +432,6 @@
 		68132E421790F77700013E58 /* instructions1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instructions1.png; path = ../instructions1.png; sourceTree = "<group>"; };
 		68132E441790F78500013E58 /* instructions2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instructions2.png; path = ../instructions2.png; sourceTree = "<group>"; };
 		68132E461790F79900013E58 /* instructions3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = instructions3.png; path = ../instructions3.png; sourceTree = "<group>"; };
-		68132E581794749F00013E58 /* backstory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backstory.png; sourceTree = "<group>"; };
 		68132E5A1794B29A00013E58 /* catPawsAnim-ipadhd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "catPawsAnim-ipadhd.plist"; path = "../../catPawsAnim-ipadhd.plist"; sourceTree = "<group>"; };
 		68132E5B1794B29A00013E58 /* catPawsAnim-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "catPawsAnim-ipadhd.png"; path = "../../catPawsAnim-ipadhd.png"; sourceTree = "<group>"; };
 		68132E5E1794B29A00013E58 /* catPawsAnim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = catPawsAnim.plist; path = ../../catPawsAnim.plist; sourceTree = "<group>"; };
@@ -496,7 +492,6 @@
 		750F572B17908BE2001E8DE2 /* hint_1_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hint_1_7.png; sourceTree = "<group>"; };
 		750F572C17908BE2001E8DE2 /* hint_2_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hint_2_1.png; sourceTree = "<group>"; };
 		750F572D17908BE2001E8DE2 /* hint_2_7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hint_2_7.png; sourceTree = "<group>"; };
-		756C0F1B1794B98800E3B861 /* HamsterCoasterIcon-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HamsterCoasterIcon-ipadhd.png"; sourceTree = "<group>"; };
 		7572FBA1178E4B4F00677856 /* Background music.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Background music.mp3"; sourceTree = "<group>"; };
 		7572FBA2178E4B4F00677856 /* CurvedRampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = CurvedRampObject.mp3; sourceTree = "<group>"; };
 		7572FBA3178E4B4F00677856 /* RampObject.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RampObject.mp3; sourceTree = "<group>"; };
@@ -544,7 +539,6 @@
 		CE3B3197170E43C500F70048 /* TrampolineObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrampolineObject.h; sourceTree = "<group>"; };
 		CE3B3198170E43C500F70048 /* TrampolineObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TrampolineObject.mm; sourceTree = "<group>"; };
 		CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
-		CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HamsterCoasterIcon.png; sourceTree = "<group>"; };
 		CECEFAAE1742709B00C0F604 /* GoalLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = GoalLayer.png; path = "Backgrounds and Screens/GoalLayer.png"; sourceTree = "<group>"; };
 		CECEFAAF1742709B00C0F604 /* MainMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MainMenu.png; path = "Backgrounds and Screens/MainMenu.png"; sourceTree = "<group>"; };
 		CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LevelSelectorLayer.png; path = "Backgrounds and Screens/LevelSelectorLayer.png"; sourceTree = "<group>"; };
@@ -1217,7 +1211,6 @@
 				68987AFD178E31BB00648208 /* MainMenu-ipadhd.png */,
 				7572FBAF178E514E00677856 /* credits.png */,
 				68987AFE178E31BE00648208 /* WinScreen-ipadhd.png */,
-				68132E581794749F00013E58 /* backstory.png */,
 				CECEFABA17427A3E00C0F604 /* LevelSelectorLayer.png */,
 				68987A3F178B6BAB00648208 /* newBackground.png */,
 				68987A39178B626600648208 /* background2.png */,
@@ -1327,8 +1320,6 @@
 		D895F5581707440700ED74C5 /* Given/App Icons */ = {
 			isa = PBXGroup;
 			children = (
-				CEABFF4C171E2293006E062A /* HamsterCoasterIcon.png */,
-				756C0F1B1794B98800E3B861 /* HamsterCoasterIcon-ipadhd.png */,
 				CEABFF49171E2208006E062A /* HamsterCoasterIcon.png */,
 				D8820915171BAD0000D74162 /* IntroLayer1.png */,
 				D8820913171BAC5100D74162 /* IntroLayer.png */,
@@ -2068,7 +2059,6 @@
 				D8299F76171D5DFB00C6E8C5 /* MagnetObjectIcon.png in Resources */,
 				D8299F7B171DF07300C6E8C5 /* TrampolineObjectIcon.png in Resources */,
 				CEABFF4A171E2208006E062A /* HamsterCoasterIcon.png in Resources */,
-				CEABFF4D171E2293006E062A /* HamsterCoasterIcon.png in Resources */,
 				AD7731BA17261A9D00709F80 /* Music off.png in Resources */,
 				AD7731BB17261A9D00709F80 /* Music on.png in Resources */,
 				AD7731BC17261A9D00709F80 /* Sound off.png in Resources */,
@@ -2190,7 +2180,6 @@
 				68132E431790F77700013E58 /* instructions1.png in Resources */,
 				68132E451790F78500013E58 /* instructions2.png in Resources */,
 				68132E471790F79900013E58 /* instructions3.png in Resources */,
-				68132E591794749F00013E58 /* backstory.png in Resources */,
 				75009B171793C5EC00A55BD1 /* hint_1_1-ipadhd.png in Resources */,
 				75009B181793C5EC00A55BD1 /* hint_1_1.png in Resources */,
 				75ACD53E17948364008F9587 /* iTunesArtwork in Resources */,
@@ -2199,7 +2188,6 @@
 				68132E611794B29B00013E58 /* catPawsAnim-ipadhd.png in Resources */,
 				68132E641794B29B00013E58 /* catPawsAnim.plist in Resources */,
 				68132E651794B29B00013E58 /* catPawsAnim.png in Resources */,
-				756C0F1C1794B98800E3B861 /* HamsterCoasterIcon-ipadhd.png in Resources */,
 				19E30BC71795BBC200090843 /* HamsterCoasterIcon-ipadhd.png in Resources */,
 				68132E691795BCDA00013E58 /* instructions1-ipadhd.png in Resources */,
 				68132E6A1795BCDA00013E58 /* instructions2-ipadhd.png in Resources */,
