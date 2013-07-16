@@ -131,8 +131,6 @@
 
     _inventoryMenu = [CCMenu node];
     buttonArray = [[NSMutableArray alloc] init];
-    //NSMutableArray* inventoryScrollerArray = [[NSMutableArray alloc] init];
-    //Attempts at implementing a scroller
 
 
     for (NSArray* item in _items) {
@@ -156,12 +154,6 @@
         {
             normal.color = ccc3(84,84,84);
         }
-        //if ([type isEqualToString:@"MagnetObject"])
-        //{
-          //  [SpriteResizingFunctions setSpriteSize:normal InLayer:self WithSize:.4f];
-           // [SpriteResizingFunctions setSpriteSize:selected InLayer:self WithSize:.4f];
-            
-        //}
         
         // Set inventory button atrributes
         CCMenuItemSprite* inventoryButton = [CCMenuItemSprite itemWithNormalSprite:normal selectedSprite:selected];

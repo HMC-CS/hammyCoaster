@@ -144,27 +144,6 @@
     }];
     
     
-    
-    /*
-    CCMenuItemImage* hintButton = [CCMenuItemImage itemWithNormalImage:@"lightbulb.png" selectedImage:@"lightbulb.png" block:^(id sender) {
-        if (_hint_displayed == false) 
-        {
-            _hint_displayed = true;
-            _draggingPopup = [CCSprite spriteWithFile:level_1_pic];
-            
-            [_draggingPopup setPosition:CGPointMake(size.width/1.7, size.height/2)];
-            NSMutableArray* popUpArray = [[NSMutableArray alloc] init];
-            CCAnimation* spriteAnimation = [CCAnimation animationWithSpriteFrames:popUpArray];
-            id popupAnimateAction = [CCAnimate actionWithAnimation:spriteAnimation];
-            id callSpriteAnim = [CCCallFunc actionWithTarget:self selector:@selector(removePopUp)];
-            id delay  = [CCDelayTime actionWithDuration:3];
-            id animateSequence = [CCSequence actions: popupAnimateAction, delay, callSpriteAnim, nil];
-            [self runAction:animateSequence];
-             
-            [self addChild:_draggingPopup z:4];
-        }
-    }];
-*/
     CCMenu* hintGameMenu = [CCMenu menuWithItems: _hintToggle, nil];
     [hintGameMenu setPosition:ccp(17*size.width/20, 19*size.height/20)];
     [self addChild: hintGameMenu z:4];
@@ -330,13 +309,6 @@
 -(void) togglePlayResetButton
 {
      [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
-//    if (_physicsLayer.safe_to_play == true) {
-//        [_gameplayLayer.playResetToggle setSelectedIndex: 1 - [_gameplayLayer.playResetToggle selectedIndex]];
-//    }
-//    
-//    else {
-//        return;
-//    }
 }
 
 // selector 6

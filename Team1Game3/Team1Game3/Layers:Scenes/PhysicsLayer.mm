@@ -299,7 +299,7 @@ for (AbstractGameObject *obj in _createdObjects){
 }
 
 /* catPaw Interaction:
- * 
+ * handles the ball hiting the cat paws at the bottom of the screen
  */
 
 -(BOOL) catPawCollision
@@ -743,9 +743,7 @@ for (AbstractGameObject *obj in _createdObjects){
  */
 -(bool) isPointInTrash: (CGPoint) point
 {
-    return (point.x < self.boundingBox.origin.x); //&&
-        //point.y > self.boundingBox.size.height/5 &&
-        //point.y < self.boundingBox.size.height*4/5);
+    return (point.x < self.boundingBox.origin.x);
 }
 
 
