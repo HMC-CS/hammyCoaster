@@ -34,8 +34,8 @@
 }
 
 
-@property (readonly) int starCount;
-@property (readonly) CCMenuItemToggle* playResetToggle;
+@property (readonly) int starCount;  //Keeps track of the stars gained
+@property (readonly) CCMenuItemToggle* playResetToggle; //toggle for play/reset button
 
 
 /* initWithHighScore:
